@@ -3,61 +3,9 @@
 @section('title', 'PERUJI')
 
 @section('content')
-<style type="text/css">
-    /* Membership Page */
-        body {
-            background-color: black;
-        }
-        .label-membership {
-            font-size: 35px;
-            padding-bottom: 20px;
-            color: white;
-        }
-        .container{
-            padding-left: 50px;
-            padding-right: 50px;
-        }
-        .header {
-            display: flex;
-        }
-        .container .header .gray {
-            background-color: gray;
-            width: 20px;
-        }
-        .container .header .section-header {
-            background-color: #F7941D;
-            padding: 5px;
-            color: white;
-            width: 100%;
-        }
-        .container-membership {
-            position: relative;
-        }
-        .table {
-            margin: 20px 0px !important;
-        }
-        .table td {
-            background-color: black;
-            color: white !important;
-            border: none;                
-        }
-        .btn-submit {
-            color: white;
-            border-radius: 50px;
-            padding: 5px 40px;
-            background-color: #F7941D;
-        }
-    /* Close Membership Page */
-</style>
-<!-- Membership Signup -->
-    <div style="
-        display: flex;
-        align-items: center;
-        height: 100vh;
-    ">
-        
+    <div class="container-fluid form">
         <div class="container">
-            <div class="label-membership">Membership Application</div>
+            <div class="label-eve">Membership Application</div>
             
             <div class="header">
                 <div class="gray"></div>
@@ -108,5 +56,15 @@
             <button class="btn btn-submit mt-3">SUBMIT</button>
         </div>
     </div>
-<!-- Close Membership Signup -->
+
+    <div class="info-done" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); display: none;">
+        <div class="cardo animated-popup">
+            <div style="font-size: 50px; margin-bottom: 20px;">Thank You!</div>
+            <div style="font-size: 16px;">
+                You will receive an email regarding<br>
+                confirmation of your membership<br>
+                application and payment.
+            </div>
+        </div>
+    </div>
 @endsection

@@ -13,8 +13,11 @@
     <main>
         @yield('content')
     </main>
+
+    @if (!Request::is('/','events-1','events-2','contact-us','membership-signup','events-regis'))
+        @include('landingpage.footer')
+    @endif
     
-    @include('landingpage.footer')
 </body>
 <script src="{{asset('/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script>
@@ -31,6 +34,29 @@
         } else {
             navMenu.classList.add('show');
             menuText.textContent = 'Exit';
+        }
+    });
+    
+
+    const submitBtn = document.querySelector('.btn-submit');
+    const infoDone = document.querySelector('.info-done');
+    const cardo = document.querySelector('.cardo');
+
+    submitBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        infoDone.style.display = 'block';
+
+        setTimeout(() => {
+            infoDone.classList.add('show');
+        }, 10);
+    });
+
+    document.addEventListener('click', function (e) {
+        if (infoDone.classList.contains('show') && !cardo.contains(e.target) && !submitBtn.contains(e.target)) {
+            infoDone.classList.remove('show');
+            setTimeout(() => {
+                infoDone.style.display = 'none';
+            }, 300); 
         }
     });
 </script>

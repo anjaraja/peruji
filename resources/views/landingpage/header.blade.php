@@ -113,27 +113,28 @@
     </div>
 </nav>
 
-<div class="nav-menu-body w-100 h-100 bg-dark position-absolute z-1">
+<div class="nav-menu-body w-100 h-100 bg-dark position-fixed z-1">
     <ul class="position-absolute top-50  start-50 translate-middle ">
-        <li><h4><a href="{{route('about')}}">ABOUT PERUJI</a></h4></li>
+        <li class="label-nav"><a href="{{route('about')}}">ABOUT PERUJI</a></li>
         <ul>
-            <li><a href="{{route('about')}}#role">The Role</a></li>
-            <li><a href="{{route('about')}}#vision-mission">Visi & Mission</a></li>
-            <li><a href="{{route('about')}}#milestone">Milestone</a></li>
+            <li class="label-nav-item"><a href="{{route('about')}}#role">The Role</a></li>
+            <li class="label-nav-item"><a href="{{route('about')}}#vision-mission">Visi & Mission</a></li>
+            <li class="label-nav-item"><a href="{{route('about')}}#milestone">Milestone</a></li>
         </ul>
-        <li><h4><a href="{{route('board-management')}}">BOARD OF MANAGEMENT</a></h4></li>
-        <li><h4><a href="{{route('events')}}">EVENTS</a></h4></li>
+        <li class="label-nav"><a href="{{route('board-management')}}">BOARD OF MANAGEMENT</a></li>
+        <li class="label-nav"><a href="{{route('events')}}">EVENTS</a></li>
         <ul>
-            <li><a href="{{route('events')}}#upcoming">Upcoming Events</a></li>
-            <li><a href="{{route('events')}}#previous-event">Previous Events</a></li>
+            <li class="label-nav-item"><a href="{{route('events')}}#upcoming">Upcoming Events</a></li>
+            <li class="label-nav-item"><a href="{{route('events')}}#previous-event">Previous Events</a></li>
+            {{-- <li class="label-nav-item"><a href="{{route('eventsRegis')}}">Events Regis</a></li> --}}
         </ul>
-        <li><h4>MEMBERSHIP</h4></li>
+        <li class="label-nav"><a href="#">MEMBERSHIP</a></li>
         <ul>
-            <li><a href="{{route('membership-signup')}}">Sign Up</a></li>
-            <li><a href="{{route('membership')}}#terms-condition">Terms & Condition</a></li>
-            <li><a href="{{route('membership')}}#benefits">Membership Benefits</a></li>
+            <li class="label-nav-item"><a href="{{route('membership-signup')}}">Sign Up</a></li>
+            <li class="label-nav-item"><a href="{{route('membership')}}#terms-condition">Terms & Condition</a></li>
+            <li class="label-nav-item"><a href="{{route('membership')}}#benefits">Membership Benefits</a></li>
         </ul>
-        <li><h4><a href="{{route('contact-us')}}">CONTACT</a></h4></li>
+        <li class="label-nav"><a href="{{route('contact-us')}}">CONTACT</a></li>
     </ul>
     <a href="{{route('admin')}}" class="position-absolute bottom-0 end-0 pe-5 pb-5 text-decoration-none text-white">ADMIN</a>
 </div>

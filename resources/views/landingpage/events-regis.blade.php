@@ -4,9 +4,9 @@
 
 @section('content')
 
-     <div class="container-fluid p-0 form">
+    <div class="container-fluid form">
          <div class="container">
-             <div class="label-eve">Contact Us</div>
+             <div class="label-eve">Event Registration</div>
              <div class="container-content mx-auto" style="max-width: 700px;">
                  <table class="table">
                      <tr>
@@ -18,16 +18,20 @@
                          <td><input type="email" class="form-control"></td>
                      </tr>
                      <tr>
-                         <td>Phone</td>
+                         <td>Mobile Phone</td>
                          <td><input type="number" class="form-control"></td>
                      </tr>
                      <tr>
-                         <td>Subject</td>
+                         <td>Work Phone</td>
                          <td><input type="number" class="form-control"></td>
                      </tr>
                      <tr>
-                         <td>Message</td>
-                         <td><textarea name="" id="" class="form-control" rows="8"></textarea></td>
+                         <td>Company</td>
+                         <td><input type="number" class="form-control"></td>
+                     </tr>
+                     <tr>
+                         <td>Addres</td>
+                         <td><textarea name="" id="" class="form-control" rows="3"></textarea></td>
                      </tr>
                  </table>
                  <div class="button text-end">
@@ -35,13 +39,13 @@
                  </div>
              </div>
          </div>
-     </div>
+    </div>
 
-     <div class="info-done" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); display: none;">
+    <div class="info-done" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); display: none;">
         <div class="cardo animated-popup">
-            <div style="font-size: 40px; margin-bottom: 20px;">Thank you for contacting us!</div>
+            <div style="font-size: 50px; margin-bottom: 20px;">Thank You!</div>
             <div style="font-size: 16px;">
-                We will be in touch shortly.
+                A confirmation email with your registration and payment information will be sent to you shortly.
             </div>
         </div>
     </div>

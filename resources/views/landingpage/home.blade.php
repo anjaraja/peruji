@@ -25,7 +25,7 @@
         </div>
         <div class="home-banner d-flex align-items-center flex-column position-absolute bottom-0 start-50 translate-middle">
             <a href="#">
-                <img src="asset/img/banner-event-1.png"  alt="">
+                <img src="{{asset('lp-img/banner-event-1.png')}}"  alt="">
             </a>
             <span class="text-white" style="font-size: 10px;">CLICK TO JOIN THE EVENT</span>
         </div>

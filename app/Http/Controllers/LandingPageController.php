@@ -37,6 +37,21 @@ class LandingPageController extends Controller
     {
         return view('landingpage.events');
     }
+    
+    public function eventsRegis()
+    {
+        return view('landingpage.events-regis');
+    }
+    
+    public function events1()
+    {
+        return view('landingpage.events-1');
+    }
+    
+    public function events2()
+    {
+        return view('landingpage.events-2');
+    }
 
     /**
      * Show the form for editing the specified resource.

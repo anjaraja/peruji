@@ -1,35 +1,65 @@
-@font-face {
-    font-family: Helveticass;
-    src: url(../font/helvetica-neue-5/HelveticaNeueRoman.otf);
-}
-html {
-  scroll-behavior: smooth; /* for smooth scrolling */
-  scroll-padding-top: 10vh; /* pushes target 40% down the viewport */
-}
-* {
-    padding: 0;
-    margin: 0;
-    font-family: Helveticass;
-}
-.container-home {
-    height: 100vh;
-    overflow: hidden;
-}
+/* Font */
+    @font-face {
+        font-family: Helveticass;
+        src: url(../font/helvetica-neue-5/HelveticaNeueRoman.otf);
+    }
+/* Close Font */
 
-.object-cover {
-    object-fit: contain;
-}
+/* Card Info Submit */
+    .cardo {
+        width: 320px;
+        height: 320px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: linear-gradient(135deg, #3bb78f, #feda75, #f58529);
+        padding: 40px 30px;
+        text-align: center;
+        color: white;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transform: scale(0.8);
+        transition: all 0.3s ease;
+    }
 
-.container-home .home-banner img{
-    max-width: 400px;
-}
+    .info-done.show .cardo {
+        opacity: 1;
+        transform: scale(1);
+    }
+/* Close Card Info Submit */
+
+/* Global */
+    * {
+        padding: 0;
+        margin: 0;
+        font-family: Helveticass;
+    }
+    
+    .header-sub-menu {
+        padding: 30px 0px;
+        display: flex;
+        justify-content: center;
+        color: white;
+        background-color: black;
+    }
+    .header-sub-menu .square {
+        background-color: #F7941D;
+        width: 50px;
+        height: 50px;
+    }
+    .header-sub-menu .label{
+        font-size: 45px;
+    }
+
+    .row {
+        padding: 0;
+        margin: 0;
+    }
+/* Close Golbal */
+
 /* Nav CSs */
-    .navbar-contact .btn{
-        color: black !important;
-    }
-    .navbar-contact .btn:hover{
-        color: white !important;
-    }
+
     nav .navbar {
         height: 60px;
     }
@@ -39,29 +69,256 @@ html {
         transition: top 0.5s ease;
     }
     .nav-menu-body.show {
-        top: 0;
-        position: fixed !important;
+        top: 0; 
+    }
+    
+    .nav-menu-body a {
+        text-decoration: none;
+        color: white;
+        padding: 0;
+        margin: 0;
+        transition: 0.3s ease-in-out;
+    }
+    
+    .nav-menu-body a:hover { 
+        color: #f58529;
+    }
+
+    .nav-menu-body ul li {
+        list-style: none;
+    }
+    
+    .nav-menu-body .label-nav {
+        font-size: 25px;
+    }
+
+    .nav-menu-body .label-nav-item {
+        font-size: 20px;
+        padding: 3px 0;
     }
 
 /* Close Nav Vss */
 
-/* Global */
-    ul li {
-        list-style: none;
-        padding: 2px 0px;
+/* Home */
+        .container-home {
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .object-cover {
+            object-fit: contain;
+        }
+
+        .container-home .home-banner img{
+            max-width: 400px;
+        }
+/* Close Home */
+
+/* About */
+    .eve {
+        text-align: center;
+        padding: 80px 50px;
+        background-color: #f0f0f0;
     }
-    ul li *{
-        text-decoration: none !important;
-        color: white !important;
+    .eve .container {
+        padding: 80px 20px;
     }
-    h2 {
+    .eve .label-isi-content {
+        color: #F7941D;
+        font-size: 35px;
+        font-weight: 500;
+        padding-bottom: 10px;
+    }
+    .eve .desc-isi-content {
+        font-size: 18px;
+    }
+/* Close About */
+
+/* Board Of Management */
+    .in-bom-page {
+        padding: 100px 0;
+        background-color: #f0f0f0;
+    }
+    .in-bom-page .period-container {
+        text-align: center;
+        border-left: 3px solid #F7941D;
+        border-right: 3px solid #F7941D;
+        width: 200px;
+    }
+    .in-bom-page .period-container .label {
+        font-size: 14px;
+        font-weight:600;
+    }
+    .in-bom-page .period-container .year {
+        font-size: 27px;
+        font-weight:500;
+    }
+
+    .in-bom-page .label-person {
+        font-size: 35px;
+        padding-top: 40px;
         color: #F7941D;
     }
-    .row {
-        padding: 0;
-        margin: 0;
+    .in-bom-page .label-person-content {
+        font-size: 20px;
+        font-weight:700;
     }
+    .in-bom-page .label-person-name {
+        font-size: 22px;
+    }
+    .in-bom-page .container .person{
+        display: flex;
+        align-items: center;
+        padding: 20px 100px;
+    }
+
+    .in-bom-page .container .person-2{
+        display: flex;
+        padding: 20px 100px;
+    }
+/* Close Board Of Management */
+
+/* Page Event On Click */
+    .event-s {
+        width: 100%;
+        height: 100vh;
+    }
+    .event-s .container {
+        text-align: center;
+        padding-top: 5%;
+        max-width: 600px;
+    }
+    .event-s .container .label-event{
+        font-size: 30px;
+        font-weight: 500;
+        padding-top: 5%;
+    }
+    .event-s .container .date-event {
+        font-size: 20px;
+        padding: 2% 0;
+    }
+    .event-s .container .desc-event {
+        font-size: 17px;
+        padding-bottom: 10%;
+    }
+    .event-s .container .info-event {
+        font-size: 13px;
+    }
+/* Close Page Event On Click */
+
+/* Events */
+    .container-event .image-layout {
+        position: relative;
+        z-index: 0;
+        background-image: url(./../lp-img/event.jpg);
+        background-position: center;
+        background-size: cover;
+        height: 100vh;
+    }
+    .container-event .image-layout .layout {
+        position: absolute;
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.453);
+        width: 100%;
+        height: 100vh;
+    }
+
+    .container-event .image-layout .content {
+        position: absolute;
+        z-index: 2;
+        color: white;
+        top: 54%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    
+    .container-event .image-layout .content .head-events{
+        font-size: 50px;
+        padding-bottom: 30px;
+    }
+
+    .container-event .image-layout .content img {
+        max-width: 500px;
+    }
+    .container-event .image-layout .content .event {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+    .in-event-page .tanggal {
+        font-size: 14px;
+        padding-bottom: 5px;
+    }
+    .in-event-page .label-event {
+        font-size: 26px;
+        font-weight: bold;
+        padding-bottom: 20px;
+    }
+    .in-event-page .desc {
+        font-size: 16px;
+    }
+/* Close Events */
+
+/* Form Contact, Event Register, dan Membership */
+    .form {
+        display: flex;
+        align-items: center;
+        height: 100vh;
+        background-color: black;
+    }
+    .form .label-eve {
+        margin-top: 40px;
+        font-size: 40px;
+        color: white;
+    }
+    .form .header {
+        display: flex;
+    }
+    .form .header .gray {
+        background-color: gray;
+        width: 20px;
+    }
+    .form .header .section-header {
+        background-color: #F7941D;
+        padding: 5px;
+        color: white;
+        width: 100%;
+    }
+    .form .table {
+        margin: 14px 0px !important;
+    }
+    .form .table td {
+        background-color: black;
+        color: white !important;
+        border: none;                
+    }
+    .form .btn-submit {
+        color: white;
+        border-radius: 50px;
+        padding: 5px 40px;
+        background-color: #F7941D;
+    }
+/* Close Form Contact, Event Register, dan Membership */
+
+/* Terms & Condition */
+    .terms {
+        background-color: #f0f0f0;
+    }
+    .terms .container {
+        padding: 80px 0;
+    }
+
+    .terms .container .label-page {
+        font-size: 30px;
+        font-weight: 600;
+        padding-bottom: 20px;
+    }
+/* Close Terms & Condition */
+
+/* Footer */
     footer {
         padding: 40px 0px;
     }
-/* Close Global */
+/* Close Footer */
