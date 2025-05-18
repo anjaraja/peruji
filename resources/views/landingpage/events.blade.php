@@ -29,7 +29,7 @@
                 <div class="label">Previous Event</div>
             </div>
             <div class="in-event-page">
-                <div class="row">
+                <div class="row p-0">
                     <div class="col-12 col-md-6 p-0">
                         <img src="{{asset('lp-img/4456feb22d1c5c1e7da66fe9403ca57335cf7040.png')}}" alt="" style="height: 100%;width: 100%;background-position: center;background-size: cover;">
                     </div>
@@ -39,7 +39,7 @@
                         <div class="desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores labore nemo fugiat consequatur repellat rem reiciendis quisquam ad iure officiis laborum dolorum voluptatum, sit totam! Error libero voluptatibus facere ab.</div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row p-0">
                     <div class="col-12 col-md-6 p-4 order-last order-md-first">
                         <div class="tanggal">14-15 August 2024</div>
                         <div class="label-event">Indonesia Underwriting Summit 2024 (IUS 2024)</div>
@@ -49,7 +49,7 @@
                         <img src="{{asset('lp-img/4456feb22d1c5c1e7da66fe9403ca57335cf7040.png')}}" alt="" style="height: 100%;width: 100%;background-position: center;background-size: cover;">
                     </div>
                 </div>
-                <div class="row">
+                <div class="row p-0">
                     <div class="col-12 col-md-6 p-0">
                         <img src="{{asset('lp-img/4456feb22d1c5c1e7da66fe9403ca57335cf7040.png')}}" alt="" style="height: 100%;width: 100%;background-position: center;background-size: cover;">
                     </div>
@@ -59,7 +59,7 @@
                         <div class="desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores labore nemo fugiat consequatur repellat rem reiciendis quisquam ad iure officiis laborum dolorum voluptatum, sit totam! Error libero voluptatibus facere ab.</div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row p-0">
                     <div class="col-12 col-md-6 p-4 order-last order-md-first">
                         <div class="tanggal">14-15 August 2024</div>
                         <div class="label-event">Indonesia Underwriting Summit 2024 (IUS 2024)</div>
@@ -69,7 +69,7 @@
                         <img src="{{asset('lp-img/4456feb22d1c5c1e7da66fe9403ca57335cf7040.png')}}" alt="" style="height: 100%;width: 100%;background-position: center;background-size: cover;">
                     </div>
                 </div>
-                <div class="row">
+                <div class="row p-0">
                     <div class="col-12 col-md-6 p-0">
                         <img src="{{asset('lp-img/4456feb22d1c5c1e7da66fe9403ca57335cf7040.png')}}" alt="" style="height: 100%;width: 100%;background-position: center;background-size: cover;">
                     </div>
@@ -79,7 +79,7 @@
                         <div class="desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores labore nemo fugiat consequatur repellat rem reiciendis quisquam ad iure officiis laborum dolorum voluptatum, sit totam! Error libero voluptatibus facere ab.</div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row p-0">
                     <div class="col-12 col-md-6 p-4 order-last order-md-first">
                         <div class="tanggal">14-15 August 2024</div>
                         <div class="label-event">Indonesia Underwriting Summit 2024 (IUS 2024)</div>
@@ -89,7 +89,7 @@
                         <img src="{{asset('lp-img/4456feb22d1c5c1e7da66fe9403ca57335cf7040.png')}}" alt="" style="height: 100%;width: 100%;background-position: center;background-size: cover;">
                     </div>
                 </div>
-                <div class="row">
+                <div class="row p-0">
                     <div class="col-12 col-md-6 p-0">
                         <img src="{{asset('lp-img/4456feb22d1c5c1e7da66fe9403ca57335cf7040.png')}}" alt="" style="height: 100%;width: 100%;background-position: center;background-size: cover;">
                     </div>
