@@ -161,6 +161,76 @@
                 }
             }
         },
+        "/api/email-admin/{page}": {
+            "get": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "operationId": "a803018f4e0303e8d16f9f6abf7305fd",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "path",
+                        "description": "Page Number",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/email-admin/": {
+            "post": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "operationId": "3a77239c264163a6d043da95e799effb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "email[0]": {
+                                        "type": "string",
+                                        "example": "adminemail@mail.com"
+                                    },
+                                    "email[1]": {
+                                        "type": "string",
+                                        "example": "adminemail@mail.com"
+                                    },
+                                    "email[2]": {
+                                        "type": "string",
+                                        "example": "adminemail@mail.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/event-registration": {
             "post": {
                 "tags": [
@@ -221,6 +291,153 @@
                         "description": "Successful operation"
                     }
                 }
+            }
+        },
+        "/api/events/{page}": {
+            "get": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "operationId": "cc88cb9a6a243f45c63e0535750b306e",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "path",
+                        "description": "Page Number",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/events/": {
+            "post": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "operationId": "c471be55576ebcbcfdc0c7ce15f1474c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "eventname",
+                                    "eventdate",
+                                    "description",
+                                    "photo",
+                                    "agenda"
+                                ],
+                                "properties": {
+                                    "eventname": {
+                                        "type": "string",
+                                        "example": "Event Title"
+                                    },
+                                    "eventdate": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2025-01-30"
+                                    },
+                                    "description": {
+                                        "type": "text",
+                                        "example": "Event Description"
+                                    },
+                                    "photo": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "agenda": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/update-events/": {
+            "post": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "operationId": "452a0e9fd58417d43b505f4ca251878a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "events",
+                                    "eventname",
+                                    "eventdate",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "events": {
+                                        "type": "string",
+                                        "example": 1
+                                    },
+                                    "eventname": {
+                                        "type": "string",
+                                        "example": "News Title"
+                                    },
+                                    "eventdate": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2025-01-30"
+                                    },
+                                    "description": {
+                                        "type": "text",
+                                        "example": "News Description"
+                                    },
+                                    "photo": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "agenda": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/membership": {
