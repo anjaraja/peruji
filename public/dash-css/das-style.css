@@ -1,0 +1,67 @@
+@font-face {
+    font-family: Helveticass;
+    src: url(../font/helvetica-neue-5/HelveticaNeueRoman.otf);
+}
+html {
+  scroll-behavior: smooth; /* for smooth scrolling */
+  scroll-padding-top: 10vh; /* pushes target 40% down the viewport */
+}
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Helveticass;
+}
+.container-home {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.object-cover {
+    object-fit: contain;
+}
+
+.container-home .home-banner img{
+    max-width: 400px;
+}
+/* Nav CSs */
+    .navbar-contact .btn{
+        color: black !important;
+    }
+    .navbar-contact .btn:hover{
+        color: white !important;
+    }
+    nav .navbar {
+        height: 60px;
+    }
+    
+    .nav-menu-body {
+        top: -100vh;
+        transition: top 0.5s ease;
+    }
+    .nav-menu-body.show {
+        top: 0;
+        position: fixed !important;
+    }
+
+/* Close Nav Vss */
+
+/* Global */
+    ul li {
+        list-style: none;
+        padding: 2px 0px;
+    }
+    ul li *{
+        text-decoration: none !important;
+        color: white !important;
+    }
+    h2 {
+        color: #F7941D;
+    }
+    .row {
+        padding: 0;
+        margin: 0;
+    }
+    footer {
+        padding: 40px 0px;
+    }
+/* Close Global */
