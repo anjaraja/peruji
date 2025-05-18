@@ -247,6 +247,10 @@
         align-items: center;
         margin-bottom: 30px;
     }
+    .in-event-page .row {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
     .in-event-page .tanggal {
         font-size: 14px;
         padding-bottom: 5px;
