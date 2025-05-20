@@ -17,6 +17,8 @@ Route::get('/contact-us', "$path\LandingPageController@contactUs")->name("contac
 
 Route::get('/admin', "$path\LandingPageController@admin")->name("admin");
 
-Route::middleware('auth:api')->group(function () {
-    $path = "App\Http\Controllers";
-});
+Route::get('/dashboard', "$path\DashboardController@index")->name("dashboard-index");
+
+// Route::middleware('auth:api')->group(function () {
+//     $path = "App\Http\Controllers";
+// });

@@ -14,7 +14,7 @@ Route::post('/contact-us', "$path\ContactusController@store");
 Route::post('/event-registration', "$path\EventRegistrationController@store");
 
 Route::post('/register', "$path\AuthController@register");
-Route::post('/login', "$path\AuthController@login");
+Route::post('/login', "$path\AuthController@login")->name("login");
 
 Route::middleware('auth:api')->group(function () {
     $path = "App\Http\Controllers";
