@@ -6,6 +6,7 @@
     <title>@yield('title', 'PERUJI')</title>
     <link rel="stylesheet" href="{{ asset('lp-css/style.css') }}">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
+    <script src="{{asset('dash-js/fetchhelper.js')}}"></script>
 </head>
 <body>
     @include('landingpage.header')
@@ -38,26 +39,26 @@
     });
     
 
-    const submitBtn = document.querySelector('.btn-submit');
-    const infoDone = document.querySelector('.info-done');
-    const cardo = document.querySelector('.cardo');
+    // const submitBtn = document.querySelector('.btn-submit');
+    // const infoDone = document.querySelector('.info-done');
+    // const cardo = document.querySelector('.cardo');
 
-    submitBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        infoDone.style.display = 'block';
+    // submitBtn.addEventListener('click', function (e) {
+    //     e.preventDefault();
+    //     infoDone.style.display = 'block';
 
-        setTimeout(() => {
-            infoDone.classList.add('show');
-        }, 10);
-    });
+    //     setTimeout(() => {
+    //         infoDone.classList.add('show');
+    //     }, 10);
+    // });
 
-    document.addEventListener('click', function (e) {
-        if (infoDone.classList.contains('show') && !cardo.contains(e.target) && !submitBtn.contains(e.target)) {
-            infoDone.classList.remove('show');
-            setTimeout(() => {
-                infoDone.style.display = 'none';
-            }, 300); 
-        }
-    });
+    // document.addEventListener('click', function (e) {
+    //     if (infoDone.classList.contains('show') && !cardo.contains(e.target) && !submitBtn.contains(e.target)) {
+    //         infoDone.classList.remove('show');
+    //         setTimeout(() => {
+    //             infoDone.style.display = 'none';
+    //         }, 300); 
+    //     }
+    // });
 </script>
 </html>

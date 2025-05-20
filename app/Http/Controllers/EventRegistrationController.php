@@ -53,7 +53,10 @@ class EventRegistrationController extends Controller
             ]);
             if ($validated->fails()) {
                 Log::channel('activity')->warning('[EVENT REGISTRATION]', $request->all());
-                return response()->json(["message" => $validated->errors()], 422);
+                return response()->json([
+                    "status" => 'gagal',
+                    "message" => $validated->errors()
+                ], 422);
             }
 
             Log::channel('activity')->info('[EVENT REGISTRATION]', $request->all());
@@ -62,12 +65,18 @@ class EventRegistrationController extends Controller
             $store = EventRegistration::create($data);
 
             DB::commit();
-            return response()->json(["message"=>"ok"],200);
+            return response()->json([
+                "status" => "berhasil",
+                "message"=>"ok"
+            ],200);
         }
         catch (\Exception $e) {
             DB::rollback();
             Log::channel('errorlog')->error('[EVENT REGISTRATION]', [$request->all(),$e->getMessage()]);
-            return response()->json(["message"=>"RC2"],500);
+            return response()->json([
+                "status" => "error",
+                "message"=>"RC2"
+            ],500);
         } 
 
     }

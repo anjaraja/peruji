@@ -55,22 +55,32 @@ class MembershipController extends Controller
                 'website' => 'nullable|url',
                 'ofcemail' => 'nullable|email',
             ]);
+
             if ($validated->fails()) {
                 Log::channel('activity')->warning('[MEMBERSHIP REGISTER]', $request->all());
-                return response()->json(["message" => $validated->errors()], 422);
+                return response()->json([
+                    "status" => "gagal",
+                    "message" => $validated->errors()
+                ], 422);
             }
 
             Log::channel('activity')->info('[MEMBERSHIP REGISTER]', $request->all());
             $store = Membership::create($request->all());
 
             DB::commit();
-            return response()->json(["message"=>"ok"],200);
+            return response()->json([
+                "status" => "berhasil",
+                "message" => "Pendaftaran berhasil"
+            ], 200);
         }
-        catch (\Exception $e) {
+         catch (\Exception $e) {
             DB::rollback();
-            Log::channel('errorlog')->error('[MEMBERSHIP REGISTER]', [$request->all(),$e->getMessage()]);
-            return response()->json(["message"=>"RC2"],500);
-        } 
+            Log::channel('errorlog')->error('[MEMBERSHIP REGISTER]', [$request->all(), $e->getMessage()]);
+            return response()->json([
+                "status" => "error",
+                "message" => "Terjadi kesalahan server. Coba lagi nanti."
+            ], 500);
+        }
 
     }
 
