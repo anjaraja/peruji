@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\EventsController;
 
 class LandingPageController extends Controller
 {
@@ -11,7 +12,9 @@ class LandingPageController extends Controller
      */
     public function index()
     {
-        return view('landingpage.home');
+        $events = new EventsController();
+        $data = $events->index(1);
+        return view('landingpage.home',["events"=>$data->original["data"]["data"]]);
     }
 
     /**

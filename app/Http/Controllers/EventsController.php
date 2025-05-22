@@ -35,7 +35,7 @@ class EventsController extends Controller
         try{
             $page = is_int($page)?$page:1;
 
-            $events = Events::select("id","eventname","eventdate")->where("activestatus",1)->orderBy("eventdate","asc")->paginate(15, ["*"], "page", $page)->toArray();
+            $events = Events::select("id","eventname","eventdate","banner")->where("activestatus",1)->orderBy("eventdate","asc")->paginate(15, ["*"], "page", $page)->toArray();
             $events = Pagination::ClearObject($events);
 
             Log::channel('activity')->warning('[LOAD EVENTS]', ["page"=>$page]);

@@ -1,7 +1,6 @@
 @extends('landingpage.app')
 
 @section('title', 'PERUJI')
-
 @section('content')
     <div class="container-home position-relative z-0">
         <div id="carouselHome" class="carousel slide h-100" data-bs-ride="carousel"  data-bs-pause="false" data-bs-interval="4000">
@@ -86,8 +85,11 @@
         </div>
         <div class="home-banner d-flex align-items-center flex-column position-absolute bottom-0 start-50 translate-middle z-2">
             <a href="{{route('events')}}">
-                <img class="banner-image active" src="{{asset('lp-img/banner-event-1.png')}}" alt="">
-                <img class="banner-image" src="{{asset('lp-img/banner-event-2.png')}}" alt="">
+                @foreach($events as $key => $value)
+                    <img class="banner-image @php $key==0?'active':''" src="{{asset($value['banner'])}}" alt="">
+                @endforeach
+                <!-- <img class="banner-image active" src="{{asset('lp-img/banner-event-1.png')}}" alt="">
+                <img class="banner-image" src="{{asset('lp-img/banner-event-2.png')}}" alt=""> -->
             </a>
             <span class="text-white" style="font-size: 10px;">CLICK TO JOIN THE EVENT</span>
         </div>
