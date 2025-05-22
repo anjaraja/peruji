@@ -13,7 +13,7 @@ class AuthController extends Controller
     /**
      * @OA\Post(
      *      path="/api/register",
-     *      tags={"Dashboard"}, 
+     *      tags={"AUTH"}, 
      *      @OA\RequestBody(
      *          @OA\JsonContent(
      *              required={"name","email","password"},
@@ -73,7 +73,7 @@ class AuthController extends Controller
     /**
      * @OA\Post(
      *      path="/api/login",
-     *      tags={"Dashboard"}, 
+     *      tags={"AUTH"}, 
      *      @OA\RequestBody(
      *          @OA\JsonContent(
      *              required={"email","password"},

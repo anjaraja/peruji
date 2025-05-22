@@ -11,7 +11,7 @@
         "/api/register": {
             "post": {
                 "tags": [
-                    "Dashboard"
+                    "AUTH"
                 ],
                 "operationId": "8a56853624e025573120a09a4c75d468",
                 "requestBody": {
@@ -53,7 +53,7 @@
         "/api/login": {
             "post": {
                 "tags": [
-                    "Dashboard"
+                    "AUTH"
                 ],
                 "operationId": "a3b306d14572d1f4bd6c064b3233e7b8",
                 "requestBody": {
@@ -335,9 +335,7 @@
                                 "required": [
                                     "eventname",
                                     "eventdate",
-                                    "description",
-                                    "photo",
-                                    "agenda"
+                                    "description"
                                 ],
                                 "properties": {
                                     "eventname": {
@@ -353,13 +351,30 @@
                                         "type": "text",
                                         "example": "Event Description"
                                     },
-                                    "photo": {
+                                    "banner": {
                                         "type": "string",
                                         "format": "binary"
+                                    },
+                                    "thumbnail": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "photo[]": {
+                                        "description": "Multiple files to upload",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
                                     },
                                     "agenda": {
                                         "type": "string",
                                         "format": "binary"
+                                    },
+                                    "additionalcontent": {
+                                        "description": "Additional Content (textarea)",
+                                        "type": "string",
+                                        "example": "http://newswebsite1.com\\nhttp://newswebsite1.com\\nhttp://newswebsite1.com\\nhttp://newswebsite1.com\\nhttp://newswebsite1.com"
                                     }
                                 },
                                 "type": "object"
@@ -414,13 +429,30 @@
                                         "type": "text",
                                         "example": "News Description"
                                     },
-                                    "photo": {
+                                    "banner": {
                                         "type": "string",
                                         "format": "binary"
+                                    },
+                                    "thumbnail": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "photo[]": {
+                                        "description": "Multiple files to upload",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
                                     },
                                     "agenda": {
                                         "type": "string",
                                         "format": "binary"
+                                    },
+                                    "additionalcontent": {
+                                        "description": "Additional Content (textarea)",
+                                        "type": "string",
+                                        "example": "http://newswebsite1.com\\nhttp://newswebsite1.com\\nhttp://newswebsite1.com\\nhttp://newswebsite1.com\\nhttp://newswebsite1.com"
                                     }
                                 },
                                 "type": "object"
@@ -428,6 +460,34 @@
                         }
                     }
                 },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/detail-events/{events}": {
+            "get": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "operationId": "a39fc4d2671b4471a63734a563bb36d3",
+                "parameters": [
+                    {
+                        "name": "events",
+                        "in": "path",
+                        "description": "Event ID",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation"
@@ -679,8 +739,8 @@
     },
     "tags": [
         {
-            "name": "Dashboard",
-            "description": "Dashboard"
+            "name": "AUTH",
+            "description": "AUTH"
         },
         {
             "name": "User",
@@ -689,6 +749,10 @@
         {
             "name": "Landingpage",
             "description": "Landingpage"
+        },
+        {
+            "name": "Dashboard",
+            "description": "Dashboard"
         }
     ]
 }

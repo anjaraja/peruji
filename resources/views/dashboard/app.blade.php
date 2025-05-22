@@ -12,12 +12,64 @@
     @include('dashboard.header')
 
     <main>
-        @yield('content')
+        <div class="container-fluid">
+            <div class="row flex-nowrap">
+                @include('dashboard.sidebar')
+                @yield('content')
+            </div>
+        </div>
     </main>
     
     @include('dashboard.footer')
+    @include('dashboard.modal')
 </body>
 <script src="{{asset('/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<script>
+<script type="text/javascript">
+    const logout_button = document.getElementById('nav-logout');
+
+    logout_button.addEventListener("click",function(){
+        if (localStorage.getItem("Token")){
+            toggleModal("logoutModal");
+        }
+        else{
+            window.location.href = "{{route('homepage')}}"
+        }
+    })
+
+    document.addEventListener("click", function (e) {
+        if (e.target.matches("#logoutModal button#yes")) {
+
+            loginprocess = fetchData(
+                "{{route('logout')}}",
+                "GET"
+              )
+              .then((response)=>{
+                if (response.status !== 200){
+                    localStorage.removeItem("Token")
+                    window.location.href = "{{route('homepage')}}";
+                    return response.json();
+                }
+                return response.json();
+              })
+              .then((data)=>{
+                console.log(data);
+                // alert("success logout")
+              });
+
+            // console.log(loginprocess);
+
+            return false;
+        }
+    });
+</script>
+
+<script type="text/javascript">
+    //WILL BE ADD TO EXTERNAL SCRIPT
+
+    toggleModal = function(modalName){
+        const modalEl = document.getElementById(modalName);
+        const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+        modal.toggle();
+    }
 </script>
 </html>

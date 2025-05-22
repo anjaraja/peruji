@@ -1,20 +1,22 @@
 function fetchData(url,method,headers={},body={}){
-	if (typeof localStorage.getItem('token') != "undefined"){
-		headers["Authorization"] = `Bearer ${localStorage.getItem('token')}`
+	if (typeof localStorage.getItem('Token') != "undefined"){
+		headers["Authorization"] = `Bearer ${localStorage.getItem('Token')}`
 	}
-	
-    const response = fetch(url,{
-      method: method,
-      headers: headers,
-      body: JSON.stringify(body)	
-    })
+	data = {
+      	method: method,
+      	headers: headers,
+      	body: JSON.stringify(body)	
+    }
+    if(method == "GET") delete data["body"];
+
+    const response = fetch(url,data)
 
   	return response;
 }
 
 async function asyncFetchData(url,method,headers={},body={}){
-	if (typeof localStorage.getItem('token') != "undefined"){
-		headers["Authorization"] = `Bearer ${token}`
+	if (typeof localStorage.getItem('Token') != "undefined"){
+		headers["Authorization"] = `Bearer ${localStorage.getItem('Token')}`
 	}
 	try{
 		const response = await fetch(url,{

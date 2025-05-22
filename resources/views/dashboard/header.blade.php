@@ -64,7 +64,9 @@
                 </a>
             </div>
             <div class="navbar-opt">
-                <a href="{{route('homepage')}}" class="btn p-0" type="button" id="nav-menu-open"><h5 class=" m-0 p-0" id="menu-toggle-text">Exit</h5></button>
+                <button class="btn p-0" id="nav-logout">
+                    <h5 class=" m-0 p-0" id="menu-toggle-text">Exit</h5>
+                </button>
             </div>
             <div class="navbar-right d-flex position-absolute end-0">
                 <div class="navbar-medsos d-flex me-3">

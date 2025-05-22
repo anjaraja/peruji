@@ -16,6 +16,8 @@ Route::post('/event-registration', "$path\EventRegistrationController@store")->n
 Route::post('/register', "$path\AuthController@register");
 Route::post('/login', "$path\AuthController@login")->name("login");
 
+Route::get('/detail-events/{events}', "$path\EventsController@show")->name("event-detail");
+
 Route::middleware('auth:api')->group(function () {
     $path = "App\Http\Controllers";
     Route::get('/me', "$path\AuthController@me");
@@ -39,6 +41,6 @@ Route::middleware('auth:api')->group(function () {
     /* END EMAIL ADMIN */
 
     // Route::get('/me', [AuthController::class, 'me']);
-    // Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/logout', "$path\AuthController@logout")->name("logout");
     // Route::post('/refresh', [AuthController::class, 'refresh']);
 });

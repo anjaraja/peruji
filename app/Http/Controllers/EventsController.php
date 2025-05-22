@@ -35,12 +35,12 @@ class EventsController extends Controller
         try{
             $page = is_int($page)?$page:1;
 
-            $news = Events::orderBy("created_at","desc")->paginate(15, ["*"], "page", $page)->toArray();
-            $news = Pagination::ClearObject($news);
+            $events = Events::select("id","eventname","eventdate")->where("activestatus",1)->orderBy("eventdate","asc")->paginate(15, ["*"], "page", $page)->toArray();
+            $events = Pagination::ClearObject($events);
 
             Log::channel('activity')->warning('[LOAD EVENTS]', ["page"=>$page]);
 
-            return response()->json(["message"=>"ok","data"=>$news],200);;
+            return response()->json(["message"=>"ok","data"=>$events],200);;
         }
         catch(\Exception $e){
             Log::channel('errorlog')->error('[LOAD EVENTS]', ["message"=>$e->getMessage()]);
@@ -58,7 +58,7 @@ class EventsController extends Controller
      *          @OA\MediaType(
      *              mediaType="multipart/form-data",
      *              @OA\Schema(
-     *                  required={"eventname","eventdate","description","photo","agenda"},
+     *                  required={"eventname","eventdate","description"},
      *                  @OA\Property(
      *                      property="eventname",
      *                      type="string",
@@ -75,14 +75,34 @@ class EventsController extends Controller
      *                      example="Event Description"
      *                  ),
      *                  @OA\Property(
-     *                      property="photo",
+     *                      property="banner",
      *                      type="string",
      *                      format="binary"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="thumbnail",
+     *                      type="string",
+     *                      format="binary"
+     *                  ),
+     *                  @OA\Property(
+     *                     description="Multiple files to upload",
+     *                     property="photo[]",
+     *                     type="array",
+     *                     @OA\Items(
+     *                         type="string",
+     *                         format="binary"
+     *                     )
      *                  ),
      *                  @OA\Property(
      *                      property="agenda",
      *                      type="string",
      *                      format="binary"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="additionalcontent",
+     *                      type="string",
+     *                      description="Additional Content (textarea)",
+     *                      example="http://newswebsite1.com\nhttp://newswebsite1.com\nhttp://newswebsite1.com\nhttp://newswebsite1.com\nhttp://newswebsite1.com"
      *                  )
      *              )
      *          )
@@ -100,9 +120,12 @@ class EventsController extends Controller
                 'eventname' => 'required|string',
                 'eventdate' => 'required|string',
                 'description' => 'required|string',
-                // 'photo' => 'required|file|mimes:jpeg,jpg,png|max:2048',
-                'photo' => 'required|file|mimes:jpeg,jpg,png',
-                'agenda' => 'required|file|mimes:pdf',
+                'banner' => 'nullable|file|mimes:jpeg,jpg,png',
+                'thumbnail' => 'nullable|file|mimes:jpeg,jpg,png',
+                'photo' => 'nullable|array',
+                'photo.*' => 'nullable|file|mimes:jpeg,jpg,png',
+                'agenda' => 'nullable|file|mimes:pdf',
+                'additionalcontent' => 'nullable|string',
             ]);
             if ($validated->fails()) {
                 Log::channel('activity')->warning('[CREATE EVENTS]', [$request->all(),$validated->errors()]);
@@ -115,18 +138,45 @@ class EventsController extends Controller
             $data["modified_by"] = auth("api")->user()->email;
             Log::channel('activity')->info('[CREATE EVENTS][DATA]', $data);
 
+            // BEGIN UPLOAD BANNER
+            if(isset($request->banner)){
+                $banner = $request->file("banner");
+                $filename = time()."_".$data["eventname"].".".$banner->getClientOriginalExtension();
+                $path = $request->file('banner')->storeAs('event-banner', $filename, 'public');
+                $data["banner"] = Storage::url($path);
+            }
+            // END UPLOAD BANNER
+
+            // BEGIN UPLOAD THUMBNAIL
+            if(isset($request->thumbnail)){
+                $thumbnail = $request->file("thumbnail");
+                $filename = time()."_".$data["eventname"].".".$thumbnail->getClientOriginalExtension();
+                $path = $request->file('thumbnail')->storeAs('event-thumbnail', $filename, 'public');
+                $data["thumbnail"] = Storage::url($path);
+            }
+            // END UPLOAD THUMBNAIL
+
             // BEGIN UPLOAD PHOTO
-            $photo = $request->file("photo");
-            $filename = time()."_".$data["eventname"].".".$photo->getClientOriginalExtension();
-            $path = $request->file('photo')->storeAs('event-photo', $filename, 'public');
-            $data["photo"] = Storage::url($path);
-            // END UPLOAD PHOTO
+            $photos = [];
+            if(isset($request->photo)){
+                if($request->file("photo")){
+                    foreach ($request->file("photo") as $key => $value) {
+                        $filename = time()."_".$data["eventname"]."-$key".".".$value->getClientOriginalExtension();
+                        $path = $value->storeAs('event-photo', $filename, 'public');
+                        $photos[] = Storage::url($path);
+                    }  
+                }
+            } 
+            $data["photo"] = json_encode($photos);
+            // END UPLOAD PHOTO   
 
             // BEGIN UPLOAD AGENDA
-            $agenda = $request->file("agenda");
-            $filename = time()."_".$data["eventname"].".".$agenda->getClientOriginalExtension();
-            $path = $request->file('agenda')->storeAs('event-agenda', $filename, 'public');
-            $data["agenda"] = Storage::url($path);
+            if(isset($request->agenda)){
+                $agenda = $request->file("agenda");
+                $filename = time()."_".$data["eventname"].".".$agenda->getClientOriginalExtension();
+                $path = $request->file('agenda')->storeAs('event-agenda', $filename, 'public');
+                $data["agenda"] = Storage::url($path);
+            }
             // END UPLOAD
 
             $store = Events::create($data);
@@ -137,11 +187,6 @@ class EventsController extends Controller
             Log::channel('errorlog')->error('[CREATE EVENTS]', ["message"=>$e->getMessage()]);
             return response()->json(["message"=>"RC2.2"],500);;
         }
-    }
-
-    public function show(News $news)
-    {
-        //
     }
 
     /**
@@ -176,14 +221,34 @@ class EventsController extends Controller
      *                      example="News Description"
      *                  ),
      *                  @OA\Property(
-     *                      property="photo",
+     *                      property="banner",
      *                      type="string",
      *                      format="binary"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="thumbnail",
+     *                      type="string",
+     *                      format="binary"
+     *                  ),
+     *                  @OA\Property(
+     *                     description="Multiple files to upload",
+     *                     property="photo[]",
+     *                     type="array",
+     *                     @OA\Items(
+     *                         type="string",
+     *                         format="binary"
+     *                     )
      *                  ),
      *                  @OA\Property(
      *                      property="agenda",
      *                      type="string",
      *                      format="binary"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="additionalcontent",
+     *                      type="string",
+     *                      description="Additional Content (textarea)",
+     *                      example="http://newswebsite1.com\nhttp://newswebsite1.com\nhttp://newswebsite1.com\nhttp://newswebsite1.com\nhttp://newswebsite1.com"
      *                  )
      *              )
      *          )
@@ -198,20 +263,22 @@ class EventsController extends Controller
     {
         try{
             $validated = Validator::make($request->all(),[
-                'events' => 'required|int',
                 'eventname' => 'required|string',
                 'eventdate' => 'required|string',
                 'description' => 'required|string',
-                // 'photo' => 'nullable|file|mimes:jpeg,jpg,png|max:2048',
-                'photo' => 'nullable|file|mimes:jpeg,jpg,png',
+                'banner' => 'nullable|file|mimes:jpeg,jpg,png',
+                'thumbnail' => 'nullable|file|mimes:jpeg,jpg,png',
+                'photo' => 'nullable|array',
+                'photo.*' => 'nullable|file|mimes:jpeg,jpg,png',
                 'agenda' => 'nullable|file|mimes:pdf',
+                'additionalcontent' => 'nullable|string',
             ]);
             if ($validated->fails()) {
                 Log::channel('activity')->warning('[UPDATE EVENTS]', [$validated->errors(),$request->all()]);
                 return response()->json(["message" => "RC3.1"], 422);
             }
 
-            $events = Events::select("photo","agenda")->where("id",$request->events);
+            $events = Events::select("banner","thumbnail","photo","agenda")->where("id",$request->events);
             $events_data = $events->first();
             if(!$events_data){
                 Log::channel('activity')->warning('[UPDATE EVENTS]', ["Data not found with id",$request->events]);
@@ -223,21 +290,64 @@ class EventsController extends Controller
             $data["modified_by"] = auth("api")->user()->email;
             Log::channel('activity')->info('[UPDATE EVENTS][DATA]', $data);
 
-            // BEGIN UPLOAD PHOTO
-            if ($request->hasFile('photo')) {
-                $photo_path = str_replace("storage/", "", $events_data->photo);
+            // BEGIN UPLOAD BANNER
+            if ($request->hasFile('banner')) {
+                $banner_path = str_replace("storage/", "", $events_data->banner);
                 // Delete old image if it exists
-                if ($photo_path && Storage::disk('public')->exists($photo_path)) {
-                    Storage::disk('public')->delete($photo_path);
+                if ($banner_path && Storage::disk('public')->exists($banner_path)) {
+                    Storage::disk('public')->delete($banner_path);
                 }
 
                 // Store new image
-                $photo = $request->file("photo");
-                $filename = time()."_".$data["eventname"].".".$photo->getClientOriginalExtension();
-                $path = $request->file('photo')->storeAs('event-photo', $filename, 'public');
-                $data["photo"] = Storage::url($path);
+                $banner = $request->file("banner");
+                $filename = time()."_".$data["eventname"].".".$banner->getClientOriginalExtension();
+                $path = $request->file('banner')->storeAs('event-banner', $filename, 'public');
+                $data["banner"] = Storage::url($path);
             }
-            else unset($data["photo"]);
+            else unset($data["banner"]);
+            // END UPLOAD BANNER
+
+            // BEGIN UPLOAD THUMBNAIL
+            if ($request->hasFile('thumbnail')) {
+                $thumbnail_path = str_replace("storage/", "", $events_data->thumbnail);
+                // Delete old image if it exists
+                if ($thumbnail_path && Storage::disk('public')->exists($thumbnail_path)) {
+                    Storage::disk('public')->delete($thumbnail_path);
+                }
+
+                // Store new image
+                $thumbnail = $request->file("thumbnail");
+                $filename = time()."_".$data["eventname"].".".$thumbnail->getClientOriginalExtension();
+                $path = $request->file('thumbnail')->storeAs('event-thumbnail', $filename, 'public');
+                $data["thumbnail"] = Storage::url($path);
+            }
+            else unset($data["thumbnail"]);
+            // END UPLOAD THUMBNAIL
+
+            // BEGIN UPLOAD PHOTO
+            $photos = [];
+            foreach ($request->file("photo") as $key => $value) {
+                $filename = time()."_".$data["eventname"]."-$key".".".$value->getClientOriginalExtension();
+                $path = $value->storeAs('event-photo', $filename, 'public');
+                $photos[] = Storage::url($path);
+            }
+            if($photos){
+                $data["photo"] = json_encode($photos);
+            }
+            // END UPLOAD PHOTO
+
+            // BEGIN UPLOAD PHOTO
+            $photos = json_decode($events_data->photo);
+            if(isset($request->photo)){
+                if($request->file("photo")){
+                    foreach ($request->file("photo") as $key => $value) {
+                        $filename = time()."_".$data["eventname"]."-$key".".".$value->getClientOriginalExtension();
+                        $path = $value->storeAs('event-photo', $filename, 'public');
+                        $photos[] = Storage::url($path);
+                    }  
+                }
+            } 
+            $data["photo"] = json_encode($photos);
             // END UPLOAD PHOTO
 
             // BEGIN UPLOAD AGENDA
@@ -266,6 +376,53 @@ class EventsController extends Controller
             Log::channel('errorlog')->error('[UPDATE AGENDA]', ["message"=>$e->getMessage()]);
             return response()->json(["message"=>"RC3.3"],500);;
         }
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/api/detail-events/{events}",
+     *      security={{"bearerAuth":{}}},
+     *      tags={"Dashboard"}, 
+     *      @OA\Parameter(
+     *          name="events",
+     *          in="path",
+     *          description="Event ID",
+     *          @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *      )
+     * )
+     */
+    public function show($events)
+    {
+        try{
+            if (!isset($events) && !is_int($events)) {
+                Log::channel('activity')->warning('[DETAIL EVENTS]', ["Event ID is empty or incorrect type",$events]);
+                return response()->json(["message" => "RC4.1"], 422);
+            }
+
+            $event_data = Events::where("id",$events)->first();
+            if($event_data){
+                $event_data->photo = json_decode($event_data->photo);
+            }
+
+            Log::channel('activity')->warning('[DETAIL EVENTS]', ["Event ID"=>$events]);
+
+            return response()->json(["message"=>"ok","data"=>$event_data],200);;
+        }
+        catch(\Exception $e){
+            Log::channel('errorlog')->error('[DETAIL EVENTS]', ["message"=>$e->getMessage()]);
+            return response()->json(["message"=>"RC4"],500);
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function eventGallery($events)
+    {
     }
 
     /**
