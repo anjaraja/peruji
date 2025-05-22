@@ -1,6 +1,7 @@
 @extends('landingpage.app')
 
 @section('title', 'PERUJI')
+
 @section('content')
 
     <div class="container-fluid form">
@@ -11,7 +12,7 @@
                  <table class="table">
                      <tr>
                          <td>Event</td>
-                         <td><input type="text" id="event" class="form-control"></td>
+                         <td><input type="text" id="event" class="form-control" value="{{$events->eventname}}" disabled></td>
                      </tr>
                      <tr>
                          <td>Full Name</td>

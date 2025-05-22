@@ -15,7 +15,7 @@
         @yield('content')
     </main>
 
-    @if (!Request::is('/','events-1','events-2','contact-us','membership-signup','events-regis'))
+    @if (!Request::is('/','event-detail/*','contact-us','membership-signup','event-registration/*'))
         @include('landingpage.footer')
     @endif
     

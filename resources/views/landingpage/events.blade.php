@@ -13,18 +13,14 @@
             <div class="layout"></div>
             <div class="content">
                 <div class="head-events" id="upcoming">Upcoming Events</div>
-                <div class="event">
-                    <a href="{{route('events1')}}">
-                        <img src="{{asset('lp-img/banner-event-1.png')}}" alt="">
-                    </a>
-                    <span style="font-size: 11px;">CLICK TO JOIN THE EVENT</span>
-                </div>
-                <div class="event">
-                    <a href="{{route('events2')}}">
-                        <img src="{{asset('lp-img/banner-event-2.png')}}" alt="">
-                    </a>
-                    <span style="font-size: 11px;">CLICK TO JOIN THE EVENT</span>
-                </div>
+                @foreach ( $events as $value )
+                    <div class="event">
+                        <a href="{{route('events-detail', ['events' => $value['id']])}}">
+                            <img src="{{asset($value['banner'])}}" alt="">
+                        </a>
+                        <span style="font-size: 11px;">CLICK TO JOIN THE EVENT</span>
+                    </div>
+                @endforeach
                 <p>Komitmen Peruji terhadap pengembangan profesional diwujudkan melalui berbagai program pelatihan, seminar, dan workshop. Setiap event dirancang untuk memperkaya pengetahuan, memperkuat keterampilan, dan membangun komunitas Underwriter Jiwa yang kompeten dan terpercaya.</p>
             </div>
         </div>
