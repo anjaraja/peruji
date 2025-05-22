@@ -38,17 +38,25 @@ class LandingPageController extends Controller
      */
     public function events()
     {
-        return view('landingpage.events');
+        $events = new EventsController();
+        $data = $events->index(1);
+        return view('landingpage.events',["events"=>$data->original["data"]["data"]]);
     }
     
-    public function eventsRegis()
+    public function eventsRegis($id)
     {
-        return view('landingpage.events-regis');
+        $events = new EventsController();
+        $data = $events->show($id);
+        $data = json_decode(json_encode($data));
+        return view('landingpage.events-regis',["events"=>$data->original->data]);
     }
     
-    public function events1()
+    public function eventsDetail($id)
     {
-        return view('landingpage.events-1');
+        $events = new EventsController();
+        $data = $events->show($id);
+        $data = json_decode(json_encode($data));
+        return view('landingpage.events-detail',["events"=>$data->original->data]);
     }
     
     public function events2()

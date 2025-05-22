@@ -1,7 +1,6 @@
 @extends('landingpage.app')
 
 @section('title', 'PERUJI')
-
 @section('content')
 
     <div class="container-fluid form">
