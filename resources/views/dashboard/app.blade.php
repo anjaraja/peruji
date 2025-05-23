@@ -14,7 +14,6 @@
     <main>
         <div class="container-fluid">
             <div class="row flex-nowrap">
-                @include('dashboard.sidebar')
                 @yield('content')
             </div>
         </div>

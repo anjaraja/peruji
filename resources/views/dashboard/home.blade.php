@@ -1,4 +1,5 @@
 @extends('dashboard.app')
+@include('dashboard.sidebar')
 
 @section('title', 'PERUJI')
 
