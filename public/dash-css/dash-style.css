@@ -42,7 +42,6 @@ html {
         top: 0;
         position: fixed !important;
     }
-
 /* Close Nav Vss */
 
 /* Global */
@@ -64,4 +63,58 @@ html {
     footer {
         padding: 40px 0px;
     }
+    .content-container{
+        padding-top: 10vh;
+        padding-left: 22vw !important;
+        padding-right: 49px !important;
+        padding-bottom: 15px !important;
+    }
+    .form-label {
+      font-weight: 500;
+    }
+    .submit-btn {
+      background-color: #f7941d;
+      color: white;
+      font-weight: bold;
+      border: none;
+      padding: 10px 30px;
+      border-radius: 20px;
+    }
+    .accordion-button{
+      z-index: 1 !important;
+    }
 /* Close Global */
+
+/*Sidebar*/
+
+    nav.sidebar{
+        padding-top: 10vh !important;
+        background-color: transparent;
+        bottom: 0;
+        float: none;
+        left: 0;
+        position: fixed;
+        top: 0;
+        height: 100vh;
+        overflow-y: hidden;
+        z-index: 1038;
+        width: 20vw !important;
+        padding-left: 49px !important;
+    }
+    /*.header-bar {
+      background-color: #f7941d;
+      color: white;
+      font-weight: bold;
+      letter-spacing: 5px;
+      padding: 10px 20px;
+      border-left: 20px solid #666;
+    }*/
+    .nav-link.active {
+        background-color: transparent;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        font-weight: bold;
+        background-color: #f7941d !important;
+        border-left: 20px solid #666 !important;
+    }
+/*End Sidebar*/

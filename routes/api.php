@@ -32,6 +32,10 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/events/{page}', "$path\EventsController@index");
     Route::post('/events/', "$path\EventsController@store");
     Route::post('/update-events/', "$path\EventsController@update");
+    Route::get('/previous-events/{page}', "$path\EventsController@previousEvents");
+    Route::post('/upload-gallery-events', "$path\EventsController@eventUploadPhotoGallery");
+    Route::post('/delete-photo-gallery-events', "$path\EventsController@deletePhotoGalleryEvent");
+    Route::post('/publish-previous-events', "$path\EventsController@publishToPrevious");
     /* END EVENTS */
 
     /* EMAIL ADMIN */
