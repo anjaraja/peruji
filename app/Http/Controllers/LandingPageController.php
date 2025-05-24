@@ -39,8 +39,15 @@ class LandingPageController extends Controller
     public function events()
     {
         $events = new EventsController();
-        $data = $events->index(1);
-        return view('landingpage.events',["events"=>$data->original["data"]["data"]]);
+        $upcoming_data = $events->index(1);
+        $previous_data = $events->previousEvents(1);
+        return view(
+            'landingpage.events',
+            [
+                "upcoming_events"=>$upcoming_data->original["data"]["data"],
+                "previous_events"=>$previous_data->original["data"]["data"]
+            ]
+        );
     }
     
     public function eventsRegis($id)

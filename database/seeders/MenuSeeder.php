@@ -23,20 +23,20 @@ class MenuSeeder extends Seeder
                     'icon' => null,
                     'route' => 'dashboard-index',
                     'parent' => null,
-                    'activestatus' => 1,
+                    'activestatus' => 0,
                     'created_by' => "System",
                     'modified_by' => "System"
                 ]
             );
         }
 
-        if (!Menu::where('menuname', 'Events')->first()){
+        if (!Menu::where('menuname', 'Upcoming Events')->first()){
             Menu::create(
                 [
-                    'menuname' => 'Events',
+                    'menuname' => 'Upcoming Events',
                     'position' => 2,
                     'icon' => null,
-                    'route' => 'event-index',
+                    'route' => 'upcoming-events',
                     'parent' => null,
                     'activestatus' => 1,
                     'created_by' => "System",
@@ -45,13 +45,13 @@ class MenuSeeder extends Seeder
             );
         }
 
-        if (!Menu::where('menuname', 'News')->first()){
+        if (!Menu::where('menuname', 'Previous Events')->first()){
             Menu::create(
                 [
-                    'menuname' => 'News',
+                    'menuname' => 'Previous Events',
                     'position' => 3,
                     'icon' => null,
-                    'route' => 'news-index',
+                    'route' => 'previous-events',
                     'parent' => null,
                     'activestatus' => 1,
                     'created_by' => "System",
@@ -60,13 +60,13 @@ class MenuSeeder extends Seeder
             );
         }
 
-        if (!Menu::where('menuname', 'Membership')->first()){
+        if (!Menu::where('menuname', 'Newsroom')->first()){
             Menu::create(
                 [
-                    'menuname' => 'Membership',
+                    'menuname' => 'Newsroom',
                     'position' => 4,
                     'icon' => null,
-                    'route' => 'membership-index',
+                    'route' => 'newsroom',
                     'parent' => null,
                     'activestatus' => 1,
                     'created_by' => "System",
@@ -84,6 +84,21 @@ class MenuSeeder extends Seeder
                     'route' => 'admin-emails-index',
                     'parent' => null,
                     'activestatus' => 1,
+                    'created_by' => "System",
+                    'modified_by' => "System"
+                ]
+            );
+        }
+
+        if (!Menu::where('menuname', 'Membership')->first()){
+            Menu::create(
+                [
+                    'menuname' => 'Membership',
+                    'position' => 6,
+                    'icon' => null,
+                    'route' => 'membership-index',
+                    'parent' => null,
+                    'activestatus' => 0,
                     'created_by' => "System",
                     'modified_by' => "System"
                 ]

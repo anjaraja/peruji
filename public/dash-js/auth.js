@@ -9,6 +9,8 @@ else{
 		const decoded_data = JSON.parse(decodedPayload)
 
 		localStorage.setItem("email",decoded_data["name"]);
+		localStorage.setItem("profile",decoded_data["userprofile"]);
+		localStorage.setItem("menu",JSON.stringify(decoded_data["menu"]));
 	}
 	catch (error) {
 		localStorage.removeItem("Token");

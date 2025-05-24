@@ -500,6 +500,155 @@
                 ]
             }
         },
+        "/api/upload-gallery-events/": {
+            "post": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "operationId": "96af53f7908ef36048dfd2cf2465bbd7",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "events",
+                                    "photo"
+                                ],
+                                "properties": {
+                                    "events": {
+                                        "type": "string",
+                                        "example": 1
+                                    },
+                                    "photo": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/previous-events/{page}": {
+            "get": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "operationId": "cf5ee11edcec738c9fb1ac746a9cbd2a",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "path",
+                        "description": "Page Number",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/publish-previous-events/": {
+            "post": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "operationId": "2179b44e77e5326ce97c07a8d21c5002",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "events"
+                                ],
+                                "properties": {
+                                    "events": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/delete-photo-gallery-events/": {
+            "post": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "operationId": "ca727e8034e615f4a75df8233b665b13",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "events",
+                                    "photo"
+                                ],
+                                "properties": {
+                                    "events": {
+                                        "type": "string",
+                                        "example": 1
+                                    },
+                                    "photo": {
+                                        "type": "string",
+                                        "example": "/storage/event-photo/filename.formatimage"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/membership": {
             "post": {
                 "tags": [

@@ -13,7 +13,7 @@
 
     <main>
         <div class="container-fluid">
-            <div class="row flex-nowrap">
+            <div class="row">
                 @yield('content')
             </div>
         </div>
@@ -51,7 +51,8 @@
                 return response.json();
               })
               .then((data)=>{
-                console.log(data);
+                localStorage.removeItem("Token")
+                window.location.href = "{{route('homepage')}}";
                 // alert("success logout")
               });
 
