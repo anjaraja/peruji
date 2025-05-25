@@ -58,7 +58,12 @@ class EventsController extends Controller
      *          @OA\MediaType(
      *              mediaType="multipart/form-data",
      *              @OA\Schema(
-     *                  required={"eventname","eventdate","description"},
+     *                  required={"eventsource","eventname","eventdate","description"},
+     *                  @OA\Property(
+     *                      property="eventsource",
+     *                      type="string",
+     *                      example="event1 | event2 | event3 | event4"
+     *                  ),
      *                  @OA\Property(
      *                      property="eventname",
      *                      type="string",
@@ -117,6 +122,7 @@ class EventsController extends Controller
     {
         try{
             $validated = Validator::make($request->all(),[
+                'eventsource' => 'required|string',
                 'eventname' => 'required|string',
                 'eventdate' => 'required|string',
                 'description' => 'required|string',
@@ -133,6 +139,7 @@ class EventsController extends Controller
             }
 
             $data = $request->all();
+            $data["source"] = $data["eventsource"];
             $data["activestatus"] = 1;
             $data["created_by"] = auth("api")->user()->email;
             $data["modified_by"] = auth("api")->user()->email;

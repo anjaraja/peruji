@@ -45,6 +45,19 @@ html {
 /* Close Nav Vss */
 
 /* Global */
+    .alert[data]{
+        position: fixed;
+        top: 8vh;
+        right: -500px;
+        opacity: 0;
+        z-index: 2;
+        transition: all 0.8s;
+    }
+    .alert[data].show{
+        right: 0;
+        opacity: 1;
+        transition: all 0.8s;
+    }
     ul li {
         list-style: none;
         padding: 2px 0px;
@@ -119,7 +132,8 @@ html {
 /*Sidebar*/
 
     nav.sidebar{
-        padding-top: 10vh !important;
+        margin-top: 10vh !important;
+        padding-top: 0 !important;
         background-color: transparent;
         bottom: 0;
         float: none;

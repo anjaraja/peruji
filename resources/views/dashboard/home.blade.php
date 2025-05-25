@@ -29,27 +29,27 @@
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse">
                 <div class="accordion-body">
-                    <form>
+                    <form source="event1">
                         <div class="mb-3">
                             <label class="form-label">Title</label>
-                            <input type="text" class="form-control" placeholder="Title">
+                            <input type="text" name="event_name" class="form-control" placeholder="Title" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Date</label>
-                            <input type="text" class="form-control" placeholder="Event date">
+                            <input type="text" name="event_date" class="form-control" placeholder="Event date" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Message</label>
-                            <textarea class="form-control" rows="3" placeholder="Describe the event in one paragraph"></textarea>
+                            <textarea class="form-control" name="event_message" rows="3" placeholder="Describe the event in one paragraph" required></textarea>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Photo/Image</label>
-                            <input type="file" class="form-control" accept="image/png, image/jpeg, image/gif">
+                            <label class="form-label">Photo/Image Banner</label>
+                            <input type="file" name="event_banner" class="form-control" accept="image/png, image/jpeg, image/gif">
                             <small class="form-text text-muted">Banner size 720x150 pixels (jpg/png/gif)</small>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Event Agenda</label>
-                            <input type="file" class="form-control" accept="application/pdf">
+                            <input type="file" name="event_agenda" class="form-control" accept="application/pdf">
                         </div>
                         <button type="submit" class="submit-btn">UPLOAD</button>
                     </form>
@@ -65,27 +65,27 @@
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse">
                 <div class="accordion-body">
-                    <form>
+                    <form source="event2">
                         <div class="mb-3">
                             <label class="form-label">Title</label>
-                            <input type="text" class="form-control" placeholder="Title">
+                            <input type="text" name="event_name" class="form-control" placeholder="Title">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Date</label>
-                            <input type="text" class="form-control" placeholder="Event date">
+                            <input type="text" name="event_date" class="form-control" placeholder="Event date">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Message</label>
-                            <textarea class="form-control" rows="3" placeholder="Describe the event in one paragraph"></textarea>
+                            <textarea class="form-control" name="event_message" rows="3" placeholder="Describe the event in one paragraph"></textarea>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Photo/Image</label>
-                            <input type="file" class="form-control" accept="image/png, image/jpeg, image/gif">
+                            <label class="form-label">Photo/Image Banner</label>
+                            <input type="file" name="event_banner" class="form-control" accept="image/png, image/jpeg, image/gif">
                             <small class="form-text text-muted">Banner size 720x150 pixels (jpg/png/gif)</small>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Event Agenda</label>
-                            <input type="file" class="form-control" accept="application/pdf">
+                            <input type="file" name="event_agenda" class="form-control" accept="application/pdf">
                         </div>
                         <button type="submit" class="submit-btn">UPLOAD</button>
                     </form>
@@ -101,27 +101,27 @@
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse">
                 <div class="accordion-body">
-                    <form>
+                    <form source="event3">
                         <div class="mb-3">
                             <label class="form-label">Title</label>
-                            <input type="text" class="form-control" placeholder="Title">
+                            <input type="text" name="event_name" class="form-control" placeholder="Title">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Date</label>
-                            <input type="text" class="form-control" placeholder="Event date">
+                            <input type="text" name="event_date" class="form-control" placeholder="Event date">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Message</label>
-                            <textarea class="form-control" rows="3" placeholder="Describe the event in one paragraph"></textarea>
+                            <textarea class="form-control" name="event_message" rows="3" placeholder="Describe the event in one paragraph"></textarea>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Photo/Image</label>
-                            <input type="file" class="form-control" accept="image/png, image/jpeg, image/gif">
+                            <label class="form-label">Photo/Image Banner</label>
+                            <input type="file" name="event_banner" class="form-control" accept="image/png, image/jpeg, image/gif">
                             <small class="form-text text-muted">Banner size 720x150 pixels (jpg/png/gif)</small>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Event Agenda</label>
-                            <input type="file" class="form-control" accept="application/pdf">
+                            <input type="file" name="event_agenda" class="form-control" accept="application/pdf">
                         </div>
                         <button type="submit" class="submit-btn">UPLOAD</button>
                     </form>
@@ -137,27 +137,27 @@
             </h2>
             <div id="collapseFour" class="accordion-collapse collapse">
                 <div class="accordion-body">
-                    <form>
+                    <form source="event4">
                         <div class="mb-3">
                             <label class="form-label">Title</label>
-                            <input type="text" class="form-control" placeholder="Title">
+                            <input type="text" name="event_name" class="form-control" placeholder="Title">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Date</label>
-                            <input type="text" class="form-control" placeholder="Event date">
+                            <input type="text" name="event_date" class="form-control" placeholder="Event date">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Message</label>
-                            <textarea class="form-control" rows="3" placeholder="Describe the event in one paragraph"></textarea>
+                            <textarea class="form-control" name="event_message" rows="3" placeholder="Describe the event in one paragraph"></textarea>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Photo/Image</label>
-                            <input type="file" class="form-control" accept="image/png, image/jpeg, image/gif">
+                            <label class="form-label">Photo/Image Banner</label>
+                            <input type="file" name="event_banner" class="form-control" accept="image/png, image/jpeg, image/gif">
                             <small class="form-text text-muted">Banner size 720x150 pixels (jpg/png/gif)</small>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Event Agenda</label>
-                            <input type="file" class="form-control" accept="application/pdf">
+                            <input type="file" name="event_agenda" class="form-control" accept="application/pdf">
                         </div>
                         <button type="submit" class="submit-btn">UPLOAD</button>
                     </form>
@@ -314,6 +314,73 @@
     </form>
 </div>
 <script>
-    
+    // fetchData(
+    //     this_route,
+    //     "POST",
+    //     {"Authorization":localStorage.getItem("Token")},
+    //     formdata
+    // )
+    // .then((response)=>{
+    //     if (response.status !== 200){
+    //         showAlert("not-ok","created")
+    //         return response.json();
+    //     }
+    //     showAlert("ok","created")
+    //     return response.json();
+    // })
+    // .then((data)=>{
+    //     alert("OK")
+    // });
+</script>
+<script>
+    upcoming_form = document.querySelectorAll(".content-container.upcoming-events form");
+
+    upcoming_form.forEach(this_form => {
+        this_form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            formdata = new FormData();
+
+            event_source = this.getAttribute("source")
+            formdata.append("eventsource",event_source)
+            event_name = this.querySelector("input[name='event_name']").value
+            formdata.append("eventname",event_name)
+            event_date = this.querySelector("input[name='event_date']").value
+            formdata.append("eventdate",event_date)
+            event_message = this.querySelector("textarea[name='event_message']").value
+            formdata.append("description",event_message)
+            event_banner = this.querySelector("input[name='event_banner']").files[0]
+            formdata.append("banner",event_banner)
+            event_agenda = this.querySelector("input[name='event_agenda']").files[0]
+            formdata.append("agenda",event_agenda)
+
+            if(this.querySelector("input[name='events']")){
+                this_route = "{{route('update-events')}}";
+            }
+            else{
+                this_route = "{{route('create-events')}}";
+            }
+
+            fetchData(
+                this_route,
+                "POST",
+                {"Authorization":localStorage.getItem("Token")},
+                formdata
+            )
+            .then((response)=>{
+                if (response.status !== 200){
+                    showAlert("not-ok","created")
+                    return response.json();
+                }
+                showAlert("ok","created")
+                return response.json();
+            })
+            .then((data)=>{
+                alert("OK")
+            });
+
+            return false;
+        })
+    })
 </script>
 @endsection
