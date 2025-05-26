@@ -163,3 +163,9 @@ html {
         border-left: 20px solid #666 !important;
     }
 /*End Sidebar*/
+
+/*Utilities*/
+.sendToPdfFiller {
+  display: none !important;
+}
+/*End Utilities*/

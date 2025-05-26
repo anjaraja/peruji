@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>@yield('title', 'PERUJI | CMS')</title>
-    <link rel="stylesheet" href="{{ asset('dash-css/dash-style_1.css') }}">
+    <link rel="stylesheet" href="{{ asset('dash-css/dash-style_2.css') }}">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
     <script src="{{asset('dash-js/fetchhelper_1.js')}}"></script>
 </head>

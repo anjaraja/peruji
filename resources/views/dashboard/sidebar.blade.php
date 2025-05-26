@@ -1,4 +1,4 @@
-<script src="{{asset('dash-js/auth.js')}}"></script>
+<script src="{{asset('dash-js/auth_1.js')}}"></script>
 <style>
     body {
       background-color: #f2f4f4;

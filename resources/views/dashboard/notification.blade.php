@@ -9,6 +9,9 @@
     Update Data Success
 </div>
 
+<div class="alert alert-danger not-ok" role="alert" data="get">
+    Failed When Fetch Data
+</div>
 <div class="alert alert-danger not-ok" role="alert" data="created">
     Failed When Create Data
 </div>
