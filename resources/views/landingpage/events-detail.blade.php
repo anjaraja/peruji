@@ -18,14 +18,22 @@
             </a>
             <div class="row p-0 m-0 position-absolute bottom-0 w-100">
                 <div class="col-6 d-sm-block d-none decoration-none">
-                    <a href="{{route('events')}}">
-                        <button class="btn btn-link btn btn-link text-decoration-none text-black">
+                    <a href="{{route('events')}}"
+                        data-url="{{route('events')}}"
+                        data-target="container-event" id="container-event"
+                        class="load-content">
+                        <button class="btn btn-link btn btn-link text-decoration-none text-black"
+                        >
                             <strong><- Back</strong>
                         </button>
                     </a>
                 </div>
                 <div class="col-6 d-sm-block d-none decoration-none">
-                    <a href="{{route('eventsRegis', ['events' => $events->id])}}">
+                    <a href="{{route('eventsRegis', ['events' => $events->id])}}"
+                        class="load-content"
+                        data-url="{{route('eventsRegis', ['events' => $events->id])}}"
+                        data-target="register-area"
+                        >
                         <button class="btn btn-link text-decoration-none text-black">
                             <strong>Register -></strong>
                         </button>

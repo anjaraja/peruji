@@ -144,6 +144,13 @@
         max-width: 400px;
     }
     
+    .banner-image-solos {
+        position: absolute;
+        bottom: 105%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 1;
+    }
     .banner-image {
         position: absolute;
         bottom: 105%;
