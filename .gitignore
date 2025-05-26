@@ -5,6 +5,8 @@
 /public/storage
 /storage/*.key
 /storage/pail
+/storage/api-docs
+/storage/api-docs/*
 /vendor
 .env.backup
 .env.production
@@ -20,4 +22,4 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
-/start-dev.sh
+start-dev.sh

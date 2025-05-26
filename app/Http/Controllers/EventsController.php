@@ -35,7 +35,7 @@ class EventsController extends Controller
         try{
             $page = is_int($page)?$page:1;
 
-            $events = Events::select("id","eventname","eventdate","banner")->where("activestatus",1)->orderBy("eventdate","asc")->paginate(15, ["*"], "page", $page)->toArray();
+            $events = Events::where("activestatus",1)->orderBy("eventdate","asc")->paginate(15, ["*"], "page", $page)->toArray();
             $events = Pagination::ClearObject($events);
 
             Log::channel('activity')->warning('[LOAD EVENTS]', ["page"=>$page]);
@@ -58,7 +58,12 @@ class EventsController extends Controller
      *          @OA\MediaType(
      *              mediaType="multipart/form-data",
      *              @OA\Schema(
-     *                  required={"eventname","eventdate","description"},
+     *                  required={"eventsource","eventname","eventdate","description"},
+     *                  @OA\Property(
+     *                      property="eventsource",
+     *                      type="string",
+     *                      example="event1 | event2 | event3 | event4"
+     *                  ),
      *                  @OA\Property(
      *                      property="eventname",
      *                      type="string",
@@ -117,6 +122,7 @@ class EventsController extends Controller
     {
         try{
             $validated = Validator::make($request->all(),[
+                'eventsource' => 'required|string',
                 'eventname' => 'required|string',
                 'eventdate' => 'required|string',
                 'description' => 'required|string',
@@ -133,6 +139,7 @@ class EventsController extends Controller
             }
 
             $data = $request->all();
+            $data["source"] = $data["eventsource"];
             $data["activestatus"] = 1;
             $data["created_by"] = auth("api")->user()->email;
             $data["modified_by"] = auth("api")->user()->email;
@@ -325,18 +332,6 @@ class EventsController extends Controller
             // END UPLOAD THUMBNAIL
 
             // BEGIN UPLOAD PHOTO
-            $photos = [];
-            foreach ($request->file("photo") as $key => $value) {
-                $filename = time()."_".$data["eventname"]."-$key".".".$value->getClientOriginalExtension();
-                $path = $value->storeAs('event-photo', $filename, 'public');
-                $photos[] = Storage::url($path);
-            }
-            if($photos){
-                $data["photo"] = json_encode($photos);
-            }
-            // END UPLOAD PHOTO
-
-            // BEGIN UPLOAD PHOTO
             $photos = json_decode($events_data->photo);
             if(isset($request->photo)){
                 if($request->file("photo")){
@@ -419,17 +414,252 @@ class EventsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Post(
+     *      path="/api/upload-gallery-events/",
+     *      security={{"bearerAuth":{}}},
+     *      tags={"Dashboard"}, 
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(
+     *              mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  required={"events","photo"},
+     *                  @OA\Property(
+     *                      property="events",
+     *                      type="string",
+     *                      example=1
+     *                  ),
+     *                  @OA\Property(
+     *                      property="photo",
+     *                      type="string",
+     *                      format="binary"
+     *                  ),
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *      )
+     * )
      */
-    public function eventGallery($events)
+    public function eventUploadPhotoGallery(Request $request)
     {
+        try{
+            $validated = Validator::make($request->all(),[
+                'events' => 'required|integer',
+                'photo' => 'required|file|mimes:jpeg,jpg,png',
+            ]);
+            if ($validated->fails()) {
+                Log::channel('activity')->warning('[UPDATE PHOTO GALLERY EVENTS]', [$validated->errors(),$request->all()]);
+                return response()->json(["message" => "RC5.1"], 422);
+            }
+
+            $events = Events::where("id",$request->events);
+            $events_data = $events->first();
+            if(!$events_data){
+                Log::channel('activity')->warning('[UPDATE PHOTO GALLERY EVENTS]', ["Data not found with id",$request->events]);
+                return response()->json(["message" => "RC5.2"], 422);
+            }
+
+            $data = $request->all();
+            $data["id"] = $request->events;
+            $data["modified_by"] = auth("api")->user()->email;
+            Log::channel('activity')->info('[UPDATE PHOTO GALLERY EVENTS][DATA]', $data);
+
+            // BEGIN UPLOAD PHOTO
+            $photos = json_decode($events_data->photo);
+            if(isset($request->photo)){
+                $photo = $request->file("photo");
+                $filename = time()."_".$events_data->eventname.".".$photo->getClientOriginalExtension();
+                $path = $request->file('photo')->storeAs('event-photo', $filename, 'public');
+                $photos[] = Storage::url($path);
+            }
+            $data["photo"] = $photos;
+            // END UPLOAD PHOTO
+
+            unset($data["events"]);
+            $store = $events->update($data);
+
+            return response()->json(["message"=>"ok"],200);
+        }
+        catch(\Exception $e){
+            Log::channel('errorlog')->error('[UPDATE PHOTO GALLERY AGENDA]', ["message"=>$e->getMessage()]);
+            return response()->json(["message"=>"RC5.3"],500);;
+        }
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Get(
+     *      path="/api/previous-events/{page}",
+     *      security={{"bearerAuth":{}}},
+     *      tags={"Dashboard"}, 
+     *      @OA\Parameter(
+     *          name="page",
+     *          in="path",
+     *          description="Page Number",
+     *          @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *      )
+     * )
      */
-    public function destroy(News $news)
+    public function previousEvents($page)
     {
-        //
+        try{
+            $page = is_int($page)?$page:1;
+
+            $events = Events::where("activestatus",0)->orderBy("eventdate","desc")->paginate(15, ["*"], "page", $page)->toArray();
+            $events = Pagination::ClearObject($events);
+
+            Log::channel('activity')->warning('[LOAD PREVIOUS EVENTS]', ["page"=>$page]);
+
+            return response()->json(["message"=>"ok","data"=>$events],200);;
+        }
+        catch(\Exception $e){
+            Log::channel('errorlog')->error('[LOAD PREVIOUS EVENTS]', ["message"=>$e->getMessage()]);
+            return response()->json(["message"=>"RC6"],500);
+        }
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/api/publish-previous-events/",
+     *      security={{"bearerAuth":{}}},
+     *      tags={"Dashboard"}, 
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(
+     *              mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  required={"events"},
+     *                  @OA\Property(
+     *                      property="events",
+     *                      type="integer",
+     *                      example=1
+     *                  )
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *      )
+     * )
+     */
+    public function publishToPrevious(Request $request)
+    {
+        try{
+            $validated = Validator::make($request->all(),[
+                'events' => 'required|integer'
+            ]);
+            if ($validated->fails()) {
+                Log::channel('activity')->warning('[PUBLISH PREVIOUS EVENTS]', [$validated->errors(),$request->all()]);
+                return response()->json(["message" => "RC7.1"], 422);
+            }
+
+            $events = Events::where("id",$request->events);
+            $event_data = $events->first();
+            if($event_data){
+                $events->update([
+                    "isprevious" => 1,
+                    "modified_by" => now()
+                ]);
+
+                Log::channel('activity')->warning('[PUBLISH PREVIOUS EVENTS]', [$validated->errors(),$request->all()]);
+                return response()->json(["message" => "ok"], 200);
+            }
+            else{
+                Log::channel('activity')->warning('[PUBLISH PREVIOUS EVENTS]', ["DATA NOT FOUND",$request->all()]);
+                return response()->json(["message" => "RC7.2"], 422);
+            }
+        }
+        catch(\Exception $e){
+            Log::channel('errorlog')->error('[PUBLISH PREVIOUS EVENTS]', ["message"=>$e->getMessage()]);
+            return response()->json(["message"=>"RC7"],500);
+        }
+    }
+
+
+    /**
+     * @OA\Post(
+     *      path="/api/delete-photo-gallery-events/",
+     *      security={{"bearerAuth":{}}},
+     *      tags={"Dashboard"}, 
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(
+     *              mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  required={"events","photo"},
+     *                  @OA\Property(
+     *                      property="events",
+     *                      type="string",
+     *                      example=1
+     *                  ),
+     *                  @OA\Property(
+     *                      property="photo",
+     *                      type="string",
+     *                      example="/storage/event-photo/filename.formatimage"
+     *                  ),
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *      )
+     * )
+     */
+    public function deletePhotoGalleryEvent(Request $request)
+    {
+        try{
+            $validated = Validator::make($request->all(),[
+                'events' => 'required|integer',
+                'photo' => 'required|string',
+            ]);
+            if ($validated->fails()) {
+                Log::channel('activity')->warning('[UPDATE PHOTO GALLERY EVENTS]', [$validated->errors(),$request->all()]);
+                return response()->json(["message" => "RC8.1"], 422);
+            }
+
+            $events = Events::where("id",$request->events);
+            $events_data = $events->first();
+            if(!$events_data){
+                Log::channel('activity')->warning('[UPDATE PHOTO GALLERY EVENTS]', ["Data not found with id",$request->events]);
+                return response()->json(["message" => "RC8.2"], 422);
+            }
+
+            $data = $request->all();
+            $data["id"] = $request->events;
+            $data["modified_by"] = auth("api")->user()->email;
+            Log::channel('activity')->info('[UPDATE PHOTO GALLERY EVENTS][DATA]', $data);
+
+            // BEGIN UPLOAD PHOTO
+            $photos = json_decode($events_data->photo);
+            foreach($photos as $key => $value){
+                if($value == $request->photo){
+                    $photo_path = str_replace("storage/", "", $value);
+                    // Delete old image if it exists
+                    if ($photo_path && Storage::disk('public')->exists($photo_path)) {
+                        Storage::disk('public')->delete($photo_path);
+                    }
+                    unset($photos[$key]);
+                }
+            }
+            $data["photo"] = $photos;
+            // END UPLOAD PHOTO
+
+            unset($data["events"]);
+            $store = $events->update($data);
+
+            return response()->json(["message"=>"ok"],200);
+        }
+        catch(\Exception $e){
+            Log::channel('errorlog')->error('[UPDATE PHOTO GALLERY AGENDA]', ["message"=>$e->getMessage()]);
+            return response()->json(["message"=>"RC8.3"],500);;
+        }
     }
 }

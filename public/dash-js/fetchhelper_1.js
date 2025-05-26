@@ -2,10 +2,18 @@ function fetchData(url,method,headers={},body={}){
 	if (typeof localStorage.getItem('Token') != "undefined"){
 		headers["Authorization"] = `Bearer ${localStorage.getItem('Token')}`
 	}
+
+	if(body instanceof FormData){
+		body = body
+	}
+	else{
+		body = JSON.stringify(body)
+	}
+
 	data = {
       	method: method,
       	headers: headers,
-      	body: JSON.stringify(body)	
+      	body: body
     }
     if(method == "GET") delete data["body"];
 
