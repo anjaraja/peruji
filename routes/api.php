@@ -3,6 +3,9 @@
 use L5Swagger\L5Swagger;
 use Illuminate\Support\Facades\Route;
 
+use App\Mail\MyTestMail;
+use Illuminate\Support\Facades\Mail;
+
 $path = "App\Http\Controllers";
 
 Route::get('/', function () {
@@ -17,6 +20,8 @@ Route::post('/register', "$path\AuthController@register");
 Route::post('/login', "$path\AuthController@login")->name("login");
 
 Route::get('/detail-events/{events}', "$path\EventsController@show")->name("event-detail");
+
+Route::get('/send-test-mail', "$path\EventsController@testmail");
 
 Route::middleware('auth:api')->group(function () {
     $path = "App\Http\Controllers";

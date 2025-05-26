@@ -583,6 +583,7 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
         'App\\Http\\Controllers\\MembershipController' => __DIR__ . '/../..' . '/app/Http/Controllers/MembershipController.php',
         'App\\Http\\Controllers\\NewsController' => __DIR__ . '/../..' . '/app/Http/Controllers/NewsController.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
+        'App\\Mail\\SendMail' => __DIR__ . '/../..' . '/app/Mail/SendMail.php',
         'App\\Models\\Contactus' => __DIR__ . '/../..' . '/app/Models/Contactus.php',
         'App\\Models\\EmailAdmin' => __DIR__ . '/../..' . '/app/Models/EmailAdmin.php',
         'App\\Models\\EventRegistration' => __DIR__ . '/../..' . '/app/Models/EventRegistration.php',

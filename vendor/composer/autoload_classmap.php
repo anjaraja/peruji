@@ -19,6 +19,7 @@ return array(
     'App\\Http\\Controllers\\MembershipController' => $baseDir . '/app/Http/Controllers/MembershipController.php',
     'App\\Http\\Controllers\\NewsController' => $baseDir . '/app/Http/Controllers/NewsController.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
+    'App\\Mail\\SendMail' => $baseDir . '/app/Mail/SendMail.php',
     'App\\Models\\Contactus' => $baseDir . '/app/Models/Contactus.php',
     'App\\Models\\EmailAdmin' => $baseDir . '/app/Models/EmailAdmin.php',
     'App\\Models\\EventRegistration' => $baseDir . '/app/Models/EventRegistration.php',

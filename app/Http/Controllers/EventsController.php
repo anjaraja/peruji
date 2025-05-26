@@ -10,9 +10,23 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Storage;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
+
 class EventsController extends Controller
 {
+    public function testmail(){
+        $view = 'mailtemplate.testmail'; // dynamic
+        $subject = 'Welcome Aboard!';
+        $data = [
+            'name' => 'Jane Doe',
+            'role' => 'Editor',
+        ];
 
+        Mail::to('anjarpratama16@gmail.com')->send(new SendMail($view, $subject, $data));
+
+        return 'Email sent!';
+    }
     /**
      * @OA\Get(
      *      path="/api/events/{page}",
