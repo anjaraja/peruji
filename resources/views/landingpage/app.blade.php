@@ -39,39 +39,39 @@
         }
     });
 
-$(document).ready(function () {
-    $('.load-content').on('click', function (e) {
-        e.preventDefault();
+    $(document).ready(function () {
+        $('.load-content').on('click', function (e) {
+            e.preventDefault();
 
-        let url = $(this).data('url');
-        let target = $(this).data('target');
+            let url = $(this).data('url');
+            let target = $(this).data('target');
 
-        $('.section-container').each(function () {
-            if ($(this).attr('id') !== target) {
-                $(this).hide();
-            }
-        });
+            $('.section-container').each(function () {
+                if ($(this).attr('id') !== target) {
+                    $(this).hide();
+                }
+            });
 
-        let $targetEl = $('#' + target);
+            let $targetEl = $('#' + target);
 
-        if ($targetEl.children().length > 0) {
-            $targetEl.fadeIn();
-            $('html, body').animate({
-                scrollTop: $targetEl.offset().top
-            }, 500);
-        } else {
-
-            $.get(url, function (data) {
-                
-                $targetEl.html(data).fadeIn();
-
+            if ($targetEl.children().length > 0) {
+                $targetEl.fadeIn();
                 $('html, body').animate({
                     scrollTop: $targetEl.offset().top
                 }, 500);
-            });
-        }
+            } else {
+
+                $.get(url, function (data) {
+                    
+                    $targetEl.html(data).fadeIn();
+
+                    $('html, body').animate({
+                        scrollTop: $targetEl.offset().top
+                    }, 500);
+                });
+            }
+        });
     });
-});
 
 </script>
 </html>

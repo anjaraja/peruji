@@ -39,7 +39,7 @@
             <div class="layout"></div>
             <div class="content">
                 <div class="head-events" id="upcoming">Upcoming Events</div>
-                @foreach ( array_reverse($events) as $value )
+                @foreach ( array_reverse($upcoming_events) as $value )
                     <div class="event">
                         <a href="{{ route('events-detail', ['events' => $value['id']]) }}" data-url="{{ route('events-detail', ['events' => $value['id']]) }}"
                         data-target="content-area" class="load-content">
@@ -57,76 +57,18 @@
                 <div class="label">Previous Event</div>
             </div>
             <div class="in-event-page">
-                <div class="row">
-                    <div class="col-12 col-md-6 p-0">
-                        <img src="{{asset('lp-img/6af9783141642392a944c2097831a7440a9103bb.png')}}" alt="" style="height: 100%;width: 100%;background-position: center;background-size: cover;">
+                @foreach (array_reverse($previous_events) as $value)
+                    <div class="row">
+                        <div class="col-12 col-md-6 p-0">
+                            <img src="{{asset($value['thumbnail'])}}" alt="" style="height: 100%;width: 100%;background-position: center;background-size: cover;">
+                        </div>
+                        <div class="col-12 col-md-6 p-4">
+                            <div class="tanggal">{{$value['eventdate']}}</div>
+                            <div class="label-event">{{$value['eventname']}}</div>
+                            <div class="desc">{{$value['description']}}</div>
+                        </div>
                     </div>
-                    <div class="col-12 col-md-6 p-4">
-                        <div class="tanggal">14-15 August 2024</div>
-                        <div class="label-event">Indonesia Underwriting Summit 2024 (IUS 2024)</div>
-                        <div class="desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores labore nemo fugiat consequatur repellat rem reiciendis quisquam ad iure officiis laborum dolorum voluptatum, sit totam! Error libero voluptatibus facere ab.</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-6 p-4 order-last order-md-first">
-                        <div class="tanggal">14-15 August 2024</div>
-                        <div class="label-event">Indonesia Underwriting Summit 2024 (IUS 2024)</div>
-                        <div class="desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores labore nemo fugiat consequatur repellat rem reiciendis quisquam ad iure officiis laborum dolorum voluptatum, sit totam! Error libero voluptatibus facere ab.</div>
-                    </div>
-                    <div class="col-12 col-md-6 p-0 order-first order-md-last">
-                        <img src="{{asset('lp-img/36926fd614a9c19a5e18673b1c73d4c81ea5c56b (1).png')}}" alt="" style="height: 100%;width: 100%;background-position: center;background-size: cover;">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-6 p-0">
-                        <img src="{{asset('lp-img/36926fd614a9c19a5e18673b1c73d4c81ea5c56b (1).png')}}" alt="" style="height: 100%;width: 100%;background-position: center;background-size: cover;">
-                    </div>
-                    <div class="col-12 col-md-6 p-4">
-                        <div class="tanggal">14-15 August 2024</div>
-                        <div class="label-event">Indonesia Underwriting Summit 2024 (IUS 2024)</div>
-                        <div class="desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores labore nemo fugiat consequatur repellat rem reiciendis quisquam ad iure officiis laborum dolorum voluptatum, sit totam! Error libero voluptatibus facere ab.</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-6 p-4 order-last order-md-first">
-                        <div class="tanggal">14-15 August 2024</div>
-                        <div class="label-event">Indonesia Underwriting Summit 2024 (IUS 2024)</div>
-                        <div class="desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores labore nemo fugiat consequatur repellat rem reiciendis quisquam ad iure officiis laborum dolorum voluptatum, sit totam! Error libero voluptatibus facere ab.</div>
-                    </div>
-                    <div class="col-12 col-md-6 p-0 order-first order-md-last">
-                        <img src="{{asset('lp-img/b4106306a8bc8b8594bb37adea23ab57de4632a1.png')}}" alt="" style="height: 100%;width: 100%;background-position: center;background-size: cover;">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-6 p-0">
-                        <img src="{{asset('lp-img/b4106306a8bc8b8594bb37adea23ab57de4632a1.png')}}" alt="" style="height: 100%;width: 100%;background-position: center;background-size: cover;">
-                    </div>
-                    <div class="col-12 col-md-6 p-4">
-                        <div class="tanggal">14-15 August 2024</div>
-                        <div class="label-event">Indonesia Underwriting Summit 2024 (IUS 2024)</div>
-                        <div class="desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores labore nemo fugiat consequatur repellat rem reiciendis quisquam ad iure officiis laborum dolorum voluptatum, sit totam! Error libero voluptatibus facere ab.</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-6 p-4 order-last order-md-first">
-                        <div class="tanggal">14-15 August 2024</div>
-                        <div class="label-event">Indonesia Underwriting Summit 2024 (IUS 2024)</div>
-                        <div class="desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores labore nemo fugiat consequatur repellat rem reiciendis quisquam ad iure officiis laborum dolorum voluptatum, sit totam! Error libero voluptatibus facere ab.</div>
-                    </div>
-                    <div class="col-12 col-md-6 p-0 order-first order-md-last">
-                        <img src="{{asset('lp-img/c7e75c0accc10e93ee0f20f3c60ab4f1d134cebb.png')}}" alt="" style="height: 100%;width: 100%;background-position: center;background-size: cover;">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-6 p-0">
-                        <img src="{{asset('lp-img/c7e75c0accc10e93ee0f20f3c60ab4f1d134cebb.png')}}" alt="" style="height: 100%;width: 100%;background-position: center;background-size: cover;">
-                    </div>
-                    <div class="col-12 col-md-6 p-4">
-                        <div class="tanggal">14-15 August 2024</div>
-                        <div class="label-event">Indonesia Underwriting Summit 2024 (IUS 2024)</div>
-                        <div class="desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores labore nemo fugiat consequatur repellat rem reiciendis quisquam ad iure officiis laborum dolorum voluptatum, sit totam! Error libero voluptatibus facere ab.</div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
