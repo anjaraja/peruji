@@ -39,7 +39,7 @@
             <div class="layout"></div>
             <div class="content">
                 <div class="head-events" id="upcoming">Upcoming Events</div>
-                @foreach ( array_reverse($upcoming_events) as $value )
+                @foreach ( $upcoming_events as $value )
                     <div class="event">
                         <a href="{{ route('events-detail', ['events' => $value['id']]) }}" data-url="{{ route('events-detail', ['events' => $value['id']]) }}"
                         data-target="content-area" class="load-content">
