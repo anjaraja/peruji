@@ -64,7 +64,7 @@
                 </a>
             </div>
             <div class="navbar-opt">
-                <button class="btn p-0" type="button" id="nav-menu-open"><h5 class=" m-0 p-0" id="menu-toggle-text">MENU</h5></button>
+                <button class="btn p-0" type="button" id="nav-menu-open"><h5 class=" m-0 p-0 pt-1" id="menu-toggle-text">MENU</h5></button>
             </div>
             <div class="navbar-right d-flex position-absolute end-0">
                 <div class="navbar-medsos d-flex me-3">
