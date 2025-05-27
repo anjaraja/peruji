@@ -92,7 +92,6 @@ class EventRegistrationController extends Controller
             $view = 'mailtemplate.eventregistration'; // dynamic
             $subject = "$request->fullname Join the Event!";
             foreach($email_admin as $key => $value){
-                Log::channel('activity')->info('[SENDING EMAIL TO ADMIN]', [$value->emails]);
 
                 $data = [
                     "eventregistrationname"=>$request->eventregistrationname,
@@ -104,7 +103,10 @@ class EventRegistrationController extends Controller
                     "address"=>$request->address
                 ];
 
-                Mail::to($value->emails)->send(new SendMail($view, $subject, $data));
+                if($value->emails){
+                    Log::channel('activity')->info('[SENDING EMAIL TO ADMIN]', [$value->emails]);
+                    Mail::to($value->emails)->send(new SendMail($view, $subject, $data));
+                }
             }
 
             Log::channel('activity')->info('[EVENT REGISTRATION]', $request->all());
