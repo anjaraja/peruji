@@ -32,10 +32,10 @@
         
         if (isShown) {
             navMenu.classList.remove('show');
-            menuText.textContent = 'Menu';
+            menuText.textContent = 'MENU';
         } else {
             navMenu.classList.add('show');
-            menuText.textContent = 'Exit';
+            menuText.textContent = 'EXIT';
         }
     });
 
