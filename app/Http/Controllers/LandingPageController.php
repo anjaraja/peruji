@@ -13,7 +13,7 @@ class LandingPageController extends Controller
     public function index()
     {
         $events = new EventsController();
-        $data = $events->index(1);
+        $data = $events->index(1,"landingpage");
         return view('landingpage.home',["events"=>$data->original["data"]["data"]]);
     }
 

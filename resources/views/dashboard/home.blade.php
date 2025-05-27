@@ -21,149 +21,57 @@
     </div>
     <div class="accordion" id="eventAccordion">
         <!-- Event 1 -->
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                    Event #1
-                </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse">
-                <div class="accordion-body">
-                    <form source="event1">
-                        <div class="mb-3">
-                            <label class="form-label">Title</label>
-                            <input type="text" name="event_name" class="form-control" placeholder="Title" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Date</label>
-                            <input type="text" name="event_date" class="form-control" placeholder="Event date" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Message</label>
-                            <textarea class="form-control" name="event_message" rows="3" placeholder="Describe the event in one paragraph" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Photo/Image Banner</label>
-                            <input type="file" name="event_banner" class="form-control" accept="image/png, image/jpeg, image/gif">
-                            <small class="form-text text-muted">Banner size 720x150 pixels (jpg/png/gif)</small>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Event Agenda</label>
-                            <input type="file" name="event_agenda" class="form-control" accept="application/pdf">
-                        </div>
-                        <button type="submit" class="submit-btn">UPLOAD</button>
-                    </form>
+        @for($i=1;$i<=4;$i++)
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading{{$i}}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$i}}">
+                        Event #{{$i}}
+                    </button>
+                </h2>
+                <div id="collapse{{$i}}" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <form class="row" source="event{{$i}}">
+                            <div class="col-md-12 p-0">
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Title</label>
+                                    <input type="text" name="event_name" class="form-control" placeholder="Title" required>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Date</label>
+                                        <input type="text" name="event_date" class="form-control" placeholder="Event date" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Display Date</label>
+                                        <input type="text" name="event_display_date" class="form-control" placeholder="Event display date" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <label class="form-label">Description (IND)</label>
+                                        <textarea class="form-control" name="event_message" rows="3" placeholder="Describe the event in one paragraph" required></textarea>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label">Description (ENG)</label>
+                                        <textarea class="form-control" name="eng_event_message" rows="3" placeholder="Describe the event in one paragraph" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Photo/Image Banner</label>
+                                    <input type="file" name="event_banner" class="form-control" accept="image/png, image/jpeg, image/gif">
+                                    <small class="form-text text-muted">Banner size 720x150 pixels (jpg/png/gif)</small>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Event Agenda</label>
+                                    <input type="file" name="event_agenda" class="form-control" accept="application/pdf">
+                                </div>
+                            </div>
+                            <button type="submit" class="submit-btn">UPLOAD</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- Event 2 -->
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
-                    Event #2
-                </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse">
-                <div class="accordion-body">
-                    <form source="event2">
-                        <div class="mb-3">
-                            <label class="form-label">Title</label>
-                            <input type="text" name="event_name" class="form-control" placeholder="Title">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Date</label>
-                            <input type="text" name="event_date" class="form-control" placeholder="Event date">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Message</label>
-                            <textarea class="form-control" name="event_message" rows="3" placeholder="Describe the event in one paragraph"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Photo/Image Banner</label>
-                            <input type="file" name="event_banner" class="form-control" accept="image/png, image/jpeg, image/gif">
-                            <small class="form-text text-muted">Banner size 720x150 pixels (jpg/png/gif)</small>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Event Agenda</label>
-                            <input type="file" name="event_agenda" class="form-control" accept="application/pdf">
-                        </div>
-                        <button type="submit" class="submit-btn">UPLOAD</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Event 3 -->
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
-                    Event #3
-                </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse">
-                <div class="accordion-body">
-                    <form source="event3">
-                        <div class="mb-3">
-                            <label class="form-label">Title</label>
-                            <input type="text" name="event_name" class="form-control" placeholder="Title">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Date</label>
-                            <input type="text" name="event_date" class="form-control" placeholder="Event date">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Message</label>
-                            <textarea class="form-control" name="event_message" rows="3" placeholder="Describe the event in one paragraph"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Photo/Image Banner</label>
-                            <input type="file" name="event_banner" class="form-control" accept="image/png, image/jpeg, image/gif">
-                            <small class="form-text text-muted">Banner size 720x150 pixels (jpg/png/gif)</small>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Event Agenda</label>
-                            <input type="file" name="event_agenda" class="form-control" accept="application/pdf">
-                        </div>
-                        <button type="submit" class="submit-btn">UPLOAD</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Event 4 -->
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingFour">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
-                    Event #4
-                </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse">
-                <div class="accordion-body">
-                    <form source="event4">
-                        <div class="mb-3">
-                            <label class="form-label">Title</label>
-                            <input type="text" name="event_name" class="form-control" placeholder="Title">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Date</label>
-                            <input type="text" name="event_date" class="form-control" placeholder="Event date">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Message</label>
-                            <textarea class="form-control" name="event_message" rows="3" placeholder="Describe the event in one paragraph"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Photo/Image Banner</label>
-                            <input type="file" name="event_banner" class="form-control" accept="image/png, image/jpeg, image/gif">
-                            <small class="form-text text-muted">Banner size 720x150 pixels (jpg/png/gif)</small>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Event Agenda</label>
-                            <input type="file" name="event_agenda" class="form-control" accept="application/pdf">
-                        </div>
-                        <button type="submit" class="submit-btn">UPLOAD</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+        @endfor
     </div>
 </div>
 <div class="content-container previous-events">
@@ -336,6 +244,7 @@
                 source_form.querySelector("input[name='event_name']").value = form_data["eventname"];
                 source_form.querySelector("input[name='event_date']").value = form_data["eventdate"];
                 source_form.querySelector("textarea[name='event_message']").value = form_data["description"];
+                source_form.querySelector("textarea[name='eng_event_message']").value = form_data["eng_description"];
                 if(form_data["banner"]){
                     input_banner = source_form.querySelector("input[name='event_banner']");
                     input_banner.style.display = 'none';
@@ -394,8 +303,12 @@
             formdata.append("eventname",event_name)
             event_date = this.querySelector("input[name='event_date']").value
             formdata.append("eventdate",event_date)
+            event_display_date = this.querySelector("input[name='event_display_date']").value
+            formdata.append("eventdisplaydate",event_display_date)
             event_message = this.querySelector("textarea[name='event_message']").value
             formdata.append("description",event_message)
+            eng_event_message = this.querySelector("textarea[name='eng_event_message']").value
+            formdata.append("eng_description",eng_event_message)
             event_banner = this.querySelector("input[name='event_banner']").files[0]
             if(event_banner) formdata.append("banner",event_banner)
             event_agenda = this.querySelector("input[name='event_agenda']").files[0]

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 use Storage;
 
 class EventsController extends Controller
@@ -29,12 +30,18 @@ class EventsController extends Controller
      *      )
      * )
      */
-    public function index($page)
+    public function index($page,$for="dashboard")
     {
         try{
             $page = is_int($page)?$page:1;
-
-            $events = Events::where("activestatus",1)->orderBy("eventdate","asc")->paginate(15, ["*"], "page", $page)->toArray();
+            $events = Events::where("activestatus",1)
+                ->where("eventdate",">=",Carbon::now()->format("Y-m-d"))
+                ->when($for!="dashboard",function($events){
+                    $events->where("publishdate","<=",Carbon::now()->format("Y-m-d"));
+                })
+                ->orderBy("eventdate","asc")
+                ->paginate(15, ["*"], "page", $page)
+                ->toArray();
             $events = Pagination::ClearObject($events);
 
             Log::channel('activity')->warning('[LOAD EVENTS]', ["page"=>$page]);
@@ -57,7 +64,7 @@ class EventsController extends Controller
      *          @OA\MediaType(
      *              mediaType="multipart/form-data",
      *              @OA\Schema(
-     *                  required={"eventsource","eventname","eventdate","description"},
+     *                  required={"eventsource","eventname","eventdate","description","eng_description"},
      *                  @OA\Property(
      *                      property="eventsource",
      *                      type="string",
@@ -76,7 +83,12 @@ class EventsController extends Controller
      *                  @OA\Property(
      *                      property="description",
      *                      type="text",
-     *                      example="Event Description"
+     *                      example="Event Description (IDN)"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="eng_description",
+     *                      type="text",
+     *                      example="Event Description (ENG)"
      *                  ),
      *                  @OA\Property(
      *                      property="banner",
@@ -124,7 +136,9 @@ class EventsController extends Controller
                 'eventsource' => 'required|string',
                 'eventname' => 'required|string',
                 'eventdate' => 'required|string',
+                'eventdisplaydate' => 'required|string',
                 'description' => 'required|string',
+                'eng_description' => 'required|string',
                 'banner' => 'nullable|file|mimes:jpeg,jpg,png',
                 'thumbnail' => 'nullable|file|mimes:jpeg,jpg,png',
                 'photo' => 'nullable|array',
@@ -139,6 +153,8 @@ class EventsController extends Controller
 
             $data = $request->all();
             $data["source"] = $data["eventsource"];
+            $data["publishdate"] = $data["eventdisplaydate"];
+            unset($data["eventdisplaydate"]);
             $data["activestatus"] = 1;
             $data["created_by"] = auth("api")->user()->email;
             $data["modified_by"] = auth("api")->user()->email;
@@ -205,7 +221,7 @@ class EventsController extends Controller
      *          @OA\MediaType(
      *              mediaType="multipart/form-data",
      *              @OA\Schema(
-     *                  required={"events","eventname","eventdate","description"},
+     *                  required={"events","eventname","eventdate","eventdisplaydate","description","eng_description"},
      *                  @OA\Property(
      *                      property="events",
      *                      type="string",
@@ -222,9 +238,19 @@ class EventsController extends Controller
      *                      example="2025-01-30"
      *                  ),
      *                  @OA\Property(
+     *                      property="eventdisplaydate",
+     *                      type="date",
+     *                      example="2025-01-30"
+     *                  ),
+     *                  @OA\Property(
      *                      property="description",
      *                      type="text",
-     *                      example="News Description"
+     *                      example="News Description (IDN)"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="eng_description",
+     *                      type="text",
+     *                      example="News Description (ENG)"
      *                  ),
      *                  @OA\Property(
      *                      property="banner",
@@ -271,7 +297,9 @@ class EventsController extends Controller
             $validated = Validator::make($request->all(),[
                 'eventname' => 'required|string',
                 'eventdate' => 'required|string',
+                'eventdisplaydate' => 'required|string',
                 'description' => 'required|string',
+                'eng_description' => 'required|string',
                 'banner' => 'nullable|file|mimes:jpeg,jpg,png',
                 'thumbnail' => 'nullable|file|mimes:jpeg,jpg,png',
                 'photo' => 'nullable|array',
@@ -293,6 +321,8 @@ class EventsController extends Controller
 
             $data = $request->all();
             $data["id"] = $request->events;
+            $data["publishdate"] = $data["eventdisplaydate"];
+            unset($data["eventdisplaydate"]);
             $data["modified_by"] = auth("api")->user()->email;
             Log::channel('activity')->info('[UPDATE EVENTS][DATA]', $data);
 
