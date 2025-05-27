@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contactus;
+use App\Models\EmailAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Validator;
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
 
 
 class ContactusController extends Controller
@@ -53,6 +57,29 @@ class ContactusController extends Controller
                     "status" => "gagal",
                     "message" => $validated->errors()
                 ], 422);
+            }
+
+            //NEED TO GRAB IP ADDRESS FROM USER SUBMITTED TO DEFENDING BRUTEFORCEuse App\Models\EmailAdmin;use App\Models\EmailAdmin;use App\Models\EmailAdmin;
+
+            $email_admin = EmailAdmin::select(DB::raw("rawemail as emails"))
+                ->where("activestatus",1)
+                ->get();
+
+            $view = 'mailtemplate.contactus'; // dynamic
+            $subject = $request->subject;
+            foreach($email_admin as $key => $value){
+
+                $maildata = [
+                    "fullname"=>$request->fullname,
+                    "email"=>$request->email,
+                    "phone"=>$request->phone,
+                    "usermessage"=>$request->message
+                ];
+
+                if($value->emails){
+                    Log::channel('activity')->info('[SENDING EMAIL TO ADMIN]', [$value->emails]);
+                    Mail::to($value->emails)->send(new SendMail($view, $subject, $maildata));
+                }
             }
 
             Log::channel('activity')->info('[CONTACTUS]', $request->all());

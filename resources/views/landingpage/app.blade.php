@@ -6,7 +6,7 @@
     <title>@yield('title', 'PERUJI')</title>
     <link rel="stylesheet" href="{{ asset('lp-css/styless.css') }}">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
-    <script src="{{asset('dash-js/fetchhelper.js')}}"></script>
+    <script src="{{asset('dash-js/fetchhelper_1.js')}}"></script>
     <script src="{{asset('dash-js/jquery.js')}}"></script>
 </head>
 <body>
