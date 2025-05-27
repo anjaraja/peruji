@@ -50,6 +50,10 @@
     color: #333;
     margin-top: 30px;
   }
+
+  .invalid-feedback.show{
+    display: block;
+  }
 </style>
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
   <div class="text-center" style="max-width: 400px; width: 100%;">
@@ -57,10 +61,13 @@
 
     <div class="access-banner">ACCESS INFORMATION</div>
 
-    <form class="container-fluid p-0">
+    <form class="container-fluid p-0" id="login-form">
+      <div class="invalid-feedback text-start p-0 pb-3">
+        Email / Password is incorrect
+      </div>
       <div class="text-start mb-3">
-        <label for="username" class="form-label">Username</label>
-        <input type="text" id="username" class="form-control" />
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" class="form-control" />
       </div>
 
       <div class="text-start mb-2">
@@ -85,4 +92,48 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  const form = document.getElementById('login-form');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    email = document.getElementById("email").value;
+    password = document.getElementById("password").value;
+
+    loginprocess = fetchData(
+        "{{route('login')}}",
+        "POST",
+        {"Content-Type":"application/json"},
+        {"email":email,"password":password}
+      )
+      .then((response)=>{
+        if (response.status !== 200){
+          return response.json();
+        }
+        return response.json();
+      })
+      .then((data)=>{
+        invalid_message = document.querySelector(".invalid-feedback");
+        invalid_message?.classList.remove("show")
+
+        if(typeof data.access_token === "undefined" || !data.access_token){
+          console.log(data)
+          invalid_message?.classList.add("show")
+          return false;
+          // window.location.href = "{{route('admin')}}";
+          // return false;
+        }
+        else{
+          localStorage.setItem("Token",data.access_token);
+          window.location.href = "{{route('dashboard-index')}}"
+          return false; 
+        }
+      });
+
+    // console.log(loginprocess);
+
+    return false;
+  })
+</script>
 @endsection

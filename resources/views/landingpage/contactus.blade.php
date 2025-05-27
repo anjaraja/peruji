@@ -3,91 +3,141 @@
 @section('title', 'PERUJI')
 
 @section('content')
-<style type="text/css">
-    /* Membership Page */
-        body {
-            background-color: black;
-        }
-        .label-contact {
-            font-size: 45px;
-            color: white;
-        }
-        .container {
-            padding-left: 50px;
-            padding-right: 50px;
-        }
-        .header {
-            display: flex;
-        }
-        .container .header .gray {
-            background-color: gray;
-            width: 20px;
-        }
-        .container .header .section-header {
-            background-color: #F7941D;
-            padding: 5px;
-            color: white;
-            width: 100%;
-        }
-        .container-membership {
-            position: relative;
-        }
-        .table {
-            margin: 20px 0px !important;
-        }
-        .table td {
-            background-color: black;
-            color: white !important;
-            border: none;                
-        }
-        .btn-submit {
-            color: white;
-            border-radius: 50px;
-            padding: 5px 40px;
-            background-color: #F7941D;
-        }
-    /* Close Membership Page */
-</style>
-<!-- Membership Signup -->
-    <div style="
-        display: flex;
-        align-items: center;
-        height: 100vh;
-    ">
-        
-        <!-- Contactus -->
-            <div class="container">
-                
-                <div class="label-contact">Contact Us</div>
-                <div class="container-content mx-auto" style="max-width: 700px;">
-                    <table class="table">
-                        <tr>
-                            <td>Full Name</td>
-                            <td><input type="text" class="form-control"></td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td><input type="email" class="form-control"></td>
-                        </tr>
-                        <tr>
-                            <td>Phone</td>
-                            <td><input type="number" class="form-control"></td>
-                        </tr>
-                        <tr>
-                            <td>Subject</td>
-                            <td><input type="number" class="form-control"></td>
-                        </tr>
-                        <tr>
-                            <td>Message</td>
-                            <td><textarea name="" id="" class="form-control" rows="8"></textarea></td>
-                        </tr>
-                    </table>
-                    <div class="button text-end">
-                        <button class="btn btn-submit mt-3">SUBMIT</button>
-                    </div>
-                </div>
+
+     <div class="container-fluid p-0 form">
+        <div class="error-container"></div>
+         <div class="container">
+             <div class="label-eve">Contact Us</div>
+             <form class="container-content mx-auto" id="contact-us" style="max-width: 70%;">
+                 <table class="table">
+                     <tr>
+                         <td>Full Name</td>
+                         <td><input type="text" id="fullname" class="form-control"></td>
+                     </tr>
+                     <tr>
+                         <td>Email</td>
+                         <td><input type="email" id="email" class="form-control"></td>
+                     </tr>
+                     <tr>
+                         <td>Phone</td>
+                         <td><input type="number" id="phone" class="form-control"></td>
+                     </tr>
+                     <tr>
+                         <td>Subject</td>
+                         <td><input type="text" id="subject" class="form-control"></td>
+                     </tr>
+                     <tr>
+                         <td>Message</td>
+                         <td><textarea name="" id="message" class="form-control" rows="5"></textarea></td>
+                     </tr>
+                 </table>
+                 <div class="button text-end">
+                     <button class="btn btn-submit mt-3">SUBMIT</button>
+                 </div>
+             </form>
+         </div>
+     </div>
+
+     <div class="info-done" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); display: none;">
+        <div class="cardo animated-popup">
+            <div style="font-size: 40px; margin-bottom: 20px;">Thank you for contacting us!</div>
+            <div style="font-size: 16px;">
+                We will be in touch shortly.
             </div>
-        <!-- Close Contactus -->
+        </div>
     </div>
-<!-- Close Membership Signup -->
+    
+    <script>
+        const form = document.getElementById('contact-us');
+        
+        const submitBtn = document.querySelector('.btn-submit');
+        const infoDone = document.querySelector('.info-done');
+        const cardo = document.querySelector('.cardo');
+
+        const errorContainer = document.querySelector(".error-container");
+        
+        function showErrors(errors) {
+            errorContainer.innerHTML = '';
+
+            errorContainer.innerHTML = '<div class="label-warning">Warning</div><hr class="garis">';
+
+            for (const field in errors) {
+                errors[field].forEach(err => {
+                    const errorItem = document.createElement("div");
+                    
+                    errorItem.innerText = `${field}: ${err}`;
+                    errorContainer.appendChild(errorItem);
+                });
+            }
+
+            errorContainer.classList.add('show');
+            setTimeout(() => {
+                errorContainer.classList.remove('hidden');
+            }, 10);
+
+            setTimeout(() => {
+                errorContainer.classList.add('hidden');
+                errorContainer.classList.remove('show');
+            }, 4000);
+        }
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            fullname = document.getElementById("fullname").value;
+            email = document.getElementById("email").value;
+            phone = document.getElementById("phone").value;
+            subject = document.getElementById("subject").value;
+            message = document.getElementById("message").value;
+
+            membership = fetchData(
+                "{{route('contactUs')}}",
+                "POST",
+                {"Content-Type":"application/json"},
+                {
+                    "fullname":fullname,
+                    "email":email,
+                    "phone":phone,
+                    "subject":subject,
+                    "message":message,
+                }
+            )
+            .then((response)=>{
+                if (response.status !== 200){
+                    return response.json();
+                }
+                return response.json();
+            })
+            .then((data)=>{
+           
+                console.log("DATA:", data);
+
+                if (data.status === "berhasil") {
+                    infoDone.style.display = 'block';
+                    setTimeout(() => {
+                        infoDone.classList.add('show');
+                    }, 1);
+                    
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 4000);
+                } else if (data.status === "gagal") {
+                    showErrors(data.message);
+                } else {
+                    alert(data.message || "Terjadi kesalahan.");
+                }
+            });
+
+            return false;
+        })
+        
+        document.addEventListener('click', function (e) {
+            if (infoDone.classList.contains('show') && !cardo.contains(e.target) && !submitBtn.contains(e.target)) {
+                infoDone.classList.remove('show');
+                setTimeout(() => {
+                    infoDone.style.display = 'none';
+                }, 300); 
+            }
+        });
+    </script>
 @endsection

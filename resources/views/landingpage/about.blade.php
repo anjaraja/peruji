@@ -3,47 +3,14 @@
 @section('title', 'PERUJI')
 
 @section('content')
-<style type="text/css">
-    p {
-        margin-bottom: 0;
-        padding-bottom: 20px;
-    }
-    .header-sub-menu {
-        padding: 30px 0px;
-        display: flex;
-        justify-content: center;
-        color: white;
-        background-color: black;
-    }
-
-    .header-sub-menu .square {
-        background-color: #F7941D;
-        width: 50px;
-        height: 50px;
-    }
-
-    .container {
-        text-align: center;
-        padding: 80px 50px;
-    }
-    .header-sub-menu .label-about {
-        font-size: 45px;
-    }
-    .container .label-isi-content {
-        color: #F7941D;
-        font-size: 35px;
-        font-weight: 500;
-    }
-</style>
-<!-- About -->
-    <div class="container-fluid p-0">
+    <div class="container-fluid p-0 eve">
         <img src="{{asset('lp-img/about-page.png')}}" style="width: 100%;" alt="">
         <div class="header-sub-menu d-flex align-items-center">
             <section class="square me-3"></section>
-            <div class="label-about">About PERUJI</div>
+            <div class="label">About PERUJI</div>
         </div>
-        <div class="container">
-            <div class="label-isi-content" id="role">The Role</div>
+        <div class="container" id="role">
+            <div class="label-isi-content">The Role</div>
             <div class="desc-isi-content mb-5">
                 Perkumpulan Underwriter Jiwa Indonesia (PERUJI) hadir sebagai wadah bagi para profesional di bidang seleksi risiko asuransi jiwa. Profesi Underwriter Jiwa memegang peran krusial dalam menilai dan mengelola risiko di industri asuransi jiwa, dan keberhasilannya sangat bergantung pada semangat persatuan serta kolaborasi yang kuat. Sebagai organisasi profesi yang mandiri, PERUJI berkomitmen untuk mendukung pengembangan kompetensi, integritas, dan standar profesionalisme bagi para Underwriter Jiwa di Indonesia.
             </div>
@@ -53,8 +20,8 @@
             </div>
         </div>
         <img src="{{asset('lp-img/about-page-2.png')}}" style="width: 100%;" alt="">
-        <div class="container">
-            <div class="label-isi-content" id="milestone">Milestone</div>
+        <div class="container" id="milestone">
+            <div class="label-isi-content">Milestone</div>
             <div class="desc-isi-content mb-3">
                 The establishment of the Life Underwriter Club Indonesia (LUCI) originated from the Underwriter Gathering held at Michael Resort on June 18–19, 2014. The event, initiated and organized by ReINDO, successfully brought together 30 underwriters representing 32 life insurance companies. This gathering served as a strategic platform to foster collaboration and professional exchange within the industry. It culminated in the formation of LUCI as a formal professional community. During the event, a formatur board of seven members was appointed to serve as the organization’s founding executive committee.
             </div>
@@ -68,5 +35,4 @@
             </div>
         </div>
     </div>
-<!-- Close About -->
 @endsection

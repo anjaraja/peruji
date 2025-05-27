@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\EventsController;
 
 class LandingPageController extends Controller
 {
@@ -11,7 +12,9 @@ class LandingPageController extends Controller
      */
     public function index()
     {
-        return view('landingpage.home');
+        $events = new EventsController();
+        $data = $events->index(1);
+        return view('landingpage.home',["events"=>$data->original["data"]["data"]]);
     }
 
     /**
@@ -35,7 +38,37 @@ class LandingPageController extends Controller
      */
     public function events()
     {
-        return view('landingpage.events');
+        $events = new EventsController();
+        $upcoming_data = $events->index(1);
+        $previous_data = $events->previousEvents(1);
+        return view(
+            'landingpage.events',
+            [
+                "upcoming_events"=>$upcoming_data->original["data"]["data"],
+                "previous_events"=>$previous_data->original["data"]["data"]
+            ]
+        );
+    }
+    
+    public function eventsRegis($id)
+    {
+        $events = new EventsController();
+        $data = $events->show($id);
+        $data = json_decode(json_encode($data));
+        return view('landingpage.events-regis',["events"=>$data->original->data]);
+    }
+    
+    public function eventsDetail($id)
+    {
+        $events = new EventsController();
+        $data = $events->show($id);
+        $data = json_decode(json_encode($data));
+        return view('landingpage.events-detail',["events"=>$data->original->data]);
+    }
+    
+    public function events2()
+    {
+        return view('landingpage.events-2');
     }
 
     /**

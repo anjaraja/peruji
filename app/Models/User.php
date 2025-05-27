@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Models\UserProfile;
+use App\Models\Menu;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -51,7 +53,20 @@ class User extends Authenticatable implements JWTSubject
         return $this->getKey();
     }
 
-    public function getJWTCustomClaims() {
-        return [];
+    public function getJWTCustomClaims()
+    {
+        $userprofile = UserProfile::where('userid', $this->id)->first();
+        $menu = Menu::select("menu.menuname","menu.icon","menu.route")
+            ->join("hakakses","hakakses.idmenu","=","menu.id")
+            ->where('hakakses.iduser', $this->id)
+            ->where('hakakses.activestatus', 1)
+            ->where('menu.activestatus', 1)
+            ->orderBy("menu.position")
+            ->get();
+        return [
+            'name' => $this->email,
+            'userprofile' => $userprofile ?? [],
+            'menu' => $menu ?? [],
+        ];
     }
 }

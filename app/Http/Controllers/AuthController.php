@@ -13,7 +13,7 @@ class AuthController extends Controller
     /**
      * @OA\Post(
      *      path="/api/register",
-     *      tags={"Dashboard"}, 
+     *      tags={"AUTH"}, 
      *      @OA\RequestBody(
      *          @OA\JsonContent(
      *              required={"name","email","password"},
@@ -60,7 +60,7 @@ class AuthController extends Controller
                 'access_token' => $token,
                 'user' => $user,
                 'token_type' => 'bearer',
-                'expires_in' => auth()->factory()->getTTL() * 60,
+                'expires_in' => auth("api")->factory()->getTTL() * 60,
             ]);
         }
         catch(\Exception $e){
@@ -73,7 +73,7 @@ class AuthController extends Controller
     /**
      * @OA\Post(
      *      path="/api/login",
-     *      tags={"Dashboard"}, 
+     *      tags={"AUTH"}, 
      *      @OA\RequestBody(
      *          @OA\JsonContent(
      *              required={"email","password"},
@@ -96,8 +96,8 @@ class AuthController extends Controller
             $credentials = $request->only('email', 'password');
 
             if (!$token = auth("api")->attempt($credentials)) {
-                Log::channel('errorlog')->warning('[USER LOGIN]', [$dataLog,$e->getMessage()]);
-                return response()->json(['error' => 'Unauthorized'], 401);
+                Log::channel('errorlog')->warning('[USER LOGIN]', [$dataLog,$token]);
+                return response()->json(['error' => 'Email / Password incorrect!'], 401);
             }
 
             return response()->json([

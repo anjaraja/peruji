@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('menu', function (Blueprint $table) {
             $table->id();
             $table->string("menuname");
-            $table->string("icon");
+            $table->integer("position")->length(3);
+            $table->string("icon")->nullable();
             $table->string("route");
-            $table->integer("parent");
-            $table->integer("child");
+            $table->integer("parent")->nullable();
             $table->integer("activestatus")->length(1);
             $table->string("created_by");
             $table->string("modified_by");

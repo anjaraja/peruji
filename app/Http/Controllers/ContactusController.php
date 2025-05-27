@@ -49,7 +49,10 @@ class ContactusController extends Controller
             ]);
             if ($validated->fails()) {
                 Log::channel('activity')->warning('[CONTACTUS]', $request->all());
-                return response()->json(["message" => $validated->errors()], 422);
+                return response()->json([
+                    "status" => "gagal",
+                    "message" => $validated->errors()
+                ], 422);
             }
 
             Log::channel('activity')->info('[CONTACTUS]', $request->all());
@@ -58,12 +61,18 @@ class ContactusController extends Controller
             $store = Contactus::create($data);
 
             DB::commit();
-            return response()->json(["message"=>"ok"],200);
+            return response()->json([
+                "status"=>"berhasil",
+                "message"=>"berhasil mengisi form contact us !"
+            ],200);
         }
         catch (\Exception $e) {
             DB::rollback();
             Log::channel('errorlog')->error('[CONTACTUS]', [$request->all(),$e->getMessage()]);
-            return response()->json(["message"=>"RC2"],500);
+            return response()->json([
+                "status"=>"error",
+                "message"=>"RC2"
+            ],500);
         } 
 
     }

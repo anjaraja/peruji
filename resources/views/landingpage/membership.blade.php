@@ -3,48 +3,12 @@
 @section('title', 'PERUJI')
 
 @section('content')
-<style type="text/css">
-    /* Terms & Coindition Page */
-
-        
-        .container-fluid {
-            background-color: #f0f0f0;
-        }
-        
-        .container-fluid .header-sub-menu {
-            padding: 30px 0px;
-            display: flex;
-            justify-content: center;
-            color: white;
-            background-color: black;
-        }
-
-        .container-fluid .header-sub-menu .square {
-            background-color: #F7941D;
-            width: 50px;
-            height: 50px;
-        }
-
-        .container-fluid .container {
-            padding: 80px 0;
-        }
-
-        .container-fluid .container .label-page {
-            font-size: 30px;
-            font-weight: 600;
-            padding-bottom: 20px;
-        }
-
-    /* Close Terms & Condition Page */
-</style>
-
-<!-- Membership -->
-    <div class="container-fluid p-0">
+    <div class="container-fluid p-0 terms">
         <img src="{{asset('lp-img/terms&condition.png')}}" alt="" style="width: 100%;">
         <div class="menu-tc-page">
             <div class="header-sub-menu">
                 <section class="square me-3"></section>
-                <h1 id="terms-condition">Terms & Condition</h1>
+                <h1>Terms & Condition</h1>
             </div>
             <div class="container">
                 <div class="row align-items-center mb-4">
@@ -72,7 +36,7 @@
             </div>
             <div class="header-sub-menu">
                 <section class="square me-3"></section>
-                <h1 id="benefits">Membership Benefits</h1>
+                <h1>Membership Benefits</h1>
             </div>
             <div class="container">
                 <div class="row align-items-center mb-4">
@@ -100,5 +64,4 @@
             </div>
         </div>
     </div>
-<!-- Close Membership -->
 @endsection

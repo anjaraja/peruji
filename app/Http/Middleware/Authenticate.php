@@ -25,7 +25,7 @@ class Authenticate
                 ], 401);
             }
 
-            return route('/');
+            return redirect()->route('admin');
             // return response()->json([
             //     'message' => 'Authorization header missing.',
             // ], 401);
@@ -59,7 +59,7 @@ class Authenticate
             ], 401);
         }
 
-        return route('/');
+        return redirect()->route('admin');
         // return response()->json([
         //     'message' => 'Invalid or expired token.',
         // ], 401);
