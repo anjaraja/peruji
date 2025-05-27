@@ -21,8 +21,6 @@ Route::post('/login', "$path\AuthController@login")->name("login");
 
 Route::get('/detail-events/{events}', "$path\EventsController@show")->name("event-detail");
 
-Route::get('/send-test-mail', "$path\EventsController@testmail");
-
 Route::middleware('auth:api')->group(function () {
     $path = "App\Http\Controllers";
     Route::get('/me', "$path\AuthController@me");
@@ -44,8 +42,8 @@ Route::middleware('auth:api')->group(function () {
     /* END EVENTS */
 
     /* EMAIL ADMIN */
-    Route::get('/email-admin/{page}', "$path\EmailAdminController@index");
-    Route::post('/email-admin/', "$path\EmailAdminController@store");
+    Route::get('/email-admin/{page}', "$path\EmailAdminController@index")->name("list-email-admin");
+    Route::post('/email-admin/', "$path\EmailAdminController@store")->name("store-email-admin");
     Route::post('/update-email/', "$path\EmailAdminController@update");
     /* END EMAIL ADMIN */
 

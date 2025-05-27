@@ -34,7 +34,7 @@ class EmailAdminController extends Controller
         try{
             $page = is_int($page)?$page:1;
 
-            $email_admin = EmailAdmin::orderBy("id","desc")->paginate(15, ["*"], "page", $page)->toArray();
+            $email_admin = EmailAdmin::select(DB::raw("id as ordering, rawemail as emails"))->paginate(15, ["*"], "page", $page)->toArray();
             $email_admin = Pagination::ClearObject($email_admin);
 
             Log::channel('activity')->warning('[LOAD EMAIL ADMIN]', ["page"=>$page]);

@@ -3,15 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\EventRegistration;
+use App\Models\EmailAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
+
 
 class EventRegistrationController extends Controller
 {
+    // public function testmail(){
+    //     $view = 'mailtemplate.testmail'; // dynamic
+    //     $subject = 'Welcome Aboard!';
+    //     $data = [
+    //         'name' => 'Jane Doe',
+    //         'role' => 'Editor',
+    //     ];
+
+    //     Mail::to('anjarpratama16@gmail.com')->send(new SendMail($view, $subject, $data));
+
+    //     return 'Email sent!';
+    // }
     public function index()
     {
         //
@@ -59,7 +75,40 @@ class EventRegistrationController extends Controller
                 ], 422);
             }
 
+            //NEED TO VALIDATE EVENT EXISTS OR NOT
+
+            $check_data = EventRegistration::where(["eventregistrationname"=>$request->eventregistrationname,"email"=>$request->email])->first();
+            if($check_data){
+                Log::channel('activity')->warning('[EVENT REGISTRATION EMAIL EXISTS]', $request->all());
+                return response()->json([
+                    "message" => $validated->errors()
+                ], 422);
+            }
+
+            $email_admin = EmailAdmin::select(DB::raw("rawemail as emails"))
+                ->where("activestatus",1)
+                ->get();
+
+            $view = 'mailtemplate.eventregistration'; // dynamic
+            $subject = "$request->fullname Join the Event!";
+            foreach($email_admin as $key => $value){
+                Log::channel('activity')->info('[SENDING EMAIL TO ADMIN]', [$value->emails]);
+
+                $data = [
+                    "eventregistrationname"=>$request->eventregistrationname,
+                    "fullname"=>$request->fullname,
+                    "email"=>$request->email,
+                    "phone"=>$request->phone,
+                    "ofcphone"=>$request->ofcphone,
+                    "company"=>$request->company,
+                    "address"=>$request->address
+                ];
+
+                Mail::to($value->emails)->send(new SendMail($view, $subject, $data));
+            }
+
             Log::channel('activity')->info('[EVENT REGISTRATION]', $request->all());
+
             $data = $request->all();
             $data["emailstatus"] = 1;
             $store = EventRegistration::create($data);

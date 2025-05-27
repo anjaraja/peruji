@@ -294,26 +294,26 @@
       <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Email #1</label>
         <div class="col-sm-9">
-          <input type="email" class="form-control" placeholder="Email address">
+          <input type="email" name="adminemail" class="form-control" placeholder="Email address #1">
         </div>
       </div>
       <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Email #2</label>
         <div class="col-sm-9">
-          <input type="email" class="form-control" placeholder="Email address">
+          <input type="email" name="adminemail" class="form-control" placeholder="Email address #2">
         </div>
       </div>
       <div class="mb-4 row">
         <label class="col-sm-3 col-form-label">Email #3</label>
         <div class="col-sm-9">
-          <input type="email" class="form-control" placeholder="Email address">
+          <input type="email" name="adminemail" class="form-control" placeholder="Email address #3">
         </div>
       </div>
 
       <button type="submit" class="submit-btn">CONFIRM</button>
     </form>
 </div>
-<script>
+<script get-upcoming-events>
     function getUpcomingEvent(){
         fetchData(
             "{{route('list-events',1)}}",
@@ -381,7 +381,7 @@
     }
     getUpcomingEvent();
 </script>
-<script>
+<script submit-upcoming-events>
     upcoming_form = document.querySelectorAll(".content-container.upcoming-events form");
 
     upcoming_form.forEach(this_form => {
@@ -444,5 +444,70 @@
             this_element.closest("div[preview-file]").remove();
         }
     });
+</script>
+<script get-admin-emails>
+    function getAdminEmails(){
+        this_form = document.querySelector("div.admin-emails-index form");
+
+        fetchData(
+            "{{route('list-email-admin',1)}}",
+            "GET",
+            {"Authorization":localStorage.getItem("Token")}
+        )
+        .then((response)=>{
+            if (response.status !== 200){
+                showAlert("not-ok","get")
+                return response.json();
+            }
+            return response.json();
+        })
+        .then((data)=>{
+            row_data = data["data"]["data"];
+            this_form.querySelectorAll("input[name='adminemail']").forEach((el,index)=>{
+                for(key in row_data){
+                    email_admin = row_data[key];
+                    if((email_admin["ordering"]-1) == index){
+                        el.value = email_admin["emails"];
+                    }
+                }
+            })
+        });   
+    }
+    getAdminEmails();
+</script>
+<script submit-upcoming-events>
+    emailadmin_form = document.querySelector("div.admin-emails-index form");
+
+    emailadmin_form.addEventListener("submit",function(event){
+        event.preventDefault()
+
+        formdata = new FormData;
+        this.querySelectorAll("input[name='adminemail']").forEach((el,index) => {
+            console.log(`email[${index}]`,el.value)
+            formdata.append(`email[${index}]`,el.value);
+        })
+
+        fetchData(
+            "{{route('store-email-admin')}}",
+            "POST",
+            {"Authorization":localStorage.getItem("Token")},
+            formdata
+        )
+        .then((response)=>{
+            if (response.status !== 200){
+                showAlert("not-ok","updated")
+
+                return response.json();
+            }
+
+            showAlert("ok","updated")
+            return response.json();
+        })
+        .then((data)=>{
+            alert("OK")
+        });
+
+        return false;
+    })
 </script>
 @endsection
