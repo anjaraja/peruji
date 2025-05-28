@@ -32,6 +32,24 @@
     }
 /* Close Card Info Submit */
 
+/* Info Submit Membership */
+    .confetti-wrapper {
+        background-image: url('../lp-svg/Confetti\ 1.svg');
+        background-size: cover; /* Gunakan cover agar penuh */
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+        box-sizing: border-box;
+    }
+
+/* Close Info Submit Membership */
+
 /* Global */
     * {
         padding: 0;
@@ -381,6 +399,9 @@
         font-size: 30px;
         font-weight: 600;
         padding-bottom: 20px;
+    }
+    .terms h3 {
+        color: #F7941D;
     }
 /* Close Terms & Condition */
 

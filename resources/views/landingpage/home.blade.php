@@ -106,14 +106,16 @@
             </div>
         </div>
         <div class="home-banner d-flex align-items-center flex-column position-absolute start-50 translate-middle z-2" style="bottom: 30px">
-            <a href="{{route('events')}}">
-                @if (count($events) > 0)
+            <a href="{{route('events')}}" class="text-decoration-none">
+                @if (!empty($events) && count($events) > 1)
                     @foreach($events as $key => $value)
                         <img class="banner-image @php $key==0?'active':'' @endphp" style="animation-delay: {{ $key * $durationPerBanner }}s" src="{{asset($value['banner'])}}" alt="">
                     @endforeach    
+                @elseif(!empty($events))
+                    <img class="banner-image-solos" src="{{asset($events[0])}}" alt="">
+                    <span class="text-white" style="font-size: 10px;">CLICK TO JOIN THE EVENT</span>
                 @endif
             </a>
-            <span class="text-white" style="font-size: 10px;">CLICK TO JOIN THE EVENT</span>
         </div>
     </div>
 @endsection

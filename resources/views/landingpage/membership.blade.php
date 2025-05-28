@@ -8,57 +8,71 @@
         <div class="menu-tc-page">
             <div class="header-sub-menu">
                 <section class="square me-3"></section>
-                <h1>Terms & Condition</h1>
+                <h1>Membership</h1>
             </div>
             <div class="container">
-                <div class="row align-items-center mb-4">
-                    <div class="col-12 col-md-3 text-end">
-                        <img src="{{asset('lp-img/terms&condition/4dd55f1e94f5e5df844bb2af1918210f659a22a2.png')}}" alt="" style="width: 250px; height: 250px;background-size: cover;background-position: center;object-fit: cover;">
+                <div class="d-flex flex-column justify-content-center">
+                    <div class="content">
+                        <h3>Terms & Condition</h3>
+                        <ol>
+                            <li>
+                                Currently employed in an Underwriting Department and/or involved in the Risk Selection process.
+                            </li>
+                            <li>
+                                Complete the online registration form.
+                            </li>
+                            <li>
+                                Pay the registration fee.
+                            </li>
+                            <li>
+                                Pay the annual membership fee.
+                            </li>
+                            <li>
+                                Submit the required administrative documents: proof of payment, a copy of your identification, a letter from your current employer, and proof of professional qualification or certification (if available).
+                            </li>
+                        </ol>
                     </div>
-                    <div class="col-12 col-md-9 py-5 pe-5">
-                        <div class="label-page">Professional</div>
-                        <div class="desc">
-                            Perkumpulan Underwriter Jiwa Indonesia (PERUJI) hadir sebagai wadah bagi para profesional di bidang seleksi risiko asuransi jiwa. Profesi Underwriter Jiwa memegang peran krusial dalam menilai dan mengelola risiko di industri asuransi jiwa, dan keberhasilannya sangat bergantung pada semangat persatuan serta kolaborasi yang kuat. Sebagai organisasi profesi yang mandiri, PERUJI berkomitmen untuk mendukung pengembangan kompetensi, integritas, dan standar profesionalisme bagi para Underwriter Jiwa di Indonesia.
-                        </div>
+                    <div class="content">
+                        <h3>Benefits</h3>
+                        <ol>
+                            <li>
+                                Membership Card.
+                            </li>
+                            <li>
+                                Prioritize in training/workshop/summit registration.
+                            <li>
+                                Special price for Hospital / Laboratory partner.
+                            </li>
+                            <li>
+                                Special price for PERUJI Merchandise.
+                            </li>
+                            <li>
+                                Special price for future partnership.­
+                            </li>
+                        </ol>
                     </div>
-                </div>
-                <div class="row align-items-center mb-4">
-                    <div class="col-12 col-md-3 text-end">
-                        <img src="{{asset('lp-img/terms&condition/148111f719b9a5772d9126ca84333366955f8c67.png')}}" alt="" style="width: 250px; height: 250px;background-size: cover;background-position: center;object-fit: cover;">
+                    <div class="content">
+                        <h3>How To Join</h3>
+                        <ol>
+                            <li>
+                                Complete the registration form via Google Forms (https://forms.gle/wDrBRnkoWqtNcD2P6) or submit a hardcopy version.
+                            </li>
+                            <li>
+                                Transfer the registration fee of Rp100,000.
+                            </li>
+                            <li>
+                                Transfer the annual membership fee of Rp300,000 (this fee will be waived if you attend the annual Underwriting Summit).
+                            </li>
+                            <li>
+                                Submit the required documents.
+                            </li>
+                            <li>
+                                Membership is valid for one year and is renewable.
+                            </li>
+                        </ol>
                     </div>
-                    <div class="col-12 col-md-9 py-5 pe-5">
-                        <div class="label-page">General</div>
-                        <div class="desc">
-                            Perkumpulan Underwriter Jiwa Indonesia (PERUJI) hadir sebagai wadah bagi para profesional di bidang seleksi risiko asuransi jiwa. Profesi Underwriter Jiwa memegang peran krusial dalam menilai dan mengelola risiko di industri asuransi jiwa, dan keberhasilannya sangat bergantung pada semangat persatuan serta kolaborasi yang kuat. Sebagai organisasi profesi yang mandiri, PERUJI berkomitmen untuk mendukung pengembangan kompetensi, integritas, dan standar profesionalisme bagi para Underwriter Jiwa di Indonesia.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="header-sub-menu">
-                <section class="square me-3"></section>
-                <h1>Membership Benefits</h1>
-            </div>
-            <div class="container">
-                <div class="row align-items-center mb-4">
-                    <div class="col-12 col-md-3 text-end">
-                        <img src="{{asset('lp-img/terms&condition/d1635cade8b878885384cce2b61cc25118440a02.png')}}" alt="" style="width: 250px; height: 250px;background-size: cover;background-position: center;object-fit: cover;">
-                    </div>
-                    <div class="col-12 col-md-9 py-5 pe-5">
-                        <div class="label-page">Professional</div>
-                        <div class="desc">
-                            Perkumpulan Underwriter Jiwa Indonesia (PERUJI) hadir sebagai wadah bagi para profesional di bidang seleksi risiko asuransi jiwa. Profesi Underwriter Jiwa memegang peran krusial dalam menilai dan mengelola risiko di industri asuransi jiwa, dan keberhasilannya sangat bergantung pada semangat persatuan serta kolaborasi yang kuat. Sebagai organisasi profesi yang mandiri, PERUJI berkomitmen untuk mendukung pengembangan kompetensi, integritas, dan standar profesionalisme bagi para Underwriter Jiwa di Indonesia.
-                        </div>
-                    </div>
-                </div>
-                <div class="row align-items-center mb-4">
-                    <div class="col-12 col-md-3 text-end">
-                        <img src="{{asset('lp-img/terms&condition/24571e758b16ffa4f497e8931c33caac45a5d5bc.png')}}" alt="" style="width: 250px; height: 250px;background-size: cover;background-position: center;object-fit: cover;">
-                    </div>
-                    <div class="col-12 col-md-9 py-5 pe-5">
-                        <div class="label-page">General</div>
-                        <div class="desc">
-                            Perkumpulan Underwriter Jiwa Indonesia (PERUJI) hadir sebagai wadah bagi para profesional di bidang seleksi risiko asuransi jiwa. Profesi Underwriter Jiwa memegang peran krusial dalam menilai dan mengelola risiko di industri asuransi jiwa, dan keberhasilannya sangat bergantung pada semangat persatuan serta kolaborasi yang kuat. Sebagai organisasi profesi yang mandiri, PERUJI berkomitmen untuk mendukung pengembangan kompetensi, integritas, dan standar profesionalisme bagi para Underwriter Jiwa di Indonesia.
-                        </div>
+                    <div class="content pt-5">
+                        <a href="{{route('membership-signup')}}" class="btn text-white px-4" style="background-color: #f58529; border-radius:20px;">Sing Up</a>
                     </div>
                 </div>
             </div>
