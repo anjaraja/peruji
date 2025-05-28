@@ -107,7 +107,7 @@
         </div>
         <div class="home-banner d-flex align-items-center flex-column position-absolute start-50 translate-middle z-2" style="bottom: 30px">
             <a href="{{route('events')}}">
-                @if (count($events) > 1)
+                @if (count($events) > 0)
                     @foreach($events as $key => $value)
                         <img class="banner-image @php $key==0?'active':'' @endphp" style="animation-delay: {{ $key * $durationPerBanner }}s" src="{{asset($value['banner'])}}" alt="">
                     @endforeach    
