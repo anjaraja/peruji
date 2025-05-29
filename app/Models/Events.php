@@ -11,6 +11,7 @@ class Events extends Model
         'source',
         'eventname',
         'eventdate',
+        'duration',
         'publishdate',
         'description',
         'eng_description',

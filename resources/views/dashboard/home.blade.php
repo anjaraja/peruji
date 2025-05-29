@@ -42,6 +42,10 @@
                                         <input type="text" name="event_date" class="form-control" placeholder="Event date" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
+                                        <label class="form-label">Event Duration (Days)</label>
+                                        <input type="text" name="event_duration" class="form-control" placeholder="Event date" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
                                         <label class="form-label">Display Date</label>
                                         <input type="text" name="event_display_date" class="form-control" placeholder="Event display date" required>
                                     </div>
@@ -243,6 +247,7 @@
                 source_form.insertAdjacentHTML("afterbegin",`<input name="events" value="${form_data["id"]}" style="display:none;">`)
                 source_form.querySelector("input[name='event_name']").value = form_data["eventname"];
                 source_form.querySelector("input[name='event_date']").value = form_data["eventdate"];
+                source_form.querySelector("input[name='event_duration']").value = form_data["duration"];
                 source_form.querySelector("textarea[name='event_message']").value = form_data["description"];
                 source_form.querySelector("textarea[name='eng_event_message']").value = form_data["eng_description"];
                 if(form_data["banner"]){
@@ -303,6 +308,8 @@
             formdata.append("eventname",event_name)
             event_date = this.querySelector("input[name='event_date']").value
             formdata.append("eventdate",event_date)
+            event_duration = this.querySelector("input[name='event_duration']").value
+            formdata.append("duration",event_duration)
             event_display_date = this.querySelector("input[name='event_display_date']").value
             formdata.append("eventdisplaydate",event_display_date)
             event_message = this.querySelector("textarea[name='event_message']").value
