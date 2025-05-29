@@ -22,15 +22,17 @@ class MembershipController extends Controller
      *      tags={"Landingpage"}, 
      *      @OA\RequestBody(
      *          @OA\JsonContent(
-     *              required={"fullname","gender","email","phone","dob","org","address","website","ofcemail"},
+     *              required={"fullname","gender","email","phone","org","address","website","funct","department","ofcemail"},
      *              @OA\Property(property="fullname", type="string", example="Member Name"),
      *              @OA\Property(property="gender", type="string", enum={"M", "F"}, example="M", description="Gender: M = Male, F = Female"),
      *              @OA\Property(property="email", type="string", format="email", example="membername@gmail.com"),
      *              @OA\Property(property="phone", type="string", example="628123123123"),
      *              @OA\Property(property="dob", type="string", format="date", example="1990-01-30"),
-     *              @OA\Property(property="org", type="string", example="Member Organization"),
+     *              @OA\Property(property="org", type="string", example="My Company / My Organization"),
      *              @OA\Property(property="address", type="string", example="This is my address"),
      *              @OA\Property(property="website", type="string", example="https://mywebsite.com"),
+     *              @OA\Property(property="funct", type="string", example="My Function is..."),
+     *              @OA\Property(property="department", type="string", example="My Department is..."),
      *              @OA\Property(property="ofcemail", type="string", format="email", example="myoffice@mail.com")
      *         )
      *      ),
@@ -49,10 +51,11 @@ class MembershipController extends Controller
                 'gender' => 'required|in:M,F',
                 'email' => 'required|email',
                 'phone' => 'required|string',
-                'dob' => 'required|date',
                 'org' => 'nullable|string',
                 'address' => 'nullable|string',
                 'website' => 'nullable|url',
+                'funct' => 'nullable|string',
+                'department' => 'nullable|string',
                 'ofcemail' => 'nullable|email',
             ]);
 

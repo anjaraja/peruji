@@ -16,6 +16,8 @@ class Membership extends Model
         'org',
         'address',
         'website',
+        'funct',
+        'department',
         'ofcemail',
     ];
 }
