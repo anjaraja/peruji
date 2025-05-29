@@ -66,7 +66,6 @@ class EventsController extends Controller
                 $events["data"][$key]["eng_display_detail_date"] = "$start_date - $end_date $eng_month_name $end_year";
                 $events["data"][$key]["display_detail_date"] = "$start_date - $end_date $month_name $end_year";
             }
-            print_r($events);exit;
             $events = Pagination::ClearObject($events);
 
             Log::channel('activity')->warning('[LOAD EVENTS]', ["page"=>$page]);
