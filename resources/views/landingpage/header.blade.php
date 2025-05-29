@@ -3,7 +3,7 @@
         <div class="navbar d-flex justify-content-center align-items-center">
             <div class="navbar-brand position-absolute start-0">
                 <a href="{{route('homepage')}}">
-                    <svg width="80" height="46" viewBox="0 0 130 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="108" height="46" viewBox="0 0 130 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_99_1136)">
                         <path d="M81.985 24.4023C82.2142 24.3623 82.5224 24.3304 82.9097 24.3304C83.3839 24.3304 83.7317 24.4422 83.953 24.642C84.1506 24.8178 84.2771 25.0974 84.2771 25.425C84.2771 25.7686 84.1743 26.0323 83.9925 26.2241C83.7317 26.4957 83.3286 26.6396 82.8544 26.6396C82.7121 26.6396 82.5778 26.6316 82.4671 26.6076V28.1098H81.985V24.4023ZM82.4592 26.2161C82.562 26.248 82.6963 26.256 82.8544 26.256C83.4314 26.256 83.787 25.9684 83.787 25.457C83.787 24.9536 83.4314 24.7139 82.9097 24.7139C82.6963 24.7139 82.5382 24.7299 82.4592 24.7539V26.2161Z" fill="#58595B"/>
                         <path d="M86.9644 26.3519H85.5259V27.7103H87.1383V28.1178H85.0438V24.3623H87.0593V24.7698H85.5339V25.9604H86.9723V26.3519H86.9644Z" fill="#58595B"/>
@@ -66,7 +66,7 @@
             <div class="navbar-opt">
                 <button class="btn p-0" type="button" id="nav-menu-open"><h5 class=" m-0 p-0 pt-1" id="menu-toggle-text">MENU</h5></button>
             </div>
-            <div class="navbar-right d-flex position-absolute end-0">
+            <div class="navbar-right d-flex position-absolute align-items-center end-0">
                 <div class="navbar-medsos d-flex me-3">
                     <a href="https://www.facebook.com/perkumpulan.underwriterperuji">
                         <svg width="25" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -91,7 +91,11 @@
                     </a>
                 </div>
                 <div class="navbar-contact me-3">
-                    <a href="{{route('contact-us')}}" class="btn btn-outline-dark px-2 py-0">CONTACT</a>
+                    <a href="{{ route('contact-us') }}"
+                        class="btn btn-outline-dark d-flex align-items-center justify-content-center px-3"
+                        style="height: 30px; padding-top: 0; padding-bottom: 0;">
+                        CONTACT
+                    </a>
                 </div>
                 <div class="navbar-language d-flex align-items-center">
                     <div class="navbar-language-left">
@@ -128,7 +132,7 @@
             <li class="label-nav-item"><a href="{{route('events')}}#previous-event">Previous Events</a></li>
             {{-- <li class="label-nav-item"><a href="{{route('eventsRegis')}}">Events Regis</a></li> --}}
         </ul>
-        <li class="label-nav"><a href="#">MEMBERSHIP</a></li>
+        <li class="label-nav"><a href="{{route('membership')}}">MEMBERSHIP</a></li>
         <ul>
             <li class="label-nav-item"><a href="{{route('membership-signup')}}">Sign Up</a></li>
             <li class="label-nav-item"><a href="{{route('membership')}}#terms-condition">Terms & Condition</a></li>

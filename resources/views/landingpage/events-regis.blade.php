@@ -40,7 +40,7 @@
                      </tr>
                  </table>
                  <div class="button text-end">
-                     <button class="btn btn-submit mt-3">SUBMIT</button>
+                     <button class="btn btn-submit mt-3 p-0">SUBMIT</button>
                  </div>
              </form>
          </div>

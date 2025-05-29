@@ -113,6 +113,12 @@
     nav .navbar {
         height: 60px;
     }
+    .navbar button{
+        border: none;
+    }
+    .navbar button:hover{
+        color:#f58529;
+    }
     
     .nav-menu-body {
         top: -100vh;
@@ -353,6 +359,13 @@
         align-items: center;
         height: 100vh;
         background-color: black;
+    }
+    .form td input, .form td textarea,.form td select {
+         border-radius: 0;
+    }
+    .form button {
+        height: 40px;
+        width:100px;
     }
     .form .label-eve {
         margin-top: 40px;
