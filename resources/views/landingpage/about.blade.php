@@ -5,33 +5,55 @@
 @section('content')
     <div class="container-fluid p-0 eve">
         <img src="{{asset('lp-img/about-page.png')}}" style="width: 100%;" alt="">
-        <div class="header-sub-menu d-flex align-items-center">
-            <section class="square me-3"></section>
-            <div class="label">About PERUJI</div>
-        </div>
-        <div class="container" id="role">
-            <div class="label-isi-content">The Role</div>
-            <div class="desc-isi-content mb-5">
-                Perkumpulan Underwriter Jiwa Indonesia (PERUJI) hadir sebagai wadah bagi para profesional di bidang seleksi risiko asuransi jiwa. Profesi Underwriter Jiwa memegang peran krusial dalam menilai dan mengelola risiko di industri asuransi jiwa, dan keberhasilannya sangat bergantung pada semangat persatuan serta kolaborasi yang kuat. Sebagai organisasi profesi yang mandiri, PERUJI berkomitmen untuk mendukung pengembangan kompetensi, integritas, dan standar profesionalisme bagi para Underwriter Jiwa di Indonesia.
+        <div class="header-sub-menu d-flex justify-content-center">
+            <div class="p-2 align-self-start">
+                <section class="square me-3"></section>
             </div>
-            <div class="label-isi-content" id="vision-mission">Vision & Mission</div>
-            <div class="desc-isi-content">
-                The establishment of the Life Underwriter Club Indonesia (LUCI) originated from the Underwriter Gathering held at Michael Resort on June 18–19, 2014. The event, initiated and organized by ReINDO, successfully brought together 30 underwriters representing 32 life insurance companies. This gathering served as a strategic platform to foster collaboration and professional exchange within the industry. It culminated in the formation of LUCI as a formal professional community. During the event, a formatur board of seven members was appointed to serve as the organization’s founding executive committee.
+            <div class="p-2 align-self-center">
+                <p class="label m-0">About PERUJI</p> 
             </div>
         </div>
-        <img src="{{asset('lp-img/about-page-2.png')}}" style="width: 100%;" alt="">
-        <div class="container" id="milestone">
-            <div class="label-isi-content">Milestone</div>
-            <div class="desc-isi-content mb-3">
-                The establishment of the Life Underwriter Club Indonesia (LUCI) originated from the Underwriter Gathering held at Michael Resort on June 18–19, 2014. The event, initiated and organized by ReINDO, successfully brought together 30 underwriters representing 32 life insurance companies. This gathering served as a strategic platform to foster collaboration and professional exchange within the industry. It culminated in the formation of LUCI as a formal professional community. During the event, a formatur board of seven members was appointed to serve as the organization’s founding executive committee.
+        <div class="d-flex justify-content-center flex-column" id="role">
+            <div class="pt-5">
+                <div class="label-isi-content">The Role</div>
             </div>
-            <div class="desc-isi-content mb-3">
-                In the course of establishing legal recognition, it was acknowledged that a similar organization—PUJI—had once existed, serving as a professional forum for life insurance underwriters in the past. Although PUJI had become dormant, its legacy remained a significant part of the industry’s history. In an effort to honor that legacy, a thorough search was conducted to reconnect with the previous leadership. Unfortunately, the majority of PUJI’s board members had passed away, with Mr. Bambang Lukito being the only surviving member.
-
+            <div class="py-2 col-7 align-self-center">
+                <div class="desc-isi-content">
+                    Perkumpulan Underwriter Jiwa Indonesia (PERUJI) serves as the central hub for life insurance underwriting professionals across Indonesia. In the life insurance industry, the role of a Life Underwriter is critical; they are responsible for meticulously evaluating and managing risk. Recognizing that success hinges on strong unity and collaboration, PERUJI is committed to cultivating these principles among its members. As an independent professional body, PERUJI is dedicated to advancing the competence, integrity, and professional standards of all life underwriters in Indonesia.
+                </div>
             </div>
-            <div class="desc-isi-content mb-3">
-                Recognizing the importance of preserving and continuing the spirit of professional unity and excellence, it was decided to establish a new organization under the name Peruji (Perkumpulan Underwriter Jiwa Indonesia). This new body not only carries forward the values of its predecessor but also seeks to build a stronger foundation for the future of underwriting in Indonesia. Peruji was officially recognized through the Decree of the Minister of Law and Human Rights of the Republic of Indonesia No. AHU-0000572.AH.01.07.Tahun 2015.
-
+        </div>
+        <div class="d-flex justify-content-center flex-column" id="vision-mission">
+            <div class="pt-5">
+                <div class="label-isi-content">Vision & Mission</div>
+            </div>
+            <div class="py-2 pb-5 col-7 align-self-center">
+                <div class="desc-isi-content">
+                    The Life Underwriter Club Indonesia (LUCI) was formally established following the Underwriter Gathering, an event orchestrated by ReINDO on June 18–19, 2014, at Michael Resort. This significant gathering convened 30 underwriters representing 32 life insurance companies, creating a vital forum for industry collaboration and professional dialogue. The success of this initiative directly led to the founding of LUCI as a dedicated professional community, with a seven-member formateur board appointed to serve as its inaugural executive committee.
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <img src="{{asset('lp-img/about-page-2.png')}}" style="width: 100%;" alt="">
+        </div>
+        <div class="d-flex justify-content-center flex-column" id="milestone">
+            <div class="pt-5">
+                <div class="label-isi-content">Milestone</div>
+            </div>
+            <div class="py-2 pb-4 col-7 align-self-center">
+                <div class="desc-isi-content">
+                    The Life Underwriter Club Indonesia (LUCI) initially emerged from the Underwriter Gathering, an event expertly organized by ReINDO at Michael Resort on June 18–19, 2014. This crucial gathering brought together 30 underwriters from 32 life insurance companies, establishing a vital platform for professional exchange and industry collaboration. The successful event culminated in the formation of LUCI as a formal professional community, with a seven-member formateur board appointed to serve as its founding executive committee.
+                </div>
+            </div>
+            <div class="py-2 pb-4 col-7 align-self-center">
+                <div class="desc-isi-content">
+                    During the process of formalizing LUCI's legal status, it became apparent that a similar organization, PUJI, had previously existed as a professional forum for life insurance underwriters. Although PUJI was no longer active, its historical significance to the industry was undeniable. To honor this legacy, an extensive effort was made to connect with its former leadership. Regrettably, most of PUJI's board members had passed away, with Mr. Bambang Lukito being the sole surviving member.
+                </div>
+            </div>
+            <div class="py-2 pb-5 col-7 align-self-center">
+                <div class="desc-isi-content pb-5">
+                    Recognizing the importance of upholding the spirit of professional unity and excellence, the decision was made to establish a new organization: Peruji (Perkumpulan Underwriter Jiwa Indonesia). This new entity not only continues the values of its predecessor but also aims to build a more robust foundation for the future of underwriting in Indonesia. Peruji's official recognition was cemented by the Decree of the Minister of Law and Human Rights of the Republic of Indonesia No. AHU-0000572.AH.01.07.Tahun 2015.
+                </div>
             </div>
         </div>
     </div>
