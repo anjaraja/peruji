@@ -1,0 +1,33 @@
+.container-event .image-layout .content {
+    padding-top: 15px !important;
+    position: absolute;
+    z-index: 2;
+    color: white;
+    top: 54%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding-top: 10px;
+    height: 90%;
+    width: 100%;
+    overflow-y: auto;
+}
+#container-event .image-layout img {
+    max-width: 650px !important;
+}
+.desc-upcoming-event{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-bottom: 25px;
+}
+.container-event .image-layout .content p{
+    max-width: 650px;
+    margin: auto;
+}
+.news-link, .gallery-link{
+    color: #003ACD;
+}
+.ml-auto{
+    margin-left: auto !important;
+}

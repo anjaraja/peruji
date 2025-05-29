@@ -573,10 +573,36 @@ class EventsController extends Controller
      */
     public function previousEvents($page)
     {
+        $idn_month = [
+            "January"=>"Januari",
+            "February"=>"Februari",
+            "March"=>"Maret",
+            "April"=>"April",
+            "May"=>"Mei",
+            "June"=>"Juni",
+            "July"=>"Juli",
+            "August"=>"Agustus",
+            "September"=>"September",
+            "October"=>"Oktober",
+            "November"=>"November",
+            "December"=>"Desember"
+        ];
         try{
             $page = is_int($page)?$page:1;
 
-            $events = Events::where("activestatus",0)->orderBy("eventdate","desc")->paginate(15, ["*"], "page", $page)->toArray();
+            $events = Events::where("isprevious",1)->orderBy("eventdate","desc")->paginate(15, ["*"], "page", $page)->toArray();
+
+            foreach($events["data"] as $key => $value){
+                $start_date = date('d', strtotime($value["eventdate"]));
+                $end_date = date('d', strtotime($value["eventdate"] . " +".$value["duration"]." days"));
+                $eng_month_name = date('F', strtotime($value["eventdate"] . " +".$value["duration"]." days"));
+                $month_name = $idn_month[$eng_month_name];
+                $end_year = date('Y', strtotime($value["eventdate"] . " +".$value["duration"]." days"));
+
+                $events["data"][$key]["eng_display_detail_date"] = "$start_date - $end_date $eng_month_name $end_year";
+                $events["data"][$key]["display_detail_date"] = "$start_date - $end_date $month_name $end_year";
+            }
+
             $events = Pagination::ClearObject($events);
 
             Log::channel('activity')->warning('[LOAD PREVIOUS EVENTS]', ["page"=>$page]);
