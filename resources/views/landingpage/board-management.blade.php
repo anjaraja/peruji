@@ -56,13 +56,13 @@
 
     .slide-up {
         animation-name: slideUpOnce;
-        animation-duration: 1s;
+        animation-duration: 2s;
         animation-timing-function: ease-out;
     }
 
     .slide-down {
         animation-name: slideDownOnce;
-        animation-duration: 1s;
+        animation-duration: 2s;
         animation-timing-function: ease-out;
     }
 </style>
@@ -175,6 +175,12 @@
         "{{asset('lp-img/BOM/Board-6.png')}}", "{{asset('lp-img/BOM/Board-7.png')}}", "{{asset('lp-img/BOM/Board-8.png')}}", "{{asset('lp-img/BOM/Board-9.png')}}", "{{asset('lp-img/BOM/Board-10.png')}}",
         "{{asset('lp-img/BOM/Board-11.png')}}", "{{asset('lp-img/BOM/Board-12.png')}}", "{{asset('lp-img/BOM/Board-13.png')}}", "{{asset('lp-img/BOM/Board-14.png')}}"
     ];
+    const images_odd = [
+        "{{asset('lp-img/BOM/Board-1.png')}}",  "{{asset('lp-img/BOM/Board-3.png')}}", "{{asset('lp-img/BOM/Board-5.png')}}", "{{asset('lp-img/BOM/Board-7.png')}}", "{{asset('lp-img/BOM/Board-9.png')}}", "{{asset('lp-img/BOM/Board-11.png')}}", "{{asset('lp-img/BOM/Board-13.png')}}"
+    ];
+    const images_even = [
+        "{{asset('lp-img/BOM/Board-2.png')}}", "{{asset('lp-img/BOM/Board-4.png')}}", "{{asset('lp-img/BOM/Board-6.png')}}", "{{asset('lp-img/BOM/Board-8.png')}}", "{{asset('lp-img/BOM/Board-10.png')}}", "{{asset('lp-img/BOM/Board-12.png')}}","{{asset('lp-img/BOM/Board-14.png')}}"
+    ];
 
     const container = document.getElementById("imageColumns");
 
@@ -188,10 +194,26 @@
 
         const directionClass = index % 2 === 0 ? "slide-up" : "slide-down";
         img.classList.add(directionClass);
-        img.style.animationDelay = `${index * 1}s`;
+        // img.style.animationDelay = `${index * 1}s`;
 
         col.appendChild(img);
         container.appendChild(col);
     });
+
+    // images_even.forEach((src, index) => {
+    //     const col = document.createElement("div");
+    //     col.classList.add("column");
+
+    //     const img = document.createElement("img");
+    //     img.src = src;
+    //     img.alt = `Slice ${index + 1}`;
+
+    //     const directionClass = index % 2 === 0 ? "slide-up" : "slide-down";
+    //     img.classList.add(directionClass);
+    //     // img.style.animationDelay = `${index * 1}s`;
+
+    //     col.appendChild(img);
+    //     container.appendChild(col);
+    // });
 </script>
 @endsection
