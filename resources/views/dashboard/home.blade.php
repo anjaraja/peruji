@@ -39,7 +39,7 @@
                                 <div class="row mb-3">
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Date</label>
-                                        <input type="text" name="event_date" class="form-control" placeholder="Event date" required>
+                                        <input type="date" name="event_date" class="form-control" placeholder="Event date" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Event Duration (Days)</label>
@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Display Date</label>
-                                        <input type="text" name="event_display_date" class="form-control" placeholder="Event display date" required>
+                                        <input type="date" name="event_display_date" class="form-control" placeholder="Event display date" required>
                                     </div>
                                 </div>
                                 <div class="row mb-3">

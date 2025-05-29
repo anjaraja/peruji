@@ -1,6 +1,11 @@
 [id] {
   scroll-margin-top: 5vh; /* Adjust for your header height */
 }
+/*Utilities*/
+.sendToPdfFiller {
+  display: none !important;
+}
+/*End Utilities*/
 /* Font */
     @font-face {
         font-family: Helveticass;
@@ -275,6 +280,7 @@
         display: flex;
         align-items: center;
         text-align: center;
+        color: black;
     }
     .event-s .container .label-event{
         font-size: 30px;
@@ -288,6 +294,7 @@
     .event-s .container .desc-event {
         font-size: 17px;
         padding-bottom: 40px;
+        max-width: 650px;
     }
     .event-s .container .info-event {
         font-size: 13px;
