@@ -16,7 +16,7 @@
                 
                 <table class="table">
                     <tr>
-                        <td>Full Name</td>
+                        <td style="width: 10%">Full Name</td>
                         <td><input type="text" class="form-control" id="fullname"></td>
                         <td>Male / Female</td>
                         <td><select id="gender" class="form-control">
@@ -27,14 +27,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Email</td>
+                        <td style="width: 10%">Email</td>
                         <td><input type="email" class="form-control" id="email"></td>
                         <td>Phone</td>
                         <td><input type="text" class="form-control" id="phone"></td>
-                    </tr>
-                    <tr>
-                        <td>Date of Birth</td>
-                        <td colspan="3"><input type="date" class="form-control" id="dob"></td>
                     </tr>
                 </table>
     
@@ -45,18 +41,16 @@
     
                 <table class="table">
                     <tr>
-                        <td>Organization</td>
-                        <td colspan="3"><input type="text" class="form-control" id="org"></td>
+                        <td style="width: 10%">Company Name</td>
+                        <td><input type="text" class="form-control" id="companyname"></td>
+                        <td>Departemnt</td>
+                        <td><input type="text" class="form-control" id="departemnt"></td>
                     </tr>
                     <tr>
-                        <td>Address</td>
-                        <td colspan="3"><input type="text" class="form-control" id="address"></td>
-                    </tr>
-                    <tr>
-                        <td>Website</td>
-                        <td><input type="text" class="form-control" id="website" placeholder="https://example.com"></td>
+                        <td style="width: 10%">Function</td>
+                        <td><input type="text" class="form-control" id="funct"></td>
                         <td>Work Email</td>
-                        <td><input type="email" class="form-control" id="ofcemail"></td>
+                        <td><input type="text" class="form-control" id="ofcemail"></td>
                     </tr>
                 </table>
     
@@ -145,10 +139,9 @@
             gender = document.getElementById("gender").value;
             email = document.getElementById("email").value;
             phone = document.getElementById("phone").value;
-            dob = document.getElementById("dob").value;
-            org = document.getElementById("org").value;
-            address = document.getElementById("address").value;
-            website = document.getElementById("website").value;
+            companyname = document.getElementById("companyname").value;
+            funct = document.getElementById("funct").value;
+            departemnt = document.getElementById("departemnt").value;
             ofcemail = document.getElementById("ofcemail").value;
 
             membership = fetchData(
@@ -160,10 +153,9 @@
                     "gender":gender,
                     "email":email,
                     "phone":phone,
-                    "dob":dob,
-                    "org":org,
-                    "address":address,
-                    "website":website,
+                    "companyname":companyname,
+                    "funct":funct,
+                    "departemnt":departemnt,
                     "ofcemail":ofcemail,
                 }
             )
