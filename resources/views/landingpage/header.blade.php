@@ -1,13 +1,3 @@
-<style>
-    @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution: 192dpi) {
-      .btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-    }
-</style>
-
 <nav class="position-fixed z-2 w-100 bg-white px-5">
     <div class="container-nav position-relative">
         <div class="navbar d-flex justify-content-center align-items-center">
@@ -77,7 +67,7 @@
                 <button class="btn p-0" type="button" id="nav-menu-open"><h5 class=" m-0 p-0 pt-1" id="menu-toggle-text">MENU</h5></button>
             </div>
             <div class="navbar-right d-flex position-absolute align-items-center end-0">
-                <div class="navbar-medsos d-flex me-3">
+                <div class="navbar-medsos pt-1 d-flex me-3">
                     <a href="https://www.facebook.com/perkumpulan.underwriterperuji">
                         <svg width="25" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M17.6239 34C26.9678 34 34.5425 26.3888 34.5425 17C34.5425 7.61116 26.9678 0 17.6239 0C8.28003 0 0.705322 7.61116 0.705322 17C0.705322 26.3888 8.28003 34 17.6239 34Z" fill="#010101"/>
@@ -101,21 +91,22 @@
                     </a>
                 </div>
                 <div class="navbar-contact me-3">
-                    <a href="{{ route('contact-us') }}" class="btn btn-outline-dark d-flex align-items-center justify-content-center">
+                    <a href="{{ route('contact-us') }}" class="d-flex align-items-center text-decoration-none border border-black px-3 pt-1 rounded"
+                        style="">
                         CONTACT
                     </a>
                 </div>
                 <div class="navbar-language d-flex align-items-center">
                     <div class="navbar-language-left">
-                        <a href="#" class="text-decoration-none text-dark">
+                        <a href="#" class="text-decoration-none text-dark d-flex align-items-center pt-1">
                             IDN
                         </a>
                     </div>
-                    <div class="navbar-language-center text-dark px-2">
+                    <div class="navbar-language-center text-dark px-2 d-flex align-items-center pt-1">
                         <span>|</span>
                     </div>
                     <div class="navbar-language-right">
-                        <a href="#" class=" text-decoration-none text-dark">
+                        <a href="#" class=" text-decoration-none text-dark d-flex align-items-center pt-1">
                             ENG
                         </a>
                     </div>
