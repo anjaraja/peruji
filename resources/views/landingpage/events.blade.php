@@ -118,7 +118,7 @@
         <div class="container-fluid p-0 menu-event-page" id="previous-event">
             <div class="header-sub-menu d-flex align-items-center">
                 <section class="square me-3"></section>
-                <div class="label">Previous Event</div>
+                <h1 class="label m-0 mt-1">Previous Event</h1>
             </div>
             <div class="in-event-page">
                 @foreach ($previous_events as $key => $value)

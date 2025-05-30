@@ -56,7 +56,7 @@
                     <div class="col-md-6 col-12">
                         <table class="table">
                             <tr>
-                                <td style="width: 120px">Company Name</td>
+                                <td style="width: 120px; padding: 6px 0 0 10px;">Company Name</td>
                                 <td><input type="text" class="form-control" id="companyname"></td>
                             </tr>
                             <tr>
@@ -68,7 +68,7 @@
                     <div class="col-md-6 col-12">
                         <table class="table">
                             <tr>
-                                <td style="width: 120px">Departemnt</td>
+                                <td style="width: 120px;">Department</td>
                                 <td><input type="text" class="form-control" id="departemnt"></td>
                             </tr>
                             <tr>
@@ -79,7 +79,7 @@
                     </div>
                 </div>
     
-                <button class="px-4 py-1" id="button" type="submit">SUBMIT</button>
+                <button class="px-4 pt-1" id="button" type="submit">SUBMIT</button>
             </form>
         </div>
     </div>

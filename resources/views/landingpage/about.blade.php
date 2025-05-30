@@ -4,10 +4,10 @@
 
 @section('content')
     <div class="container-fluid p-0 eve">
-        <img src="{{asset('lp-img/about-page.png')}}" style="width: 100%;" alt="">
+        <img src="{{asset('lp-img/about-page.png')}}" style="height:100vh;width: 100%;" alt="">
         <div class="header-sub-menu">
             <section class="square me-3"></section>
-            <h1 class="label m-0 p-0">About PERUJI</h1> 
+            <h1 class="label m-0 mt-1">About PERUJI</h1> 
         </div>
         <div class="d-flex justify-content-center flex-column" id="role">
             <div class="pt-5">

@@ -8,7 +8,7 @@
         <div class="menu-tc-page">
             <div class="header-sub-menu">
                 <section class="square me-3"></section>
-                <h1 class="label">Membership</h1>
+                <h1 class="label m-0 mt-1">Membership</h1>
             </div>
             <div class="container">
                 <div class="d-flex flex-column justify-content-center">

@@ -22,6 +22,9 @@
     }@font-face {
         font-family: Helveticassss;
         src: url(../font/helvetica-neue-5/HelveticaNeueUltraLight.otf);
+    }@font-face {
+        font-family: Helveticas_bold;
+        src: url(../font/helvetica-neue-5/HelveticaNeueBold.otf);
     }
 /* Close Font */
 
@@ -83,8 +86,8 @@
     }
     .header-sub-menu .square {
         background-color: #F7941D;
-        width: 47px;
-        height: 47px;
+        width: 45px;
+        height: 45px;
     }
     .header-sub-menu .label{
         line-height: 50px;
@@ -92,7 +95,6 @@
         display: flex;
         align-items: center;
         font-family: Helveticass;
-
     }
 
     .error-container {
@@ -126,7 +128,9 @@
 /* Close Golbal */
 
 /* Nav CSs */
-
+    nav * {
+        font-family: Helveticas_medium;
+    }
     nav .navbar {
         height: 60px;
     }
@@ -173,6 +177,7 @@
     
     .nav-menu-body .label-nav {
         font-size: 25px;
+        font-family: Helveticas_medium;
     }
 
     .nav-menu-body .label-nav-item {
@@ -190,25 +195,26 @@
     .container-home svg{
         width: 53%;
     }
-    @media (min-width:1367px) {
-        .carousel-text {
-            position: absolute;
-            width: 100%;
-            top: -10%;
-            display: flex;
-            justify-content: start;
-            align-items: center;
-            height: 100%;
-            margin-top: 10vh;
-            padding-left: 102px;
-        }
-        .container-home .home-banner img{
-            max-width: 600px;
-            padding: 0 auto;
-        }   
-        .home-banner {
-            bottom: 6%;
-        }
+    .carousel-text {
+        position: absolute;
+        width: 100%;
+        top: -10%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        height: 100%;
+        margin-top: 10vh;
+        padding-left: 102px;
+    }
+    .container-home .home-banner img{
+        max-width: 600px;
+        padding: 0 auto;
+    }   
+    .home-banner {
+        bottom: 6%;
+    }
+    .home-banner span{ 
+        font-family: Helveticas_medium;
     }
     
     .banner-image-solos {
