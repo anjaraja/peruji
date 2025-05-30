@@ -91,7 +91,7 @@
                     </a>
                 </div>
                 <div class="navbar-contact me-3">
-                    <a href="{{ route('contact-us') }}" class="d-flex align-items-center text-decoration-none btn btn-outline-dark pt-1 pb-0 rounded"
+                    <a href="{{ route('contact-us') }}" class="d-flex align-items-center text-decoration-none btn btn-outline-dark rounded"
                         style="">
                         CONTACT
                     </a>

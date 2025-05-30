@@ -29,8 +29,18 @@
 
       if (platform.includes("mac")) {
         // document.querySelector(".square.me-3").classList.add("align-self-center");
+        document.querySelectorAll(".btn").forEach(item => {
+            item.classList.add("pt-1");
+            item.classList.add("pb-0");
+
+        });
+
       } else if (platform.includes("win")) {
         document.querySelector(".square.me-3").classList.add("align-self-center");
+        document.querySelectorAll(".btn").forEach(item => {
+            item.classList.add("pt-0");
+            item.classList.add("pb-0");
+        });
       }
     });
 </script>

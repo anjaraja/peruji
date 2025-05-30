@@ -79,7 +79,7 @@
                     </div>
                 </div>
     
-                <button class="px-4 pt-1" id="button" type="submit">SUBMIT</button>
+                <button class="btn px-4" id="button" type="submit">SUBMIT</button>
             </form>
         </div>
     </div>
