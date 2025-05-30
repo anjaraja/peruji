@@ -91,9 +91,8 @@
                     </a>
                 </div>
                 <div class="navbar-contact me-3">
-                    <a href="{{ route('contact-us') }}"
-                        class="btn btn-outline-dark d-flex align-items-center justify-content-center px-3"
-                        style="height: 30px; padding-top: 0; padding-bottom: 0;">
+                    <a href="{{ route('contact-us') }}" class="text-decoration-none border border-black px-3 py-1 rounded"
+                        style="">
                         CONTACT
                     </a>
                 </div>

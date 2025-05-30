@@ -8,7 +8,7 @@
         <div class="menu-tc-page">
             <div class="header-sub-menu">
                 <section class="square me-3"></section>
-                <h1>Membership</h1>
+                <h1 class="label">Membership</h1>
             </div>
             <div class="container">
                 <div class="d-flex flex-column justify-content-center">
@@ -72,7 +72,7 @@
                         </ol>
                     </div>
                     <div class="content pt-5">
-                        <a href="{{route('membership-signup')}}" class="btn text-white px-4" style="background-color: #f58529; border-radius:20px;">Sing Up</a>
+                        <a href="{{route('membership-signup')}}" class="text-decoration-none px-4 py-2" id="button">SING UP</a>
                     </div>
                 </div>
             </div>

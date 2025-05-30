@@ -71,7 +71,7 @@
 </div>
 <div class="container-fluid p-0">
     <!-- <img src="{{asset('lp-img/bom.png')}}" alt="" style="width: 100%;"> -->
-    <div class="header-sub-menu d-flex align-items-center">
+    <div class="header-sub-menu">
         <section class="square me-3"></section>
         <div class="label">Board Of Management</div>
     </div>
@@ -80,6 +80,8 @@
             <div class="period-container">
                 <div class="label">MANAGEMENT PERIOD</div>
                 <div class="year">2025 - 2029</div>
+                <div class="garis-1"></div>
+                <div class="garis-2"></div>
             </div>  
             <div class="label-person">Dewan Pengawas</div>
             <div class="person">

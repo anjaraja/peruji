@@ -8,31 +8,31 @@
         <div class="error-container"></div>
          <div class="container">
              <div class="label-eve">Contact Us</div>
-             <form class="container-content mx-auto" id="contact-us" style="max-width: 70%;">
+             <form class="container-content mx-auto" id="contact-us">
                  <table class="table">
                      <tr>
                          <td>Full Name</td>
-                         <td><input type="text" id="fullname" class="form-control"></td>
+                         <td><input type="text" id="fullname" class="form-control form-control-sm"></td>
                      </tr>
                      <tr>
                          <td>Email</td>
-                         <td><input type="email" id="email" class="form-control"></td>
+                         <td><input type="email" id="email" class="form-control form-control-sm"></td>
                      </tr>
                      <tr>
                          <td>Phone</td>
-                         <td><input type="number" id="phone" class="form-control"></td>
+                         <td><input type="number" id="phone" class="form-control form-control-sm"></td>
                      </tr>
                      <tr>
                          <td>Subject</td>
-                         <td><input type="text" id="subject" class="form-control"></td>
+                         <td><input type="text" id="subject" class="form-control form-control-sm"></td>
                      </tr>
                      <tr>
                          <td>Message</td>
-                         <td><textarea name="" id="message" class="form-control" rows="5"></textarea></td>
+                         <td><textarea name="" id="message" class="form-control form-control-sm" rows="5"></textarea></td>
                      </tr>
                  </table>
                  <div class="button text-end">
-                     <button class="btn btn-submit mt-3 p-0">SUBMIT</button>
+                     <button class="px-4 py-1" id="button" type="submit">SUBMIT</button>
                  </div>
              </form>
          </div>

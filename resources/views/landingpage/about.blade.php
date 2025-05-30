@@ -5,13 +5,9 @@
 @section('content')
     <div class="container-fluid p-0 eve">
         <img src="{{asset('lp-img/about-page.png')}}" style="width: 100%;" alt="">
-        <div class="header-sub-menu d-flex justify-content-center">
-            <div class="p-2 align-self-start">
-                <section class="square me-3"></section>
-            </div>
-            <div class="p-2 align-self-center">
-                <p class="label m-0">About PERUJI</p> 
-            </div>
+        <div class="header-sub-menu">
+            <section class="square me-3"></section>
+            <h1 class="label m-0 p-0">About PERUJI</h1> 
         </div>
         <div class="d-flex justify-content-center flex-column" id="role">
             <div class="pt-5">

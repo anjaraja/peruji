@@ -14,47 +14,72 @@
                     <div class="section-header">PERSONAL INFORMATION</div>
                 </div>
                 
-                <table class="table">
-                    <tr>
-                        <td style="width: 10%">Full Name</td>
-                        <td><input type="text" class="form-control" id="fullname"></td>
-                        <td>Male / Female</td>
-                        <td><select id="gender" class="form-control">
-                                <option selected>Male / Female</option>
-                                <option value="M">Male</option>
-                                <option value="F">Female</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="width: 10%">Email</td>
-                        <td><input type="email" class="form-control" id="email"></td>
-                        <td>Phone</td>
-                        <td><input type="text" class="form-control" id="phone"></td>
-                    </tr>
-                </table>
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                    <table class="table">
+                        <tr>
+                            <td style="width: 120px">Full Name</td>
+                            <td><input type="text" class="form-control" id="fullname"></td>
+
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td><input type="email" class="form-control" id="email"></td>
+                        </tr>
+                    </table>
+                    </div>
+                    <div class="col-md-6 col-12">
+                    <table class="table">
+                        <tr>
+                            <td style="width: 120px">Male / Female</td>
+                            <td><select id="gender" class="form-control">
+                                    <option selected>Male / Female</option>
+                                    <option value="M">Male</option>
+                                    <option value="F">Female</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Phone</td>
+                            <td><input type="text" class="form-control" id="phone"></td>
+                        </tr>
+                    </table>
+                    </div>
+                </div>
     
                 <div class="header">
                     <div class="gray"></div>
                     <div class="section-header">ORGANIZATION INFORMATION (OPTIONAL)</div>
                 </div>
+                
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <table class="table">
+                            <tr>
+                                <td style="width: 120px">Company Name</td>
+                                <td><input type="text" class="form-control" id="companyname"></td>
+                            </tr>
+                            <tr>
+                                <td>Function</td>
+                                <td><input type="text" class="form-control" id="funct"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <table class="table">
+                            <tr>
+                                <td style="width: 120px">Departemnt</td>
+                                <td><input type="text" class="form-control" id="departemnt"></td>
+                            </tr>
+                            <tr>
+                                <td>Work Email</td>
+                                <td><input type="text" class="form-control" id="ofcemail"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
     
-                <table class="table">
-                    <tr>
-                        <td style="width: 10%">Company Name</td>
-                        <td><input type="text" class="form-control" id="companyname"></td>
-                        <td>Departemnt</td>
-                        <td><input type="text" class="form-control" id="departemnt"></td>
-                    </tr>
-                    <tr>
-                        <td style="width: 10%">Function</td>
-                        <td><input type="text" class="form-control" id="funct"></td>
-                        <td>Work Email</td>
-                        <td><input type="text" class="form-control" id="ofcemail"></td>
-                    </tr>
-                </table>
-    
-                <button class="btn btn-submit mt-3" type="submit">SUBMIT</button>
+                <button class="px-4 py-1" id="button" type="submit">SUBMIT</button>
             </form>
         </div>
     </div>

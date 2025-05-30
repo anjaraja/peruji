@@ -11,8 +11,17 @@
         font-family: Helveticass;
         src: url(../font/helvetica-neue-5/HelveticaNeueRoman.otf);
     }@font-face {
+        font-family: Helveticas_medium;
+        src: url(../font/helvetica-neue-5/HelveticaNeueMedium.otf);
+    }@font-face {
         font-family: Helveticasss;
         src: url(../font/helvetica-neue-5/HelveticaNeueThin.otf);
+    }@font-face {
+        font-family: Helveticas_light;
+        src: url(../font/helvetica-neue-5/HelveticaNeueLight.otf);
+    }@font-face {
+        font-family: Helveticassss;
+        src: url(../font/helvetica-neue-5/HelveticaNeueUltraLight.otf);
     }
 /* Close Font */
 
@@ -62,7 +71,7 @@
     * {
         padding: 0;
         margin: 0;
-        font-family: Helveticass;
+        font-family: Helveticas_light;
     }
     
     .header-sub-menu {
@@ -74,13 +83,16 @@
     }
     .header-sub-menu .square {
         background-color: #F7941D;
-        width: 45px;
-        height: 45px;
+        width: 47px;
+        height: 47px;
     }
     .header-sub-menu .label{
         line-height: 50px;
         font-size: 60px;
-        padding-top: .2rem;
+        display: flex;
+        align-items: center;
+        font-family: Helveticass;
+
     }
 
     .error-container {
@@ -117,6 +129,14 @@
 
     nav .navbar {
         height: 60px;
+    }
+    nav .navbar .navbar-contact a {
+        color: black;
+        transition: 0.2s ease-in-out;
+    }
+    nav .navbar .navbar-contact a:hover {
+        background-color: black;
+        color: white;
     }
     .navbar button{
         border: none;
@@ -167,17 +187,37 @@
         height: 100vh;
         overflow: hidden;
     }
-    .carousel-item::after {
-        content: '';
+    .container-home svg{
         position: absolute;
-        top: 0;
-        background-color: rgba(0, 0, 0, 0.1);
         width: 100%;
-        height: 100vh;
-        z-index: 1;
     }
-    .container-home .home-banner img{
-        max-width: 500px;
+    @media (min-width:1367px) {
+        .carousel-text {
+            position: absolute;
+            width: 100%;
+            top: -10%;
+        }
+        .container-home .home-banner img{
+            max-width: 600px;
+            padding: 0 auto;
+        }   
+        .home-banner {
+            bottom: 6%;
+        }
+    }
+    @media (max-width:1368px) {
+        .carousel-text {
+            position: absolute;
+            width: 100%;
+            top: -10%;
+        }
+        .home-banner {
+            bottom: 5%;
+        }
+        .container-home .home-banner img{
+            max-width: 400px;
+            padding: 0 auto;
+        }
     }
     
     .banner-image-solos {
@@ -221,7 +261,7 @@
     .eve .label-isi-content {
         color: #F7941D;
         font-size: 35px;
-        font-weight: 500;
+        font-family: Helveticas_medium;
         padding-bottom: 10px;
     }
     .eve .desc-isi-content {
@@ -235,28 +275,42 @@
         background-color: #f0f0f0;
     }
     .in-bom-page .period-container {
+        position: relative;
         text-align: center;
-        border-left: 3px solid #F7941D;
-        border-right: 3px solid #F7941D;
         width: 200px;
+    }
+    .in-bom-page .period-container .garis-1 {
+        position: absolute;
+        border-left: 2px solid #f58529;
+        height: 47px;
+        top: 6%;
+    }
+    .in-bom-page .period-container .garis-2 {
+        position: absolute;
+        border-left: 2px solid #f58529;
+        height: 47px;
+        right: 0;
+        top: 6%;
     }
     .in-bom-page .period-container .label {
         font-size: 14px;
-        font-weight:600;
+        font-family: Helveticas_light;
     }
     .in-bom-page .period-container .year {
-        font-size: 27px;
+        font-size: 28px;
         font-weight:500;
+        font-family: Helveticas_medium;
     }
 
     .in-bom-page .label-person {
         font-size: 35px;
         padding-top: 40px;
+        font-family: Helveticas_medium;
         color: #F7941D;
     }
     .in-bom-page .label-person-content {
         font-size: 20px;
-        font-weight:700;
+        font-family: Helveticas_medium;
     }
     .in-bom-page .label-person-name {
         font-size: 22px;
@@ -352,7 +406,7 @@
     }
     .in-event-page .label-event {
         font-size: 26px;
-        font-weight: bold;
+        font-family: Helveticas_medium;
         padding-bottom: 20px;
     }
     .in-event-page .desc {
@@ -367,16 +421,10 @@
         height: 100vh;
         background-color: black;
     }
-    .form td input, .form td textarea,.form td select {
-         border-radius: 0;
-    }
-    .form button {
-        height: 40px;
-        width:100px;
-    }
     .form .label-eve {
         margin-top: 40px;
-        font-size: 40px;
+        margin-bottom: 10px;
+        font-size: 70px;
         color: white;
     }
     .form .header {
@@ -392,6 +440,12 @@
         color: white;
         width: 100%;
     }
+    .form .container {
+        max-width: 1050px;
+    }
+    .form .container-content {
+        max-width: 730px;
+    }
     .form .table {
         margin: 14px 0px !important;
     }
@@ -400,13 +454,17 @@
         color: white !important;
         border: none;                
     }
-    .form .btn-submit {
-        color: white;
-        border-radius: 50px;
-        padding: 5px 40px;
-        background-color: #F7941D;
+    .form td input, .form td textarea,.form td select {
+         border-radius: 0;
     }
-    .form .btn-submit:hover {
+    .form button {
+        background-color: #f7941D;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        transition: 0.2s ease-in-out;
+    }
+    .form button:hover {
         background-color: #874a00;
         color: #f0f0f0;
     }
@@ -417,7 +475,8 @@
         background-color: #f0f0f0;
     }
     .terms .container {
-        padding: 80px 0;
+        padding: 60px 0;
+        max-width: 700px;
     }
 
     .terms .container .label-page {
@@ -426,7 +485,24 @@
         padding-bottom: 20px;
     }
     .terms h3 {
+        margin-top: 20px;
+        font-size: 40px;
+        font-family: Helveticas_medium;
         color: #F7941D;
+    }
+    .terms ol {
+        padding-left: 1.6rem;
+    }
+    .terms a {
+        background-color: #f7941D;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        transition: 0.2s ease-in-out;
+    }
+    .terms a:hover {
+        background-color: #874a00;
+        color: #f0f0f0;
     }
 /* Close Terms & Condition */
 
