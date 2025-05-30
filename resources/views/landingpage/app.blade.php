@@ -22,7 +22,21 @@
     
 </body>
 <script src="{{asset('/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const platform = navigator.platform.toLowerCase();
+
+      if (platform.includes("mac")) {
+        // document.querySelector(".square.me-3").classList.add("align-self-center");
+      } else if (platform.includes("win")) {
+        document.querySelector(".square.me-3").classList.add("align-self-center");
+      }
+    });
+</script>
+
+<script>
+
     var menuButton = document.getElementById('nav-menu-open');
     var menuText = document.getElementById('menu-toggle-text');
     var navMenu = document.querySelector('.nav-menu-body');
