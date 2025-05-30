@@ -86,12 +86,15 @@
                 @if(!empty($events))
                     @if (count($events) > 1)
                         @foreach($events as $key => $value)
-                            <img class="banner-image @php $key==0?'active':'' @endphp" style="animation-delay: {{ $key * $durationPerBanner }}s" src="{{asset($value['banner'])}}" alt="">
+                            <div class="banner-image @php $key==0?'active':'' @endphp" style="animation-delay: {{ $key * $durationPerBanner }}s">
+                                    <img src="{{asset($value['banner'])}}" alt="">
+                                    <div class="text-white text-center pt-3" style="font-size: 10px;">CLICK TO FIND OUT MORE</div>
+                            </div>
                         @endforeach    
                     @else
                         <img class="banner-image-solos" src="{{asset($events[0]['banner'])}}" alt="">
+                        <div class="text-white pt-3" style="font-size: 10px;">CLICK TO FIND OUT MORE</div>
                     @endif
-                    <span class="text-white" style="font-size: 10px;">CLICK TO FIND OUT MORE</span>
                 @endif
             </a>
         </div>

@@ -26,7 +26,21 @@
     var menuButton = document.getElementById('nav-menu-open');
     var menuText = document.getElementById('menu-toggle-text');
     var navMenu = document.querySelector('.nav-menu-body');
+    var listMenu = document.querySelectorAll('.label-nav-item');
 
+
+    listMenu.forEach(item => {
+        item.addEventListener('click', () => {
+            const isShown = navMenu.classList.contains('show');
+            
+            if (isShown) {
+                navMenu.classList.remove('show');
+            } else {
+                navMenu.classList.add('show');
+            }
+        });
+    });
+    
     menuButton.addEventListener('click', () => {
         const isShown = navMenu.classList.contains('show');
         
