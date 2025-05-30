@@ -35,12 +35,14 @@
             
             if (isShown) {
                 navMenu.classList.remove('show');
+            menuText.textContent = 'MENU';
             } else {
                 navMenu.classList.add('show');
+            menuText.textContent = 'EXIT';
             }
         });
     });
-    
+
     menuButton.addEventListener('click', () => {
         const isShown = navMenu.classList.contains('show');
         
