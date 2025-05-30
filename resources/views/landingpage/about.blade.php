@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container-fluid p-0 eve">
-        <img src="{{asset('lp-img/about-page.png')}}" style="height:100vh;width: 100%;" alt="">
+        <img src="{{asset('lp-img/crop-about-page.png')}}" style="height:100vh;width: 100%;" alt="">
         <div class="header-sub-menu">
             <section class="square me-3"></section>
             <h1 class="label m-0 mt-1">About PERUJI</h1> 

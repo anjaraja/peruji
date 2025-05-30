@@ -186,6 +186,7 @@
 
     const container = document.getElementById("imageColumns");
 
+    arr_delayed = [];
     images.forEach((src, index) => {
         const col = document.createElement("div");
         col.classList.add("column");
@@ -196,11 +197,16 @@
 
         const directionClass = index % 2 === 0 ? "slide-up" : "slide-down";
         img.classList.add(directionClass);
-        // img.style.animationDelay = `${index * 1}s`;
+        img.style.animationDelay = `${getRandomIntInclusive(1,2)}s`;
 
         col.appendChild(img);
         container.appendChild(col);
     });
+
+    function getRandomIntInclusive(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+    console.log(arr_delayed)
 
     // images_even.forEach((src, index) => {
     //     const col = document.createElement("div");
