@@ -38,7 +38,7 @@
             <div class="layout"></div>
             <div class="content">
                 <div class="head-events" id="upcoming">Upcoming Events</div>
-                <div class="d-flex justify-content-center align-items-center flex-column" style="height:65%;">
+                <div class="d-flex justify-content-center align-items-center flex-column" style="height:40%;">
                     @foreach ( $upcoming_events as $value )
                         <div class="event">
                             <a href="#" data-url="{{ route('events-detail', ['events' => $value['id']]) }}"
