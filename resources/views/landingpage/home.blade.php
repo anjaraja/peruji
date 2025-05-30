@@ -20,7 +20,7 @@
                 <div class="carousel-item active h-100" style="background-image: url({{asset('lp-img/Foto-Home-1.jpg')}});background-position: top;background-size: cover;">
                     {{-- <a href="#"></a> --}}
                     <div class="carousel-text">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" style="enable-background:new 0 0 1366 768;" xml:space="preserve" viewBox="78.1 270.47 701.87 207.5"><style type="text/css">   .st0{fill:#FFFFFF;} .st1{font-family:'HelveticaNeue-Light';}    .st2{font-size:65.8918px;}  .st3{font-family:'HelveticaNeue-Bold';}</style><text transform="matrix(1 0 0 1 78.1001 333.9651)"><tspan x="0" y="0" class="st0 st1 st2">Empowering</tspan><tspan x="0" y="65" class="st0 st3 st2">Life Underwriters</tspan><tspan x="0" y="130" class="st0 st1 st2">to Safeguards the Future</tspan></text></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" style="enable-background:new 0 0 1366 768;" xml:space="preserve" viewBox="78.1 270.47 701.87 207.5"><style type="text/css">   .st0{fill:#FFFFFF;} .st1{font-family:'Helveticas_light';}    .st2{font-size:65.8918px;}  .st3{font-family:'Helveticas_bold';}</style><text transform="matrix(1 0 0 1 78.1001 333.9651)"><tspan x="0" y="0" class="st0 st1 st2">Empowering</tspan><tspan x="0" y="65" class="st0 st3 st2">Life Underwriters</tspan><tspan x="0" y="130" class="st0 st1 st2">to Safeguards the Future</tspan></text></svg>
                     </div>
                 </div>
                 <div class="carousel-item h-100" style="background-image: url({{asset('lp-img/Foto-Home-2.jpg')}});background-position: top;background-size: cover;">
@@ -29,9 +29,9 @@
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" style="enable-background:new 0 0 1366 768;" xml:space="preserve" viewBox="78.1 320 713.53 143">
                             <style type="text/css">
                                 .st0{fill:#FFFFFF;}
-                                .st1{font-family:'HelveticaNeue-Light';}
+                                .st1{font-family:'Helveticas_light';}
                                 .st2{font-size:65.8918px;}
-                                .st3{font-family:'HelveticaNeue-Bold';}
+                                .st3{font-family:'Helveticas_bold';}
                             </style>
                             <text transform="matrix(1 0 0 1 78.1001 383.9998)"><tspan x="0" y="0" class="st0 st1 st2">Driving </tspan><tspan x="211.12" y="0" class="st0 st3 st2">Professionalism</tspan><tspan x="0" y="65" class="st0 st1 st2">in Risk Management</tspan></text>
                         </svg>      
@@ -43,9 +43,9 @@
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" style="enable-background:new 0 0 1366 768;" xml:space="preserve" viewBox="78.1 270.47 705.42 207.5">
                             <style type="text/css">
                                 .st0{fill:#FFFFFF;}
-                                .st1{font-family:'HelveticaNeue-Light';}
+                                .st1{font-family:'Helveticas_light';}
                                 .st2{font-size:65.8918px;}
-                                .st3{font-family:'HelveticaNeue-Bold';}
+                                .st3{font-family:'Helveticas_bold';}
                             </style>
                             <text transform="matrix(1 0 0 1 78.1001 333.9651)"><tspan x="0" y="0" class="st0 st1 st2">Fostering</tspan><tspan x="0" y="65" class="st0 st3 st2">Growth and Standards</tspan><tspan x="0" y="130" class="st0 st1 st2">for Life Underwriters</tspan></text>
                         </svg>
@@ -57,9 +57,9 @@
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" style="enable-background:new 0 0 1366 768;" xml:space="preserve" viewBox="78.1 270.47 673.59 207.5">
                             <style type="text/css">
                                 .st0{fill:#FFFFFF;}
-                                .st1{font-family:'HelveticaNeue-Light';}
+                                .st1{font-family:'Helveticas_light';}
                                 .st2{font-size:65.8918px;}
-                                .st3{font-family:'HelveticaNeue-Bold';}
+                                .st3{font-family:'Helveticas_bold';}
                             </style>
                             <text transform="matrix(1 0 0 1 78.1001 333.9651)"><tspan x="0" y="0" class="st0 st1 st2">Building</tspan><tspan x="0" y="65" class="st0 st3 st2">a Strong and Ethical</tspan><tspan x="0" y="130" class="st0 st1 st2">Underwriter Community</tspan></text>
                         </svg>
@@ -71,9 +71,9 @@
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" style="enable-background:new 0 0 1366 768;" xml:space="preserve" viewBox="78.1 270.47 645.92 207.5">
                             <style type="text/css">
                                 .st0{fill:#FFFFFF;}
-                                .st1{font-family:'HelveticaNeue-Light';}
+                                .st1{font-family:'Helveticas_light';}
                                 .st2{font-size:65.8918px;}
-                                .st3{font-family:'HelveticaNeue-Bold';}
+                                .st3{font-family:'Helveticas_bold';}
                             </style>
                             <text transform="matrix(1 0 0 1 78.1001 333.9651)"><tspan x="0" y="0" class="st0 st1 st2">Championing</tspan><tspan x="0" y="65" class="st0 st3 st2">Innovation and Unity</tspan><tspan x="0" y="130" class="st0 st1 st2">in Life Underwriting</tspan></text>
                         </svg>
