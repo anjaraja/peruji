@@ -20,16 +20,7 @@
                 <div class="carousel-item active h-100" style="background-image: url({{asset('lp-img/Foto-Home-1.jpg')}});background-position: top;background-size: cover;">
                     {{-- <a href="#"></a> --}}
                     <div class="carousel-text">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            viewBox="0 0 1366 768" style="enable-background:new 0 0 1366 768;" xml:space="preserve">
-                            <style type="text/css">
-                                .st0{fill:#f3f3f3; }
-                                .st1{font-family:'Helveticasss';font-weight: 100;}
-                                .st2{font-size:69px;}
-                                .st3{fill: #f3f3f3;font-family:'Helveticass';font-weight: bolder}
-                            </style>
-                            <text transform="matrix(1 0 0 1 78.1001 333.9651)"><tspan x="0" y="0" class="st0 st1 st2">Empowering</tspan><tspan x="0" y="68" class="st1 st3 st2">Life Underwriters</tspan><tspan x="0" y="135" class="st0 st1 st2">to Safeguards the Future</tspan></text>
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" style="enable-background:new 0 0 1366 768;" xml:space="preserve" viewBox="78.1 270.47 701.87 207.5"><style type="text/css">   .st0{fill:#FFFFFF;} .st1{font-family:'HelveticaNeue-Light';}    .st2{font-size:65.8918px;}  .st3{font-family:'HelveticaNeue-Bold';}</style><text transform="matrix(1 0 0 1 78.1001 333.9651)"><tspan x="0" y="0" class="st0 st1 st2">Empowering</tspan><tspan x="0" y="65" class="st0 st3 st2">Life Underwriters</tspan><tspan x="0" y="130" class="st0 st1 st2">to Safeguards the Future</tspan></text></svg>
                     </div>
                 </div>
             </div>

@@ -188,14 +188,19 @@
         overflow: hidden;
     }
     .container-home svg{
-        position: absolute;
-        width: 100%;
+        width: 53%;
     }
     @media (min-width:1367px) {
         .carousel-text {
             position: absolute;
             width: 100%;
             top: -10%;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            height: 100%;
+            margin-top: 10vh;
+            padding-left: 102px;
         }
         .container-home .home-banner img{
             max-width: 600px;
@@ -203,20 +208,6 @@
         }   
         .home-banner {
             bottom: 6%;
-        }
-    }
-    @media (max-width:1368px) {
-        .carousel-text {
-            position: absolute;
-            width: 100%;
-            top: -10%;
-        }
-        .home-banner {
-            bottom: 5%;
-        }
-        .container-home .home-banner img{
-            max-width: 400px;
-            padding: 0 auto;
         }
     }
     
