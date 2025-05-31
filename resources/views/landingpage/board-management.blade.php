@@ -16,11 +16,11 @@
         position: relative;
     }
 
-    .column img {
-        width: 100%;
+    img {
+        /*width: 100%;*/
         height: 100%;
         object-fit: cover;
-        position: absolute;
+        /*position: absolute;*/
         top: 0;
         left: 0;
         opacity: 0;
@@ -199,8 +199,8 @@
         img.classList.add(directionClass);
         img.style.animationDelay = `${getRandomIntInclusive(1,2)}s`;
 
-        col.appendChild(img);
-        container.appendChild(col);
+        // col.appendChild(img);
+        container.appendChild(img);
     });
 
     function getRandomIntInclusive(min, max) {
