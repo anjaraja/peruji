@@ -414,10 +414,8 @@
     document.addEventListener("click",function(event){
         this_element = event.target;
 
-        loading_container = document.querySelector(`.loading-container`);
-        loading_container.classList.add("show");
-
         if(this_element.matches(".row-previous-event")){
+            loading("show")
             prev_event_id = this_element.getAttribute("id");
             list_previous_data = JSON.parse(sessionStorage.getItem("list-previous"))
 
@@ -425,7 +423,6 @@
 
             for(key in list_previous_data){
                 if(list_previous_data[key]["id"] == prev_event_id){
-                    console.log(list_previous_data[key])
                     form_data = list_previous_data[key];
                     source_form.insertAdjacentHTML("afterbegin",`<input name="update_events" value="${form_data["id"]}" style="display:none;">`)
                     source_form.querySelector("input[name='update_event_name']").value = form_data["eventname"];
@@ -502,10 +499,8 @@
                     }
                 }
             }
-            
-            setTimeout(() => {
-                loading_container.classList.remove("show");
-            },500)
+
+            loading("close",500)
         }
     })
 
