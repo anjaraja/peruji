@@ -28,7 +28,7 @@
       const platform = navigator.platform.toLowerCase();
 
       if (platform.includes("mac")) {
-        // document.querySelector(".square.me-3").classList.add("align-self-center");
+        document.querySelector(".square.me-3").closest(".header-sub-menu").querySelector(".label").style.paddingTop = "6px";
         document.querySelectorAll(".btn").forEach(item => {
             item.classList.add("pt-1");
             item.classList.add("pb-0");
