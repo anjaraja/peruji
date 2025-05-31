@@ -273,11 +273,6 @@ class EventsController extends Controller
      *                      example=1
      *                  ),
      *                  @OA\Property(
-     *                      property="eventdisplaydate",
-     *                      type="date",
-     *                      example="2025-01-30"
-     *                  ),
-     *                  @OA\Property(
      *                      property="description",
      *                      type="text",
      *                      example="News Description (IDN)"
@@ -333,7 +328,6 @@ class EventsController extends Controller
                 'eventname' => 'required|string',
                 'eventdate' => 'required|string',
                 'duration' => 'nullable|integer',
-                'eventdisplaydate' => 'required|string',
                 'description' => 'required|string',
                 'eng_description' => 'required|string',
                 'banner' => 'nullable|file|mimes:jpeg,jpg,png',
@@ -357,8 +351,6 @@ class EventsController extends Controller
 
             $data = $request->all();
             $data["id"] = $request->events;
-            $data["publishdate"] = $data["eventdisplaydate"];
-            unset($data["eventdisplaydate"]);
             $data["modified_by"] = auth("api")->user()->email;
             Log::channel('activity')->info('[UPDATE EVENTS][DATA]', $data);
 
