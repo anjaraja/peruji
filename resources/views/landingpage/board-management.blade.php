@@ -26,6 +26,7 @@
         opacity: 0;
         visibility: hidden;
         animation-fill-mode: forwards;
+        width: 9%;
     }
 
     @keyframes slideUpOnce {
