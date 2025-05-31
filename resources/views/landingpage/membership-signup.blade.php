@@ -14,36 +14,46 @@
                     <div class="section-header">PERSONAL INFORMATION</div>
                 </div>
                 
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-md-6 col-12">
-                    <table class="table">
-                        <tr>
-                            <td style="width: 120px">Full Name</td>
-                            <td><input type="text" class="form-control" id="fullname"></td>
-
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td><input type="email" class="form-control" id="email"></td>
-                        </tr>
-                    </table>
+                        <div class="row mb-3">
+                            <div class="col-md-3 col-12">
+                                <label for="fullname">Full Name</label>
+                            </div>
+                            <div class="col-md-9 col-12">
+                                <input type="text" class="form-control form-control-sm" id="fullname">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3 col-12">
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="col-md-9 col-12">
+                                <input type="email" class="form-control form-control-sm" id="email">
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6 col-12">
-                    <table class="table">
-                        <tr>
-                            <td style="width: 120px">Male / Female</td>
-                            <td><select id="gender" class="form-control">
+                        <div class="row mb-3">
+                            <div class="col-md-3 col-12">
+                                <label for="fullname">Male / Female</label>
+                            </div>
+                            <div class="col-md-9 col-12">
+                                <select id="gender" class="form-control form-control-sm">
                                     <option selected>Male / Female</option>
                                     <option value="M">Male</option>
                                     <option value="F">Female</option>
                                 </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Phone</td>
-                            <td><input type="text" class="form-control" id="phone"></td>
-                        </tr>
-                    </table>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3 col-12">
+                                <label for="phone">Phone</label>
+                            </div>
+                            <div class="col-md-9 col-12">
+                                <input type="number" class="form-control form-control-sm" id="phone">
+                            </div>
+                        </div>
                     </div>
                 </div>
     
@@ -52,30 +62,42 @@
                     <div class="section-header">ORGANIZATION INFORMATION (OPTIONAL)</div>
                 </div>
                 
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-md-6 col-12">
-                        <table class="table">
-                            <tr>
-                                <td style="width: 120px; padding: 6px 0 0 10px;">Company Name</td>
-                                <td><input type="text" class="form-control" id="companyname"></td>
-                            </tr>
-                            <tr>
-                                <td>Function</td>
-                                <td><input type="text" class="form-control" id="funct"></td>
-                            </tr>
-                        </table>
+                        <div class="row mb-3">
+                            <div class="col-md-3 col-12">
+                                <label for="companyname">Company Name</label>
+                            </div>
+                            <div class="col-md-9 col-12">
+                                <input type="text" class="form-control form-control-sm" id="companyname">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3 col-12">
+                                <label for="function">function</label>
+                            </div>
+                            <div class="col-md-9 col-12">
+                                <input type="text" class="form-control form-control-sm" id="function">
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6 col-12">
-                        <table class="table">
-                            <tr>
-                                <td style="width: 120px;">Department</td>
-                                <td><input type="text" class="form-control" id="departemnt"></td>
-                            </tr>
-                            <tr>
-                                <td>Work Email</td>
-                                <td><input type="text" class="form-control" id="ofcemail"></td>
-                            </tr>
-                        </table>
+                        <div class="row mb-3">
+                            <div class="col-md-3 col-12">
+                                <label for="departnment">Department</label>
+                            </div>
+                            <div class="col-md-9 col-12">
+                                <input type="text" class="form-control form-control-sm" id="department">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3 col-12">
+                                <label for="ofcemail">Work Email</label>
+                            </div>
+                            <div class="col-md-9 col-12">
+                                <input type="email" class="form-control form-control-sm" id="email">
+                            </div>
+                        </div>
                     </div>
                 </div>
     

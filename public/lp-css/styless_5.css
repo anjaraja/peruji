@@ -415,7 +415,7 @@
     .form {
         display: flex;
         align-items: center;
-        height: 100vh;
+        min-height: 100vh;
         background-color: black;
     }
     .form .label-eve {
@@ -440,18 +440,17 @@
     .form .container {
         max-width: 1050px;
     }
+    .form .row {
+        align-items: center;
+    }
     .form .container-content {
         max-width: 730px;
     }
-    .form .table {
-        margin: 14px 0px !important;
+    .form label {
+        color:white;
+        font-size: 14px;
     }
-    .form .table td {
-        background-color: black;
-        color: white !important;
-        border: none;                
-    }
-    .form td input, .form td textarea,.form td select {
+    .form input, .form textarea,.form select {
          border-radius: 0;
     }
     .form button {
