@@ -58,13 +58,24 @@ class EventsController extends Controller
                 ->toArray();
             foreach($events["data"] as $key => $value){
                 $start_date = date('d', strtotime($value["eventdate"]));
-                $end_date = date('d', strtotime($value["eventdate"] . " +".$value["duration"]." days"));
-                $eng_month_name = date('F', strtotime($value["eventdate"] . " +".$value["duration"]." days"));
-                $month_name = $idn_month[$eng_month_name];
-                $end_year = date('Y', strtotime($value["eventdate"] . " +".$value["duration"]." days"));
+                $duration = $value["duration"] - 1;
+                if($duration > 0){
+                    $end_date = date('d', strtotime($value["eventdate"] . " +".$duration." days"));
+                    $eng_month_name = date('F', strtotime($value["eventdate"] . " +".$duration." days"));
+                    $month_name = $idn_month[$eng_month_name];
+                    $end_year = date('Y', strtotime($value["eventdate"] . " +".$duration." days"));
 
-                $events["data"][$key]["eng_display_detail_date"] = "$start_date - $end_date $eng_month_name $end_year";
-                $events["data"][$key]["display_detail_date"] = "$start_date - $end_date $month_name $end_year";
+                    $events["data"][$key]["eng_display_detail_date"] = "$start_date - $end_date $eng_month_name $end_year";
+                    $events["data"][$key]["display_detail_date"] = "$start_date - $end_date $month_name $end_year";   
+                }
+                else{
+                    $end_date = date('d', strtotime($value["eventdate"] . " +".$duration." days"));
+                    $eng_month_name = date('F', strtotime($value["eventdate"] . " +".$duration." days"));
+                    $month_name = $idn_month[$eng_month_name];
+                    $end_year = date('Y', strtotime($value["eventdate"] . " +".$duration." days"));
+                    $events["data"][$key]["eng_display_detail_date"] = "$start_date $eng_month_name $end_year";
+                    $events["data"][$key]["display_detail_date"] = "$start_date $month_name $end_year";   
+                }
             }
             $events = Pagination::ClearObject($events);
 
@@ -586,13 +597,24 @@ class EventsController extends Controller
 
             foreach($events["data"] as $key => $value){
                 $start_date = date('d', strtotime($value["eventdate"]));
-                $end_date = date('d', strtotime($value["eventdate"] . " +".$value["duration"]." days"));
-                $eng_month_name = date('F', strtotime($value["eventdate"] . " +".$value["duration"]." days"));
-                $month_name = $idn_month[$eng_month_name];
-                $end_year = date('Y', strtotime($value["eventdate"] . " +".$value["duration"]." days"));
+                $duration = $value["duration"] - 1;
+                if($duration > 0){
+                    $end_date = date('d', strtotime($value["eventdate"] . " +".$duration." days"));
+                    $eng_month_name = date('F', strtotime($value["eventdate"] . " +".$duration." days"));
+                    $month_name = $idn_month[$eng_month_name];
+                    $end_year = date('Y', strtotime($value["eventdate"] . " +".$duration." days"));
 
-                $events["data"][$key]["eng_display_detail_date"] = "$start_date - $end_date $eng_month_name $end_year";
-                $events["data"][$key]["display_detail_date"] = "$start_date - $end_date $month_name $end_year";
+                    $events["data"][$key]["eng_display_detail_date"] = "$start_date - $end_date $eng_month_name $end_year";
+                    $events["data"][$key]["display_detail_date"] = "$start_date - $end_date $month_name $end_year";   
+                }
+                else{
+                    $end_date = date('d', strtotime($value["eventdate"] . " +".$duration." days"));
+                    $eng_month_name = date('F', strtotime($value["eventdate"] . " +".$duration." days"));
+                    $month_name = $idn_month[$eng_month_name];
+                    $end_year = date('Y', strtotime($value["eventdate"] . " +".$duration." days"));
+                    $events["data"][$key]["eng_display_detail_date"] = "$start_date $eng_month_name $end_year";
+                    $events["data"][$key]["display_detail_date"] = "$start_date $month_name $end_year";   
+                }
             }
 
             $events = Pagination::ClearObject($events);
