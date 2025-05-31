@@ -127,7 +127,7 @@
                             <div class="col-12 col-md-6 p-0">
                                 <img src="{{$value['thumbnail']?asset($value['thumbnail']):asset('lp-img/default-img-thumbnail-event.png')}}" alt="" style="height: 100%;width: 100%;background-position: center;background-size: cover;min-height: 467.762px;max-height: 491px;background-color: #E5E5E5;">
                             </div>
-                            <div class="col-12 col-md-6 p-4 d-flex flex-column">
+                            <div class="col-12 col-md-6 gpe-r gpc-l gpc-t gpc-b d-flex flex-column">
                               <div class="tanggal">{{$value['eng_display_detail_date']}}</div>
                               <div class="label-event">{{$value['eventname']}}</div>
                               <div class="pb-2 desc">{{$value['description']}}</div>
@@ -141,7 +141,7 @@
                         </div>
                     @else
                         <div class="row">
-                            <div class="col-12 col-md-6 p-4 d-flex flex-column">
+                            <div class="col-12 col-md-6 gpe-l gpc-t gpc-r gpc-b d-flex flex-column">
                               <div class="tanggal">{{$value['eng_display_detail_date']}}</div>
                               <div class="label-event">{{$value['eventname']}}</div>
                               <div class="pb-2 desc">{{$value['description']}}</div>

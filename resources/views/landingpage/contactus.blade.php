@@ -6,9 +6,9 @@
 
      <div class="container-fluid p-0 form">
         <div class="error-container"></div>
-         <div class="container">
+         <div class="container-fluid gpe-l gpe-r">
              <div class="label-eve">Contact Us</div>
-             <form class="container-content mx-auto" id="contact-us">
+             <form class="container-content" id="contact-us">
                 <div class="row mb-3">
                     <div class="col-md-3 col-12">
                         <label for="fullname" class="text-white">Full Name</label>

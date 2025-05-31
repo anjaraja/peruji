@@ -134,6 +134,9 @@
     nav .navbar {
         height: 60px;
     }
+    nav .navbar .navbar-contact {
+        padding-right: 30px;
+    }
     nav .navbar .navbar-contact a {
         color: black;
         transition: 0.2s ease-in-out;
@@ -142,13 +145,30 @@
         background-color: black;
         color: white;
     }
+    #menu-toggle-text{
+        font-size: 18px;
+    }
     .navbar button{
         border: none;
     }
     .navbar button:hover{
         color:#f58529;
     }
-    
+    .navbar-medsos a{
+        padding-right: 22.3px;
+    }
+    .navbar-medsos a:last-child{
+        padding-right: 30px;
+    }
+    .lang-idn{
+        padding-right: 13px;
+    }
+    .lang-dlmtd{
+        font-size: 31px;
+    }
+    .lang-en{
+        padding-left: 13px;
+    }
     .nav-menu-body {
         top: -100vh;
         z-index: -100;
@@ -259,10 +279,20 @@
         color: #F7941D;
         font-size: 35px;
         font-family: Helveticas_medium;
-        padding-bottom: 10px;
     }
     .eve .desc-isi-content {
-        font-size: 17px;
+        padding-left: 300px;
+        padding-right: 300px;
+        font-size: 17.5px;
+    }
+    .pt-section{
+        padding-top:67.5px;
+    }
+    .pt-section-content{
+        padding-top:15px;
+    }
+    .pt-section-content-img{
+        padding-top:40px;
     }
 /* Close About */
 
@@ -306,21 +336,26 @@
         color: #F7941D;
     }
     .in-bom-page .label-person-content {
-        font-size: 20px;
+        font-size: 24px;
         font-family: Helveticas_medium;
     }
     .in-bom-page .label-person-name {
-        font-size: 22px;
+        font-size: 32px;
     }
-    .in-bom-page .container .person{
+    .in-bom-page .person{
         display: flex;
         align-items: center;
         padding: 20px 100px;
+        padding-right: 0 !important;
     }
 
-    .in-bom-page .container .person-2{
+    .in-bom-page .person-2{
         display: flex;
         padding: 20px 100px;
+    }
+
+    .text-person, .text-person-2{
+        padding-left: 2.375rem !important;
     }
 /* Close Board Of Management */
 
@@ -423,6 +458,7 @@
         margin-bottom: 10px;
         font-size: 70px;
         color: white;
+        padding-left: 112.5px;
     }
     .form .header {
         display: flex;
@@ -445,6 +481,11 @@
     }
     .form .container-content {
         max-width: 730px;
+    }
+    #contact-us.container-content {
+        max-width: unset;
+        padding-left: 298px;
+        padding-right: 334px;
     }
     .form label {
         color:white;
@@ -470,9 +511,9 @@
     .terms {
         background-color: #f0f0f0;
     }
-    .terms .container {
-        padding: 60px 0;
-        max-width: 700px;
+    .terms .container-fluid {
+        padding-top: 70px;
+        padding-bottom: 70px;
     }
 
     .terms .container .label-page {
@@ -481,13 +522,16 @@
         padding-bottom: 20px;
     }
     .terms h3 {
-        margin-top: 20px;
         font-size: 40px;
         font-family: Helveticas_medium;
         color: #F7941D;
     }
     .terms ol {
-        padding-left: 1.6rem;
+        padding-top: 12.5px;
+        padding-bottom: 65px;
+    }
+    .terms ol:last-child {
+        padding-bottom: 70px;
     }
     .terms a {
         background-color: #f7941D;
