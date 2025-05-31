@@ -8,6 +8,7 @@
         display: flex;
         width: 100%;
         height: 100vh;
+        overflow: hidden;
     }
 
     .column {
@@ -26,7 +27,7 @@
         opacity: 0;
         visibility: hidden;
         animation-fill-mode: forwards;
-        width: 9%;
+        width: 9.1%;
     }
 
     @keyframes slideUpOnce {
