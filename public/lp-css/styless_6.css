@@ -311,6 +311,7 @@
         border-left: 2px solid #f58529;
         height: 47px;
         top: 6%;
+        margin-left: 2px;
     }
     .in-bom-page .period-container .garis-2 {
         position: absolute;
