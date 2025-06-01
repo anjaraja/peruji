@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container-fluid p-0 terms">
-        <img src="{{asset('lp-img/terms&condition.png')}}" alt="" style="width: 100%;">
+        <img src="{{asset('lp-img/terms&condition.png')}}" alt="" style="width: 100%;height:45vh;background-position:bottom;background-size:cover;">
         <div class="menu-tc-page">
             <div class="header-sub-menu">
                 <section class="square me-3"></section>

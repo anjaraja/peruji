@@ -102,7 +102,7 @@
                             IDN
                         </a>
                     </div>
-                    <div class="navbar-language-center text-dark d-flex align-items-center pt-1 lang-dlmtd">
+                    <div class="navbar-language-center text-dark d-flex align-items-center lang-dlmtd">
                         <span>|</span>
                     </div>
                     <div class="navbar-language-right lang-en">

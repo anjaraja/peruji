@@ -36,7 +36,7 @@
                     <div class="col-md-6 col-12">
                         <div class="row mb-3">
                             <div class="col-md-3 col-12">
-                                <label for="fullname">Male / Female</label>
+                                <label for="fullname">Gender</label>
                             </div>
                             <div class="col-md-9 col-12">
                                 <select id="gender" class="form-control form-control-sm">
@@ -74,7 +74,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-3 col-12">
-                                <label for="function">function</label>
+                                <label for="function">Function</label>
                             </div>
                             <div class="col-md-9 col-12">
                                 <input type="text" class="form-control form-control-sm" id="function">

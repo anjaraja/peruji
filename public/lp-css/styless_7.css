@@ -94,7 +94,7 @@
         font-size: 60px;
         display: flex;
         align-items: center;
-        font-family: Helveticass;
+        font-family: Helveticas_light;
     }
 
     .error-container {
@@ -164,7 +164,8 @@
         padding-right: 13px;
     }
     .lang-dlmtd{
-        font-size: 31px;
+        font-weight: 300 !important;
+        font-size: 20px;
     }
     .lang-en{
         padding-left: 13px;
@@ -278,7 +279,7 @@
     .eve .label-isi-content {
         color: #F7941D;
         font-size: 35px;
-        font-family: Helveticas_medium;
+        font-family: Helveticas_light;
     }
     .eve .desc-isi-content {
         padding-left: 300px;
@@ -473,6 +474,7 @@
         padding: 5px;
         color: white;
         width: 100%;
+        letter-spacing: 10px;
     }
     .form .container {
         max-width: 1050px;
@@ -524,7 +526,7 @@
     }
     .terms h3 {
         font-size: 40px;
-        font-family: Helveticas_medium;
+        font-family: Helveticas_light;
         color: #F7941D;
     }
     .terms ol {
