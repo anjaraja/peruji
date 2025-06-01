@@ -334,7 +334,7 @@
     .in-bom-page .label-person {
         font-size: 35px;
         padding-top: 40px;
-        font-family: Helveticas_medium;
+        font-family: Helveticas_Light;
         color: #F7941D;
     }
     .in-bom-page .label-person-content {
@@ -458,9 +458,8 @@
     .form .label-eve {
         margin-top: 40px;
         margin-bottom: 10px;
-        font-size: 70px;
+        font-size: 64px;
         color: white;
-        padding-left: 112.5px;
     }
     .form .header {
         display: flex;
@@ -532,6 +531,7 @@
     .terms ol {
         padding-top: 12.5px;
         padding-bottom: 65px;
+        padding-left: 24px;
     }
     .terms ol:last-child {
         padding-bottom: 70px;

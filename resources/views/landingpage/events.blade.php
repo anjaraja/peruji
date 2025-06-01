@@ -130,7 +130,7 @@
                             <div class="col-12 col-md-6 gpe-r gpc-l gpc-t gpc-b d-flex flex-column">
                               <div class="tanggal">{{$value['eng_display_detail_date']}}</div>
                               <div class="label-event">{{$value['eventname']}}</div>
-                              <div class="pb-2 desc">{{$value['description']}}</div>
+                              <div class="pb-2 desc">{{$value['eng_description']}}</div>
 
                               <!-- This container stretches to fill remaining space -->
                               <div class="d-flex flex-grow-1 align-items-end">
@@ -144,7 +144,7 @@
                             <div class="col-12 col-md-6 gpe-l gpc-t gpc-r gpc-b d-flex flex-column">
                               <div class="tanggal">{{$value['eng_display_detail_date']}}</div>
                               <div class="label-event">{{$value['eventname']}}</div>
-                              <div class="pb-2 desc">{{$value['description']}}</div>
+                              <div class="pb-2 desc">{{$value['eng_description']}}</div>
 
                               <!-- This container stretches to fill remaining space -->
                               <div class="d-flex flex-grow-1 align-items-end">

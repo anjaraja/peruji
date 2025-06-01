@@ -4,7 +4,10 @@
 
 @section('content')
     <div class="container-fluid p-0 terms">
-        <img src="{{asset('lp-img/terms&condition.png')}}" alt="" style="width: 100%;height:45vh;background-position:bottom;background-size:cover;">
+        <div class="membership-bg" style="width: 100%;height:491px;background: url('{{asset("lp-img/terms&condition.png")}}');background-size:cover;background-position-y:-440px;background-repeat: no-repeat;">
+            
+        </div>
+        <!-- <img src="" alt="" > -->
         <div class="menu-tc-page">
             <div class="header-sub-menu">
                 <section class="square me-3"></section>
