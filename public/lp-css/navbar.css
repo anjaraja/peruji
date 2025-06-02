@@ -1,0 +1,116 @@
+
+/* Nav CSs */
+    @media (max-width:991px) { 
+        .navbar-brand {
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .nav-menu-body .label-nav {
+            font-size: 17px;
+            font-family: Helveticas_medium;
+        }
+
+        .nav-menu-body .label-nav-item {
+            font-size: 12px;
+            padding: 3px 0;
+        }
+        .nav-menu-body .navbar-medsos a{
+            padding-right: 13px;
+        }
+    }
+    @media (min-width:992px) { 
+        .navbar-brand {
+            left: 0%;
+        }
+        .nav-menu-body .label-nav {
+            font-size: 25px;
+            font-family: Helveticas_medium;
+        }
+
+        .nav-menu-body .label-nav-item {
+            font-size: 20px;
+            padding: 3px 0;
+        }
+        .navbar-medsos a{
+            padding-right: 22.3px;
+        }
+        .navbar-medsos a:last-child{
+            padding-right: 30px;
+        }
+    }
+    @media (min-width:1141px) {
+        nav {
+            padding: 0px 4rem !important;
+        }
+    }
+    @media (max-width:1140px) {
+        nav {
+            padding: 0px 2rem !important;
+        }
+    }
+    nav * {
+        font-family: Helveticass;
+    }
+    nav .navbar {
+        height: 60px;
+    }
+    nav .navbar .navbar-contact {
+        padding-right: 30px;
+    }
+    nav .navbar .navbar-contact a {
+        color: black;
+        transition: 0.2s ease-in-out;
+    }
+    nav .navbar .navbar-contact a:hover {
+        background-color: black;
+        color: white;
+    }
+    #menu-toggle-text{
+        font-size: 18px;
+    }
+    .navbar button{
+        border: none;
+    }
+    .navbar button:hover{
+        color:#f58529;
+    }
+    .lang-idn{
+        padding-right: 13px;
+    }
+    .lang-dlmtd{
+        font-weight: 300 !important;
+        font-size: 20px;
+    }
+    .lang-en{
+        padding-left: 13px;
+    }
+    .nav-menu-body {
+        top: -100vh;
+        z-index: -100;
+        transition: top 0.5s ease;
+    }
+    .nav-menu-body.show {
+        top: 0; 
+        min-height: 100vh;
+        z-index: 3;
+    }
+    
+    .nav-menu-body a {
+        text-decoration: none;
+        color: white;
+        padding: 0;
+        margin: 0;
+        transition: 0.3s ease-in-out;
+    }
+    
+    .nav-menu-body a:hover { 
+        color: #f58529;
+    }
+
+    .nav-menu-body ul li {
+        list-style: none;
+    }
+    
+
+/* Close Nav Vss */

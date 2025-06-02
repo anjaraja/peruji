@@ -1,7 +1,7 @@
-<nav class="position-fixed z-2 w-100 bg-white gpe-l gpe-r">
+<nav class="position-fixed z-2 w-100 bg-white">
     <div class="container-nav position-relative">
-        <div class="navbar d-flex justify-content-center align-items-center">
-            <div class="navbar-brand position-absolute start-0">
+        <div class="navbar d-flex justify-content-lg-center justify-content-start align-items-center">
+            <div class="navbar-brand position-absolute">
                 <a href="{{route('homepage')}}">
                     <svg width="108" height="46" viewBox="0 0 130 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_99_1136)">
@@ -64,9 +64,9 @@
                 </a>
             </div>
             <div class="navbar-opt">
-                <button class="btn p-0" type="button" id="nav-menu-open"><h5 class=" m-0 p-0 pt-1" id="menu-toggle-text">MENU</h5></button>
+                <button class="btn" type="button" id="nav-menu-open"><h5 class=" m-0 p-0 pt-1" id="menu-toggle-text">MENU</h5></button>
             </div>
-            <div class="navbar-right d-flex position-absolute align-items-center end-0">
+            <div class="navbar-right position-absolute align-items-center end-0 d-lg-flex d-none">
                 <div class="navbar-medsos d-flex me-0">
                     <a href="https://www.instagram.com/peruji.id/">
                         <svg width="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -117,6 +117,21 @@
 </nav>
 
 <div class="nav-menu-body w-100 h-100 bg-dark position-fixed z-1">
+    <div class="navbar-language position-absolute start-50 d-flex align-items-center">
+        <div class="navbar-language-left lang-idn">
+            <a href="#" class="text-decoration-none text-white d-flex align-items-center pt-1">
+                IDN
+            </a>
+        </div>
+        <div class="navbar-language-center text-white d-flex align-items-center lang-dlmtd">
+            <span>|</span>
+        </div>
+        <div class="navbar-language-right lang-en">
+            <a href="#" class=" text-decoration-none text-white d-flex align-items-center pt-1">
+                ENG
+            </a>
+        </div>
+    </div>
     <ul class="position-absolute top-50  start-50 translate-middle ">
         <li class="label-nav"><a href="{{route('about')}}">ABOUT PERUJI</a></li>
         <ul>
@@ -139,5 +154,30 @@
         </ul>
         <li class="label-nav"><a href="{{route('contact-us')}}">CONTACT</a></li>
     </ul>
-    <a href="{{route('admin')}}" class="position-absolute bottom-0 end-0 pe-5 pb-5 text-decoration-none text-white">ADMIN</a>
+    <a href="{{route('admin')}}" class="position-absolute bottom-0 end-0 pe-5 pb-5 text-decoration-none text-white d-lg-block d-none">ADMIN</a>
+    <div class="navbar-right position-absolute bottom-0  d-lg-none d-flex flex-column justify-content-center start-50 translate-middle">
+        <div class="navbar-medsos d-flex me-0">
+            <a href="https://www.instagram.com/peruji.id/">
+                <svg width="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.9186 34C26.2625 34 33.8372 26.3888 33.8372 17C33.8372 7.61116 26.2625 0 16.9186 0C7.57471 0 0 7.61116 0 17C0 26.3888 7.57471 34 16.9186 34Z" fill="#010101"/>
+                    <path d="M21.5808 11.3148C21.0125 11.3148 20.5498 11.7797 20.5498 12.3508C20.5498 12.9218 21.0125 13.3867 21.5808 13.3867C22.1491 13.3867 22.6118 12.9218 22.6118 12.3508C22.6168 11.7797 22.1541 11.3148 21.5808 11.3148Z" fill="white"/>
+                    <path d="M16.9939 12.6439C14.605 12.6439 12.6587 14.5996 12.6587 17C12.6587 19.4004 14.605 21.3561 16.9939 21.3561C19.3829 21.3561 21.3292 19.4004 21.3292 17C21.3292 14.5996 19.3829 12.6439 16.9939 12.6439ZM16.9939 19.7946C15.46 19.7946 14.2178 18.5413 14.2178 17.0051C14.2178 15.4688 15.465 14.2155 16.9939 14.2155C18.5279 14.2155 19.7701 15.4688 19.7701 17.0051C19.7701 18.5413 18.5229 19.7946 16.9939 19.7946Z" fill="white"/>
+                    <path d="M20.4341 25.8487H13.4031C10.4861 25.8487 8.1123 23.4634 8.1123 20.5324V13.4676C8.1123 10.5366 10.4861 8.15131 13.4031 8.15131H20.4341C23.3511 8.15131 25.7249 10.5366 25.7249 13.4676V20.5324C25.7249 23.4634 23.3511 25.8487 20.4341 25.8487ZM13.4031 9.81896C11.4015 9.81896 9.77198 11.4563 9.77198 13.4676V20.5324C9.77198 22.5437 11.4015 24.181 13.4031 24.181H20.4341C22.4358 24.181 24.0653 22.5437 24.0653 20.5324V13.4676C24.0653 11.4563 22.4358 9.81896 20.4341 9.81896H13.4031Z" fill="white"/>
+                </svg>
+            </a>
+            <a href="https://www.facebook.com/perkumpulan.underwriterperuji">
+                <svg width="30" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.6239 34C26.9678 34 34.5425 26.3888 34.5425 17C34.5425 7.61116 26.9678 0 17.6239 0C8.28003 0 0.705322 7.61116 0.705322 17C0.705322 26.3888 8.28003 34 17.6239 34Z" fill="#010101"/>
+                    <path d="M19.4949 27.8297V18.3543H22.6382L23.2367 14.4328H19.4949V11.8909C19.4949 10.8196 20.0179 9.77348 21.6927 9.77348H23.3926V6.43817C23.3926 6.43817 21.8486 6.17539 20.37 6.17539C17.287 6.17539 15.2753 8.05024 15.2753 11.4512V14.4379H11.8503V18.3594H15.2753V27.8347H19.4949V27.8297Z" fill="white"/>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/company/peruji/">
+                <svg width="30" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.7108 34C27.0547 34 34.6294 26.3888 34.6294 17C34.6294 7.61116 27.0547 0 17.7108 0C8.36694 0 0.792236 7.61116 0.792236 17C0.792236 26.3888 8.36694 34 17.7108 34Z" fill="#010101"/>
+                    <path d="M10.9364 13.0178H13.8434V22.4073H10.9364V13.0178ZM12.3899 8.35345C13.3203 8.35345 14.0747 9.11147 14.0747 10.0464C14.0747 10.9813 13.3203 11.7393 12.3899 11.7393C11.4595 11.7393 10.7051 10.9813 10.7051 10.0464C10.7051 9.11147 11.4544 8.35345 12.3899 8.35345Z" fill="white"/>
+                    <path d="M15.6638 13.0178H18.4501V14.3014H18.4903C18.8775 13.5636 19.8281 12.7854 21.2413 12.7854C24.1835 12.7854 24.7216 14.731 24.7216 17.2577V22.4073H21.8197V17.8439C21.8197 16.7524 21.7996 15.3526 20.3109 15.3526C18.7971 15.3526 18.5708 16.5401 18.5708 17.7631V22.4073H15.6689V13.0178H15.6638Z" fill="white"/>
+                </svg>
+            </a>
+        </div>
+    </div>
 </div>
