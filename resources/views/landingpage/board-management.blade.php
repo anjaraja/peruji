@@ -119,11 +119,6 @@
                         A graduate of the Medical School of UPN Veteran Jakarta, dr. Dessy holds the qualifications of AAAIJ (Ajun Ahli Asuransi Indonesia Jiwa) and AAK (Ahli Asuransi Kesehatan). She began her professional career in 2002 with ACE-INA, a general insurance company, and has amassed over 20 years of experience in the insurance industry, primarily focusing on operational roles. Before joining INARE as the Director of Life and Health Business, she served as the Director of Operations at JAGADIRI (PT Central Asia Financial), a digital insurance company.
                     </div>
                     
-                    <div class="label-person-content" lang="eng">VICE PRESIDENT</div>
-                    <div class="label-person-content" lang="idn" style="display:none;">WAKIL KETUA</div>
-                    <div class="label-person-name">dr. Aditia Gani Ardhi, AAAIJ, AAK, CRMO</div>
-                    <div style="font-size: 24px;margin-bottom: 43px;">Head of Claims Department - PT Reasuransi Indonesia Utama</div>
-                    
                     <div class="label-person-content" lang="eng">SECRETARY</div>
                     <div class="label-person-content" lang="idn" style="display:none;">SEKRETARIS</div>
                     <div class="label-person-name">dr. Adi Kurnia Nur, FLMI, FALU, QCRO</div>

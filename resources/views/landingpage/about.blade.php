@@ -3,8 +3,30 @@
 @section('title', 'PERUJI')
 
 @section('content')
+<style>
+  .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 aspect ratio (9 / 16 = 0.5625) */
+      overflow: hidden;
+    }
+
+    .responsive-video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+</style>
     <div class="container-fluid p-0 eve">
-        <img src="{{asset('lp-img/crop-about-page.png')}}" style="height:100vh;width: 100%;" alt="">
+        <!-- <img src="{{asset('lp-img/about-page.png')}}" style="height:100vh;width: 100%;" alt=""> -->
+        <div class="video-wrapper">
+          <video class="responsive-video" autoplay muted loop playsinline>
+            <source src="{{asset('lp-img/about-page.webm')}}" type="video/webm">
+            Your browser does not support the video tag.
+          </video>
+        </div>
         <div class="header-sub-menu">
             <section class="square me-3"></section>
             <h1 class="label m-0 mt-1">About PERUJI</h1> 
