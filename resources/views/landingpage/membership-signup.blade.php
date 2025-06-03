@@ -15,7 +15,7 @@
                 </div>
                 
                 <div class="row mt-3">
-                    <div class="col-md-6 col-12">
+                    <div class="col-6">
                         <div class="row mb-3">
                             <div class="col-md-3 col-12">
                                 <label for="fullname">Full Name</label>
@@ -33,7 +33,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-12">
+                    <div class="col-6">
                         <div class="row mb-3">
                             <div class="col-md-3 col-12">
                                 <label for="fullname">Gender</label>
@@ -63,7 +63,7 @@
                 </div>
                 
                 <div class="row mt-3">
-                    <div class="col-md-6 col-12">
+                    <div class="col-6">
                         <div class="row mb-3">
                             <div class="col-md-3 col-12">
                                 <label for="companyname">Company Name</label>
@@ -81,7 +81,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-12">
+                    <div class="col-6">
                         <div class="row mb-3">
                             <div class="col-md-3 col-12">
                                 <label for="departnment">Department</label>

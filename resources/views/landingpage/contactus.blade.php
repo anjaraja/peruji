@@ -6,7 +6,7 @@
 
      <div class="container-fluid p-0 form">
         <div class="error-container"></div>
-         <div class="container-fluid gpe-l gpe-r">
+         <div class="container-fluid">
              <div class="label-eve">Contact Us</div>
              <form class="container-content" id="contact-us">
                 <div class="row mb-3">

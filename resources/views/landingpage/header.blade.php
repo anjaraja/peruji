@@ -1,7 +1,7 @@
 <nav class="position-fixed z-2 w-100 bg-white">
     <div class="container-nav position-relative">
-        <div class="navbar d-flex justify-content-lg-center justify-content-start align-items-center">
-            <div class="navbar-brand position-absolute">
+        <div class="navbar d-flex justify-content-center align-items-center">
+            <div class="navbar-brand position-absolute start-0">
                 <a href="{{route('homepage')}}">
                     <svg width="108" height="46" viewBox="0 0 130 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_99_1136)">
@@ -66,8 +66,8 @@
             <div class="navbar-opt">
                 <button class="btn" type="button" id="nav-menu-open"><h5 class=" m-0 p-0 pt-1" id="menu-toggle-text">MENU</h5></button>
             </div>
-            <div class="navbar-right position-absolute align-items-center end-0 d-lg-flex d-none">
-                <div class="navbar-medsos d-flex me-0">
+            <div class="navbar-right position-absolute align-items-center end-0 d-flex">
+                <div class="navbar-medsos d-lg-flex d-none me-0">
                     <a href="https://www.instagram.com/peruji.id/">
                         <svg width="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M16.9186 34C26.2625 34 33.8372 26.3888 33.8372 17C33.8372 7.61116 26.2625 0 16.9186 0C7.57471 0 0 7.61116 0 17C0 26.3888 7.57471 34 16.9186 34Z" fill="#010101"/>
@@ -90,7 +90,7 @@
                         </svg>
                     </a>
                 </div>
-                <div class="navbar-contact">
+                <div class="navbar-contact d-lg-flex d-none">
                     <a href="{{ route('contact-us') }}" class="d-flex align-items-center text-decoration-none btn btn-outline-dark rounded"
                         style="">
                         CONTACT
@@ -117,21 +117,6 @@
 </nav>
 
 <div class="nav-menu-body w-100 h-100 bg-dark position-fixed z-1">
-    <div class="navbar-language position-absolute start-50 d-flex align-items-center">
-        <div class="navbar-language-left lang-idn">
-            <a href="#" class="text-decoration-none text-white d-flex align-items-center pt-1">
-                IDN
-            </a>
-        </div>
-        <div class="navbar-language-center text-white d-flex align-items-center lang-dlmtd">
-            <span>|</span>
-        </div>
-        <div class="navbar-language-right lang-en">
-            <a href="#" class=" text-decoration-none text-white d-flex align-items-center pt-1">
-                ENG
-            </a>
-        </div>
-    </div>
     <ul class="position-absolute top-50  start-50 translate-middle ">
         <li class="label-nav"><a href="{{route('about')}}">ABOUT PERUJI</a></li>
         <ul>

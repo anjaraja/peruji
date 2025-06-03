@@ -1,15 +1,5 @@
 /* Nav CSs */
     @media (max-width:600px) { 
-        .navbar-brand {
-            left: 13.5%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .navbar-opt{
-            position: absolute;
-            top: 30%;
-            right: -4.5%;
-        }
         .nav-menu-body .label-nav {
             font-size: 17px;
             font-family: Helveticas_medium;
@@ -32,7 +22,6 @@
             max-width: 374px !important;
         }
         .nav-menu-body ul{
-            top: 33% !important;
             width: 50%;
             padding-left: 0;
         }
@@ -176,7 +165,7 @@
         padding-left: 13px;
     }
     .nav-menu-body {
-        top: -100vh;
+        top: -100%;
         z-index: -100;
         transition: top 0.5s ease;
     }
