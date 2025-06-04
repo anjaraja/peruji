@@ -1,5 +1,5 @@
 /* Nav CSs */
-    @media (max-width:600px) { 
+    @media (max-width:991px) { 
         nav{
             padding: 0px 1.7rem !important;
         }
@@ -14,7 +14,7 @@
 
         }
         .nav-menu-body .label-nav {
-            font-size: 17px;
+            font-size: 19px;
             font-family: Helveticas_medium;
         }
         .lang-idn{
@@ -29,11 +29,8 @@
         }
 
         .nav-menu-body .label-nav-item {
-            font-size: 13px;
+            font-size: 15px;
             padding: 3px 0;
-        }
-        .nav-menu-body .navbar-medsos a{
-            padding-right: 13px;
         }
         .carousel-text{
             padding-left: 6.5% !important;
@@ -48,9 +45,15 @@
             padding-bottom: 1.5rem !important;
         }
         .nav-menu-body ul{
-            width: 50%;
+            width: 100%;
+            text-align: center;
             padding-left: 0;
-            top: 45% !important;
+            top: 50% !important;
+        }
+        .nav-menu-body .label-nav-contact a{
+            background: white;
+            color: black;
+            border-radius: 10px;
         }
 
         /*ABOUT*/
@@ -186,7 +189,8 @@
     }
     @media (max-width: 390px){
         .nav-menu-body ul{
-            width: 53%;
+            width: 100%;
+            text-align: center;
         }
         .container-home .home-banner img {
             max-width: 21rem !important;
@@ -197,7 +201,6 @@
         .header-sub-menu .label {
             font-size: 45px !important;
         }
-
         /*ABOUT*/
         .responsive-video{
             top:2rem !important;
@@ -286,7 +289,7 @@
         padding-left: 13px;
     }
     .nav-menu-body {
-        top: -100vh;
+        top: -100%;
         z-index: -100;
         transition: top 0.5s ease;
     }
@@ -308,6 +311,8 @@
         color: #f58529;
     }
 
+    .nav-menu-body ul { 
+    }
     .nav-menu-body ul li {
         list-style: none;
     }

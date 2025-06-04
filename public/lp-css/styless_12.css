@@ -97,6 +97,26 @@
         align-items: center;
         font-family: Helveticas_light;
     }
+
+    @media (max-width:991px) {
+        .container-fluid .header-sub-menu .square{
+            width: 1.7rem !important;
+            height: 1.7rem !important;
+        }
+        .container-fluid .header-sub-menu .label{
+            font-size: 33px !important;
+        }
+    }
+
+    @media (max-width:390px) {
+        .container-fluid .header-sub-menu .square{
+            width: 1.6rem !important;
+            height: 1.6rem !important;
+        }
+        .container-fluid .header-sub-menu .label{
+            font-size: 29px !important;
+        }
+    }
     
     .error-container {
         position: absolute;
@@ -254,7 +274,7 @@
         font-family: Helveticas_medium;
     }
     .in-bom-page .label-person {
-        font-size: 32px;
+        font-size: 45px;
         padding-top: 40px;
         font-family: Helveticas_Light;
         color: #F7941D;
@@ -269,6 +289,11 @@
     .in-bom-page .label-person-job {
         font-size: 24px;
         margin-bottom: 43px;
+        font-family: Helveticasss;
+    }
+    .in-bom-page .label-text-desc {
+        margin: 0px 0 40px 0; 
+        font-size: 17px;
     }
     .in-bom-page .person img,.in-bom-page .person-2 img {
         width: 120px;
@@ -291,60 +316,130 @@
         padding-left: 2.375rem !important;
     }
 
-    @media (max-width:600px) { 
+    @media (max-width:991px) { 
+        .in-bom-page .container-fluid {
+            padding: 0 3rem;
+        }
+        #imageColumns img{
+            width: 7.2% !important;
+        }
+        .in-bom-page .label-person {
+            font-size: 37px;
+            padding-top: 40px;
+            font-family: Helveticas_Light;
+            color: #F7941D;
+        }
+        .in-bom-page .label-person-content {
+            font-size: 21px;
+            font-family: Helveticas_medium;
+        }
+        .in-bom-page .label-person-name {
+            font-size: 21px;
+        }
+        .in-bom-page .label-person-job {
+            font-size: 17px;
+            margin-bottom: 43px;
+        }
+        .in-bom-page .label-text-desc {
+            margin: 0px 0 40px 0; 
+            font-size: 17px;
+        }
+        .in-bom-page .person img,.in-bom-page .person-2 img {
+            width: 100px;
+            height: 100px;
+        }
+        .in-bom-page .person{
+            padding: 20px 70px;
+        }
+        .in-bom-page .person .label-person-name {
+            padding-top: 20px;
+            font-size: 17px;
+        }
+        .in-bom-page .person-2{
+            padding: 20px 70px;
+        }
+        .text-person, .text-person-2{
+            padding-left: 1.6rem !important;
+        }
+    }
+     @media (max-width:600px) { 
         .in-bom-page .container-fluid {
             padding: 0 30px;
         }
         #imageColumns img{
             width: 7.2% !important;
         }
-        .container-fluid.bom .header-sub-menu .square{
-            width: 1.7rem !important;
-            height: 1.7rem !important;
+        .in-bom-page .period-container {
+            margin: 0 auto;
+            position: relative;
+            text-align: center;
+            width: 220px;
         }
-        .container-fluid.bom .header-sub-menu .label{
-            font-size: 33.5px !important;
+        .in-bom-page .period-container .garis-1 {
+            position: absolute;
+            border-left: 3px solid #f58529;
+            height: 57px;
+        }
+        .in-bom-page .period-container .garis-2 {
+            position: absolute;
+            border-left: 3px solid #f58529;
+            height: 57px;
+        }
+        .in-bom-page .period-container .label {
+            font-size: 16px;
+        }
+        .in-bom-page .period-container .year {
+            font-size: 32px;
         }
         .in-bom-page .label-person {
-            font-size: 30px;
+            text-align: center;
+            font-size: 32px;
             padding-top: 40px;
             font-family: Helveticas_Light;
             color: #F7941D;
         }
+        .in-bom-page .person{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px 0px;
+        }
+        .in-bom-page .person .label-person-name {
+            padding-top: 20px;
+            font-size: 17px;
+        }
+        .in-bom-page .person-2{
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px 0px;
+        }
         .in-bom-page .label-person-content {
-            font-size: 18px;
+            padding-top: 20px;
+            font-size: 17px;
             font-family: Helveticas_medium;
         }
         .in-bom-page .label-person-name {
-            font-size: 18px;
+            font-size: 17px;
         }
         .in-bom-page .label-person-job {
-            font-size: 18px;
-            margin-bottom: 43px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .in-bom-page .label-text-desc {
+            margin: 15px 0 20px 0; 
+            font-size: 14px;
         }
         .in-bom-page .person img,.in-bom-page .person-2 img {
-            width: 80px;
-            height: 80px;
-        }
-        .in-bom-page .person{
-            padding: 20px 30px;
-        }
-        .in-bom-page .person-2{
-            padding: 20px 30px;
+            width: 100px;
+            height: 100px;
         }
         .text-person, .text-person-2{
-            padding-left: 1.6rem !important;
+            padding: 0 !important;
         }
     }
     @media(max-width: 390px){
-
-        .container-fluid.bom .header-sub-menu .square{
-            width: 1.6rem !important;
-            height: 1.6rem !important;
-        }
-        .container-fluid.bom .header-sub-menu .label{
-            font-size: 29px !important;
-        }
     }
 /* Close Board Of Management */
 

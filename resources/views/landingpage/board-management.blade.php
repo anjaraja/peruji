@@ -115,7 +115,7 @@
                     <div class="label-person-name">dr. Dessy Kusumayati, AAAIJ, AAK, UND, CRGP, AMRP</div>
                     <div class="label-person-job">Director of Life & Health Business - PT Indoperkasa Suksesjaya Reasuransi</div>
                     
-                    <div style="margin: 15px 0 43px 0; font-size: 17px;">
+                    <div class="label-text-desc">
                         A graduate of the Medical School of UPN Veteran Jakarta, dr. Dessy holds the qualifications of AAAIJ (Ajun Ahli Asuransi Indonesia Jiwa) and AAK (Ahli Asuransi Kesehatan). She began her professional career in 2002 with ACE-INA, a general insurance company, and has amassed over 20 years of experience in the insurance industry, primarily focusing on operational roles. Before joining INARE as the Director of Life and Health Business, she served as the Director of Operations at JAGADIRI (PT Central Asia Financial), a digital insurance company.
                     </div>
                     
