@@ -136,7 +136,7 @@
                     
                     <div class="label-person-content" lang="eng">VICE TREASURER</div>
                     <div class="label-person-content" lang="idn" style="display:none;">WAKIL BENDAHARA</div>
-                    <div class="label-person-name">dr. Valencia S. Hahijary</div>
+                    <div class="label-person-name">dr. Valencia S. Hahijary, CLI</div>
                     <div class="label-person-job">(PT PFI Mega Life Insurance)</div>
                     
                     <div class="label-person-content" lang="eng">HEAD OF MEMBERSHIP</div>
