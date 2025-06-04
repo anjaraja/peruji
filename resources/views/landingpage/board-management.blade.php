@@ -71,7 +71,7 @@
 <div class="container-fluid p-0">
     <div class="slide-container" id="imageColumns"></div>
 </div>
-<div class="container-fluid p-0">
+<div class="container-fluid p-0 bom">
     <!-- <img src="{{asset('lp-img/bom.png')}}" alt="" style="width: 100%;"> -->
     <div class="header-sub-menu">
         <section class="square me-3"></section>

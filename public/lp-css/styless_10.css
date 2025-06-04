@@ -291,9 +291,19 @@
         padding-left: 2.375rem !important;
     }
 
-    @media (max-width:991px) { 
+    @media (max-width:600px) { 
         .in-bom-page .container-fluid {
             padding: 0 30px;
+        }
+        #imageColumns img{
+            width: 7.2% !important;
+        }
+        .container-fluid.bom .header-sub-menu .square{
+            width: 1.7rem !important;
+            height: 1.7rem !important;
+        }
+        .container-fluid.bom .header-sub-menu .label{
+            font-size: 33.5px !important;
         }
         .in-bom-page .label-person {
             font-size: 30px;
@@ -324,6 +334,16 @@
         }
         .text-person, .text-person-2{
             padding-left: 1.6rem !important;
+        }
+    }
+    @media(max-width: 390px){
+
+        .container-fluid.bom .header-sub-menu .square{
+            width: 1.6rem !important;
+            height: 1.6rem !important;
+        }
+        .container-fluid.bom .header-sub-menu .label{
+            font-size: 29px !important;
         }
     }
 /* Close Board Of Management */
@@ -374,13 +394,16 @@
     }
 
     .container-event .image-layout .content {
-        position: absolute;
+        /*position: absolute;*/
         z-index: 2;
         color: white;
         top: 54%;
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
     
     .container-event .image-layout .content .head-events{
@@ -412,6 +435,9 @@
     }
     .in-event-page .desc {
         font-size: 16px;
+    }
+    .event .for-mobile{
+        display: none !important;
     }
 /* Close Events */
 

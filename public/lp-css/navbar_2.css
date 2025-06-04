@@ -1,8 +1,31 @@
 /* Nav CSs */
     @media (max-width:600px) { 
+        nav{
+            padding: 0px 1.7rem !important;
+        }
+        .navbar-opt{
+            padding-top: .7rem !important;
+        }
+        .navbar-language{
+            padding-top: 1rem !important;
+        }
+        .nav-menu-body .navbar-right{
+            margin-bottom: 20%;
+
+        }
         .nav-menu-body .label-nav {
             font-size: 17px;
             font-family: Helveticas_medium;
+        }
+        .lang-idn{
+            padding-right: 7.5px !important;
+        }
+        .lang-dlmtd{
+            font-weight: 300 !important;
+            font-size: 20px;
+        }
+        .lang-en{
+            padding-left: 7.5px !important;
         }
 
         .nav-menu-body .label-nav-item {
@@ -19,14 +42,15 @@
             width: 73% !important;
         }
         .container-home .home-banner img {
-            max-width: 374px !important;
+            max-width: 23.3rem !important;
+        }
+        .banner-image{
+            padding-bottom: 1.5rem !important;
         }
         .nav-menu-body ul{
             width: 50%;
             padding-left: 0;
-        }
-        .nav-menu-body .navbar-right{
-            margin-bottom: 15%;
+            top: 45% !important;
         }
 
         /*ABOUT*/
@@ -49,8 +73,13 @@
         /*EVENT*/
             .container-event .image-layout .content .head-events {
                 padding-bottom: 0 !important;
-                padding-left: 2% !important;
-                padding-right: 2% !important;
+                padding-left: 3% !important;
+                padding-right: 3% !important;
+                font-size: 48px !important;
+                margin-top: 37vw !important;
+            }
+            .container-event .event-list {
+                height: 50% !important;
             }
             #container-event .image-layout img {
                 max-width: 374px !important;
@@ -79,6 +108,34 @@
             .in-event-page > .row[label='even']{
                 flex-direction: column-reverse;
             }
+            .event.flex-row{
+                flex-direction: column !important;
+            }
+            .event .d-flex.for-mobile{
+                display: flex !important;
+            }
+            .event .for-mobile{
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between;
+                width: 100% !important;
+            }
+            .event .for-desktop{
+                display: none !important;
+            }
+            .event-detail-container.show {
+                margin-bottom: 5px;
+            }
+            .event-detail-container.show img{
+                max-width: 21rem !important;
+            }
+            .event-detail-container.show .content-event{
+                height: 100%;
+            }
+            .event-detail-container.show .bottom-container{
+                padding-left: 5px;
+                padding-right: 5px;
+            }
         /*MEMBERSHIP*/
             .membership-bg{
                 background-position-y: 0px !important;
@@ -96,7 +153,46 @@
                 padding-right: unset !important;
             }
         /*END MEMBERSHIP*/
+        /*FOOTER*/
+            footer{
+                margin-top: 1px;
+            }
+        /*END FOOTER*/
+    }
+    @media (max-width: 390px){
+        .nav-menu-body ul{
+            width: 53%;
+        }
+        .container-home .home-banner img {
+            max-width: 21rem !important;
+        }
+        .header-sub-menu{
+            padding: 1.3rem 1.5rem!important;
+        }
+        .header-sub-menu .label {
+            font-size: 45px !important;
+        }
 
+        /*ABOUT*/
+        .responsive-video{
+            top:2rem !important;
+        }
+        .eve .desc-isi-content {
+            padding-left: 7% !important;
+            padding-right: 7% !important;
+        }
+        /*ABOUT*/
+        /*EVENTS*/
+        .container-event .image-layout .content .head-events {
+            font-size: 43px !important;
+        }
+        #container-event .image-layout img {
+            max-width: 21rem !important;
+        }
+        .event .d-flex.for-mobile{
+            display: flex !important;
+        }
+        /*END EVENTS*/
     }
     @media (min-width:992px) { 
         .navbar-brand {
@@ -165,7 +261,7 @@
         padding-left: 13px;
     }
     .nav-menu-body {
-        top: -100%;
+        top: -100vh;
         z-index: -100;
         transition: top 0.5s ease;
     }
