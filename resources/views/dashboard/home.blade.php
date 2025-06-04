@@ -430,6 +430,7 @@
                     source_form.querySelector("input[name='update_event_duration']").value = form_data["duration"];
                     source_form.querySelector("textarea[name='update_event_message']").value = form_data["description"];
                     source_form.querySelector("textarea[name='update_eng_event_message']").value = form_data["eng_description"];
+                    source_form.querySelector("textarea[name='update_event_links']").value = form_data["additionalcontent"];
                     if(form_data["banner"]){
                         input_banner = source_form.querySelector("input[name='update_event_banner']");
                         input_banner.closest("div.mb-3").querySelector("div[preview-file]")?.remove();
@@ -530,6 +531,8 @@
         if(event_banner) formdata.append("banner",event_banner)
         event_agenda = this.querySelector("input[name='update_event_agenda']").files[0]
         if(event_agenda) formdata.append("agenda",event_agenda)
+        event_additional_links = this.querySelector("textarea[name='update_event_links']").value
+        formdata.append("additionalcontent",event_additional_links)
 
         specific_data = this.querySelector("input[name='update_events']");
 

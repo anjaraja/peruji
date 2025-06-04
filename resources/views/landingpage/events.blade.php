@@ -150,7 +150,7 @@
 
                               <!-- This container stretches to fill remaining space -->
                               <div class="d-flex flex-grow-1 align-items-end">
-                                <i class="news-link">News Links</i>
+                                <i class="news-link" prev-event-row="{{$value['id']}}">News Links</i>
                                 <i class="gallery-link ml-auto">Photo Gallery</i>
                               </div>
                             </div>
@@ -164,7 +164,7 @@
 
                               <!-- This container stretches to fill remaining space -->
                               <div class="d-flex flex-grow-1 align-items-end">
-                                <i class="news-link">News Links</i>
+                                <i class="news-link" prev-event-row="{{$value['id']}}">News Links</i>
                                 <i class="gallery-link ml-auto">Photo Gallery</i>
                               </div>
                             </div>
@@ -173,6 +173,12 @@
                             </div>
                         </div>
                     @endif
+                    <div class="news-link-container" prev-event-row="{{$value['id']}}">
+                        <h1>{{$value["eventname"]}}</h1>
+                        @foreach(explode("\n",$value["additionalcontent"]) as $key2 => $value2)
+                            <a href="{{$value2}}" target="_BLANK">{{$value2}}</a>
+                        @endforeach
+                    </div>
                 @endforeach
             </div>
         </div>
@@ -186,6 +192,12 @@
     </div>
 
 <script>
+    showLink = function(element){
+        prev_event_row = element.getAttribute("prev-event-row");
+        news_link_container = document.querySelector(`.news-link-container[prev-event-row="${prev_event_row}"]`);
+
+        news_link_container.classList.add("show");
+    }
     document.addEventListener("click",function(event){
         this_element = event.target;
         if(this_element.matches("span.detail-event")){
@@ -214,6 +226,16 @@
             },800)
             // this_element.closest(".event").querySelector(".event-detail-container").classList.remove("show");
         }
+
+        news_link_container_showed = document.querySelector(".news-link-container.show");
+        if(news_link_container_showed && !news_link_container_showed.contains(this_element)){
+            news_link_container_showed.classList.remove("show");
+        }
+
+        if(this_element.matches(".news-link")){
+            showLink(this_element)
+        }
+
     })
 </script>
 @endsection

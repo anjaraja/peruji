@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'PERUJI')</title>
     <link rel="stylesheet" href="{{ asset('lp-css/global.css') }}"> 
-    <link rel="stylesheet" href="{{ asset('lp-css/navbar_2.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('lp-css/navbar_3.css') }}"> 
     <link rel="stylesheet" href="{{ asset('lp-css/styless_11.css') }}"> 
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
     <script src="{{asset('dash-js/fetchhelper_1.js')}}"></script>
