@@ -479,8 +479,8 @@
     }
     #contact-us.container-content {
         max-width: unset;
-        padding-left: 278px;
-        padding-right: 278px;
+        padding-left: 150px;
+        padding-right: 150px;
     }
     .form label {
         color:white;
