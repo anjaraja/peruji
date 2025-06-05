@@ -160,8 +160,6 @@
         display: none;
     }
 
-    @media (max-width:600px) {
-    }
     @media (max-width:991px) {
         .container-home #mobile {
             display: block;
@@ -178,6 +176,7 @@
             padding-left: 0 !important;
         }
     }
+    
     @media (min-width:992px) {
 
         .container-home svg{

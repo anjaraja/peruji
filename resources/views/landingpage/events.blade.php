@@ -125,7 +125,7 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="desc-upcoming-event">
+                <div class="desc-upcoming-event d-md-block d-none">
                     <p>PERUJI’s commitment to professional development is reflected through a range of training programs, seminars, and workshops. Each event is designed to enrich knowledge, strengthen skills, and foster a competent and trusted community of life underwriters.</p>
                 </div>
                 <!-- <p>Komitmen Peruji terhadap pengembangan profesional diwujudkan melalui berbagai program pelatihan, seminar, dan workshop. Setiap event dirancang untuk memperkaya pengetahuan, memperkuat keterampilan, dan membangun komunitas Underwriter Jiwa yang kompeten dan terpercaya.</p> -->
@@ -137,6 +137,13 @@
                 <h1 class="label m-0 mt-1">Previous Event</h1>
             </div>
             <div class="in-event-page">
+                <div class="row d-md-none d-block">
+                    <div class="col-12 p-0">
+                        <div class="desc-upcoming-event d-flex align-items-center text-center p-4">
+                            <p>PERUJI’s commitment to professional development is reflected through a range of training programs, seminars, and workshops. Each event is designed to enrich knowledge, strengthen skills, and foster a competent and trusted community of life underwriters.</p>
+                        </div>
+                    </div>
+                </div>
                 @foreach ($previous_events as $key => $value)
                     @if($key % 2 === 0)
                         <div class="row" label="odd">

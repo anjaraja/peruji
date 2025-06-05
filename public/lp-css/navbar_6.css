@@ -57,11 +57,46 @@
             border-radius: 10px;
         }
 
+        /* Handphone Landscape */
+
+            @media (max-height:430px) { 
+                /* Navbar */
+                    .nav-menu-body ul{
+                        bottom: -17% !important;
+                    }
+                    .nav-menu-body .label-nav {
+                        padding-bottom: 10px !important;
+                        font-size: 12px;
+                        font-family: Helveticas_medium;
+                    }
+                    .nav-menu-body .label-nav-item {
+                        font-size: 12px;
+                        padding: 0px 0;
+                    }
+                
+                /* End navbar */
+
+                /* Container Home */
+                    .container-home svg{
+                        width: 200px !important;
+                    }
+                    .carousel-text {
+                        display: flex;
+                        justify-content: center ;
+                        align-items: center;
+                        margin-top: 5vh !important;
+                        padding-left: 0 !important;
+                    }
+                /* End Container */
+            }
+
+        /* End Handphone Landscape */
+
         /*ABOUT*/
             .eve .desc-isi-content {
                 padding-left: 6.5% !important;
                 padding-right: 6.5% !important;
-                text-align: justify;
+                text-align: center;
             }
             .header-sub-menu .square.me-3 {
                 width: 40px !important;
@@ -189,15 +224,17 @@
         /*END FOOTER*/
     }
     @media (max-width:600px) {
-        .terms h3, .terms .content-button {
-            text-align: center;
-        }
-        .menu-tc-page .gpe-l{
-            padding-left: 8.5% !important;
-        }
-        .menu-tc-page .gpe-r{
-            padding-right: 8.5% !important;
-        }
+        /* Membership */
+            .terms h3, .terms .content-button {
+                text-align: center;
+            }
+            .menu-tc-page .gpe-l{
+                padding-left: 8.5% !important;
+            }
+            .menu-tc-page .gpe-r{
+                padding-right: 8.5% !important;
+            }
+        /* End Membership */
     }
     @media (max-width: 390px){
         .nav-menu-body ul{
@@ -213,25 +250,27 @@
         .header-sub-menu .label {
             font-size: 45px !important;
         }
+
         /*ABOUT*/
-        .responsive-video{
-            top:2rem !important;
-        }
-        .eve .desc-isi-content {
-            padding-left: 7% !important;
-            padding-right: 7% !important;
-        }
+            .responsive-video{
+                top:2rem !important;
+            }
+            .eve .desc-isi-content {
+                padding-left: 7% !important;
+                padding-right: 7% !important;
+            }
         /*ABOUT*/
+
         /*EVENTS*/
-        .container-event .image-layout .content .head-events {
-            font-size: 43px !important;
-        }
-        #container-event .image-layout img {
-            max-width: 21rem !important;
-        }
-        .event .d-flex.for-mobile{
-            display: flex !important;
-        }
+            .container-event .image-layout .content .head-events {
+                font-size: 43px !important;
+            }
+            #container-event .image-layout img {
+                max-width: 21rem !important;
+            }
+            .event .d-flex.for-mobile{
+                display: flex !important;
+            }
         /*END EVENTS*/
     }
     @media (min-width:992px) { 
@@ -254,20 +293,22 @@
         .navbar-medsos a:last-child{
             padding-right: 30px;
         }
+
         /* membership */
-        .membership-bg{
-            background-position-y: -163px !important;
-        }
+            .membership-bg{
+                background-position-y: -163px !important;
+            }
         /* end membership */
     }
     @media (min-width:1141px) {
         nav {
             padding: 0px 4rem !important;
         }
+
         /* membership */
-        .membership-bg{
-            background-position-y: -203px !important;
-        }
+            .membership-bg{
+                background-position-y: -203px !important;
+            }
         /* end membership */
     }
     @media (max-width:1140px) {
