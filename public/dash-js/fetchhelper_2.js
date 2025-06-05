@@ -26,11 +26,19 @@ async function asyncFetchData(url,method,headers={},body={}){
 	if (typeof localStorage.getItem('Token') != "undefined"){
 		headers["Authorization"] = `Bearer ${localStorage.getItem('Token')}`
 	}
+
+	if(body instanceof FormData){
+		body = body
+	}
+	else{
+		body = JSON.stringify(body)
+	}
+
 	try{
 		const response = await fetch(url,{
 	      	method: method,
 	      	headers: headers,
-	      	body: JSON.stringify(body)	
+	      	body: body
 	    })
 		const data = await response.json()
 	    return data;

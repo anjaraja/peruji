@@ -366,8 +366,8 @@ class EventsController extends Controller
             Log::channel('activity')->info('[UPDATE EVENTS][DATA]', $data);
 
             // BEGIN UPLOAD BANNER
+            $banner_path = str_replace("storage/", "", $events_data->banner);
             if ($request->hasFile('banner')) {
-                $banner_path = str_replace("storage/", "", $events_data->banner);
                 // Delete old image if it exists
                 if ($banner_path && Storage::disk('public')->exists($banner_path)) {
                     Storage::disk('public')->delete($banner_path);
@@ -379,12 +379,20 @@ class EventsController extends Controller
                 $path = $request->file('banner')->storeAs('event-banner', $filename, 'public');
                 $data["banner"] = Storage::url($path);
             }
-            else unset($data["banner"]);
+            else {
+                if ($banner_path && Storage::disk('public')->exists($banner_path)) {
+                    Storage::disk('public')->delete($banner_path);
+                    $data["banner"] = null;
+                }
+                // else{
+                //     unset($data["banner"]);
+                // }
+            }
             // END UPLOAD BANNER
 
             // BEGIN UPLOAD THUMBNAIL
+            $thumbnail_path = str_replace("storage/", "", $events_data->thumbnail);
             if ($request->hasFile('thumbnail')) {
-                $thumbnail_path = str_replace("storage/", "", $events_data->thumbnail);
                 // Delete old image if it exists
                 if ($thumbnail_path && Storage::disk('public')->exists($thumbnail_path)) {
                     Storage::disk('public')->delete($thumbnail_path);
@@ -396,26 +404,32 @@ class EventsController extends Controller
                 $path = $request->file('thumbnail')->storeAs('event-thumbnail', $filename, 'public');
                 $data["thumbnail"] = Storage::url($path);
             }
-            else unset($data["thumbnail"]);
+            else {
+                if ($thumbnail_path && Storage::disk('public')->exists($thumbnail_path)) {
+                    Storage::disk('public')->delete($thumbnail_path);
+                    $data["thumbnail"] = null;
+                }
+                // unset($data["thumbnail"]);
+            }
             // END UPLOAD THUMBNAIL
 
-            // BEGIN UPLOAD PHOTO
-            $photos = json_decode($events_data->photo);
-            if(isset($request->photo)){
-                if($request->file("photo")){
-                    foreach ($request->file("photo") as $key => $value) {
-                        $filename = time()."_".$data["eventname"]."-$key".".".$value->getClientOriginalExtension();
-                        $path = $value->storeAs('event-photo', $filename, 'public');
-                        $photos[] = Storage::url($path);
-                    }  
-                }
-            } 
-            $data["photo"] = json_encode($photos);
-            // END UPLOAD PHOTO
+            // // BEGIN UPLOAD PHOTO
+            // $photos = json_decode($events_data->photo);
+            // if(isset($request->photo)){
+            //     if($request->file("photo")){
+            //         foreach ($request->file("photo") as $key => $value) {
+            //             $filename = time()."_".$data["eventname"]."-$key".".".$value->getClientOriginalExtension();
+            //             $path = $value->storeAs('event-photo', $filename, 'public');
+            //             $photos[] = Storage::url($path);
+            //         }  
+            //     }
+            // } 
+            // $data["photo"] = json_encode($photos);
+            // // END UPLOAD PHOTO
 
             // BEGIN UPLOAD AGENDA
+            $agenda_path = str_replace("storage/", "", $events_data->agenda);
             if ($request->hasFile('agenda')) {
-                $agenda_path = str_replace("storage/", "", $events_data->agenda);
                 // Delete old image if it exists
                 if ($agenda_path && Storage::disk('public')->exists($agenda_path)) {
                     Storage::disk('public')->delete($agenda_path);
@@ -427,7 +441,13 @@ class EventsController extends Controller
                 $path = $request->file('agenda')->storeAs('event-agenda', $filename, 'public');
                 $data["agenda"] = Storage::url($path);
             }
-            else unset($data["agenda"]);
+            else {
+                if ($agenda_path && Storage::disk('public')->exists($agenda_path)) {
+                    Storage::disk('public')->delete($agenda_path);
+                    $data["agenda"] = null;
+                }
+                // unset($data["agenda"]);
+            }
             // END UPLOAD AGENDA
 
             unset($data["events"]);
@@ -574,7 +594,7 @@ class EventsController extends Controller
      *      )
      * )
      */
-    public function previousEvents($page)
+    public function previousEvents($page,$for="dashboard")
     {
         $idn_month = [
             "January"=>"Januari",
@@ -593,7 +613,13 @@ class EventsController extends Controller
         try{
             $page = is_int($page)?$page:1;
 
-            $events = Events::where("isprevious",1)->orderBy("eventdate","desc")->paginate(15, ["*"], "page", $page)->toArray();
+            $events = Events::where("eventdate","<=",Carbon::now()->format("Y-m-d"))
+                ->when($for!="dashboard",function($events){
+                    $events->where("isprevious",1);
+                })
+                ->orderBy("eventdate","desc")
+                ->paginate(15, ["*"], "page", $page)
+                ->toArray();
 
             foreach($events["data"] as $key => $value){
                 $start_date = date('d', strtotime($value["eventdate"]));

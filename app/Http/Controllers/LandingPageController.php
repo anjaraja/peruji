@@ -40,7 +40,7 @@ class LandingPageController extends Controller
     {
         $events = new EventsController();
         $upcoming_data = $events->index(1);
-        $previous_data = $events->previousEvents(1);
+        $previous_data = $events->previousEvents(1,"landingpage");
         return view(
             'landingpage.events',
             [

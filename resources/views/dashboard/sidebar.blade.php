@@ -41,7 +41,7 @@
 	}
 	document.addEventListener("click", function (e) {
 		active_menu = document.querySelector(".sidebar li span.active")
-      	if (e.target.matches(".sidebar .nav-item span")) {
+      	if (e.target.matches(".sidebar .nav-item span") && !e.target.matches(".sidebar .nav-item span.active")) {
       		loading("show");
 	      	active_menu.classList.remove("active");
 	      	active_menu.classList.add("link-dark");
