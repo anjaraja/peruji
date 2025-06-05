@@ -74,10 +74,10 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-3 col-12">
-                                <label for="function">Function</label>
+                                <label for="funct">Function</label>
                             </div>
                             <div class="col-md-9 col-12">
-                                <input type="text" class="form-control form-control-sm" id="function">
+                                <input type="text" class="form-control form-control-sm" id="funct">
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                                 <label for="ofcemail">Work Email</label>
                             </div>
                             <div class="col-md-9 col-12">
-                                <input type="email" class="form-control form-control-sm" id="email">
+                                <input type="email" class="form-control form-control-sm" id="ofcemail">
                             </div>
                         </div>
                     </div>
@@ -188,7 +188,7 @@
             phone = document.getElementById("phone").value;
             companyname = document.getElementById("companyname").value;
             funct = document.getElementById("funct").value;
-            departemnt = document.getElementById("departemnt").value;
+            department = document.getElementById("department").value;
             ofcemail = document.getElementById("ofcemail").value;
 
             membership = fetchData(
@@ -202,7 +202,7 @@
                     "phone":phone,
                     "companyname":companyname,
                     "funct":funct,
-                    "departemnt":departemnt,
+                    "department":department,
                     "ofcemail":ofcemail,
                 }
             )

@@ -52,6 +52,7 @@
         }
         .nav-menu-body .label-nav-contact a{
             background: white;
+            padding: 5px 10px;
             color: black;
             border-radius: 10px;
         }
@@ -169,10 +170,10 @@
                 background-position-y: 0px !important;
             }
             .menu-tc-page .gpe-l{
-                padding-left: 6.5% !important;
+                padding-left: 16.5% !important;
             }
             .menu-tc-page .gpe-r{
-                padding-right: 6.5% !important;
+                padding-right: 16.5% !important;
             }
             .menu-tc-page .container-fluid .gpe-l{
                 padding-left: unset !important;
@@ -186,6 +187,17 @@
                 margin-top: 1px;
             }
         /*END FOOTER*/
+    }
+    @media (max-width:600px) {
+        .terms h3, .terms .content-button {
+            text-align: center;
+        }
+        .menu-tc-page .gpe-l{
+            padding-left: 8.5% !important;
+        }
+        .menu-tc-page .gpe-r{
+            padding-right: 8.5% !important;
+        }
     }
     @media (max-width: 390px){
         .nav-menu-body ul{
@@ -229,6 +241,7 @@
         .nav-menu-body .label-nav {
             font-size: 25px;
             font-family: Helveticas_medium;
+            padding-bottom: 0 !important;
         }
 
         .nav-menu-body .label-nav-item {
@@ -241,11 +254,21 @@
         .navbar-medsos a:last-child{
             padding-right: 30px;
         }
+        /* membership */
+        .membership-bg{
+            background-position-y: -163px !important;
+        }
+        /* end membership */
     }
     @media (min-width:1141px) {
         nav {
             padding: 0px 4rem !important;
         }
+        /* membership */
+        .membership-bg{
+            background-position-y: -203px !important;
+        }
+        /* end membership */
     }
     @media (max-width:1140px) {
         nav {

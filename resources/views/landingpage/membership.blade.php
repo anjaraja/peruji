@@ -74,7 +74,7 @@
                             </li>
                         </ol>
                     </div>
-                    <div class="content gpe-l gpe-r">
+                    <div class="content content-button gpe-l gpe-r">
                         <a href="{{route('membership-signup')}}" class="text-decoration-none px-4 py-2" id="button">SIGN UP</a>
                     </div>
                 </div>

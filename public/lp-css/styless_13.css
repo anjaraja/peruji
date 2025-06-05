@@ -153,19 +153,50 @@
         height: 100vh;
         overflow: hidden;
     }
-    .container-home svg{
-        width: 53%;
+    .container-home #mobile {
+        display: none;
     }
-    .carousel-text {
-        position: absolute;
-        width: 100%;
-        top: -10%;
-        display: flex;
-        justify-content: start;
-        align-items: center;
-        height: 100%;
-        margin-top: 10vh;
-        padding-left: 102px;
+    .container-home #no-mobile {
+        display: none;
+    }
+
+    @media (max-width:600px) {
+    }
+    @media (max-width:991px) {
+        .container-home #mobile {
+            display: block;
+        }
+
+        .container-home svg{
+            width: 100%;
+        }
+        .carousel-text {
+            display: flex;
+            justify-content: center ;
+            align-items: center;
+            margin-top: 25vh;
+            padding-left: 0 !important;
+        }
+    }
+    @media (min-width:992px) {
+
+        .container-home svg{
+            width: 53%;
+        }
+        .carousel-text {
+            position: absolute;
+            width: 100%;
+            top: -10%;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            height: 100%;
+            margin-top: 10vh;
+            padding-left: 102px;
+        }
+        .container-home #no-mobile {
+            display: block;
+        }
     }
     .container-home .home-banner img{
         max-width: 600px;
@@ -605,7 +636,7 @@
         .form .label-eve {
             margin-top: 40px;
             margin-bottom: 10px;
-            font-size: 40px;
+            font-size: 55px;
             color: white;
         }
         #contact-us.container-content {
@@ -615,6 +646,17 @@
         .form .container-content {
             padding-left: 50px;
             padding-right: 50px;
+        }
+    }
+    @media (max-width:600px) { 
+        .form {
+            padding: 50px 0;
+        }
+        .form .label-eve {
+            margin-top: 40px;
+            margin-bottom: 10px;
+            font-size: 50px;
+            color: white;
         }
     }
 /* Close Form Contact, Event Register, dan Membership */
