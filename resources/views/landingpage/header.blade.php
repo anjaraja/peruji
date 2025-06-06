@@ -147,7 +147,7 @@
     </ul>
     <a href="{{route('admin')}}" class="position-absolute bottom-0 end-0 pe-5 pb-5 text-decoration-none text-white d-lg-block d-none">ADMIN</a>
         min-height: 100vh;
-    <div class="position-absolute d-lg-none d-flex start-50 translate-middle" style="bottom: 1%;">
+    <div class="nav-mobile-medsos">
         <div class="navbar-medsos d-flex justify-content-center me-0">
             <a href="https://www`facebook.com/perkumpulan.underwriterperuji">
                 <svg width="30" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">

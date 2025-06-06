@@ -56,13 +56,23 @@
             color: black;
             border-radius: 10px;
         }
+        .nav-mobile-medsos {
+            display: flex;
+            position:absolute;
+            right:50% !important;
+            transform: translate(50%, -50%);
+            bottom: 15%;
+        }
 
         /* Handphone Landscape */
 
             @media (max-height:430px) { 
                 /* Navbar */
                     .nav-menu-body ul{
-                        bottom: -17% !important;
+                        bottom: -20% !important;
+                    }
+                    .nav-mobile-medsos {
+                        bottom: 0% !important;   
                     }
                     .nav-menu-body .label-nav {
                         padding-bottom: 10px !important;
@@ -277,6 +287,11 @@
         .navbar-brand {
             left: 0%;
         }
+
+        .navbar-menu-body-mobile {
+            display: none;
+        }
+
         .nav-menu-body .label-nav {
             font-size: 25px;
             font-family: Helveticas_medium;
