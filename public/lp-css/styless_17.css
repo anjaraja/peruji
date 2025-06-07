@@ -758,6 +758,9 @@
         .container-event .image-layout .content {
             top: 45% !important;
         }
+        .in-event-page .label-event {
+            line-height: 1px;
+        }
         .event.flex-row{
             flex-direction: column !important;
         }
@@ -958,11 +961,11 @@
         color: #f0f0f0;
     }
 
-    @media (max-width:991px) { 
+    .membership-bg{
+        background-position-y: 0px !important;
+    }
 
-        .membership-bg{
-            background-position-y: 0px !important;
-        }
+    @media (max-width:991px) { 
         .menu-tc-page .gpe-l{
             padding-left: 16.5% !important;
         }
@@ -979,7 +982,10 @@
     }
 
     @media (max-width:600px) {
-        
+
+        .membership-bg{
+            background-position-y: 2vh !important;
+        }
         .terms h3 {
             font-size: 35px;
         }
