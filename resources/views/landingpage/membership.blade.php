@@ -7,13 +7,6 @@
         .membership-bg-img{
             background-image: url('{{asset("lp-img/terms-condition.png")}}');
         }
-        .membership-bg{
-            width: 100%;
-            height:491px;
-            background-size:cover;
-            background-position-y:-440px;
-            background-repeat: no-repeat;
-        }
         @media(max-width: 600px){
             .membership-bg{
                 height: 16.5rem !important;
