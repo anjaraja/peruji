@@ -143,7 +143,7 @@
                 <li class="label-nav-item"><a href="{{route('membership')}}#benefits">Membership Benefits</a></li>
             </ul>
         </li>
-        <li class="label-nav label-nav-contact"><a href="{{route('contact-us')}}">CONTACT</a></li>
+        <li class="label-nav label-nav-contact btn"><a href="{{route('contact-us')}}">CONTACT</a></li>
     </ul>
     <a href="{{route('admin')}}" class="position-absolute bottom-0 end-0 pe-5 pb-5 text-decoration-none text-white d-lg-block d-none">ADMIN</a>
         min-height: 100vh;

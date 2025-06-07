@@ -136,10 +136,10 @@
                 <section class="square me-3"></section>
                 <h1 class="label m-0 mt-1">Previous Event</h1>
             </div>
-            <div class="in-event-page">
+            <div class="in-event-page text-center text-md-start px-4 px-md-0">
                 <div class="row d-md-none d-block">
                     <div class="col-12 p-0">
-                        <div class="desc-upcoming-event d-flex align-items-center text-center p-4">
+                        <div class="d-flex align-items-center text-center p-4">
                             <p>PERUJI’s commitment to professional development is reflected through a range of training programs, seminars, and workshops. Each event is designed to enrich knowledge, strengthen skills, and foster a competent and trusted community of life underwriters.</p>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
                 @foreach ($previous_events as $key => $value)
                     @if($key % 2 === 0)
                         <div class="row" label="odd">
-                            <div class="col-12 col-md-6 p-0">
+                            <div class="col-12 col-md-6 p-0 order-first order-md-first">
                                 <img src="{{$value['thumbnail']?asset($value['thumbnail']):asset('lp-img/default-img-thumbnail-event.png')}}" alt="" style="height: 100%;width: 100%;background-position: center;background-size: cover;min-height: 467.762px;max-height: 491px;background-color: #E5E5E5;">
                             </div>
                             <div class="col-12 col-md-6 gpe-r gpc-l gpc-t gpc-b d-flex flex-column">
@@ -156,23 +156,25 @@
                               <div class="pb-2 desc">{{$value['eng_description']}}</div>
 
                               <!-- This container stretches to fill remaining space -->
-                              <div class="d-flex flex-grow-1 align-items-end">
+                              <div class="d-flex flex-grow-1 align-items-end justify-content-center justify-content-md-start">
                                 <i class="news-link" prev-event-row="{{$value['id']}}">News Links</i>
-                                <i class="gallery-link ml-auto">Photo Gallery</i>
+                                <div class="text-black mx-2 d-block d-md-none">|</div>
+                                <i class="gallery-link ms-md-auto">Photo Gallery</i>
                               </div>
                             </div>
                         </div>
                     @else
                         <div class="row" label="even">
-                            <div class="col-12 col-md-6 gpe-l gpc-t gpc-r gpc-b d-flex flex-column">
+                            <div class="col-12 col-md-6 gpe-l gpc-t gpc-r gpc-b d-flex flex-column order-last order-md-first">
                               <div class="tanggal">{{$value['eng_display_detail_date']}}</div>
                               <div class="label-event">{{$value['eventname']}}</div>
                               <div class="pb-2 desc">{{$value['eng_description']}}</div>
 
                               <!-- This container stretches to fill remaining space -->
-                              <div class="d-flex flex-grow-1 align-items-end">
+                              <div class="d-flex flex-grow-1 align-items-end justify-content-center justify-content-md-start">
                                 <i class="news-link" prev-event-row="{{$value['id']}}">News Links</i>
-                                <i class="gallery-link ml-auto">Photo Gallery</i>
+                                <div class="text-black mx-2 d-block d-md-none">|</div>
+                                <i class="gallery-link ms-md-auto">Photo Gallery</i>
                               </div>
                             </div>
                             <div class="col-12 col-md-6 p-0">

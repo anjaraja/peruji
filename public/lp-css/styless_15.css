@@ -505,10 +505,10 @@
     .container-event .image-layout {
         position: relative;
         z-index: 0;
+        height: 100vh;
         background-image: url(./../lp-img/event.jpg);
         background-position: center;
         background-size: cover;
-        height: 100vh;
     }
     .container-event .image-layout .layout {
         position: absolute;
@@ -516,6 +516,21 @@
         background-color: rgba(0, 0, 0, 0.453);
         width: 100%;
         height: 100vh;
+    }
+    @media (max-width:600px) {
+        .container-event .image-layout {
+            height: 16.5rem;
+        }
+        .container-event .image-layout .layout {
+            height: 16.5rem;
+        }
+        .container-event .image-layout .content {
+            top: 54% !important;
+        }
+        .container-event .image-layout .content .head-events{
+            font-size: 25px !important;
+            padding-bottom: 10px;
+        }
     }
 
     .container-event .image-layout .content {
@@ -563,6 +578,28 @@
     }
     .event .for-mobile{
         display: none !important;
+    }
+    .news-link-container{
+        position: fixed;
+        bottom: -100vh;
+        background: #fff;
+        width: 100%;
+        height: 70%;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.8s;
+        padding: 8.5% !important;
+        display: flex;
+        flex-direction: column;
+    }
+    .news-link-container a{
+        text-decoration: none;
+    }
+    .news-link-container.show{
+        bottom: 7vh;
+        opacity: 1;
+        pointer-events: auto;
+        transition: all 0.8s;
     }
 /* Close Events */
 
