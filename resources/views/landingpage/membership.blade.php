@@ -3,8 +3,25 @@
 @section('title', 'PERUJI')
 
 @section('content')
+    <style>
+        .membership-bg-img{
+            background-image: url('{{asset("lp-img/terms-condition.png")}}');
+        }
+        .membership-bg{
+            width: 100%;
+            height:491px;
+            background-size:cover;
+            background-position-y:-440px;
+            background-repeat: no-repeat;
+        }
+        @media(max-width: 600px){
+            .membership-bg{
+                height: 16.5rem !important;
+            }
+        }
+    </style>
     <div class="container-fluid p-0 terms">
-        <div class="membership-bg" style="width: 100%;height:491px;background: url('{{asset("lp-img/terms&condition.png")}}');background-size:cover;background-position-y:-440px;background-repeat: no-repeat;">
+        <div class="membership-bg membership-bg-img" style="">
             
         </div>
         <!-- <img src="" alt="" > -->

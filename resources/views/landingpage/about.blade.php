@@ -4,23 +4,39 @@
 
 @section('content')
 <style>
-  .video-wrapper {
-      position: relative;
-      width: 100%;
-      padding-top: 56.25%; /* 16:9 aspect ratio (9 / 16 = 0.5625) */
-      overflow: hidden;
+    .video-wrapper {
+        position: relative;
+        width: 100%;
+        padding-top: 56.25%; /* 16:9 aspect ratio (9 / 16 = 0.5625) */
+        overflow: hidden;
+    }
+    .responsive-video {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .about-static-image{
+        display: none;
+    }
+    @media(max-width: 600px){
+        .about-static-image{
+            display: block;
+            position: relative;
+            width: 100%;
+            padding-top: 3rem;
+        }
+        .video-wrapper{
+            padding-top: 3rem;
+            height: 16.5rem;
+            /*display: none;*/
+        }
     }
 
-    .responsive-video {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
 </style>
     <div class="container-fluid p-0 eve">
-        <!-- <img src="{{asset('lp-img/about-page.png')}}" style="height:100vh;width: 100%;" alt=""> -->
+        <!-- <img src="{{asset('lp-img/about-page.png')}}" class="about-static-image"> -->
         <div class="video-wrapper">
           <video class="responsive-video" autoplay muted loop playsinline>
             <source src="{{asset('lp-img/about-page.webm')}}" type="video/webm">

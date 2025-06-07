@@ -67,6 +67,15 @@
         animation-duration: 2s;
         animation-timing-function: ease-out;
     }
+    @media(max-width: 600px){
+        .slide-container {
+            height: 16.5rem;
+        }
+
+        #imageColumns img {
+            width: 8.1% !important;
+        }
+    }
 </style>
 <div class="container-fluid p-0">
     <div class="slide-container" id="imageColumns"></div>
