@@ -163,6 +163,12 @@
         display: none;
     }
 
+    @media (max-width: 390px){
+        .container-home .home-banner img {
+            max-width: 21rem !important;
+        }
+    }
+
     @media (max-width:991px) {
         .container-home #mobile {
             display: block;
@@ -883,7 +889,7 @@
             padding: 50px 0;
         }
         .form .header .section-header {
-            letter-spacing: 5px;
+            letter-spacing: 2px;
         }
         .form .label-eve {
             margin-top: 40px;
@@ -974,6 +980,9 @@
 
     @media (max-width:600px) {
         
+        .terms h3 {
+            font-size: 35px;
+        }
         .terms h3, .terms .content-button {
             text-align: center;
         }
@@ -1000,7 +1009,7 @@
         }
 
     }
-/*=================== Close Terms & Condition ===================*/
+/*=================== Close Membership ===================*/
 
 /*=================== Footer ===================*/
     footer {

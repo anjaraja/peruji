@@ -113,7 +113,7 @@
         }
         .nav-menu-body .label-nav-contact a{
             background: white;
-            padding: 5px 10px;
+            padding: 10px 10px 6px 10px;
             color: black;
             border-radius: 10px;
         }
@@ -146,6 +146,9 @@
                         font-size: 8px;
                         padding: 0px 0;
                     }
+                    .nav-menu-body .label-nav-contact a{
+                        padding: 6px 8px 2px 8px !important;
+                    }
                 
                 /* End navbar */
 
@@ -158,16 +161,8 @@
             width: 100%;
             text-align: center;
         }
-        .container-home .home-banner img {
-            max-width: 21rem !important;
-        }
-        .header-sub-menu{
-            padding: 1.3rem 1.5rem!important;
-        }
-        .header-sub-menu .label {
-            font-size: 45px !important;
-        }
     }
+
     @media (min-width:992px) { 
         .navbar-brand {
             left: 0%;
