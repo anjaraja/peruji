@@ -78,7 +78,7 @@
     }
 
     .header-sub-menu {
-        padding: 15px 0px;
+        padding: 30px 0px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -961,10 +961,6 @@
         color: #f0f0f0;
     }
 
-    .membership-bg{
-        background-position-y: 0px !important;
-    }
-
     @media (max-width:991px) { 
         .menu-tc-page .gpe-l{
             padding-left: 16.5% !important;
@@ -1014,6 +1010,10 @@
             background-position-y: -203px !important;
         }
 
+    }
+
+    .membership-bg{
+        background-position-y: 0px !important;
     }
 /*=================== Close Membership ===================*/
 
