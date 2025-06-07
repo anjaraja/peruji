@@ -1,0 +1,209 @@
+/* Nav CSs */
+
+    nav * {
+        font-family: Helveticass;
+    }
+    nav .navbar {
+        height: 60px;
+    }
+    nav .navbar .navbar-contact {
+        padding-right: 30px;
+    }
+    nav .navbar .navbar-contact a {
+        color: black;
+        transition: 0.2s ease-in-out;
+    }
+    nav .navbar .navbar-contact a:hover {
+        background-color: black;
+        color: white;
+    }
+    #menu-toggle-text{
+        font-size: 18px;
+    }
+    .navbar button{
+        border: none;
+    }
+    .navbar button:hover{
+        color:#f58529;
+    }
+    .lang-idn{
+        padding-right: 13px;
+    }
+    .lang-dlmtd{
+        font-weight: 300 !important;
+        font-size: 20px;
+    }
+    .lang-en{
+        padding-left: 13px;
+    }
+    .nav-menu-body {
+        top: -100%;
+        z-index: -100;
+        transition: top 0.5s ease;
+    }
+    .nav-menu-body.show {
+        top: 0; 
+        min-height: 100vh;
+        z-index: 3;
+    }
+    .nav-menu-body a {
+        text-decoration: none;
+        color: white;
+        padding: 0;
+        margin: 0;
+        transition: 0.3s ease-in-out;
+    }
+    .nav-menu-body a:hover { 
+        color: #f58529;
+    }
+    .nav-menu-body ul li {
+        list-style: none;
+    }
+
+    @media (max-width:991px) { 
+        nav{
+            padding: 0px 1.7rem !important;
+        }
+        .navbar-opt{
+            padding-top: .7rem !important;
+        }
+        .navbar-language{
+            padding-top: 1rem !important;
+        }
+        .nav-menu-body .navbar-right{
+            margin-bottom: 20%;
+
+        }
+        .nav-menu-body .label-nav {
+            font-size: 19px;
+            font-family: Helveticas_medium;
+        }
+        .lang-idn{
+            padding-right: 7.5px !important;
+        }
+        .lang-dlmtd{
+            font-weight: 300 !important;
+            font-size: 20px;
+        }
+        .lang-en{
+            padding-left: 7.5px !important;
+        }
+
+        .nav-menu-body .label-nav-item {
+            font-size: 15px;
+            padding: 3px 0;
+        }
+        .carousel-text{
+            padding-left: 6.5% !important;
+        }
+        .carousel-text svg{
+            width: 73% !important;
+        }
+        .container-home .home-banner img {
+            max-width: 23.3rem !important;
+        }
+        .banner-image{
+            padding-bottom: 1.5rem !important;
+        }
+        .nav-menu-body ul{
+            width: 100%;
+            text-align: center;
+            padding-left: 0;
+            top: 45% !important;
+        }
+        .nav-menu-body .label-nav-contact a{
+            background: white;
+            padding: 5px 10px;
+            color: black;
+            border-radius: 10px;
+        }
+        .nav-mobile-medsos {
+            display: flex;
+            position:absolute;
+            right:50% !important;
+            transform: translate(50%, -50%);
+            bottom: 8rem;
+        }
+
+        /* Handphone Landscape */
+
+            @media (max-height:430px) { 
+
+                /* Navbar */
+
+                    .nav-menu-body ul{
+                        bottom: 0rem !important;
+                    }
+                    .nav-mobile-medsos {
+                        bottom: 0% !important;   
+                    }
+                    .nav-menu-body .label-nav {
+                        padding-bottom: 0.3rem !important;
+                        font-size: 11px;
+                        font-family: Helveticas_medium;
+                    }
+                    .nav-menu-body .label-nav-item {
+                        font-size: 8px;
+                        padding: 0px 0;
+                    }
+                
+                /* End navbar */
+
+            }
+
+        /* End Handphone Landscape */
+    }
+    @media (max-width: 390px){
+        .nav-menu-body ul{
+            width: 100%;
+            text-align: center;
+        }
+        .container-home .home-banner img {
+            max-width: 21rem !important;
+        }
+        .header-sub-menu{
+            padding: 1.3rem 1.5rem!important;
+        }
+        .header-sub-menu .label {
+            font-size: 45px !important;
+        }
+    }
+    @media (min-width:992px) { 
+        .navbar-brand {
+            left: 0%;
+        }
+
+        .navbar-menu-body-mobile {
+            display: none;
+        }
+
+        .nav-menu-body .label-nav {
+            font-size: 25px;
+            font-family: Helveticas_medium;
+            padding-bottom: 0 !important;
+        }
+
+        .nav-menu-body .label-nav-item {
+            font-size: 20px;
+            padding: 3px 0;
+        }
+        .navbar-medsos a{
+            padding-right: 22.3px;
+        }
+        .navbar-medsos a:last-child{
+            padding-right: 30px;
+        }
+    }
+    @media (min-width:1141px) {
+        nav {
+            padding: 0px 4rem !important;
+        }
+    }
+    @media (max-width:1140px) {
+        nav {
+            padding: 0px 2rem !important;
+        }
+    }
+    
+
+/* Close Nav Vss */

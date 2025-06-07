@@ -78,7 +78,7 @@
     }
 
     .header-sub-menu {
-        padding: 30px 0px;
+        padding: 15px 0px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -99,6 +99,9 @@
     }
 
     @media (max-width:991px) {
+        .container-fluid .header-sub-menu { 
+            padding: 0.3rem 0 !important;
+        }
         .container-fluid .header-sub-menu .square{
             width: 1.7rem !important;
             height: 1.7rem !important;
@@ -148,7 +151,7 @@
     }
 /* Close Golbal */
 
-/* Home */
+/* =================== Home ===================*/
     .container-home {
         height: 100vh;
         overflow: hidden;
@@ -175,6 +178,34 @@
             margin-top: 25vh;
             padding-left: 0 !important;
         }
+        
+
+        /* Handphone Landscape */
+
+            @media (max-height:430px) { 
+
+                    .container-home svg{
+                        width: 10rem !important;
+                    }
+                    .carousel-text {
+                        display: flex;
+                        justify-content: center ;
+                        align-items: center;
+                        margin-top: 5vh !important;
+                        padding-left: 0 !important;
+                    }
+                    .home-banner {
+                        bottom: -3% !important;
+                    }
+
+                    .container-home .home-banner img{
+                        max-width: 200px !important;
+                        padding: 0 auto;
+                    }   
+
+            }
+
+        /* End Handphone Landscape */
     }
     
     @media (min-width:992px) {
@@ -235,9 +266,9 @@
         35%  { opacity: 0; z-index: 0; }
         100% { opacity: 0; z-index: 0; }
     }
-/* Close Home */
+/*=================== Close Home ===================*/
 
-/* About */
+/*=================== About ===================*/
     .eve {
         text-align: center;
         padding: 80px 50px;
@@ -265,9 +296,32 @@
     .pt-section-content-img{
         padding-top:40px;
     }
-/* Close About */
+    .responsive-video{
+        top:2rem !important;
+    }
+    @media (max-width:991px) { 
+        .eve .desc-isi-content {
+            padding-left: 5rem;
+            padding-right: 5rem;
+            font-size: 17.5px;
+        }
+    }
+    @media (max-width:600px) {
+        .eve .desc-isi-content {
+            padding-left: 3rem;
+            padding-right: 3rem;
+            font-size: 17.5px;
+        }
+    }
+    @media (max-width:390px) {
+        .eve .desc-isi-content {
+            padding-left: 7% !important;
+            padding-right: 7% !important;
+        }
+    }
+/*=================== Close About ===================*/
 
-/* Board Of Management */
+/*=================== Board Of Management ===================*/
     .in-bom-page {
         padding: 50px 0;
         background-color: #f0f0f0;
@@ -345,7 +399,71 @@
     .text-person, .text-person-2{
         padding-left: 2.375rem !important;
     }
+    
+    .slide-container {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+    }
 
+    .column {
+        flex: 1;
+        overflow: hidden;
+        position: relative;
+    }
+
+    #imageColumns img {
+        /*width: 100%;*/
+        height: 100%;
+        object-fit: cover;
+        /*position: absolute;*/
+        top: 0;
+        left: 0;
+        opacity: 0;
+        visibility: hidden;
+        animation-fill-mode: forwards;
+        width: 9.1%;
+    }
+
+    @keyframes slideUpOnce {
+        0% {
+            transform: translateY(100%);
+            opacity: 0;
+            visibility: visible;
+        }
+        100% {
+            transform: translateY(0%);
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    @keyframes slideDownOnce {
+        0% {
+            transform: translateY(-100%);
+            opacity: 0;
+            visibility: visible;
+        }
+        100% {
+            transform: translateY(0%);
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    .slide-up {
+        animation-name: slideUpOnce;
+        animation-duration: 2s;
+        animation-timing-function: ease-out;
+    }
+
+    .slide-down {
+        animation-name: slideDownOnce;
+        animation-duration: 2s;
+        animation-timing-function: ease-out;
+    }
+    
     @media (max-width:991px) { 
         .in-bom-page .container-fluid {
             padding: 0 3rem;
@@ -468,12 +586,17 @@
         .text-person, .text-person-2{
             padding: 0 !important;
         }
-    }
-    @media(max-width: 390px){
-    }
-/* Close Board Of Management */
+        .slide-container {
+            height: 16.5rem;
+        }
 
-/* Page Event On Click */
+        #imageColumns img {
+            width: 8.1% !important;
+        }
+    }
+/*=================== Close Board Of Management ===================*/
+
+/*=================== Page Event On Click ===================*/
     .event-s {
         width: 100%;
         height: 100vh;
@@ -499,9 +622,9 @@
     .event-s .container .info-event {
         font-size: 13px;
     }
-/* Close Page Event On Click */
+/*=================== Close Page Event On Click ===================*/
 
-/* Events */
+/*=================== Events ===================*/
     .container-event .image-layout {
         position: relative;
         z-index: 0;
@@ -516,21 +639,6 @@
         background-color: rgba(0, 0, 0, 0.453);
         width: 100%;
         height: 100vh;
-    }
-    @media (max-width:600px) {
-        .container-event .image-layout {
-            height: 16.5rem;
-        }
-        .container-event .image-layout .layout {
-            height: 16.5rem;
-        }
-        .container-event .image-layout .content {
-            top: 54% !important;
-        }
-        .container-event .image-layout .content .head-events{
-            font-size: 25px !important;
-            padding-bottom: 10px;
-        }
     }
 
     .container-event .image-layout .content {
@@ -579,6 +687,14 @@
     .event .for-mobile{
         display: none !important;
     }
+    
+    .container-event .desc-upcoming-event {
+        display: block;
+    }
+    .container-event .per-bot {
+        display: none;
+    }
+
     .news-link-container{
         position: fixed;
         bottom: -100vh;
@@ -601,9 +717,109 @@
         pointer-events: auto;
         transition: all 0.8s;
     }
-/* Close Events */
+    
+    @media (max-width:991px) { 
+        .container-event .image-layout .content .head-events {
+            padding-left: 3% !important;
+            padding-right: 3% !important;
+            font-size: 48px !important;
+            margin-top: 15vw !important;
+            padding-bottom: 15px !important;
+        }
+        #container-event .image-layout img {
+            max-width: 374px !important;
+        }
+        .desc-upcoming-event {
+            padding-left: 6% !important;
+            padding-right: 6% !important;
+            padding-bottom: 45px;
+        }
+        .in-event-page img{
+            object-fit: cover !important;
+        }
+        .in-event-page .gpe-r{
+            padding-right: 6.5% !important;
+        }
+        .in-event-page .gpe-l{
+            padding-left: 6.5% !important;
+        }
+        .in-event-page .gpc-l{
+            padding-left: 6.5% !important;
+        }
+        .in-event-page .gpc-r{
+            padding-right: 6.5% !important;
+        }
+        .container-event .image-layout .content {
+            top: 45% !important;
+        }
+        .event.flex-row{
+            flex-direction: column !important;
+        }
+        .event .d-flex.for-mobile{
+            display: flex !important;
+        }
+        .event .for-mobile{
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: space-between;
+            width: 100% !important;
+        }
+        .event .for-desktop{
+            display: none !important;
+        }
+        .event-detail-container.show {
+            margin-bottom: 5px;
+        }
+        .event-detail-container.show img{
+            max-width: 21rem !important;
+        }
+        .event-detail-container.show .content-event{
+            height: 100%;
+        }
+        .event-detail-container.show .bottom-container{
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    }
 
-/* Form Contact, Event Register, dan Membership */
+    @media (max-width:600px) {
+        .container-event .image-layout {
+            height: 16.5rem;
+        }
+        .container-event .image-layout .layout {
+            height: 16.5rem;
+        }
+        .container-event .image-layout .content {
+            top: 54% !important;
+        }
+        .container-event .image-layout .content .head-events{
+            font-size: 25px !important;
+            padding-bottom: 10px;
+        }
+        .container-event .desc-upcoming-event {
+            display: none;
+        }
+        .container-event .per-bot {
+            display: block;
+        }
+    }
+    
+    @media (max-width: 390px){
+
+        .container-event .image-layout .content .head-events {
+            font-size: 43px !important;
+        }
+        #container-event .image-layout img {
+            max-width: 21rem !important;
+        }
+        .event .d-flex.for-mobile{
+            display: flex !important;
+        }
+
+    }
+/*=================== Close Events ===================*/
+
+/*=================== Form Contact, Event Register, dan Membership ===================*/
     .form {
         display: flex;
         align-items: center;
@@ -695,9 +911,9 @@
             color: white;
         }
     }
-/* Close Form Contact, Event Register, dan Membership */
+/*=================== Close Form Contact, Event Register, dan Membership ===================*/
 
-/* Terms & Condition */
+/*=================== Membership ===================*/
     .terms {
         background-color: #f0f0f0;
     }
@@ -735,10 +951,67 @@
         background-color: #874a00;
         color: #f0f0f0;
     }
-/* Close Terms & Condition */
 
-/* Footer */
+    @media (max-width:991px) { 
+
+        .membership-bg{
+            background-position-y: 0px !important;
+        }
+        .menu-tc-page .gpe-l{
+            padding-left: 16.5% !important;
+        }
+        .menu-tc-page .gpe-r{
+            padding-right: 16.5% !important;
+        }
+        .menu-tc-page .container-fluid .gpe-l{
+            padding-left: unset !important;
+        }
+        .menu-tc-page .container-fluid .gpe-r{
+            padding-right: unset !important;
+        }
+
+    }
+
+    @media (max-width:600px) {
+        
+        .terms h3, .terms .content-button {
+            text-align: center;
+        }
+        .menu-tc-page .gpe-l{
+            padding-left: 8.5% !important;
+        }
+        .menu-tc-page .gpe-r{
+            padding-right: 8.5% !important;
+        }
+            
+    }
+
+    @media (min-width:992px) { 
+
+        .membership-bg{
+            background-position-y: -163px !important;
+        }
+
+    }
+    @media (min-width:1141px) {
+
+        .membership-bg{
+            background-position-y: -203px !important;
+        }
+
+    }
+/*=================== Close Terms & Condition ===================*/
+
+/*=================== Footer ===================*/
     footer {
         padding: 40px 0px;
     }
-/* Close Footer */
+
+    @media (max-width:991px) { 
+
+        footer{
+            margin-top: 1px;
+        }
+
+    }
+/*=================== Close Footer ===================*/
