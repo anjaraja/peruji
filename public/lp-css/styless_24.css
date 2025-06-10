@@ -96,6 +96,7 @@
         display: flex;
         align-items: center;
         font-family: Helveticas_light;
+        margin-top: .65rem !important;
     }
 
     @media (max-width:991px) {
@@ -118,6 +119,7 @@
         }
         .container-fluid .header-sub-menu .label{
             font-size: 24px !important;
+            margin-top: .25rem !important;
         }
     }
     
@@ -292,7 +294,7 @@
     }
     .eve .label-isi-content {
         color: #F7941D;
-        font-size: 24px;
+        font-size: 35px;
         font-family: Helveticas_light;
     }
     .eve .desc-isi-content {
@@ -320,6 +322,9 @@
         }
     }
     @media (max-width:600px) {
+        .eve .label-isi-content {
+            font-size: 24px;
+        }
         .eve .desc-isi-content {
             padding-left: 3rem;
             padding-right: 3rem;
@@ -695,12 +700,12 @@
         padding-bottom: 5px;
     }
     .in-event-page .label-event {
-        font-size: 24px;
+        font-size: 26px;
         font-family: Helveticas_medium;
         padding-bottom: 20px;
     }
     .in-event-page .desc {
-        font-size: 14px;
+        font-size: 16px;
     }
     .event .for-mobile{
         display: none !important;
@@ -826,6 +831,12 @@
         }
         .container-event .per-bot {
             display: block;
+        }
+        .in-event-page .label-event {
+            font-size: 24px;
+        }
+        .in-event-page .desc {
+            font-size: 14px;
         }
     }
     
