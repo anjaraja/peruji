@@ -64,6 +64,9 @@
         nav{
             padding: 0px 1.7rem !important;
         }
+        nav .navbar-brand svg {
+            width: 80 !important;
+        }
         .navbar-opt{
             padding-top: .7rem !important;
         }
@@ -88,7 +91,6 @@
         .lang-en{
             padding-left: 7.5px !important;
         }
-
         .nav-menu-body .label-nav-item {
             font-size: 15px;
             padding: 3px 0;
@@ -127,6 +129,7 @@
 
                     .nav-menu-body ul{
                         bottom: 0rem !important;
+                        top: 46% !important;
                     }
                     .nav-mobile-medsos {
                         bottom: 0% !important;   
@@ -154,6 +157,16 @@
         .nav-menu-body ul{
             width: 100%;
             text-align: center;
+            top: 43% !important;
+        }
+        .nav-menu-body .label-nav {
+            font-size: 14px;
+            font-family: Helveticas_medium;
+            padding-bottom: 13px !important;
+        }
+        .nav-menu-body .label-nav-item {
+            font-size: 11px;
+            padding: 3px 0;
         }
     }
 
