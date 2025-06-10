@@ -29,7 +29,7 @@
         }
         .video-wrapper{
             padding-top: 3rem;
-            height: 16.5rem;
+            height: 17.5rem;
             /*display: none;*/
         }
     }

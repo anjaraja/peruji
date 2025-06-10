@@ -9,7 +9,7 @@
         }
         @media(max-width: 600px){
             .membership-bg{
-                height: 16.5rem !important;
+                height: 17.5rem !important;
             }
         }
     </style>

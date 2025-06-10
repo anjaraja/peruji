@@ -156,7 +156,7 @@
             <div class="in-event-page text-center text-md-start px-4 px-md-0">
                 <div class="row per-bot">
                     <div class="col-12 p-0">
-                        <div class="d-flex align-items-center text-center p-4">
+                        <div class="d-flex align-items-center text-center p-4 desc-upcoming-event-mobile">
                             <p>PERUJI’s commitment to professional development is reflected through a range of training programs, seminars, and workshops. Each event is designed to enrich knowledge, strengthen skills, and foster a competent and trusted community of life underwriters.</p>
                         </div>
                     </div>

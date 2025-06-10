@@ -4,6 +4,11 @@
         footer {
             padding: 40px 0px;
         }
+        @media(max-width: 600px){
+            footer{
+                padding:25px 0px;
+            }
+        }
 
     /* Close FOoter */
 </style>

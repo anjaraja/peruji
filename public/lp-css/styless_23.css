@@ -103,21 +103,21 @@
             padding: 0.3rem 0 !important;
         }
         .container-fluid .header-sub-menu .square{
-            width: 1.7rem !important;
-            height: 1.7rem !important;
+            width: 1.3rem !important;
+            height: 1.3rem !important;
         }
         .container-fluid .header-sub-menu .label{
-            font-size: 33px !important;
+            font-size: 24px !important;
         }
     }
 
     @media (max-width:390px) {
         .container-fluid .header-sub-menu .square{
-            width: 1.6rem !important;
-            height: 1.6rem !important;
+            width: 1.3rem !important;
+            height: 1.3rem !important;
         }
         .container-fluid .header-sub-menu .label{
-            font-size: 29px !important;
+            font-size: 24px !important;
         }
     }
     
@@ -292,7 +292,7 @@
     }
     .eve .label-isi-content {
         color: #F7941D;
-        font-size: 35px;
+        font-size: 24px;
         font-family: Helveticas_light;
     }
     .eve .desc-isi-content {
@@ -323,7 +323,7 @@
         .eve .desc-isi-content {
             padding-left: 3rem;
             padding-right: 3rem;
-            font-size: 17.5px;
+            font-size: 14px;
         }
     }
     @media (max-width:390px) {
@@ -554,7 +554,7 @@
         }
         .in-bom-page .label-person {
             text-align: center;
-            font-size: 32px;
+            font-size: 24px;
             padding-top: 40px;
             font-family: Helveticas_Light;
             color: #F7941D;
@@ -600,11 +600,16 @@
             padding: 0 !important;
         }
         .slide-container {
-            height: 16.5rem;
+            height: 17.5rem;
         }
 
         #imageColumns img {
-            width: 8.1% !important;
+            width: 8.3% !important;
+        }
+    }
+    @media(max-width: 390px){
+        #imageColumns img {
+            width: 7.8% !important;
         }
     }
 /*=================== Close Board Of Management ===================*/
@@ -690,12 +695,12 @@
         padding-bottom: 5px;
     }
     .in-event-page .label-event {
-        font-size: 26px;
+        font-size: 24px;
         font-family: Helveticas_medium;
         padding-bottom: 20px;
     }
     .in-event-page .desc {
-        font-size: 16px;
+        font-size: 14px;
     }
     .event .for-mobile{
         display: none !important;
@@ -801,20 +806,23 @@
 
     @media (max-width:600px) {
         .container-event .image-layout {
-            height: 16.5rem;
+            height: 17.5rem;
         }
         .container-event .image-layout .layout {
-            height: 16.5rem;
+            height: 17.5rem;
         }
         .container-event .image-layout .content {
             top: 54% !important;
         }
         .container-event .image-layout .content .head-events{
-            font-size: 25px !important;
+            font-size: 24px !important;
             padding-bottom: 10px;
         }
         .container-event .desc-upcoming-event {
             display: none;
+        }
+        .container-event .desc-upcoming-event-mobile {
+            font-size: 14px !important;
         }
         .container-event .per-bot {
             display: block;
@@ -995,10 +1003,10 @@
     @media (max-width:600px) {
 
         .membership-bg{
-            background-position-y: 2vh !important;
+            background-position-y: 4vh !important;
         }
         .terms h3 {
-            font-size: 35px;
+            font-size: 24px;
         }
         .terms h3, .terms .content-button {
             text-align: center;
@@ -1008,6 +1016,9 @@
         }
         .menu-tc-page .gpe-r{
             padding-right: 8.5% !important;
+        }
+        .menu-tc-page .content li{
+            font-size: 14px;
         }
             
     }
