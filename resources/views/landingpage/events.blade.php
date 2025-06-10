@@ -33,6 +33,23 @@
 </style>
 <link rel="stylesheet" href="{{ asset('lp-css/events_2.css') }}">
 @section('content')
+    <style>
+        .thumbnail-event-img{
+            height: 100%;
+            width: 100%;
+            background-position: center;
+            background-size: cover;
+            min-height: 467.762px;
+            max-height: 491px;
+            background-color: #E5E5E5;
+        }
+        @media (max-width: 600px){
+            .thumbnail-event-img{
+                min-height: auto !important;
+                height: auto !important;
+            }
+        }
+    </style>
     <div class="container-event section-container" id="container-event">
         <div class="image-layout">
             <div class="layout"></div>
@@ -148,7 +165,7 @@
                     @if($key % 2 === 0)
                         <div class="row" label="odd">
                             <div class="col-12 col-md-6 p-0 order-first order-md-first">
-                                <img src="{{$value['thumbnail']?asset($value['thumbnail']):asset('lp-img/default-img-thumbnail-event.png')}}" alt="" style="height: 100%;width: 100%;background-position: center;background-size: cover;min-height: 467.762px;max-height: 491px;background-color: #E5E5E5;">
+                                <img src="{{$value['thumbnail']?asset($value['thumbnail']):asset('lp-img/default-img-thumbnail-event.png')}}" alt="" class="thumbnail-event-img">
                             </div>
                             <div class="col-12 col-md-6 gpe-r gpc-l gpc-t gpc-b d-flex flex-column">
                               <div class="tanggal">{{$value['eng_display_detail_date']}}</div>
@@ -178,7 +195,7 @@
                               </div>
                             </div>
                             <div class="col-12 col-md-6 p-0">
-                                <img src="{{$value['thumbnail']?asset($value['thumbnail']):asset('lp-img/default-img-thumbnail-event.png')}}" alt="" style="height: 100%;width: 100%;background-position: center;background-size: cover;min-height: 467.762px;max-height: 491px;background-color: #E5E5E5;">
+                                <img src="{{$value['thumbnail']?asset($value['thumbnail']):asset('lp-img/default-img-thumbnail-event.png')}}" alt="" class="thumbnail-event-img">
                             </div>
                         </div>
                     @endif
