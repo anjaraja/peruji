@@ -143,11 +143,13 @@
                 <li class="label-nav-item"><a href="{{route('membership')}}#benefits">Membership Benefits</a></li>
             </ul>
         </li>
-        <li class="label-nav label-nav-contact"><a class="btn btn-link" href="{{route('contact-us')}}">CONTACT</a></li>
     </ul>
     <a href="{{route('admin')}}" class="position-absolute bottom-0 end-0 pe-5 pb-5 text-decoration-none text-white d-lg-block d-none">ADMIN</a>
         min-height: 100vh;
     <div class="nav-mobile-medsos">
+        <div class="label-nav label-nav-contact d-flex flex-column justify-content-center">
+            <a class="btn btn-link" href="{{route('contact-us')}}">CONTACT</a>
+        </div>
         <div class="navbar-medsos d-flex justify-content-center me-0">
             <a href="https://www`facebook.com/perkumpulan.underwriterperuji">
                 <svg width="30" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -109,14 +109,16 @@
         }
         .nav-menu-body .label-nav-contact a{
             background: white;
-            font-family: Helveticas_medium;
+            font-family: Helveticas_light;
             padding-left: 10px;
             padding-right: 10px;
             color: black;
             border-radius: 10px;
+            margin-bottom: 15px;
         }
         .nav-mobile-medsos {
             display: flex;
+            flex-direction: column;
             position:absolute;
             right:50% !important;
             transform: translate(50%, -50%);
