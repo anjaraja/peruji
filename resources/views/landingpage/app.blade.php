@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'PERUJI')</title>
     <link rel="stylesheet" href="{{ asset('lp-css/global.css') }}"> 
-    <link rel="stylesheet" href="{{ asset('lp-css/navbar_11.css') }}"> 
-    <link rel="stylesheet" href="{{ asset('lp-css/styless_24.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('lp-css/navbar_12.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('lp-css/styless_25.css') }}"> 
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
     <script src="{{asset('dash-js/fetchhelper_2.js')}}"></script>
     <script src="{{asset('dash-js/jquery.js')}}"></script>
@@ -42,8 +42,8 @@
             squar_me.classList.add("align-self-center");
         }
         document.querySelectorAll(".btn").forEach(item => {
-            item.classList.add("pt-0");
-            item.classList.add("pb-0");
+            item.classList.add("pt-1");
+            item.classList.add("pb-1");
         });
       }
     });

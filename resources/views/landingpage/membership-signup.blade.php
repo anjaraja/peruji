@@ -14,9 +14,9 @@
                     <div class="section-header">PERSONAL INFORMATION</div>
                 </div>
                 
-                <div class="row mt-3">
-                    <div class="col-6">
-                        <div class="row mb-3">
+                <div class="row my-2">
+                    <div class="col-sm-6 col-12">
+                        <div class="row mb-2">
                             <div class="col-md-3 col-12">
                                 <label for="fullname">Full Name</label>
                             </div>
@@ -24,7 +24,7 @@
                                 <input type="text" class="form-control form-control-sm" id="fullname">
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row mb-2">
                             <div class="col-md-3 col-12">
                                 <label for="email">Email</label>
                             </div>
@@ -33,8 +33,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="row mb-3">
+                    <div class="col-sm-6 col-12">
+                        <div class="row mb-2">
                             <div class="col-md-3 col-12">
                                 <label for="fullname">Gender</label>
                             </div>
@@ -46,7 +46,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row mb-2">
                             <div class="col-md-3 col-12">
                                 <label for="phone">Phone</label>
                             </div>
@@ -59,12 +59,12 @@
     
                 <div class="header">
                     <div class="gray"></div>
-                    <div class="section-header">ORGANIZATION INFORMATION (OPTIONAL)</div>
+                    <div class="section-header d-flex align-items-center">ORGANIZATION INFORMATION <label for="" class="d-sm-block d-none ps-2">(OPTIONAL)</label></div>
                 </div>
                 
-                <div class="row mt-3">
-                    <div class="col-6">
-                        <div class="row mb-3">
+                <div class="row my-2">
+                    <div class="col-sm-6 col-12">
+                        <div class="row mb-2">
                             <div class="col-md-3 col-12">
                                 <label for="companyname">Company Name</label>
                             </div>
@@ -72,7 +72,7 @@
                                 <input type="text" class="form-control form-control-sm" id="companyname">
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row mb-2">
                             <div class="col-md-3 col-12">
                                 <label for="funct">Function</label>
                             </div>
@@ -81,8 +81,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="row mb-3">
+                    <div class="col-sm-6 col-12">
+                        <div class="row mb-2">
                             <div class="col-md-3 col-12">
                                 <label for="departnment">Department</label>
                             </div>
@@ -90,7 +90,7 @@
                                 <input type="text" class="form-control form-control-sm" id="department">
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row mb-2">
                             <div class="col-md-3 col-12">
                                 <label for="ofcemail">Work Email</label>
                             </div>
@@ -100,8 +100,10 @@
                         </div>
                     </div>
                 </div>
-    
-                <button class="btn px-4" id="button" type="submit">SUBMIT</button>
+                
+                <div class="button text-center text-sm-start">
+                    <button class="btn px-4" id="button" type="submit">SUBMIT</button>
+                </div>
             </form>
         </div>
     </div>

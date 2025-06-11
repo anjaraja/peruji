@@ -387,9 +387,11 @@
     }
     .in-bom-page .label-person-name {
         font-size: 24px;
+        line-height: 17px;
     }
     .in-bom-page .label-person-job {
         font-size: 24px;
+        line-height: 17px;
         margin-bottom: 43px;
         font-family: Helveticasss;
     }
@@ -503,7 +505,7 @@
             font-size: 21px;
         }
         .in-bom-page .label-person-job {
-            font-size: 17px;
+            font-size: 14px;
             margin-bottom: 43px;
         }
         .in-bom-page .label-text-desc {
@@ -530,7 +532,7 @@
     }
      @media (max-width:600px) { 
         .in-bom-page .container-fluid {
-            padding: 0 30px;
+            padding: 0 3.5rem;
         }
         #imageColumns img{
             width: 7.2% !important;
@@ -570,10 +572,6 @@
             text-align: center;
             padding: 20px 0px;
         }
-        .in-bom-page .person .label-person-name {
-            padding-top: 20px;
-            font-size: 17px;
-        }
         .in-bom-page .person-2{
             flex-direction: column;
             justify-content: center;
@@ -583,19 +581,24 @@
         }
         .in-bom-page .label-person-content {
             padding-top: 20px;
-            font-size: 17px;
+            font-size: 10px;
             font-family: Helveticas_medium;
         }
         .in-bom-page .label-person-name {
-            font-size: 17px;
+            padding-top: 20px;
+            font-size: 14px;
+        }
+        .in-bom-page .person-2 .label-person-name {
+            padding-top: 0px;
+            font-size: 14px;
         }
         .in-bom-page .label-person-job {
-            font-size: 14px;
+            font-size: 10px;
             margin-bottom: 20px;
         }
         .in-bom-page .label-text-desc {
             margin: 15px 0 20px 0; 
-            font-size: 14px;
+            font-size: 12px;
         }
         .in-bom-page .person img,.in-bom-page .person-2 img {
             width: 100px;
@@ -783,6 +786,7 @@
             flex-direction: column !important;
         }
         .event .d-flex.for-mobile{
+            padding-top: 0.4rem;
             display: flex !important;
         }
         .event .for-mobile{
@@ -877,6 +881,7 @@
     }
     .form .header .section-header {
         background-color: #F7941D;
+        font-family: Helveticasss !important;
         padding: 5px;
         color: white;
         width: 100%;
@@ -916,34 +921,52 @@
     }
     @media (max-width:991px) { 
         .form {
-            padding: 50px 0;
+            padding: 50px 2.4rem !important;
+        }
+        .form label {
+            font-size: 12px !important;
         }
         .form .header .section-header {
-            letter-spacing: 2px;
+            letter-spacing: 5px;
         }
         .form .label-eve {
             margin-top: 40px;
             margin-bottom: 10px;
-            font-size: 55px;
+            font-size: 50px;
             color: white;
         }
         #contact-us.container-content {
-            padding-left: 50px;
-            padding-right: 50px;
+            padding-left: 5.4rem;
+            padding-right: 5.4rem;
         }
         .form .container-content {
             padding-left: 50px;
             padding-right: 50px;
         }
     }
-    @media (max-width:600px) { 
+    @media (max-width:575px) { 
         .form {
-            padding: 50px 0;
+            padding: 50px 1.5rem !important;
+        }
+        #contact-us.container-content {
+            padding-left: 1.4rem;
+            padding-right: 1.4rem;
+        }
+        .form .container-content {
+            padding-left: 0;
+            padding-right:0;
+        }
+        .form .header .section-header {
+            font-size: 13px;
+            padding: 10px 5px;
+            letter-spacing: 4px;
+            font-weight: 400;
         }
         .form .label-eve {
+            text-align: center;
             margin-top: 40px;
             margin-bottom: 10px;
-            font-size: 50px;
+            font-size: 24px;
             color: white;
         }
     }
@@ -1058,6 +1081,7 @@
     @media (max-width:991px) { 
 
         footer{
+            font-size: 10px;
             margin-top: 1px;
         }
 
