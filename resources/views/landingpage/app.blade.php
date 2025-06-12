@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>@yield('title', 'PERUJI')</title>
     <link rel="stylesheet" href="{{ asset('lp-css/global.css') }}"> 
-    <link rel="stylesheet" href="{{ asset('lp-css/navbar_13.css') }}"> 
-    <link rel="stylesheet" href="{{ asset('lp-css/styless_27.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('lp-css/navbar_14.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('lp-css/styless_28.css') }}"> 
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
     <script src="{{asset('dash-js/fetchhelper_2.js')}}"></script>
     <script src="{{asset('dash-js/jquery.js')}}"></script>
@@ -48,7 +48,33 @@
       }
     });
 </script>
+<script>
+    function setLanguage(lang) {
+    localStorage.setItem('language', lang);
 
+    const elements = document.querySelectorAll('[lang]');
+
+    elements.forEach(el => {
+        el.classList.remove('visible');
+        setTimeout(() => {
+        el.style.display = 'none';
+        }, 500);
+    });
+
+    setTimeout(() => {
+        document.querySelectorAll('[lang="' + lang + '"]').forEach(el => {
+        el.style.display = 'block';
+        void el.offsetWidth;
+        el.classList.add('visible');
+        });
+    }, 500);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const savedLang = localStorage.getItem('language') || 'eng';
+    setLanguage(savedLang);
+    });
+</script>
 <script>
 
     var menuButton = document.getElementById('nav-menu-open');

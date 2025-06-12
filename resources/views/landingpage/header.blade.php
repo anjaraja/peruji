@@ -98,15 +98,15 @@
                 </div>
                 <div class="navbar-language d-flex align-items-center">
                     <div class="navbar-language-left lang-idn">
-                        <a href="#" class="text-decoration-none text-dark d-flex align-items-center pt-1">
+                        <a onclick="setLanguage('idn')" class="text-decoration-none d-flex align-items-center pt-1" style="cursor: pointer;">
                             IDN
                         </a>
                     </div>
-                    <div class="navbar-language-center text-dark d-flex align-items-center lang-dlmtd">
+                    <div class="navbar-language-center text-dark d-flex align-items-center lang-dlmtd" style="cursor: context-menu">
                         <span>|</span>
                     </div>
                     <div class="navbar-language-right lang-en">
-                        <a href="#" class=" text-decoration-none text-dark d-flex align-items-center pt-1">
+                        <a onclick="setLanguage('eng')" class="text-decoration-none d-flex align-items-center pt-1" style="cursor: pointer;">
                             ENG
                         </a>
                     </div>
@@ -119,36 +119,53 @@
 <div class="nav-menu-body w-100 h-100 bg-black position-fixed z-1">
     <ul class="position-absolute top-50 start-50 translate-middle">
         <li class="label-nav pb-4">
-            <a href="{{route('about')}}">ABOUT PERUJI</a>
+            <a href="{{route('about')}}" lang="idn">Tentang PERUJI</a>
+            <a href="{{route('about')}}" lang="eng">ABOUT PERUJI</a>
             <ul>
-                <li class="label-nav-item"><a href="{{route('about')}}#role">The Role</a></li>
-                <li class="label-nav-item"><a href="{{route('about')}}#vision-mission">Visi & Mission</a></li>
-                <li class="label-nav-item"><a href="{{route('about')}}#milestone">Milestone</a></li>
+                <li class="label-nav-item" lang="idn"><a href="{{route('about')}}#role">Peran</a></li>
+                <li class="label-nav-item" lang="eng"><a href="{{route('about')}}#role">The Role</a></li>
+                <li class="label-nav-item" lang="idn"><a href="{{route('about')}}#vision-mission">Visi & Misi</a></li>
+                <li class="label-nav-item" lang="eng"><a href="{{route('about')}}#vision-mission">Visi & Mission</a></li>
+                <li class="label-nav-item" lang="idn"><a href="{{route('about')}}#milestone">Pencapaian</a></li>
+                <li class="label-nav-item" lang="eng"><a href="{{route('about')}}#milestone">Milestone</a></li>
             </ul>
         </li>
-        <li class="label-nav pb-4"><a href="{{route('board-management')}}">BOARD OF MANAGEMENT</a></li>
+        <li class="label-nav pb-4" lang="idn"><a href="{{route('board-management')}}">DEWAN PENGURUS</a></li>
+        <li class="label-nav pb-4" lang="eng"><a href="{{route('board-management')}}">BOARD OF MANAGEMENT</a></li>
         <li class="label-nav pb-4">
-            <a href="{{route('events')}}">EVENTS</a>
+            <a href="{{route('events')}}" lang="idn">EVENTS</a>
+            <a href="{{route('events')}}" lang="eng">EVENTS</a>
             <ul>
-                <li class="label-nav-item"><a href="{{route('events')}}#upcoming">Upcoming Events</a></li>
-                <li class="label-nav-item"><a href="{{route('events')}}#previous-event">Previous Events</a></li>
+                <li class="label-nav-item" lang="idn"><a href="{{route('events')}}#upcoming">Events Mendatang</a></li>
+                <li class="label-nav-item" lang="eng"><a href="{{route('events')}}#upcoming">Upcoming Events</a></li>
+                <li class="label-nav-item" lang="idn"><a href="{{route('events')}}#previous-event">Events Sebelumnya</a></li>
+                <li class="label-nav-item" lang="eng"><a href="{{route('events')}}#previous-event">Previous Events</a></li>
                 {{-- <li class="label-nav-item"><a href="{{route('eventsRegis')}}">Events Regis</a></li> --}}
             </ul>
         </li>
         <li class="label-nav pb-4">
-            <a href="{{route('membership')}}">MEMBERSHIP</a>
+            <a href="{{route('membership')}}" lang="idn">KEANGGOTAAN</a>
+            <a href="{{route('membership')}}" lang="eng">MEMBERSHIP</a>
             <ul>
-                <li class="label-nav-item"><a href="{{route('membership-signup')}}">Sign Up</a></li>
-                <li class="label-nav-item"><a href="{{route('membership')}}#terms-condition">Terms & Condition</a></li>
-                <li class="label-nav-item"><a href="{{route('membership')}}#benefits">Membership Benefits</a></li>
+                <li class="label-nav-item" lang="idn"><a href="{{route('membership-signup')}}">Daftar</a></li>
+                <li class="label-nav-item" lang="eng"><a href="{{route('membership-signup')}}">Sign Up</a></li>
+                <li class="label-nav-item" lang="idn"><a href="{{route('membership')}}#terms-condition">Syarat & Ketentuan</a></li>
+                <li class="label-nav-item" lang="eng"><a href="{{route('membership')}}#terms-condition">Terms & Condition</a></li>
+                <li class="label-nav-item" lang="idn"><a href="{{route('membership')}}#benefits">Manfaat Keanggotaan</a></li>
+                <li class="label-nav-item" lang="eng"><a href="{{route('membership')}}#benefits">Membership Benefits</a></li>
             </ul>
+        </li>
+        <li class="label-nav label-nav-contact-lg">
+            <a href="{{route('contact-us')}}" lang="idn">KONTAK</a>
+            <a href="{{route('contact-us')}}" lang="eng">CONTACT</a>
         </li>
     </ul>
     <a href="{{route('admin')}}" class="position-absolute bottom-0 end-0 pe-5 pb-5 text-decoration-none text-white d-lg-block d-none">ADMIN</a>
         min-height: 100vh;
     <div class="nav-mobile-medsos">
         <div class="label-nav label-nav-contact d-flex flex-column justify-content-center">
-            <a class="btn btn-link" href="{{route('contact-us')}}">CONTACT</a>
+            <a class="btn btn-link" lang="idn" href="{{route('contact-us')}}">KONTAK</a>
+            <a class="btn btn-link" lang="eng" href="{{route('contact-us')}}">CONTACT</a>
         </div>
         <div class="navbar-medsos d-flex justify-content-center me-0">
             <a href="https://www`facebook.com/perkumpulan.underwriterperuji">

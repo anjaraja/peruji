@@ -82,19 +82,30 @@
                         </div>
                         <button class="btn px-4 ms-auto" id="button" type="submit">SUBMIT</button>
                     </div>
-                    <div class="mt-3 text-center text-white" style="font-size: 12px;">
+                    <div class="mt-3 text-center text-white" style="font-size: 12px;" lang="idn">
+                        Anda akan menerima email pemberitahuan mengenai pendaftaran dan pembayaran Anda.
+                    </div>
+                    <div class="mt-3 text-center text-white" style="font-size: 12px;" lang="eng">
                         You will receive a notification email regarding your registration and payment.
                     </div>
                 </div>
                 <div class="not-mobile d-sm-block d-none">
                     <div class="d-flex flex-column align-items-center mt-3">
                         <button class="btn px-4 ms-auto" id="button" type="submit">SUBMIT</button>
-                        <div class="mt-2 mb-4 text-end text-white w-100" style="font-size: 14px;">
+                        <div class="mt-2 mb-4 text-end text-white w-100" style="font-size: 14px;" lang="idn">
+                        Anda akan menerima email pemberitahuan mengenai pendaftaran dan pembayaran Anda.
+                        </div>
+                        <div class="mt-2 mb-4 text-end text-white w-100" style="font-size: 14px;" lang="eng">
                             You will receive a notification email regarding your registration and payment.
                         </div>
                         <a href="{{route('events')}}" class="me-auto">
                             <button class="btn btn-link text-decoration-none bg-transparent text-white" type="button">
-                                <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center" lang="idn">
+                                    <svg class="me-1" width="20" height="16" viewBox="0 0 31 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0.292892 7.29289C-0.0976315 7.68342 -0.0976315 8.31658 0.292892 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34315C8.46159 1.95262 8.46159 1.31946 8.07107 0.928932C7.68054 0.538408 7.04738 0.538408 6.65685 0.928932L0.292892 7.29289ZM31 8V7L1 7V8V9L31 9V8Z" fill="white"/>
+                                    </svg>
+                                    KEMBALI
+                                </div><div class="d-flex align-items-center" lang="eng">
                                     <svg class="me-1" width="20" height="16" viewBox="0 0 31 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M0.292892 7.29289C-0.0976315 7.68342 -0.0976315 8.31658 0.292892 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34315C8.46159 1.95262 8.46159 1.31946 8.07107 0.928932C7.68054 0.538408 7.04738 0.538408 6.65685 0.928932L0.292892 7.29289ZM31 8V7L1 7V8V9L31 9V8Z" fill="white"/>
                                     </svg>
@@ -111,7 +122,10 @@
     <div class="info-done" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); display: none;">
         <div class="cardo animated-popup">
             <div style="font-size: 50px; margin-bottom: 20px;">Thank You!</div>
-            <div style="font-size: 16px;">
+            <div style="font-size: 16px;" lang="idn">
+                Email konfirmasi berisi informasi pendaftaran dan pembayaran Anda akan segera dikirimkan kepada Anda.
+            </div>
+            <div style="font-size: 16px;" lang="eng">
                 A confirmation email with your registration and payment information will be sent to you shortly.
             </div>
         </div>

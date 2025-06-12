@@ -8,7 +8,8 @@
             <img src="{{asset($events->banner)}}" alt="" style="max-width: 500px;">
             <div class="label-event">{{$events->eventname}}</div>
             <div class="date-event">{{\Carbon\Carbon::parse($events->eventdate)->format('d - M - Y')}}</div>
-            <div class="desc-event">{{$events->description}}</div>
+            <div class="desc-event" lang="idn">{{$events->description}}</div>
+            <div class="desc-event" lang="eng">{{$events->eng_description}}</div>
             <a href="{{asset($events->agenda)}}" target="_blank" class="text-decoration-none text-black">
                 <svg width="48" height="60" viewBox="0 0 48 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5.32521 1.19269C9.82521 1.19269 30.9752 1.19269 30.9752 1.19269L46.8677 17.0852C46.8677 17.0852 46.8677 48.7577 46.8677 53.3177C46.8677 57.8777 44.9927 58.8227 41.3627 58.8227C37.7327 58.8227 9.66772 58.8227 5.85772 58.8227C2.04772 58.8227 0.907715 56.7677 0.907715 53.0177C0.907715 49.2677 0.907715 8.69269 0.907715 4.86769C0.907715 1.04269 5.32521 1.19269 5.32521 1.19269Z" fill="white"/>
@@ -24,7 +25,7 @@
                         data-target="register-area"
                         style="background-color: #f58529; border-radius:20px;"
                         >
-                        <strong>REGISTER</strong>
+                        <strong >REGISTER</strong>
                     </a>
                 </div>
                 <div class="col-6 d-sm-block d-none decoration-none">
@@ -34,7 +35,8 @@
                         class="load-content">
                         <button class="btn btn-link btn btn-link text-decoration-none text-black"
                         >
-                            <strong>BACK -></strong>
+                            <strong lang="idn">KEMBALI -></strong>
+                            <strong lang="eng">BACK -></strong>
                         </button>
                     </a>
                 </div>

@@ -160,12 +160,14 @@
                         @foreach($events as $key => $value)
                             <div class="banner-image @php $key==0?'active':'' @endphp" style="animation-delay: {{ $key * $durationPerBanner }}s">
                                     <img src="{{asset($value['banner'])}}" alt="">
-                                    <div class="text-white text-center pt-3" style="font-size: 10px;">CLICK TO FIND OUT MORE</div>
+                                    <div class="text-white text-center pt-3" style="font-size: 10px;" lang="idn">KLIK UNTUK MENGETAHUI LEBIH LANJUT</div>
+                                    <div class="text-white text-center pt-3" style="font-size: 10px;" lang="eng">CLICK TO FIND OUT MORE</div>
                             </div>
                         @endforeach    
                     @else
                         <img class="banner-image-solos" src="{{asset($events[0]['banner'])}}" alt="">
-                        <div class="text-white pt-3" style="font-size: 10px;">CLICK TO FIND OUT MORE</div>
+                        <div class="text-white pt-3" style="font-size: 10px;" lang="idn">KLIK UNTUK MENGETAHUI LEBIH LANJUT</div>
+                        <div class="text-white pt-3" style="font-size: 10px;" lang="eng">CLICK TO FIND OUT MORE</div>
                     @endif
                 @endif
             </a>

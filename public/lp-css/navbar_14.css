@@ -26,8 +26,15 @@
     .navbar button:hover{
         color:#f58529;
     }
+    .navbar-language a {
+        color: black;
+    }
     .lang-idn{
         padding-right: 13px;
+    }
+    .lang-idn a:hover{
+        transition: 0.2s ease-in-out;
+        color: #f58529;
     }
     .lang-dlmtd{
         font-weight: 300 !important;
@@ -35,6 +42,10 @@
     }
     .lang-en{
         padding-left: 13px;
+    }
+    .lang-en a:hover{
+        transition: 0.2s ease-in-out;
+        color: #f58529;
     }
     .nav-menu-body {
         top: -100%;
@@ -59,6 +70,13 @@
     .nav-menu-body ul li {
         list-style: none;
     }
+    .nav-menu-body .label-nav-contact-lg{
+        display: block;
+    }
+    .nav-mobile-medsos {
+        display: none;
+    }
+
 
     @media (max-width:991px) { 
         nav{
@@ -115,6 +133,9 @@
             color: black;
             border-radius: 10px;
             margin-bottom: 15px;
+        }
+        .nav-menu-body .label-nav-contact-lg {
+            display: none;
         }
         .nav-mobile-medsos {
             display: flex;

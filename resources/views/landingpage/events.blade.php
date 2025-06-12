@@ -100,9 +100,11 @@
                                                 <img class="" src="{{asset($value['banner'])}}" style="max-width: 720px;" alt="">
                                             </div>
                                             <div class="label-event">{{$value['eventname']}}</div>
-                                            <div class="date-event">{{$value['eng_display_detail_date']}}</div>
+                                            <div class="date-event" lang="idn">{{$value['display_detail_date']}}</div>
+                                            <div class="date-event" lang="eng">{{$value['eng_display_detail_date']}}</div>
                                             <div class="d-flex w-100 justify-content-center">
-                                                <div class="desc-event">{{$value['eng_description']}}</div>
+                                                <div class="desc-event" lang="idn">{{$value['description']}}</div>
+                                                <div class="desc-event" lang="eng">{{$value['eng_description']}}</div>
                                             </div>
                                             <div class="d-flex w-100 justify-content-center">
                                                 <div class="d-flex bottom-container" style="width:650px;">
@@ -142,7 +144,10 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="desc-upcoming-event">
+                <div class="desc-upcoming-event" lang="idn">
+                    <p>Komitmen PERUJI terhadap pengembangan profesional tercermin melalui berbagai program pelatihan, seminar, dan lokakarya. Setiap kegiatan dirancang untuk memperkaya pengetahuan, memperkuat keterampilan, serta membentuk komunitas underwriter jiwa yang kompeten dan terpercaya.</p>
+                </div>
+                <div class="desc-upcoming-event" lang="eng">
                     <p>PERUJI’s commitment to professional development is reflected through a range of training programs, seminars, and workshops. Each event is designed to enrich knowledge, strengthen skills, and foster a competent and trusted community of life underwriters.</p>
                 </div>
                 <!-- <p>Komitmen Peruji terhadap pengembangan profesional diwujudkan melalui berbagai program pelatihan, seminar, dan workshop. Setiap event dirancang untuk memperkaya pengetahuan, memperkuat keterampilan, dan membangun komunitas Underwriter Jiwa yang kompeten dan terpercaya.</p> -->
@@ -151,12 +156,16 @@
         <div class="container-fluid p-0 menu-event-page" id="previous-event">
             <div class="header-sub-menu d-flex align-items-center">
                 <section class="square me-3"></section>
-                <h1 class="label m-0 mt-1">Previous Event</h1>
+                <h1 class="label m-0 mt-1" lang="idn">Event Sebelumnya</h1>
+                <h1 class="label m-0 mt-1" lang="eng">Previous Event</h1>
             </div>
             <div class="in-event-page text-center text-md-start px-4 px-md-0">
                 <div class="row per-bot">
                     <div class="col-12 p-0">
-                        <div class="d-flex align-items-center text-center p-4 desc-upcoming-event-mobile">
+                        <div class="d-flex align-items-center text-center p-4 desc-upcoming-event-mobile" lang="idn">
+                            <p>Komitmen PERUJI terhadap pengembangan profesional tercermin melalui berbagai program pelatihan, seminar, dan lokakarya. Setiap acara dirancang untuk memperkaya pengetahuan, memperkuat keterampilan, dan membina komunitas penjamin jiwa yang kompeten dan tepercaya.</p>
+                        </div>
+                        <div class="d-flex align-items-center text-center p-4 desc-upcoming-event-mobile" lang="eng">
                             <p>PERUJI’s commitment to professional development is reflected through a range of training programs, seminars, and workshops. Each event is designed to enrich knowledge, strengthen skills, and foster a competent and trusted community of life underwriters.</p>
                         </div>
                     </div>
@@ -168,30 +177,38 @@
                                 <img src="{{$value['thumbnail']?asset($value['thumbnail']):asset('lp-img/default-img-thumbnail-event.png')}}" alt="" class="thumbnail-event-img">
                             </div>
                             <div class="col-12 col-md-6 gpe-r gpc-l gpc-t gpc-b d-flex flex-column">
-                              <div class="tanggal">{{$value['eng_display_detail_date']}}</div>
+                              <div class="tanggal" lang="idn">{{$value['display_detail_date']}}</div>
+                              <div class="tanggal" lang="eng">{{$value['eng_display_detail_date']}}</div>
                               <div class="label-event">{{$value['eventname']}}</div>
-                              <div class="pb-2 desc">{{$value['eng_description']}}</div>
+                              <div class="pb-2 desc" lang="idn">{{$value['description']}}</div>
+                              <div class="pb-2 desc" lang="eng">{{$value['eng_description']}}</div>
 
                               <!-- This container stretches to fill remaining space -->
                               <div class="d-flex flex-grow-1 align-items-end justify-content-center justify-content-md-start">
-                                <i class="news-link" prev-event-row="{{$value['id']}}">News Links</i>
+                                <i class="news-link" prev-event-row="{{$value['id']}}" lang="idn">Tautan Berita</i>
+                                <i class="news-link" prev-event-row="{{$value['id']}}" lang="eng">News Links</i>
                                 <div class="text-black mx-2 d-block d-md-none">|</div>
-                                <i class="gallery-link ms-md-auto">Photo Gallery</i>
+                                <i class="gallery-link ms-md-auto" lang="idn">Galeri Foto</i>
+                                <i class="gallery-link ms-md-auto" lang="eng">Photo Gallery</i>
                               </div>
                             </div>
                         </div>
                     @else
                         <div class="row" label="even">
                             <div class="col-12 col-md-6 gpe-l gpc-t gpc-r gpc-b d-flex flex-column order-last order-md-first">
-                              <div class="tanggal">{{$value['eng_display_detail_date']}}</div>
+                              <div class="tanggal" lang="idn">{{$value['display_detail_date']}}</div>
+                              <div class="tanggal" lang="eng">{{$value['eng_display_detail_date']}}</div>
                               <div class="label-event">{{$value['eventname']}}</div>
-                              <div class="pb-2 desc">{{$value['eng_description']}}</div>
+                              <div class="pb-2 desc" lang="idn">{{$value['description']}}</div>
+                              <div class="pb-2 desc" lang="eng">{{$value['eng_description']}}</div>
 
                               <!-- This container stretches to fill remaining space -->
                               <div class="d-flex flex-grow-1 align-items-end justify-content-center justify-content-md-start">
-                                <i class="news-link" prev-event-row="{{$value['id']}}">News Links</i>
+                                <i class="news-link" prev-event-row="{{$value['id']}}" lang="idn">Tautan Berita</i>
+                                <i class="news-link" prev-event-row="{{$value['id']}}" lang="eng">News Links</i>
                                 <div class="text-black mx-2 d-block d-md-none">|</div>
-                                <i class="gallery-link ms-md-auto">Photo Gallery</i>
+                                <i class="gallery-link ms-md-auto" lang="idn">Galeri Foto</i>
+                                <i class="gallery-link ms-md-auto" lang="eng">Photo Gallery</i>
                               </div>
                             </div>
                             <div class="col-12 col-md-6 p-0">

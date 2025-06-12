@@ -11,18 +11,20 @@
     <!-- <img src="{{asset('lp-img/bom.png')}}" alt="" style="width: 100%;"> -->
     <div class="header-sub-menu">
         <section class="square me-3"></section>
-        <h1 class="label m-0 mt-1">Board Of Management</h1>
+        <h1 class="label m-0 mt-1" lang="idn">Dewan Pengurus</h1>
+        <h1 class="label m-0 mt-1" lang="eng">Board Of Management</h1>
     </div>
     <div class="in-bom-page">
         <div class="container-fluid">
             <div class="period-container">
-                <div class="label">MANAGEMENT PERIOD</div>
+                <div class="label" lang="idn">PERIODE MANAJEMEN</div>
+                <div class="label" lang="eng">MANAGEMENT PERIOD</div>
                 <div class="year">2025 - 2029</div>
                 <div class="garis-1"></div>
                 <div class="garis-2"></div>
             </div>  
             <div class="label-person" lang="eng">Supervisory Board</div>
-            <div class="label-person" lang="idn" style="display:none;">Dewan Pengawas</div>
+            <div class="label-person" lang="idn">Dewan Pengawas</div>
             <div class="person">
                 <img src="{{asset('lp-img/BOM/dr-dian-budiani.png')}}" >
                 <div class="text-person pl-1">
@@ -42,12 +44,12 @@
                 </div>
             </div>
             <div class="label-person" lang="eng">Board of Management</div>
-            <div class="label-person" lang="idn" style="display:none;">Dewan Pengurus</div>
+            <div class="label-person" lang="idn">Dewan Pengurus</div>
             <div class="person-2">
                 <img src="{{asset('lp-img/BOM/dr-dessy-kusumayati.png')}}" >
                 <div class="text-person-2">
                     <div class="label-person-content" lang="eng">PRESIDENT</div>
-                    <div class="label-person-content" lang="idn" style="display:none;">KETUA</div>
+                    <div class="label-person-content" lang="idn">KETUA</div>
                     <div class="label-person-name">dr. Dessy Kusumayati, AAAIJ, AAK, UND, CRGP, AMRP</div>
                     <div class="label-person-job">Director of Life & Health Business - PT Indoperkasa Suksesjaya Reasuransi</div>
                     
@@ -56,62 +58,62 @@
                     </div>
                     
                     <div class="label-person-content" lang="eng">SECRETARY</div>
-                    <div class="label-person-content" lang="idn" style="display:none;">SEKRETARIS</div>
+                    <div class="label-person-content" lang="idn">SEKRETARIS</div>
                     <div class="label-person-name">dr. Adi Kurnia Nur, FLMI, FALU, QCRO</div>
                     <div class="label-person-job">Head of Operations (interim) - PT FWD Insurance Indonesia</div>
                     
                     <div class="label-person-content" lang="eng">VICE SECRETARY</div>
-                    <div class="label-person-content" lang="idn" style="display:none;">WAKIL SEKRETARIS</div>
+                    <div class="label-person-content" lang="idn">WAKIL SEKRETARIS</div>
                     <div class="label-person-name">dr. Martrifena W. Joseph, MM, ALMI, QRGP</div>
                     <div class="label-person-job">VP, Head of New Business and Underwriting - PT AIA Financial</div>
                     
                     <div class="label-person-content" lang="eng">TREASURER</div>
-                    <div class="label-person-content" lang="idn" style="display:none;">BENDAHARA</div>
+                    <div class="label-person-content" lang="idn">BENDAHARA</div>
                     <div class="label-person-name">dr. Margareta Zenitha, AAAIJ, AAK, FLMI, ARA, QCRO</div>
                     <div class="label-person-job">Deputy Head of Life Reinsurance Technical Division (Underwriting and Retro) <br>- PT Maskapai Reasuransi Indonesia Tbk.</div>
                     
                     <div class="label-person-content" lang="eng">VICE TREASURER</div>
-                    <div class="label-person-content" lang="idn" style="display:none;">WAKIL BENDAHARA</div>
+                    <div class="label-person-content" lang="idn">WAKIL BENDAHARA</div>
                     <div class="label-person-name">dr. Valencia S. Hahijary, CLI</div>
                     <div class="label-person-job">(PT PFI Mega Life Insurance)</div>
                     
                     <div class="label-person-content" lang="eng">HEAD OF MEMBERSHIP</div>
-                    <div class="label-person-content" lang="idn" style="display:none;">KETUA BIDANG KEANGGOTAAN</div>
+                    <div class="label-person-content" lang="idn">KETUA BIDANG KEANGGOTAAN</div>
                     <div class="label-person-name">dr. Hendrikus Dharmawan, AAK, CRGP</div>
                     <div class="label-person-job">VP, Head of Technical Operations - PT Equity Life Indonesia</div>
 
                     <div class="label-person-content" lang="eng">MEMBERSHIP</div>
-                    <div class="label-person-content" lang="idn" style="display:none;">KEANGGOTAAN</div>
+                    <div class="label-person-content" lang="idn">KEANGGOTAAN</div>
                     <div class="label-person-name">Reinardo Simon Louhenapessy, SS, AWP, CRMP</div>
                     <div class="label-person-job">Manager, New Business and Underwriting - PT Asuransi Ciputra Indonesia</div>
 
                     <div class="label-person-content" lang="eng">HEAD OF EDUCATION & TRAINING</div>
-                    <div class="label-person-content" lang="idn" style="display:none;">KETUA BIDANG PENDIDIKAN DAN PELATIHAN</div>
+                    <div class="label-person-content" lang="idn">KETUA BIDANG PENDIDIKAN DAN PELATIHAN</div>
                     <div class="label-person-name">Bianka Margareth Simatupang, SFarm, MFarm, QRMP</div>
                     <div class="label-person-job">Division Head of Group Operations - PT MSIG Life Insurance Indonesia Tbk.</div>
                     
                     <div class="label-person-content" lang="eng">EDUCATION & TRAINING</div>
-                    <div class="label-person-content" lang="idn" style="display:none;">BIDANG PENDIDIKAN DAN PELATIHAN</div>
+                    <div class="label-person-content" lang="idn">BIDANG PENDIDIKAN DAN PELATIHAN</div>
                     <div class="label-person-name">dr. Dian Indriasari, MM, AAAIJ, AAAK, AIIS</div>
                     <div class="label-person-job">Life Underwriter - PT Reasuransi Nasional Indonesia</div>
                     
                     <div class="label-person-content" lang="eng">HEAD OF INSTITUTIONAL RELATIONS</div>
-                    <div class="label-person-content" lang="idn" style="display:none;">KETUA BIDANG HUBUNGAN KELEMBAGAAN</div>
+                    <div class="label-person-content" lang="idn">KETUA BIDANG HUBUNGAN KELEMBAGAAN</div>
                     <div class="label-person-name">Zulhamdi Rahman, SIA, AAIJ, QCRO</div>
                     <div class="label-person-job">Head of Life and Health Insurance Business - PT Indoperkasa Suksesjaya Reasuransi</div>
                     
                     <div class="label-person-content" lang="eng">INSTITUTIONAL RELATIONS</div>
-                    <div class="label-person-content" lang="idn" style="display:none;">BIDANG HUBUNGAN KELEMBAGAAN</div>
+                    <div class="label-person-content" lang="idn">BIDANG HUBUNGAN KELEMBAGAAN</div>
                     <div class="label-person-name">Dania Virjiyanti, SE, AAAIJ, AAK, CRMO</div>
                     <div class="label-person-job">Life Underwriter - PT Tugu Reasuransi Indonesia</div>
                     
                     <div class="label-person-content" lang="eng">INSTITUTIONAL RELATIONS</div>
-                    <div class="label-person-content" lang="idn" style="display:none;">BIDANG HUBUNGAN KELEMBAGAAN</div>
+                    <div class="label-person-content" lang="idn">BIDANG HUBUNGAN KELEMBAGAAN</div>
                     <div class="label-person-name">dr. Meivyta Husman, MPH (HPE), FLMI, ARA, ACS, ASFI, UND, AIIS, AAK, CGRP, AMRP, QCRO</div>
                     <div class="label-person-job">Senior VP, Head of Underwriting - PT Asuransi Jiwa Inhealth Indonesia</div>
                     
                     <div class="label-person-content" lang="eng">HEAD OF PUBLIC RELATIONS & WEBSITE</div>
-                    <div class="label-person-content" lang="idn" style="display:none;">KETUA BIDANG HUMAS & WEBSITE</div>
+                    <div class="label-person-content" lang="idn">KETUA BIDANG HUMAS & WEBSITE</div>
                     <div class="label-person-name">dr. Heru Sutomo, QCRO</div>
                     <div class="label-person-job">VP, Underwriting and Claims - PT Prudential Life Assurance Indonesia</div>
                 </div>
