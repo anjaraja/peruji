@@ -108,7 +108,13 @@ class EventRegistrationController extends Controller
 
                     if($value->emails){
                         Log::channel('activity')->info('[SENDING EMAIL TO ADMIN]', [$value->emails]);
-                        Mail::to($value->emails)->send(new SendMail($view, $subject, $data));
+                        try{
+                            Mail::to($value->emails)->send(new SendMail($view, $subject, $data));   
+                        } catch (\Exception $e) {
+                            // Log the error and continue
+                            Log::channel('errorlog')->info('[FAILED SENDING EMAIL]', [$value->emails], $e->getMessage());
+                            continue;
+                        }
                     }
                 }
                 $data["emailstatus"] = 1;
