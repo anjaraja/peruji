@@ -107,7 +107,7 @@
                         <h3 class="m-0" lang="eng">How To Join</h3>
                         <ol class="m-0" lang="idn">
                             <li>
-                                Isi formulir pendaftaran melalui Google Forms (<a href="https://forms.gle/wDrBRnkoWqtNcD2P6" style="background: transparent; color:blue;">https://forms.gle/wDrBRnkoWqtNcD2P6</a>} atau kirimkan versi cetak.
+                                Isi formulir pendaftaran melalui Google Forms (<a href="https://forms.gle/wDrBRnkoWqtNcD2P6" style="background: transparent; color:blue;">https://forms.gle/wDrBRnkoWqtNcD2P6</a>) atau kirimkan versi cetak.
                             </li>
                             <li>
                                 Transfer biaya pendaftaran sebesar Rp100.000.
