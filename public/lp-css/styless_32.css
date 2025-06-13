@@ -1063,6 +1063,9 @@
         .menu-tc-page .content li{
             font-size: 14px;
         }
+        .menu-tc-page .content-button {
+            margin: 0 auto;
+        }
             
     }
 
