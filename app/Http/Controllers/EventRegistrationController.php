@@ -90,6 +90,7 @@ class EventRegistrationController extends Controller
                 ->where("activestatus",1)
                 ->get();
 
+            $data["emailstatus"] = 0;
             if($email_admin){
                 $view = 'mailtemplate.eventregistration'; // dynamic
                 $subject = "$request->fullname Join the Event!";
@@ -110,12 +111,12 @@ class EventRegistrationController extends Controller
                         Mail::to($value->emails)->send(new SendMail($view, $subject, $data));
                     }
                 }
+                $data["emailstatus"] = 1;
             }
 
             Log::channel('activity')->info('[EVENT REGISTRATION]', $request->all());
 
             $data = $request->all();
-            $data["emailstatus"] = 1;
             $store = EventRegistration::create($data);
 
             DB::commit();

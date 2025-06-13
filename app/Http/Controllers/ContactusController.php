@@ -62,24 +62,29 @@ class ContactusController extends Controller
             //NEED TO GRAB IP ADDRESS FROM USER SUBMITTED TO DEFENDING BRUTEFORCEuse App\Models\EmailAdmin;use App\Models\EmailAdmin;use App\Models\EmailAdmin;
 
             $email_admin = EmailAdmin::select(DB::raw("rawemail as emails"))
+                ->where("emailfor","contact")
                 ->where("activestatus",1)
                 ->get();
 
-            $view = 'mailtemplate.contactus'; // dynamic
-            $subject = $request->subject;
-            foreach($email_admin as $key => $value){
+            $data["emailstatus"] = 0;
+            if($email_admin){
+                $view = 'mailtemplate.contactus'; // dynamic
+                $subject = $request->subject;
+                foreach($email_admin as $key => $value){
 
-                $maildata = [
-                    "fullname"=>$request->fullname,
-                    "email"=>$request->email,
-                    "phone"=>$request->phone,
-                    "usermessage"=>$request->message
-                ];
+                    $maildata = [
+                        "fullname"=>$request->fullname,
+                        "email"=>$request->email,
+                        "phone"=>$request->phone,
+                        "usermessage"=>$request->message
+                    ];
 
-                if($value->emails){
-                    Log::channel('activity')->info('[SENDING EMAIL TO ADMIN]', [$value->emails]);
-                    Mail::to($value->emails)->send(new SendMail($view, $subject, $maildata));
+                    if($value->emails){
+                        Log::channel('activity')->info('[SENDING EMAIL TO ADMIN]', [$value->emails]);
+                        Mail::to($value->emails)->send(new SendMail($view, $subject, $maildata));
+                    }
                 }
+                $data["emailstatus"] = 1;
             }
 
             Log::channel('activity')->info('[CONTACTUS]', $request->all());

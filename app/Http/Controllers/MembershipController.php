@@ -67,6 +67,33 @@ class MembershipController extends Controller
                 ], 422);
             }
 
+            $email_admin = EmailAdmin::select(DB::raw("rawemail as emails"))
+                ->where("emailfor","membership")
+                ->where("activestatus",1)
+                ->get();
+
+            if($email_admin){
+                $view = 'mailtemplate.membership'; // dynamic
+                $subject = "Someone Register Membership";
+                foreach($email_admin as $key => $value){
+                    $data = [
+                        "fullname"=>$request->fullname,
+                        "gender"=>$request->gender=="M"?"Male":"Female",
+                        "email"=>$request->email,
+                        "phone"=>$request->phone,
+                        "company"=>$request->org,
+                        "department"=>$request->department,
+                        "funct"=>$request->funct,
+                        "ofcemaail"=>$request->ofcemaail
+                    ];
+
+                    if($value->emails){
+                        Log::channel('activity')->info('[SENDING EMAIL TO ADMIN]', [$value->emails]);
+                        Mail::to($value->emails)->send(new SendMail($view, $subject, $data));
+                    }
+                }
+            }
+
             Log::channel('activity')->info('[MEMBERSHIP REGISTER]', $request->all());
             $store = Membership::create($request->all());
 
