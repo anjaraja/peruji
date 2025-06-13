@@ -162,7 +162,6 @@
             </li>
         </ul>
         <a href="{{route('admin')}}" class="position-absolute bottom-0 end-0 pe-5 pb-5 text-decoration-none text-white d-lg-block d-none">ADMIN</a>
-            min-height: 100vh;
         <div class="nav-mobile-medsos" style="position:relative;">
             <div class="label-nav label-nav-contact d-flex flex-column justify-content-center">
                 <a class="btn btn-link" lang="idn" href="{{route('contact-us')}}">KONTAK</a>

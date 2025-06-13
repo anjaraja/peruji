@@ -54,7 +54,8 @@
         <div class="image-layout">
             <div class="layout"></div>
             <div class="content">
-                <div class="head-events" id="upcoming">Upcoming Events</div>
+                <div class="head-events" id="upcoming" lang="idn">Events Mendatang</div>
+                <div class="head-events" id="upcoming" lang="eng">Upcoming Events</div>
                 <div class="d-flex justify-content-center align-items-center flex-column event-list">
                     @foreach ( $upcoming_events as $value )
                         <div class="event flex-row">
@@ -144,11 +145,9 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="desc-upcoming-event" lang="idn">
-                    <p>Komitmen PERUJI terhadap pengembangan profesional tercermin melalui berbagai program pelatihan, seminar, dan lokakarya. Setiap kegiatan dirancang untuk memperkaya pengetahuan, memperkuat keterampilan, serta membentuk komunitas underwriter jiwa yang kompeten dan terpercaya.</p>
-                </div>
-                <div class="desc-upcoming-event" lang="eng">
-                    <p>PERUJI’s commitment to professional development is reflected through a range of training programs, seminars, and workshops. Each event is designed to enrich knowledge, strengthen skills, and foster a competent and trusted community of life underwriters.</p>
+                <div class="desc-upcoming-event">
+                    <p lang="idn">Komitmen PERUJI terhadap pengembangan profesional tercermin melalui berbagai program pelatihan, seminar, dan lokakarya. Setiap kegiatan dirancang untuk memperkaya pengetahuan, memperkuat keterampilan, serta membentuk komunitas underwriter jiwa yang kompeten dan terpercaya.</p>
+                    <p lang="eng">PERUJI’s commitment to professional development is reflected through a range of training programs, seminars, and workshops. Each event is designed to enrich knowledge, strengthen skills, and foster a competent and trusted community of life underwriters.</p>
                 </div>
                 <!-- <p>Komitmen Peruji terhadap pengembangan profesional diwujudkan melalui berbagai program pelatihan, seminar, dan workshop. Setiap event dirancang untuk memperkaya pengetahuan, memperkuat keterampilan, dan membangun komunitas Underwriter Jiwa yang kompeten dan terpercaya.</p> -->
             </div>
@@ -162,11 +161,9 @@
             <div class="in-event-page text-center text-md-start px-4 px-md-0">
                 <div class="row per-bot">
                     <div class="col-12 p-0">
-                        <div class="d-flex align-items-center text-center p-4 desc-upcoming-event-mobile" lang="idn">
-                            <p>Komitmen PERUJI terhadap pengembangan profesional tercermin melalui berbagai program pelatihan, seminar, dan lokakarya. Setiap acara dirancang untuk memperkaya pengetahuan, memperkuat keterampilan, dan membina komunitas penjamin jiwa yang kompeten dan tepercaya.</p>
-                        </div>
-                        <div class="d-flex align-items-center text-center p-4 desc-upcoming-event-mobile" lang="eng">
-                            <p>PERUJI’s commitment to professional development is reflected through a range of training programs, seminars, and workshops. Each event is designed to enrich knowledge, strengthen skills, and foster a competent and trusted community of life underwriters.</p>
+                        <div class="d-flex align-items-center text-center p-4 desc-upcoming-event-mobile">
+                            <p lang="idn">Komitmen PERUJI terhadap pengembangan profesional tercermin melalui berbagai program pelatihan, seminar, dan lokakarya. Setiap acara dirancang untuk memperkaya pengetahuan, memperkuat keterampilan, dan membina komunitas penjamin jiwa yang kompeten dan tepercaya.</p>
+                            <p lang="eng">PERUJI’s commitment to professional development is reflected through a range of training programs, seminars, and workshops. Each event is designed to enrich knowledge, strengthen skills, and foster a competent and trusted community of life underwriters.</p>
                         </div>
                     </div>
                 </div>
