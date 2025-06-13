@@ -141,7 +141,8 @@
                         </ol>
                     </div>
                     <div class="content content-button gpe-l gpe-r">
-                        <a href="{{route('membership-signup')}}" class="text-decoration-none px-4 py-2" id="button" lang="idn">Daftar</a>
+                        <a href="{{route('membership-signup')}}" class="text-decoration-none px-4 py-2" id="button" lang="idn"
+                        style="max-width:120px; text-align: center;">Daftar</a>
                         <a href="{{route('membership-signup')}}" class="text-decoration-none px-4 py-2" id="button" lang="eng"
                         style="max-width:120px; text-align: center;"
                         >SIGN UP</a>
