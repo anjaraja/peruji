@@ -81,31 +81,34 @@ class EventRegistrationController extends Controller
             if($check_data){
                 Log::channel('activity')->warning('[EVENT REGISTRATION EMAIL EXISTS]', $request->all());
                 return response()->json([
-                    "message" => $validated->errors()
+                    "message" => "You are already registered for this event."
                 ], 422);
             }
 
             $email_admin = EmailAdmin::select(DB::raw("rawemail as emails"))
+                ->where("emailfor","event")
                 ->where("activestatus",1)
                 ->get();
 
-            $view = 'mailtemplate.eventregistration'; // dynamic
-            $subject = "$request->fullname Join the Event!";
-            foreach($email_admin as $key => $value){
+            if($email_admin){
+                $view = 'mailtemplate.eventregistration'; // dynamic
+                $subject = "$request->fullname Join the Event!";
+                foreach($email_admin as $key => $value){
 
-                $data = [
-                    "eventregistrationname"=>$request->eventregistrationname,
-                    "fullname"=>$request->fullname,
-                    "email"=>$request->email,
-                    "phone"=>$request->phone,
-                    "ofcphone"=>$request->ofcphone,
-                    "company"=>$request->company,
-                    "address"=>$request->address
-                ];
+                    $data = [
+                        "eventregistrationname"=>$request->eventregistrationname,
+                        "fullname"=>$request->fullname,
+                        "email"=>$request->email,
+                        "phone"=>$request->phone,
+                        "ofcphone"=>$request->ofcphone,
+                        "company"=>$request->company,
+                        "address"=>$request->address
+                    ];
 
-                if($value->emails){
-                    Log::channel('activity')->info('[SENDING EMAIL TO ADMIN]', [$value->emails]);
-                    Mail::to($value->emails)->send(new SendMail($view, $subject, $data));
+                    if($value->emails){
+                        Log::channel('activity')->info('[SENDING EMAIL TO ADMIN]', [$value->emails]);
+                        Mail::to($value->emails)->send(new SendMail($view, $subject, $data));
+                    }
                 }
             }
 

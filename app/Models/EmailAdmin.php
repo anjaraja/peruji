@@ -12,5 +12,6 @@ class EmailAdmin extends Model
         'activestatus',
         'created_by',
         'modified_by',
+        'emailfor',
     ];
 }
