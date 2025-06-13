@@ -100,7 +100,7 @@
                     <div class="label-person-content" lang="eng">HEAD OF INSTITUTIONAL RELATIONS</div>
                     <div class="label-person-content" lang="idn">KETUA BIDANG HUBUNGAN KELEMBAGAAN</div>
                     <div class="label-person-name">Zulhamdi Rahman, SIA, AAIJ, QCRO</div>
-                    <div class="label-person-job">Head of Life and Health Insurance Business - PT Indoperkasa Suksesjaya Reasuransi</div>
+                    <div class="label-person-job">Head of Life and Health Insurance Business <br class="newline-label-only-mobile">- PT Indoperkasa Suksesjaya Reasuransi</div>
                     
                     <div class="label-person-content" lang="eng">INSTITUTIONAL RELATIONS</div>
                     <div class="label-person-content" lang="idn">BIDANG HUBUNGAN KELEMBAGAAN</div>

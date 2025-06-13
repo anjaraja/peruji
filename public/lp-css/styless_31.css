@@ -481,6 +481,10 @@
         animation-duration: 2s;
         animation-timing-function: ease-out;
     }
+
+    .newline-label-only-mobile{
+        display: none;
+    }
     
     @media (max-width:991px) { 
         .in-bom-page .container-fluid {
@@ -615,6 +619,9 @@
 
         #imageColumns img {
             width: 8.3% !important;
+        }
+        .newline-label-only-mobile{
+            display: block;
         }
     }
     @media(max-width: 390px){
