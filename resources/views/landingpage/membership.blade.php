@@ -103,7 +103,7 @@
                         </ol>
                     </div>
                     <div class="content gpe-l gpe-r">
-                        <h3 class="m-0" lang="idn">How To Join</h3>
+                        <h3 class="m-0" lang="idn">Cara Untuk Bergabung</h3>
                         <h3 class="m-0" lang="eng">How To Join</h3>
                         <ol class="m-0" lang="idn">
                             <li>
