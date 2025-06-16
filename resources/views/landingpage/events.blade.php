@@ -161,7 +161,7 @@
             <div class="in-event-page text-center text-md-start px-4 px-md-0">
                 <div class="row per-bot">
                     <div class="col-12 p-0">
-                        <div class="d-flex align-items-center text-center p-4 desc-upcoming-event-mobile">
+                        <div class="d-flex align-items-center text-center py-4 p-1 desc-upcoming-event-mobile">
                             <p lang="idn">Komitmen PERUJI terhadap pengembangan profesional tercermin melalui berbagai program pelatihan, seminar, dan lokakarya. Setiap acara dirancang untuk memperkaya pengetahuan, memperkuat keterampilan, dan membina komunitas penjamin jiwa yang kompeten dan tepercaya.</p>
                             <p lang="eng">PERUJI’s commitment to professional development is reflected through a range of training programs, seminars, and workshops. Each event is designed to enrich knowledge, strengthen skills, and foster a competent and trusted community of life underwriters.</p>
                         </div>
