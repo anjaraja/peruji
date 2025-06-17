@@ -31,7 +31,6 @@
     }
 }
 </style>
-<link rel="stylesheet" href="{{ asset('lp-css/events_2.css') }}">
 @section('content')
     <style>
         .thumbnail-event-img{
@@ -98,7 +97,7 @@
                                     <div class="container position-relative">
                                         <div class="d-flex w-100 pt-2 justify-content-center flex-column content-event">
                                             <div>
-                                                <img class="" src="{{asset($value['banner'])}}" style="max-width: 720px;" alt="">
+                                                <img class="banner-event-popup" src="{{asset($value['banner'])}}" style="max-width: 580px;" alt="">
                                             </div>
                                             <div class="label-event">{{$value['eventname']}}</div>
                                             <div class="date-event" lang="idn">{{$value['display_detail_date']}}</div>
@@ -120,6 +119,8 @@
                                                                 REGISTER
                                                             </a>
                                                         </div>
+                                                        @if(empty($value['agenda']))
+                                                        @else
                                                         <div class="d-flex justify-content-center w-50">
                                                             <a class="text-black" href="{{asset($value['agenda'])}}" target="_blank">
                                                                 <svg width="48" height="60" viewBox="0 0 48 60" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -129,7 +130,15 @@
                                                                 <div class="info-event">Download Agenda</div>
                                                             </a>
                                                         </div>
-                                                        <div class="d-flex justify-content-end w-25">
+                                                        @endif
+                                                        <div class="d-flex justify-content-end w-25
+                                                        
+                                                        @if(empty($value['agenda']))
+                                                            ms-auto
+                                                        @else
+                                                        @endif
+
+                                                        ">
                                                             <button class="btn btn-link btn btn-link text-decoration-none text-black p-0 back-to-event"
                                                             >
                                                                 BACK ->
@@ -145,7 +154,12 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="desc-upcoming-event">
+                <div class="desc-upcoming-event" 
+                style="
+                text-align: justify;
+                -moz-text-align-last: center;
+                text-align-last: center;
+                ">
                     <p lang="idn">Komitmen PERUJI terhadap pengembangan profesional tercermin melalui berbagai program pelatihan, seminar, dan lokakarya. Setiap kegiatan dirancang untuk memperkaya pengetahuan, memperkuat keterampilan, serta membentuk komunitas underwriter jiwa yang kompeten dan terpercaya.</p>
                     <p lang="eng">PERUJI’s commitment to professional development is reflected through a range of training programs, seminars, and workshops. Each event is designed to enrich knowledge, strengthen skills, and foster a competent and trusted community of life underwriters.</p>
                 </div>
@@ -161,7 +175,12 @@
             <div class="in-event-page text-center text-md-start px-4 px-md-0">
                 <div class="row per-bot">
                     <div class="col-12 p-0">
-                        <div class="d-flex align-items-center text-center py-4 p-1 desc-upcoming-event-mobile">
+                        <div class="d-flex align-items-center py-4 p-1 desc-upcoming-event-mobile" 
+                        style="
+                        text-align: justify;
+                        -moz-text-align-last: center;
+                        text-align-last: center;
+                        ">
                             <p lang="idn">Komitmen PERUJI terhadap pengembangan profesional tercermin melalui berbagai program pelatihan, seminar, dan lokakarya. Setiap acara dirancang untuk memperkaya pengetahuan, memperkuat keterampilan, dan membina komunitas penjamin jiwa yang kompeten dan tepercaya.</p>
                             <p lang="eng">PERUJI’s commitment to professional development is reflected through a range of training programs, seminars, and workshops. Each event is designed to enrich knowledge, strengthen skills, and foster a competent and trusted community of life underwriters.</p>
                         </div>
@@ -224,14 +243,11 @@
         </div>
     </div>
 
-    <div id="content-area" class="section-container" style="display: none;">
-        
-    </div>
-    <div id="register-area" class="section-container" style="display: none;">
-        
-    </div>
 
 <script>
+    console.log("Lebar viewport: " + window.innerWidth + "px");
+console.log("Tinggi viewport: " + window.innerHeight + "px");
+
     showLink = function(element){
         prev_event_row = element.getAttribute("prev-event-row");
         news_link_container = document.querySelector(`.news-link-container[prev-event-row="${prev_event_row}"]`);

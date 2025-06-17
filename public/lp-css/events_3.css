@@ -23,6 +23,11 @@
     max-width: 650px;
     margin: auto;
 }
+.event-detail-container .desc-event {
+    text-align: justify;
+    -moz-text-align-last: center;
+    text-align-last: center;
+}
 .news-link, .gallery-link{
     color: #003ACD;
 }
@@ -35,11 +40,11 @@ span.detail-event, span.register-event{
 .event-detail-container{
     position: fixed;
     width: 100%;
-    height: 93vh;
+    height: 96vh;
     background-color: #ffffff;
     opacity: 0;
     pointer-events: none;
-    z-index: 2;
+    z-index: 1;
     left: -100vw;
     transition: all 0.8s;
     bottom: 0;
