@@ -21,8 +21,8 @@
         <div class="menu-tc-page">
             <div class="header-sub-menu">
                 <section class="square me-3"></section>
-                <h1 class="label m-0 mt-1" lang="idn">Membership</h1>
-                <h1 class="label m-0 mt-1" lang="eng">Keanggotaan</h1>
+                <h1 class="label m-0 mt-1" lang="eng">Membership</h1>
+                <h1 class="label m-0 mt-1" lang="idn">Keanggotaan</h1>
             </div>
             <div class="container-fluid gpe-l gpe-r">
                 <div class="d-flex flex-column justify-content-center gpe-l gpe-r">

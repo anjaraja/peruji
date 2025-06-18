@@ -8,6 +8,7 @@
         position: relative;
         width: 100%;
         padding-top: 56.25%; /* 16:9 aspect ratio (9 / 16 = 0.5625) */
+        height: 100vh;
         overflow: hidden;
     }
     .responsive-video {

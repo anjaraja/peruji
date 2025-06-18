@@ -876,7 +876,7 @@
             font-size: 24px;
         }
         .in-event-page .desc {
-            text-align: center;
+            /*text-align: center;*/
             font-size: 14px;
         }
         
@@ -1135,7 +1135,8 @@
     @media (min-width:1141px) {
 
         .membership-bg{
-            background-position-y: -433px !important;
+            /*background-position-y: -433px !important;*/
+            background-position-y: bottom !important;
         }
 
     }
