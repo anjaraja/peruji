@@ -50,25 +50,33 @@
     });
 </script>
 <script>
-    function setLanguage(lang) {
-    localStorage.setItem('language', lang);
+    function setLanguage(lang,el) {
+        //add default active to ENG
+        if(el){
+            if(el.classList.contains("active")){
+                return false;
+            }
+            document.querySelector(".lang-choice a.active").classList.remove("active");
+            el.classList.add("active");
+        }
+        localStorage.setItem('language', lang);
 
-    const elements = document.querySelectorAll('[lang]');
+        const elements = document.querySelectorAll('[lang]');
 
-    elements.forEach(el => {
-        el.classList.remove('visible');
-        setTimeout(() => {
-        el.style.display = 'none';
-        }, 500);
-    });
-
-    setTimeout(() => {
-        document.querySelectorAll('[lang="' + lang + '"]').forEach(el => {
-        el.style.display = 'block';
-        void el.offsetWidth;
-        el.classList.add('visible');
+        elements.forEach(el => {
+            el.classList.remove('visible');
+            setTimeout(() => {
+            el.style.display = 'none';
+            }, 500);
         });
-    }, 500);
+
+        setTimeout(() => {
+            document.querySelectorAll('[lang="' + lang + '"]').forEach(el => {
+            el.style.display = 'block';
+            void el.offsetWidth;
+            el.classList.add('visible');
+            });
+        }, 500);
     }
 
     document.addEventListener('DOMContentLoaded', function() {

@@ -1,3 +1,8 @@
+<style>
+    .lang-choice a.active{
+        color: #f58529;
+    }
+</style>
 <nav class="position-fixed z-2 w-100 bg-white">
     <div class="container-nav position-relative">
         <div class="navbar d-flex justify-content-center align-items-center">
@@ -97,16 +102,16 @@
                     </a>
                 </div>
                 <div class="navbar-language d-flex align-items-center">
-                    <div class="navbar-language-left lang-idn">
-                        <a onclick="setLanguage('idn')" class="text-decoration-none d-flex align-items-center pt-1" style="cursor: pointer;">
+                    <div class="navbar-language-left lang-idn lang-choice">
+                        <a onclick="setLanguage('idn',this)" class="text-decoration-none d-flex align-items-center pt-1" style="cursor: pointer;">
                             IDN
                         </a>
                     </div>
                     <div class="navbar-language-center text-dark d-flex align-items-center lang-dlmtd" style="cursor: context-menu">
                         <span>|</span>
                     </div>
-                    <div class="navbar-language-right lang-en">
-                        <a onclick="setLanguage('eng')" class="text-decoration-none d-flex align-items-center pt-1" style="cursor: pointer;">
+                    <div class="navbar-language-right lang-en lang-choice">
+                        <a onclick="setLanguage('eng',this)" class="text-decoration-none d-flex align-items-center pt-1 active" style="cursor: pointer;">
                             ENG
                         </a>
                     </div>
