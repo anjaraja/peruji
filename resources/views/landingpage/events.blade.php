@@ -245,8 +245,8 @@
 
 
 <script>
-    console.log("Lebar viewport: " + window.innerWidth + "px");
-console.log("Tinggi viewport: " + window.innerHeight + "px");
+    // console.log("Lebar viewport: " + window.innerWidth + "px");
+    // console.log("Tinggi viewport: " + window.innerHeight + "px");
 
     showLink = function(element){
         prev_event_row = element.getAttribute("prev-event-row");
