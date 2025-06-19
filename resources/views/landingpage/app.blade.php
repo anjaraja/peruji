@@ -57,9 +57,12 @@
                 return false;
             }
             document.querySelector(".lang-choice a.active").classList.remove("active");
-            el.classList.add("active");
         }
+
         localStorage.setItem('language', lang);
+        if(lang == "eng") document.querySelector(".lang-choice.lang-en a").classList.add("active");
+        else if(lang == "idn") document.querySelector(".lang-choice.lang-idn a").classList.add("active");
+        // console.log(localStorage.getItem("language"));
 
         const elements = document.querySelectorAll('[lang]');
 

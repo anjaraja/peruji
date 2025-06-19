@@ -111,7 +111,7 @@
                         <span>|</span>
                     </div>
                     <div class="navbar-language-right lang-en lang-choice">
-                        <a onclick="setLanguage('eng',this)" class="text-decoration-none d-flex align-items-center pt-1 active" style="cursor: pointer;">
+                        <a onclick="setLanguage('eng',this)" class="text-decoration-none d-flex align-items-center pt-1" style="cursor: pointer;">
                             ENG
                         </a>
                     </div>
