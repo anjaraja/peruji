@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'PERUJI')</title>
     <link rel="stylesheet" href="{{ asset('lp-css/global.css') }}"> 
-    <link rel="stylesheet" href="{{ asset('lp-css/navbar_15.css') }}"> 
-    <link rel="stylesheet" href="{{ asset('lp-css/events_3.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('lp-css/navbar_16.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('lp-css/events_4.css') }}"> 
     <link rel="stylesheet" href="{{ asset('lp-css/styless_34.css') }}">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
     <script src="{{asset('dash-js/fetchhelper_2.js')}}"></script>
@@ -50,25 +50,36 @@
     });
 </script>
 <script>
-    function setLanguage(lang) {
-    localStorage.setItem('language', lang);
+    function setLanguage(lang,el) {
+        //add default active to ENG
+        if(el){
+            if(el.classList.contains("active")){
+                return false;
+            }
+            document.querySelector(".lang-choice a.active").classList.remove("active");
+        }
 
-    const elements = document.querySelectorAll('[lang]');
+        localStorage.setItem('language', lang);
+        if(lang == "eng") document.querySelector(".lang-choice.lang-en a").classList.add("active");
+        else if(lang == "idn") document.querySelector(".lang-choice.lang-idn a").classList.add("active");
+        // console.log(localStorage.getItem("language"));
 
-    elements.forEach(el => {
-        el.classList.remove('visible');
-        setTimeout(() => {
-        el.style.display = 'none';
-        }, 500);
-    });
+        const elements = document.querySelectorAll('[lang]');
 
-    setTimeout(() => {
-        document.querySelectorAll('[lang="' + lang + '"]').forEach(el => {
-        el.style.display = 'block';
-        void el.offsetWidth;
-        el.classList.add('visible');
+        elements.forEach(el => {
+            el.classList.remove('visible');
+            setTimeout(() => {
+            el.style.display = 'none';
+            }, 500);
         });
-    }, 500);
+
+        setTimeout(() => {
+            document.querySelectorAll('[lang="' + lang + '"]').forEach(el => {
+            el.style.display = 'block';
+            void el.offsetWidth;
+            el.classList.add('visible');
+            });
+        }, 500);
     }
 
     document.addEventListener('DOMContentLoaded', function() {

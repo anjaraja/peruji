@@ -77,7 +77,13 @@
     .nav-mobile-medsos {
         display: none;
     }
-
+    .navbar-medsos svg path:first-child{
+        transition: all 0.8s;
+    }
+    .navbar-medsos svg:hover > path:first-child{
+        fill: #f58529;
+        transition: all 0.8s;
+    }
 
     @media (max-width:991px) { 
         nav{
@@ -208,7 +214,7 @@
         .nav-menu-body .label-nav {
             font-size: 25px;
             font-family: Helveticas_medium;
-            padding-bottom: 0 !important;
+            padding-bottom: 12px !important;
         }
 
         .nav-menu-body .label-nav-item {
