@@ -167,6 +167,11 @@
 
         form.addEventListener('submit', function(event) {
             event.preventDefault();
+            thisEl = this;
+
+            thisEl.querySelectorAll("button[type='submit']").forEach((el) => {
+                loadingFormButton("show",el)
+            })
 
             events = document.getElementById("event").value;
             fullname = document.getElementById("fullname").value;
@@ -214,6 +219,10 @@
                 } else {
                     alert(data.message || "Terjadi kesalahan.");
                 }
+
+                thisEl.querySelectorAll("button[type='submit']").forEach((el) => {
+                    loadingFormButton("close",el)
+                })
             });
 
             return false;

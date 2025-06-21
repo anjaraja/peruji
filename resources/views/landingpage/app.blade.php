@@ -156,4 +156,18 @@
     });
 
 </script>
+<script>
+    loadingFormButton = function(status, thisEl){
+        if(status == "show"){
+            thisEl.style.pointerEvents = "none";
+            originText = thisEl.textContent;
+            thisEl.innerHTML = `<originText style="display:none;">${originText}</originText><div class="spinner-border text-light" role="status"></div>`;
+        }
+        else{
+            originText = thisEl.querySelector("originText").textContent;
+            thisEl.style.pointerEvents = "auto";
+            thisEl.innerHTML = originText;
+        }
+    }
+</script>
 </html>
