@@ -101,7 +101,11 @@
 
         form.addEventListener('submit', function(event) {
             event.preventDefault();
+            thisEl = this;
 
+            buttonSubmit = thisEl.querySelector("button[type='submit']");
+            loadingFormButton("show",buttonSubmit)
+            
             fullname = document.getElementById("fullname").value;
             email = document.getElementById("email").value;
             phone = document.getElementById("phone").value;
@@ -144,6 +148,8 @@
                 } else {
                     alert(data.message || "Terjadi kesalahan.");
                 }
+
+                loadingFormButton("close",buttonSubmit)
             });
 
             return false;
