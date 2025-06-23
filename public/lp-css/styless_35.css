@@ -819,7 +819,7 @@
             display: none !important;
         }
         .event-detail-container.show {
-            margin-bottom: 5px;
+            /*margin-bottom: 5px;*/
             z-index: 1 !important;
         }
         /* .event-detail-container.show img{
