@@ -288,9 +288,9 @@
             news_link_container_showed.classList.remove("show");
         }
 
-        if(this_element.matches(".news-link")){
-            showLink(this_element)
-        }
+        // if(this_element.matches(".news-link")){
+        //     showLink(this_element)
+        // }
 
     })
 </script>
