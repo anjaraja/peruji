@@ -291,6 +291,20 @@ html {
       padding: 10px 30px;
       border-radius: 20px;
     }
+    .cancel-form-btn {
+      /*opacity: 0;
+      pointer-events: none;*/
+      font-weight: bold;
+      border: none;
+      padding: 10px 30px !important;
+      border-radius: 20px !important;
+      /*transition: all .8s;*/
+    }
+    /*.cancel-form-btn.show{
+      opacity: 1;
+      pointer-events: auto;
+      transition: all .8s;
+    }*/
     .accordion-button{
       z-index: 1 !important;
     }
@@ -330,6 +344,19 @@ html {
         border-left: 20px solid #666 !important;
     }
 /*End Sidebar*/
+
+/*Row Data*/
+    .list-unstyled li{
+        padding-left: 5px;
+        transition: all .8s;
+    }
+    .list-unstyled .row-previous-event.active, .list-unstyled .row-news.active{
+        color: white !important;
+        background-color: #666;
+        transition: all .8s;
+        padding-left: 15px;
+    }
+/*End Row Data*/
 
 /*Utilities*/
 .sendToPdfFiller {
