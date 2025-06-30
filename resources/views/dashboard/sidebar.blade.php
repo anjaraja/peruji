@@ -1,4 +1,4 @@
-<script src="{{asset('dash-js/auth_1.js')}}"></script>
+<script src="{{asset('dash-js/auth_2.js')}}"></script>
 <style>
     body {
       background-color: #f2f4f4;
@@ -20,7 +20,11 @@
 	str_menu_list = "";
 	for(key in menus){
 		menus_item = menus[key];
-		active = key>0?"link-dark":"active";
+		active = "link-dark";
+		if((sessionStorage.getItem("active_menu") && sessionStorage.getItem("active_menu") == menus_item["route"]) || (key == 0 && !sessionStorage.getItem("active_menu"))){
+			active = "active";
+		}
+		// active = key>0?"link-dark":"active";
 		str_menu_list += `
 			<li class="nav-item">
     		<span link="${menus_item['route']}" class="nav-link ${active}">${menus_item['menuname']}</span>
@@ -60,6 +64,8 @@
       		content_container.classList.add("show");
 
       		loading("close",500);
+
+      		sessionStorage.setItem("active_menu",link)
       	}
 	})
 </script>
