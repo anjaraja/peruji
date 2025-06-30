@@ -758,10 +758,12 @@
         text-decoration: none;
     }
     .news-link-container.show{
-        bottom: 7vh;
+        bottom: 0;
         opacity: 1;
         pointer-events: auto;
         transition: all 0.8s;
+        left: 0;
+        padding-bottom: 7vh !important;
     }
     
     @media (max-width:991px) { 
