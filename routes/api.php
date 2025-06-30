@@ -26,9 +26,9 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/me', "$path\AuthController@me");
 
     /* NEWS */
-    Route::get('/news/{page}', "$path\NewsController@index");
-    Route::post('/news/', "$path\NewsController@store");
-    Route::post('/update-news/', "$path\NewsController@update");
+    Route::get('/news/{page}', "$path\NewsController@index")->name("list-news");
+    Route::post('/news/', "$path\NewsController@store")->name("create-news");
+    Route::post('/update-news/', "$path\NewsController@update")->name("update-news");
     /* END NEWS */
 
     /* EVENTS */

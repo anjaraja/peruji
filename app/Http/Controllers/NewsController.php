@@ -58,7 +58,12 @@ class NewsController extends Controller
      *          @OA\MediaType(
      *              mediaType="multipart/form-data",
      *              @OA\Schema(
-     *                  required={"newsname","newsdate","description","photo","additionalcontent"},
+     *                  required={"news","newsname","newsdate","description","photo","additionalcontent"},
+     *                  @OA\Property(
+     *                      property="news",
+     *                      type="integer",
+     *                      example=1
+     *                  ),
      *                  @OA\Property(
      *                      property="newsname",
      *                      type="string",
@@ -214,9 +219,9 @@ class NewsController extends Controller
             $data["modified_by"] = auth("api")->user()->email;
             Log::channel('activity')->info('[UPDATE NEWS][DATA]', $data);
 
+            $photo_path = str_replace("storage/", "", $news_data->photo);
             // BEGIN UPLOAD
             if ($request->hasFile('photo')) {
-                $photo_path = str_replace("storage/", "", $news_data->photo);
                 // Delete old image if it exists
                 if ($photo_path && Storage::disk('public')->exists($photo_path)) {
                     Storage::disk('public')->delete($photo_path);
@@ -228,7 +233,12 @@ class NewsController extends Controller
                 $path = $request->file('photo')->storeAs('news', $filename, 'public');
                 $data["photo"] = Storage::url($path);
             }
-            else unset($data["photo"]);
+            else{
+                if ($photo_path && Storage::disk('public')->exists($photo_path)) {
+                    Storage::disk('public')->delete($photo_path);
+                    $data["photo"] = "";
+                }
+            } 
 
             // END UPLOAD
 
