@@ -17,11 +17,13 @@
 	menus = localStorage.getItem("menu");
 	menus = JSON.parse(menus);
 
+	if(!sessionStorage.getItem("active_menu")) sessionStorage.setItem("active_menu","upcoming-events")
+
 	str_menu_list = "";
 	for(key in menus){
 		menus_item = menus[key];
 		active = "link-dark";
-		if((sessionStorage.getItem("active_menu") && sessionStorage.getItem("active_menu") == menus_item["route"]) || (key == 0 && !sessionStorage.getItem("active_menu"))){
+		if(sessionStorage.getItem("active_menu") && sessionStorage.getItem("active_menu") == menus_item["route"]){
 			active = "active";
 		}
 		// active = key>0?"link-dark":"active";

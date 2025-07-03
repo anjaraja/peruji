@@ -49,6 +49,33 @@
             }
         }
     </style>
+    <div class="modal fade gallery-modal" id="galleryModal" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen">
+          <div class="modal-content">
+            <div class="modal-header border-0">
+              <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body position-relative">
+
+              <!-- Arrows -->
+              <div class="nav-arrow nav-left" onclick="navigate(-1)">&#10094;</div>
+              <div class="nav-arrow nav-right" onclick="navigate(1)">&#10095;</div>
+
+              <!-- Main Image -->
+              <div class="main-image-preview">
+                <img id="mainPreview" src="" alt="Main">
+              </div>
+
+              <!-- Thumbnails -->
+              <div class="thumbnail-strip" id="thumbnailStrip">
+                <!-- Thumbnails injected via JS -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+    </div>
     <div class="container-event section-container" id="container-event">
         <div class="image-layout">
             <div class="layout"></div>
@@ -204,8 +231,8 @@
                                 <i class="news-link" prev-event-row="{{$value['id']}}" lang="idn">Tautan Berita</i>
                                 <i class="news-link" prev-event-row="{{$value['id']}}" lang="eng">News Links</i>
                                 <div class="text-black mx-2 d-block d-md-none">|</div>
-                                <i class="gallery-link ms-md-auto" lang="idn">Galeri Foto</i>
-                                <i class="gallery-link ms-md-auto" lang="eng">Photo Gallery</i>
+                                <i class="gallery-link ms-md-auto" lang="idn" number="{{$value['id']}}">Galeri Foto</i>
+                                <i class="gallery-link ms-md-auto" lang="eng" number="{{$value['id']}}">Photo Gallery</i>
                               </div>
                             </div>
                         </div>
@@ -223,8 +250,8 @@
                                 <i class="news-link" prev-event-row="{{$value['id']}}" lang="idn">Tautan Berita</i>
                                 <i class="news-link" prev-event-row="{{$value['id']}}" lang="eng">News Links</i>
                                 <div class="text-black mx-2 d-block d-md-none">|</div>
-                                <i class="gallery-link ms-md-auto" lang="idn">Galeri Foto</i>
-                                <i class="gallery-link ms-md-auto" lang="eng">Photo Gallery</i>
+                                <i class="gallery-link ms-md-auto" lang="idn" number="{{$value['id']}}">Galeri Foto</i>
+                                <i class="gallery-link ms-md-auto" lang="eng" number="{{$value['id']}}">Photo Gallery</i>
                               </div>
                             </div>
                             <div class="col-12 col-md-6 p-0">
@@ -294,4 +321,81 @@
 
     })
 </script>
+<script>
+    function fillTheGallery(images){
+        galleryImages = images;
+
+        const mainPreview = document.getElementById('mainPreview');
+        const thumbnailStrip = document.getElementById('thumbnailStrip');
+
+        let currentIndex = 0;
+
+        function renderThumbnails() {
+          thumbnailStrip.innerHTML = '';
+          images.forEach((src, index) => {
+            const img = document.createElement('img');
+            img.src = src;
+            if (index === currentIndex) img.classList.add('active');
+            img.onclick = () => {
+              currentIndex = index;
+              updateMainPreview();
+            };
+            thumbnailStrip.appendChild(img);
+          });
+        }
+
+        function updateMainPreview() {
+          mainPreview.src = images[currentIndex];
+          const thumbs = thumbnailStrip.querySelectorAll('img');
+          thumbs.forEach((img, idx) => {
+            img.classList.toggle('active', idx === currentIndex);
+          });
+        }
+
+        function navigate(direction) {
+          currentIndex += direction;
+          if (currentIndex < 0) currentIndex = 0;
+          if (currentIndex >= images.length) currentIndex = images.length - 1;
+          updateMainPreview();
+        }
+
+        document.getElementById('galleryModal').addEventListener('shown.bs.modal', () => {
+          renderThumbnails();
+          updateMainPreview();
+        });
+    }
+
+    document.addEventListener("click",function(e){
+        if(e.target.matches("i.gallery-link")){
+            thisEl = e.target;
+            matchData = thisEl.getAttribute("number");
+
+            galleryModalElement = document.getElementById('galleryModal');
+            galleryModal = new bootstrap.Modal(galleryModalElement);
+
+
+            responseData = {};
+            fetchData(
+                "{{route('show-event-gallery','')}}/"+matchData,
+                "GET"
+            )
+            .then((response)=>{
+                if (response.status !== 200){
+                    showAlert("not-ok","get")
+                    return response.json();
+                }
+                return response.json();
+            })
+            .then((data)=>{
+                responseData = data;
+            })
+            .finally(() =>{
+                images = responseData["data"];
+                fillTheGallery(images)
+            });
+
+            galleryModal.show();
+        }
+    })
+  </script>
 @endsection

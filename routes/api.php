@@ -20,6 +20,7 @@ Route::post('/register', "$path\AuthController@register");
 Route::post('/login', "$path\AuthController@login")->name("login");
 
 Route::get('/detail-events/{events}', "$path\EventsController@show")->name("event-detail");
+Route::get('/show-event-gallery/{id}', "$path\EventsController@eventShowPhotoGallery")->name("show-event-gallery");
 
 Route::middleware('auth:api')->group(function () {
     $path = "App\Http\Controllers";
