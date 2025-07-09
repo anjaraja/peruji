@@ -45,6 +45,19 @@
   		},timeClose)
 		}
 	}
+	loadingModal = function(toggleTo,timeClose=500, modalElement){
+		if(toggleTo == "show"){
+	    loading_container = document.querySelector(`.loading-container`).outerHTML;
+			modalElement.querySelector(".modal-dialog").insertAdjacentHTML("afterbegin",loading_container)
+	    modalElement.querySelector(".loading-container").classList.add("show");
+		}
+		else{
+  		setTimeout(() => {
+  			modalElement.querySelector(".modal-dialog").querySelector(".loading-container").classList.remove("show");
+	    	modalElement.querySelector(".modal-dialog").querySelector(".loading-container").remove();
+  		},timeClose)
+		}
+	}
 	document.addEventListener("click", function (e) {
 		active_menu = document.querySelector(".sidebar li span.active")
       	if (e.target.matches(".sidebar .nav-item span") && !e.target.matches(".sidebar .nav-item span.active")) {

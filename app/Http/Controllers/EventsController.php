@@ -362,6 +362,10 @@ class EventsController extends Controller
 
             $data = $request->all();
             $data["id"] = $request->events;
+            if(isset($request->eventdisplaydate)){
+                $data["publishdate"] = $data["eventdisplaydate"];
+                unset($data["eventdisplaydate"]);   
+            }
             $data["modified_by"] = auth("api")->user()->email;
             Log::channel('activity')->info('[UPDATE EVENTS][DATA]', $data);
 
@@ -380,9 +384,12 @@ class EventsController extends Controller
                 $data["banner"] = Storage::url($path);
             }
             else {
-                if ($banner_path && Storage::disk('public')->exists($banner_path)) {
-                    Storage::disk('public')->delete($banner_path);
-                    $data["banner"] = null;
+                if(isset($request->delete_banner)){
+                    if ($banner_path && Storage::disk('public')->exists($banner_path)) {
+                        Storage::disk('public')->delete($banner_path);
+                        $data["banner"] = null;
+                        unset($data["delete_banner"]);
+                    }
                 }
                 // else{
                 //     unset($data["banner"]);
@@ -405,9 +412,12 @@ class EventsController extends Controller
                 $data["thumbnail"] = Storage::url($path);
             }
             else {
-                if ($thumbnail_path && Storage::disk('public')->exists($thumbnail_path)) {
-                    Storage::disk('public')->delete($thumbnail_path);
-                    $data["thumbnail"] = null;
+                if(isset($request->delete_thumbnail)){
+                    if ($thumbnail_path && Storage::disk('public')->exists($thumbnail_path)) {
+                        Storage::disk('public')->delete($thumbnail_path);
+                        $data["thumbnail"] = null;
+                        unset($data["delete_thumbnail"]);
+                    }
                 }
                 // unset($data["thumbnail"]);
             }
@@ -442,9 +452,12 @@ class EventsController extends Controller
                 $data["agenda"] = Storage::url($path);
             }
             else {
-                if ($agenda_path && Storage::disk('public')->exists($agenda_path)) {
-                    Storage::disk('public')->delete($agenda_path);
-                    $data["agenda"] = null;
+                if(isset($request->delete_agenda)){
+                    if ($agenda_path && Storage::disk('public')->exists($agenda_path)) {
+                        Storage::disk('public')->delete($agenda_path);
+                        $data["agenda"] = null;
+                        unset($data["delete_agenda"]);
+                    }   
                 }
                 // unset($data["agenda"]);
             }

@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Pagination;
 use App\Models\Membership;
+use App\Models\UserProfile;
 use App\Models\EmailAdmin;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Storage;
 
 use Illuminate\Support\Facades\Validator;
 
@@ -16,9 +22,38 @@ use App\Mail\SendMail;
 
 class MembershipController extends Controller
 {
-    public function index()
+    /**
+     * @OA\Get(
+     *      path="/api/membership/{page}",
+     *      tags={"Dashboard"}, 
+     *      @OA\Parameter(
+     *          name="page",
+     *          in="path",
+     *          description="Page Number",
+     *          @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *      )
+     * )
+     */
+    public function index($page)
     {
-        //
+        try{
+            $page = is_int($page)?$page:1;
+
+            $membership = Membership::select(DB::raw("id as membership, fullname, email, DATE(created_at)AS registered_date"))->orderBy("created_at","desc")->paginate(10, ["*"], "page", $page)->toArray();
+            $membership = Pagination::ClearObject($membership);
+
+            Log::channel('activity')->warning('[LOAD MEMBERSHIP]', ["page"=>$page]);
+
+            return response()->json(["message"=>"ok","data"=>$membership],200);;
+        }
+        catch(\Exception $e){
+            Log::channel('errorlog')->error('[LOAD MEMBERSHIP]', ["message"=>$e->getMessage()]);
+            return response()->json(["message"=>"RC1"],500);;
+        }
     }
     /**
      * @OA\Post(
@@ -124,9 +159,39 @@ class MembershipController extends Controller
 
     }
 
-    public function show(membership $membership)
+    /**
+     * @OA\Get(
+     *      path="/api/membership/detail/{id}",
+     *      security={{"bearerAuth":{}}},
+     *      tags={"Dashboard"}, 
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          description="id membership",
+     *          @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *      )
+     * )
+     */
+    public function show($id)
     {
-        //
+        try{
+            $membership = Membership::select(DB::raw("userprofile.id as userpfofileid, membership.id as memberid, userprofile.prefix, ifnull(userprofile.organization,membership.org)as organization, ifnull(userprofile.fullname,membership.fullname)as fullname, userprofile.ofcaddress, userprofile.suffix, userprofile.ofcphone, userprofile.dob, ifnull(userprofile.ofcemail,membership.ofcemail)as ofcemail, ifnull(userprofile.phone,membership.phone)as phone, userprofile.website, ifnull(userprofile.email,membership.email)as email, userprofile.photo, userprofile.joindate, userprofile.expiredate, userprofile.number, userprofile.status, userprofile.additionaldocument"))
+                ->leftJoin("userprofile","membership.id","=","userprofile.memberid")
+                ->where("membership.id",$id)
+                ->first();
+
+            Log::channel('activity')->warning('[LOAD DETAIL MEMBERSHIP]', ["data"=>$membership]);
+
+            return response()->json(["message"=>"ok","data"=>$membership],200);;
+        }
+        catch(\Exception $e){
+            Log::channel('errorlog')->error('[LOAD DETAIL MEMBERSHIP]', ["message"=>$e->getMessage()]);
+            return response()->json(["message"=>"RC2"],500);;
+        }
     }
 
     public function edit(membership $membership)
@@ -134,9 +199,293 @@ class MembershipController extends Controller
         //
     }
 
-    public function update(Request $request, membership $membership)
+    /**
+     * @OA\Post(
+     *      path="/api/update-membership/personal-information",
+     *      security={{"bearerAuth":{}}},
+     *      tags={"Dashboard"}, 
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(
+     *              mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  required={"member","organization","fullname","dob","phone","email"},
+     *                  @OA\Property(
+     *                      property="member",
+     *                      type="integer",
+     *                      example="1"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="organization",
+     *                      type="string",
+     *                      example="My Organization"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="fullname",
+     *                      type="string",
+     *                      example="John Doe"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="dob",
+     *                      type="date",
+     *                      example="1999-01-01"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="phone",
+     *                      type="string",
+     *                      example="08123123123"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="email",
+     *                      type="email",
+     *                      example="myemail@mail.com"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="photo",
+     *                      type="string",
+     *                      format="binary"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="joindate",
+     *                      type="date",
+     *                      example="2025-01-01"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="expiredate",
+     *                      type="date",
+     *                      example="2026-01-01"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="number",
+     *                      type="string",
+     *                      example="0012025010101"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="status",
+     *                      type="string",
+     *                      enum={"pending","active","expired"},
+     *                      description="Status: pending = Pending, active = Active, expired = Expired"
+     *                  )
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *      )
+     * )
+     */
+    public function updatePersonalInformation(Request $request)
     {
-        //
+        try{
+            $validated = Validator::make($request->all(),[
+                'member' => 'required|string',
+                'organization' => 'nullable|string',
+                'fullname' => 'required|string',
+                'dob' => 'nullable|date',
+                'phone' => 'required|string',
+                'email' => 'required|email',
+                'photo' => 'nullable|file|mimes:jpeg,jpg,png',
+                'joindate' => 'required|string',
+                'expiredate' => 'required|string',
+                'number' => 'required|string',
+                'status' => 'required|string|in:pending,active,expired'
+            ]);
+
+            if ($validated->fails()) {
+                Log::channel('activity')->warning('[UPDATE PERSONAL INFORMATION]', [$request->all(),$validated->errors()]);
+                return response()->json(["message" => "RC3.1"], 422);
+            }
+
+            $userprofile = UserProfile::where("memberid",$request->member);
+            $userprofiledata = $userprofile->first();
+            $store_data = [
+                "member"=>$request->member,
+                "prefix"=>$request->prefix,
+                "fullname"=>$request->fullname,
+                "suffix"=>$request->suffix,
+                "dob"=>$request->dob,
+                "phone"=>$request->phone,
+                "email"=>$request->email,
+                "organization"=>$request->organization,
+                "ofcaddress"=>$request->ofcaddress,
+                "ofcphone"=>$request->ofcphone,
+                "ofcemail"=>$request->ofcemail,
+                "website"=>$request->website,
+                "member"=>$request->member,
+                "joindate"=>$request->joindate,
+                "expiredate"=>$request->expiredate,
+                "number"=>$request->number,
+                "status"=>$request->status,
+                "modified_by"=>auth("api")->user()->email
+            ];
+            if(!$userprofiledata){
+                $store_data["created_by"] = auth("api")->user()->email;
+
+                // BEGIN UPLOAD PHOTO
+                if(isset($request->photo)){
+                    $photo = $request->file("photo");
+                    $filename = time()."_".$store_data["memberid"].".".$photo->getClientOriginalExtension();
+                    $path = $request->file('photo')->storeAs('member-photo', $filename, 'public');
+                    $store_data["photo"] = Storage::url($path);
+                }
+                // END UPLOAD
+
+                // Generate a signed URL with expiration (e.g., 1 day)
+                $member = Membership::where("id",$request->member)->first();
+                $url = URL::temporarySignedRoute(
+                    'setup-password',
+                    now()->addDays(1),
+                    ['email' => $member->email]
+                );
+
+                $view = 'mailtemplate.register-invitation'; // dynamic
+                $subject = "Setup Your Peruji Account";
+                $data = [
+                    "url"=>$url,
+                ];
+                Log::channel('activity')->info('[SENDING EMAIL TO MEMBER]', [$member->email]);
+                try{
+                    Mail::to($member->email)->send(new SendMail($view, $subject, $data));
+                } catch (\Exception $e) {
+                    // Log the error and continue
+                    Log::channel('errorlog')->info('[FAILED SENDING EMAIL TO MEMBER]', [$member->email], $e->getMessage());
+                    return response()->json(["message" => "RC3.2","wording" => "Failed when sending email to member"], 422);
+                }
+
+                $store = UserProfile::create($store_data);
+            }
+            else{
+                $store_data["modified_by"] = auth("api")->user()->email;
+
+                // BEGIN UPLOAD PHOTO
+                $photo_path = str_replace("storage/", "", $userprofiledata->photo);
+                if ($request->hasFile('photo')) {
+                    // Delete old image if it exists
+                    if ($photo_path && Storage::disk('public')->exists($photo_path)) {
+                        Storage::disk('public')->delete($photo_path);
+                    }
+
+                    // Store new image
+                    $photo = $request->file("photo");
+                    $filename = time()."_".$userprofiledata["member"].".".$photo->getClientOriginalExtension();
+                    $path = $request->file('photo')->storeAs('event-photo', $filename, 'public');
+                    $store_data["photo"] = Storage::url($path);
+                }
+                else {
+                    if(isset($request->delete_photo)){
+                        if ($photo_path && Storage::disk('public')->exists($photo_path)) {
+                            Storage::disk('public')->delete($photo_path);
+                            $store_data["photo"] = null;
+                            unset($store_data["delete_photo"]);
+                        }   
+                    }
+                    // else{
+                    //     unset($data["photo"]);
+                    // }
+                }
+                // END UPLOAD PHOTO
+
+                unset($store_data["member"]);
+                $store = UserProfile::where("memberid",$request->member)->update($store_data);
+            }
+
+            return response()->json(["message"=>"ok","data"=>$store],200);
+        }
+        catch(\Exception $e){
+            Log::channel('errorlog')->error('[UPDATE PERSONAL INFORMATION]', ["message"=>$e->getMessage()]);
+            return response()->json(["message"=>"RC3"],500);;
+        }
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/api/update-membership/membership-status",
+     *      security={{"bearerAuth":{}}},
+     *      tags={"Dashboard"}, 
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(
+     *              mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  required={"member","joindate","expiredate","number","status"},
+     *                  @OA\Property(
+     *                      property="member",
+     *                      type="integer",
+     *                      example="1"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="joindate",
+     *                      type="date",
+     *                      example="2025-01-01"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="expiredate",
+     *                      type="date",
+     *                      example="2026-01-01"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="number",
+     *                      type="string",
+     *                      example="0012025010101"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="status",
+     *                      type="string",
+     *                      enum={"pending","active","expired"},
+     *                      description="Status: pending = Pending, active = Active, expired = Expired"
+     *                  )
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *      )
+     * )
+     */
+    public function updateMembershipStatus(Request $request)
+    {
+        try{
+            $validated = Validator::make($request->all(),[
+                'member' => 'required|string',
+                'joindate' => 'required|string',
+                'expiredate' => 'required|string',
+                'number' => 'required|string',
+                'status' => 'required|string|in:pending,active,expired'
+            ]);
+
+            if ($validated->fails()) {
+                Log::channel('activity')->warning('[UPDATE MEMBERSHIP STATUS]', [$request->all(),$validated->errors()]);
+                return response()->json(["message" => "RC4.1"], 422);
+            }
+
+            $userprofile = UserProfile::where("memberid",$request->member);
+            $userprofiledata = $userprofile->first();
+            $store_data = [
+                "member"=>$request->member,
+                "joindate"=>$request->joindate,
+                "expiredate"=>$request->expiredate,
+                "number"=>$request->number,
+                "status"=>$request->status
+            ];
+            if(!$userprofiledata){
+                Log::channel('activity')->warning('[UPDATE MEMBERSHIP STATUS] [MEMBER IS NOT EXIST]', [$request->all()]);
+                return response()->json(["message" => "RC4.2","wording" => "Need to complete Personal Information."], 422);
+            }
+            else{
+                $store_data["modified_by"] = auth("api")->user()->email;
+
+                unset($store_data["member"]);
+                $store = UserProfile::where("memberid",$request->member)->update($store_data);
+            }
+
+            return response()->json(["message"=>"ok","data"=>$store],200);
+        }
+        catch(\Exception $e){
+            Log::channel('errorlog')->error('[UPDATE PERSONAL INFORMATION]', ["message"=>$e->getMessage()]);
+            return response()->json(["message"=>"RC3"],500);;
+        }
     }
 
     public function destroy(membership $membership)

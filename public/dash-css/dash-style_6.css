@@ -217,13 +217,13 @@ html {
         top: 8vh;
         right: -500px;
         opacity: 0;
-        z-index: 2;
         transition: all 0.8s;
     }
     .alert[data].show{
         right: 0;
         opacity: 1;
         transition: all 0.8s;
+        z-index: 10000;
     }
     ul li {
         list-style: none;
@@ -279,6 +279,12 @@ html {
         opacity: 1;
         pointer-events: auto;
         background-color: rgba(255, 255, 255, 0.5);
+    }
+    .modal-dialog .loading-container{
+        padding: 0 !important;
+        position: absolute;
+        width: 100% !important;
+        height: 100% !important;
     }
     .form-label {
       font-weight: 500;
@@ -359,7 +365,7 @@ html {
 /*End Row Data*/
 
 /*Previous Events*/
-    .gallery-modal{
+    .gallery-modal, #membershipModal .modal-dialog{
         max-width: 90vw !important;
     }
     .gallery-modal .modal-content{

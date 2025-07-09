@@ -195,12 +195,4 @@
         this.reset();
         return false;
     })
-
-    delete_preview_button = document.addEventListener("click",function(e){
-        this_element = e.target;
-        if(this_element.matches("span[for='delete-preview-file']")){
-            this_element.closest("div.mb-3").querySelector("input").style.display = "block";
-            this_element.closest("div[preview-file]").remove();
-        }
-    });
 </script>

@@ -8,6 +8,7 @@ class UserProfile extends Model
 {
     protected $table = "userprofile";
     protected $fillable = [
+        'memberid',
         'userid',
         'prefix',
         'fullname',

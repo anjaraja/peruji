@@ -20,6 +20,8 @@ Route::get('/admin', "$path\LandingPageController@admin")->name("admin");
 
 Route::get('/dashboard', "$path\DashboardController@index")->name("dashboard-index");
 
+Route::get('/setup-password', "$path\AuthController@setupPasswordForm")->name('setup-password')->middleware('signed');
+
 // Route::middleware('auth:api')->group(function () {
 //     $path = "App\Http\Controllers";
 // });

@@ -94,6 +94,8 @@ class AuthController extends Controller
             unset($dataLog["password"]);
 
             $credentials = $request->only('email', 'password');
+            
+            auth("api")->factory()->setTTL(60*12);
 
             if (!$token = auth("api")->attempt($credentials)) {
                 Log::channel('errorlog')->warning('[USER LOGIN]', [$dataLog,$token]);
@@ -104,13 +106,20 @@ class AuthController extends Controller
                 'access_token' => $token,
                 // 'user' => auth()->user(),
                 'token_type' => 'bearer',
-                'expires_in' => auth("api")->factory()->getTTL() * 60,
+                'expires_in' => auth("api")->factory()->getTTL(),
             ]);
         }
         catch(\Exception $e){
             Log::channel('errorlog')->error('[USER LOGIN]', [$dataLog,$e->getMessage()]);
             return response()->json(["message"=>"RC2"],500);
         }
+    }
+
+    public function setupPasswordForm(Request $request)
+    {
+        // Signed URL validation already handled by middleware
+        $email = $request->query('email');
+        return view('dashboard.setup-password', compact('email'));
     }
 
     /**

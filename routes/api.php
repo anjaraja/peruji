@@ -48,6 +48,12 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/update-email/', "$path\EmailAdminController@update");
     /* END EMAIL ADMIN */
 
+    /* MEMBERSHIP */
+    Route::get('/membership/{page}', "$path\MembershipController@index")->name("list-membership");
+    Route::get('/membership/detail/{page}', "$path\MembershipController@show")->name("detail-membership");
+    Route::post('/update-membership/personal-information', "$path\MembershipController@updatePersonalInformation")->name("update-membership-personal-information");
+    /* END MEMBERSHIP */
+
     // Route::get('/me', [AuthController::class, 'me']);
     Route::get('/logout', "$path\AuthController@logout")->name("logout");
     // Route::post('/refresh', [AuthController::class, 'refresh']);

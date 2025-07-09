@@ -96,6 +96,7 @@
                 if(form_data["banner"]){
                     input_banner = source_form.querySelector("input[name='event_banner']");
                     input_banner.style.display = 'none';
+                    input_banner.closest("div.mb-3").querySelector("div[preview-file]")?.remove();
                     input_banner.closest("div.mb-3").insertAdjacentHTML("beforeend",`
                         <div preview-file>
                             <div class="form-control" style="border:none;">
@@ -115,6 +116,7 @@
                 if(form_data["agenda"]){
                     input_agenda = source_form.querySelector("input[name='event_agenda']");
                     input_agenda.style.display = 'none'
+                    input_agenda.closest("div.mb-3").querySelector("div[preview-file]")?.remove();
                     input_agenda.closest("div.mb-3").insertAdjacentHTML("beforeend",`
                         <div preview-file>
                             <a href="${form_data["agenda"]}" class="form-control" style="border:none;">
@@ -148,31 +150,53 @@
 
             formdata = new FormData();
 
-            event_name = this.querySelector("input[name='event_name']").value
-            formdata.append("eventname",event_name)
-            event_date = this.querySelector("input[name='event_date']").value
-            formdata.append("eventdate",event_date)
-            event_duration = this.querySelector("input[name='event_duration']").value
-            formdata.append("duration",event_duration)
-            event_display_date = this.querySelector("input[name='event_display_date']").value
-            formdata.append("eventdisplaydate",event_display_date)
-            event_message = this.querySelector("textarea[name='event_message']").value
-            formdata.append("description",event_message)
-            eng_event_message = this.querySelector("textarea[name='eng_event_message']").value
-            formdata.append("eng_description",eng_event_message)
-            event_banner = this.querySelector("input[name='event_banner']").files[0]
-            if(event_banner) formdata.append("banner",event_banner)
-            event_agenda = this.querySelector("input[name='event_agenda']").files[0]
-            if(event_agenda) formdata.append("agenda",event_agenda)
+            thisform = this;
 
-            specific_data = this.querySelector("input[name='events']");
+            event_name = thisform.querySelector("input[name='event_name']").value
+            formdata.append("eventname",event_name)
+            event_date = thisform.querySelector("input[name='event_date']").value
+            formdata.append("eventdate",event_date)
+            event_duration = thisform.querySelector("input[name='event_duration']").value
+            formdata.append("duration",event_duration)
+            event_display_date = thisform.querySelector("input[name='event_display_date']").value
+            formdata.append("eventdisplaydate",event_display_date)
+            event_message = thisform.querySelector("textarea[name='event_message']").value
+            formdata.append("description",event_message)
+            eng_event_message = thisform.querySelector("textarea[name='eng_event_message']").value
+            formdata.append("eng_description",eng_event_message)
+            event_banner = thisform.querySelector("input[name='event_banner']").files[0];
+            if(!event_banner){
+                input_banner = source_form.querySelector("input[name='event_banner']");
+                exist_banner = input_banner.closest("div.mb-3").querySelector("div[preview-file]");
+
+                if(!exist_banner){
+                    formdata.append("delete_banner",true);
+                }
+            }
+            else{
+                formdata.append("banner",event_banner);
+            }
+            event_agenda = thisform.querySelector("input[name='event_agenda']").files[0]
+            if(!event_agenda){
+                input_agenda = source_form.querySelector("input[name='event_agenda']");
+                exist_agenda = input_agenda.closest("div.mb-3").querySelector("div[preview-file]");
+
+                if(!exist_agenda){
+                    formdata.append("delete_agenda",true);
+                }
+            }
+            else{
+                formdata.append("agenda",event_agenda);
+            }
+
+            specific_data = thisform.querySelector("input[name='events']");
             if(specific_data){
                 this_route = "{{route('update-events')}}";
                 formdata.append("events",specific_data.value)
             }
             else{
                 this_route = "{{route('create-events')}}";
-                event_source = this.getAttribute("source")
+                event_source = thisform.getAttribute("source")
                 formdata.append("eventsource",event_source)
             }
 
@@ -197,8 +221,12 @@
                 loading("close",500)
             })
             .finally(() => {
+                thisform.querySelector("input[name='event_banner']").value = ""
+                thisform.querySelector("input[name='event_agenda']").value = ""
                 getUpcomingEvent();
             });
+
+            this
 
             return false;
         })
@@ -207,7 +235,8 @@
     delete_preview_button = document.addEventListener("click",function(e){
         this_element = e.target;
         if(this_element.matches("span[for='delete-preview-file']")){
-            this_element.closest("div.mb-3").querySelector("input").style.display = "block";
+            if(this_element.closest("div.mb-3")) this_element.closest("div.mb-3").querySelector("input").style.display = "block";
+            else if(this_element.closest("div[class*='col-md']")) this_element.closest("div[class*='col-md']").querySelector("input").style.display = "block";
             this_element.closest("div[preview-file]").remove();
         }
     });

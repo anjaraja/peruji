@@ -17,6 +17,7 @@
 @include('dashboard.previous-events')
 @include('dashboard.newsroom')
 @include('dashboard.admin-emails')
+@include('dashboard.membership')
 <script load-container>
     content_container = document.querySelector(`.content-container.${sessionStorage.getItem("active_menu")}`);
     content_container.classList.add("show");

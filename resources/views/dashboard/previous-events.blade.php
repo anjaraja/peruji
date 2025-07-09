@@ -284,6 +284,8 @@
 
         formdata = new FormData();
 
+        thisform = this;
+
         event_name = this.querySelector("input[name='update_event_name']").value
         formdata.append("eventname",event_name)
         event_date = this.querySelector("input[name='update_event_date']").value
@@ -297,11 +299,41 @@
         eng_event_message = this.querySelector("textarea[name='update_eng_event_message']").value
         formdata.append("eng_description",eng_event_message)
         event_thumbnail = this.querySelector("input[name='update_event_thumbnail']").files[0]
-        if(event_thumbnail) formdata.append("thumbnail",event_thumbnail)
+        if(!event_thumbnail){
+            input_thumbnail = source_form.querySelector("input[name='update_event_thumbnail']");
+            exist_thumbnail = input_thumbnail.closest("div.mb-3").querySelector("div[preview-file]");
+
+            if(!exist_thumbnail){
+                formdata.append("delete_thumbnail",true);
+            }
+        }
+        else{
+            formdata.append("thumbnail",event_thumbnail);
+        }
         event_banner = this.querySelector("input[name='update_event_banner']").files[0]
-        if(event_banner) formdata.append("banner",event_banner)
+        if(!event_banner){
+            input_banner = source_form.querySelector("input[name='update_event_banner']");
+            exist_banner = input_banner.closest("div.mb-3").querySelector("div[preview-file]");
+
+            if(!exist_banner){
+                formdata.append("delete_banner",true);
+            }
+        }
+        else{
+            formdata.append("banner",event_banner);
+        }
         event_agenda = this.querySelector("input[name='update_event_agenda']").files[0]
-        if(event_agenda) formdata.append("agenda",event_agenda)
+        if(!event_agenda){
+            input_agenda = source_form.querySelector("input[name='update_event_agenda']");
+            exist_agenda = input_agenda.closest("div.mb-3").querySelector("div[preview-file]");
+
+            if(!exist_agenda){
+                formdata.append("delete_agenda",true);
+            }
+        }
+        else{
+            formdata.append("agenda",event_banner);
+        }
         event_additional_links = this.querySelector("textarea[name='update_event_links']").value
         formdata.append("additionalcontent",event_additional_links)
 
@@ -330,6 +362,9 @@
             loading("close",500);
         })
         .finally(() =>{
+            thisform.querySelector("input[name='update_event_thumbnail']").value = ""
+            thisform.querySelector("input[name='update_event_banner']").value = ""
+            thisform.querySelector("input[name='update_event_agenda']").value = ""
             getPreviousEvent();
             setTimeout(function(){
                 document.querySelector(`.row-previous-event[id='${specific_data.value}']`).click()
