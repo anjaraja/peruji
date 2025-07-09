@@ -320,6 +320,7 @@ class MembershipController extends Controller
                 "modified_by"=>auth("api")->user()->email
             ];
             if(!$userprofiledata){
+                $store_data["memberid"] = $request->member;
                 $store_data["created_by"] = auth("api")->user()->email;
 
                 // BEGIN UPLOAD PHOTO
