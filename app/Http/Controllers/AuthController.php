@@ -28,7 +28,7 @@ class AuthController extends Controller
      *      )
      * )
      */
-    public function register(Request $request)
+    public static function register(Request $request)
     {
         DB::beginTransaction();
         try{
@@ -120,6 +120,19 @@ class AuthController extends Controller
         // Signed URL validation already handled by middleware
         $email = $request->query('email');
         return view('dashboard.setup-password', compact('email'));
+    }
+
+    public function setupPasswordSubmit(Request $request)
+    {
+        try{
+            $register = self::register($request);
+
+            return redirect()->route("admin")
+        }
+        catch(\Exception $e){
+            Log::channel('errorlog')->error('[SUBMIT NEW MEMBER PASSWORD]', [$e->getMessage()]);
+            return response()->json(["message"=>"RC3"],401);   
+        }
     }
 
     /**
