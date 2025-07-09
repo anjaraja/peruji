@@ -74,7 +74,7 @@
                             <input type="hidden" name="email" value="{{ $email }}">
                             <div class="text-start mb-2">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" id="email" class="form-control" value="{{email}}" disabled/>
+                                <input type="email" id="email" class="form-control" value="{{$email}}" disabled/>
                             </div>
                             <div class="text-start mb-2">
                                 <label for="password" class="form-label">Password</label>
