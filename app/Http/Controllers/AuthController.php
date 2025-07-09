@@ -119,7 +119,7 @@ class AuthController extends Controller
     {
         // Signed URL validation already handled by middleware
         $email = $request->query('email');
-        return view('dashboard.setup-password', compact('email'));
+        return view('dashboard.setup-password', compact('email','fullname'));
     }
 
     public function setupPasswordSubmit(Request $request)
