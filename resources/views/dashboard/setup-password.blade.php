@@ -69,7 +69,8 @@
                     <div class="text-center" style="max-width: 400px; width: 100%;">
                         <div class="access-banner">Setup Password</div>
 
-                        <form class="container-fluid p-0" id="setup-password-form" method="POST">
+                        <form class="container-fluid p-0" id="setup-password-form" method="POST" action="{{route('setup-password-submit')}}">
+                            <input type="hidden" name="fullname" value="{{ $fullname }}">
                             <input type="hidden" name="email" value="{{ $email }}">
                             <div class="text-start mb-2">
                                 <label for="email" class="form-label">Email</label>

@@ -337,7 +337,7 @@ class MembershipController extends Controller
                 $url = URL::temporarySignedRoute(
                     'setup-password',
                     now()->addDays(1),
-                    ['email' => $member->email]
+                    ['email' => $member->email, 'fullname' => $member->fullname]
                 );
 
                 $view = 'mailtemplate.register-invitation'; // dynamic
