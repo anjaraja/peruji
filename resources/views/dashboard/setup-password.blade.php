@@ -149,14 +149,13 @@
                 return response.json();
             }
 
-            aler("ok","updated")
+            setTimeout(function(){
+                window.location = "{{route('admin')}}"
+            },5000)
             return response.json();
         })
         .then((data)=>{
             document.querySelector(".info-done").classList.add("show");
-            setTimeout(function(){
-                window.location = "{{route('admin')}}"
-            })
         })
         .finally(() =>{
         });
