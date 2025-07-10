@@ -169,7 +169,7 @@
             document.querySelector(".info-done").classList.add("show");
             setTimeout(function(){
                 window.location = "{{route('admin')}}"
-            },10000)
+            },5000)
         })
         .finally(() =>{
         });
