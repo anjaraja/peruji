@@ -128,8 +128,10 @@ class AuthController extends Controller
     {
         try{
             $register = self::register($request);
+            Log::channel('activity')->error('[REGISTERING USER]', [$register]);
 
             $register = json_decode($register);
+            Log::channel('activity')->error('[DECODE REGISTER OBJECT]', [$register]);
             $userid = $register->user->id;
 
             $userprofile = UserProfile::where("email",$request->email)->update(["userid"=>$userid]);
