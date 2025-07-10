@@ -16,6 +16,7 @@ Route::post('/membership', "$path\MembershipController@store")->name('memberShip
 Route::post('/contact-us', "$path\ContactusController@store")->name('contactUs');
 Route::post('/event-registration', "$path\EventRegistrationController@store")->name('eventRegis');
 
+Route::post('/setup-password', "$path\AuthController@setupPasswordSubmit")->name('setup-password-submit');
 Route::post('/register', "$path\AuthController@register");
 Route::post('/login', "$path\AuthController@login")->name("login");
 

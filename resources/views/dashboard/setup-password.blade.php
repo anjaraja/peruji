@@ -96,7 +96,7 @@
             <div class="row">
                 <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
                     <div class="text-center" style="max-width: 400px; width: 100%;">
-                        <div class="access-banner">Setup Password</div>
+                        <div class="access-banner">SETUP NEW PASSWORD</div>
 
                         <form class="container-fluid p-0" id="setup-password-form">
                             <input type="hidden" name="fullname" value="{{ $fullname }}">
@@ -139,7 +139,7 @@
         fetchData(
             "{{route('setup-password-submit')}}",
             "POST",
-            {"Authorization":localStorage.getItem("Token")},
+            {},
             formdata
         )
         .then((response)=>{
