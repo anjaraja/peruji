@@ -167,7 +167,7 @@
             document.querySelector(".info-done").classList.add("show");
             setTimeout(function(){
                 window.location = "{{route('admin')}}"
-            },5000)
+            },10000)
         })
         .finally(() =>{
         });
