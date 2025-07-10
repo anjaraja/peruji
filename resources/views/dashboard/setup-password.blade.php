@@ -83,16 +83,6 @@
 </head>
 <body>
     @if($status)
-    <div class="info-done position-absolute top-0 w-100 bg-white">
-        <div class="confetti-wrapper">
-            <div class="content">
-                <h2>Congratulations! Your account verified and the password setup is complete.</h2>
-                <h2>We will redirecting you to login page in 5 seconds.</h2>
-                <h2>If it's not automatically redirect, click this <a href="{{route('admin')}}">Link</a></h2>
-            </div>
-        </div>
-    </div>
-    @else
     <main>
         <div class="container-fluid">
             <div class="row">
@@ -121,6 +111,16 @@
             </div>
         </div>
     </main>
+    @else
+    <div class="info-done position-absolute top-0 w-100 bg-white">
+        <div class="confetti-wrapper">
+            <div class="content">
+                <h2>Congratulations! Your account verified and the password setup is complete.</h2>
+                <h2>We will redirecting you to login page in 5 seconds.</h2>
+                <h2>If it's not automatically redirect, click this <a href="{{route('admin')}}">Link</a></h2>
+            </div>
+        </div>
+    </div>
     @endif
 </body>
 <script src="{{asset('/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
