@@ -82,6 +82,7 @@
   </style>
 </head>
 <body>
+    @if($status)
     <div class="info-done position-absolute top-0 w-100 bg-white">
         <div class="confetti-wrapper">
             <div class="content">
@@ -91,6 +92,7 @@
             </div>
         </div>
     </div>
+    @else
     <main>
         <div class="container-fluid">
             <div class="row">
@@ -119,6 +121,7 @@
             </div>
         </div>
     </main>
+    @endif
 </body>
 <script src="{{asset('/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script>

@@ -121,7 +121,12 @@ class AuthController extends Controller
         // Signed URL validation already handled by middleware
         $email = $request->query('email');
         $fullname = $request->query('fullname');
-        return view('dashboard.setup-password', compact('email','fullname'));
+
+        $status = false;
+        $check_user = User::where("email",$email)->first();
+        if(!$check_user) $status = true;
+
+        return view('dashboard.setup-password', compact('email','fullname', 'status'));
     }
 
     public function setupPasswordSubmit(Request $request)
