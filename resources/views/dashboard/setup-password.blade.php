@@ -127,20 +127,20 @@
     setup_password.addEventListener("submit",function(e){
         e.preventDefault()
 
-        formdata = new FormData;
+        // formdata = new FormData;
 
         fullname = this.querySelector("input[name='fullname']").value
-        formdata.append("fullname",fullname)
+        // formdata.append("fullname",fullname)
         email = this.querySelector("input[name='email']").value
-        formdata.append("email",email)
+        // formdata.append("email",email)
         password = this.querySelector("input[name='password']").value
-        formdata.append("password",password)
+        // formdata.append("password",password)
 
         fetchData(
             "{{route('setup-password-submit')}}",
             "POST",
             {"Content-Type":"application/json"},
-            formdata
+            {"name":fullname,"email":email,"password":password}
         )
         .then((response)=>{
             if (response.status !== 200){
