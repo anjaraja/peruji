@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
@@ -127,6 +128,11 @@ class AuthController extends Controller
     {
         try{
             $register = self::register($request);
+
+            $register = json_decode($register);
+            $userid = $register->user->id;
+
+            $userprofile = UserProfile::where("email",$request->email)->update(["userid"=>$userid]);
 
             return response()->json(["message"=>"ok"],200);   
         }
