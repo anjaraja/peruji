@@ -128,7 +128,7 @@ class AuthController extends Controller
         try{
             $register = self::register($request);
 
-            return redirect()->route("admin");
+            return response()->json(["message"=>"ok"],200);   
         }
         catch(\Exception $e){
             Log::channel('errorlog')->error('[SUBMIT NEW MEMBER PASSWORD]', [$e->getMessage()]);

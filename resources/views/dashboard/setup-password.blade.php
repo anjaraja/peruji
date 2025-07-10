@@ -60,8 +60,37 @@
             display: block;
           }
     </style>
+  <style>
+    .confetti-wrapper {
+      background-image: url("{{asset('lp-svg/Confetti 1.svg')}}");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      box-sizing: border-box;
+      display: none;
+  }
+    .confetti-wrapper.show {
+      display: block;
+  }
+  </style>
 </head>
 <body>
+    <div class="info-done position-absolute top-0 w-100 bg-white">
+        <div class="confetti-wrapper">
+            <div class="content">
+                <h2>Congratulations! Your account verified and the password setup is complete.</h2>
+                <h2>We will redirecting you to login page in 5 seconds.</h2>
+                <h2>If it's not automatically redirect, click this <a href="{{route('admin')}}">Link</a></h2>
+            </div>
+        </div>
+    </div>
     <main>
         <div class="container-fluid">
             <div class="row">
@@ -69,7 +98,7 @@
                     <div class="text-center" style="max-width: 400px; width: 100%;">
                         <div class="access-banner">Setup Password</div>
 
-                        <form class="container-fluid p-0" id="setup-password-form" method="POST" action="{{route('setup-password-submit')}}">
+                        <form class="container-fluid p-0" id="setup-password-form">
                             <input type="hidden" name="fullname" value="{{ $fullname }}">
                             <input type="hidden" name="email" value="{{ $email }}">
                             <div class="text-start mb-2">
@@ -78,7 +107,7 @@
                             </div>
                             <div class="text-start mb-2">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" id="password" class="form-control" />
+                                <input type="password" id="password" class="form-control" name="password" />
                             </div>
 
                             <div class="text-start mb-2">
@@ -92,4 +121,47 @@
     </main>
 </body>
 <script src="{{asset('/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script>
+    setup_password = document.querySelector("form#setup-password-form");
+
+    setup_password.addEventListener("submit",function(e){
+        e.preventDefault()
+
+        formdata = new FormData;
+
+        fullname = this.querySelector("input[name='fullname']").value
+        formdata.append("fullname",fullname)
+        email = this.querySelector("input[name='email']").value
+        formdata.append("email",email)
+        password = this.querySelector("input[name='password']").value
+        formdata.append("password",password)
+
+        fetchData(
+            "{{route('setup-password-submit')}}",
+            "POST",
+            {"Authorization":localStorage.getItem("Token")},
+            formdata
+        )
+        .then((response)=>{
+            if (response.status !== 200){
+                alert("Somtehing error when confugiring your account");
+
+                return response.json();
+            }
+
+            aler("ok","updated")
+            return response.json();
+        })
+        .then((data)=>{
+            document.querySelector(".info-done").classList.add("show");
+            setTimeout(function(){
+                window.location = "{{route('admin')}}"
+            })
+        })
+        .finally(() =>{
+        });
+
+        return false;
+    })
+</script>
 </html>

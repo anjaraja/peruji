@@ -43,7 +43,9 @@ class MembershipController extends Controller
         try{
             $page = is_int($page)?$page:1;
 
-            $membership = Membership::select(DB::raw("id as membership, fullname, email, DATE(created_at)AS registered_date"))->orderBy("created_at","desc")->paginate(10, ["*"], "page", $page)->toArray();
+            $membership = Membership::select(DB::raw("membership.id as membership, ifnull(userprofile.fullname,membership.fullname)as fullname, ifnull(userprofile.email,membership.email)as email, DATE(membership.created_at)AS registered_date, ifnull(userprofile.status,'pending')as status"))
+                ->leftJoin("userprofile","membership.id","=","userprofile.memberid")
+                ->orderBy("membership.created_at","desc")->paginate(10, ["*"], "page", $page)->toArray();
             $membership = Pagination::ClearObject($membership);
 
             Log::channel('activity')->warning('[LOAD MEMBERSHIP]', ["page"=>$page]);

@@ -279,6 +279,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Register Date</th>
+                    <th>Status</th>
                     <th class="text-center">Action</th>
                 </tr>
             </thead>
@@ -353,6 +354,7 @@
           <td>${row.fullname}</td>
           <td>${row.email}</td>
           <td>${row.registered_date}</td>
+          <td>${row.status}</td>
           <td class="text-center action-icons">
             <i class="bi bi-pencil-square" title="Edit" onclick="editRow(${row.membership})"></i>
           </td>
