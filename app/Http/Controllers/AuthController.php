@@ -136,7 +136,7 @@ class AuthController extends Controller
             $register = self::register($request);
             Log::channel('activity')->error('[REGISTERING USER]', [$register]);
 
-            $register = json_decode($register);
+            $register = json_decode($register->content());
             Log::channel('activity')->error('[DECODE REGISTER OBJECT]', [$register]);
             $userid = $register->user->id;
 
