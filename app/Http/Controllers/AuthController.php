@@ -124,6 +124,7 @@ class AuthController extends Controller
 
         $status = false;
         $check_user = User::where("email",$email)->first();
+        Log::channel('activity')->error('[CHECK USER DATA]', [$check_user]);
         if(!$check_user) $status = true;
 
         return view('dashboard.setup-password', compact('email','fullname', 'status'));
