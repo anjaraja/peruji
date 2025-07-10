@@ -74,9 +74,11 @@
       text-align: center;
       padding: 2rem;
       box-sizing: border-box;
+  }
+    .info-done {
       display: none;
   }
-    .confetti-wrapper.show {
+    .info-done.show {
       display: block;
   }
   </style>
