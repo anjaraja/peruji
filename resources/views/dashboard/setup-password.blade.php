@@ -139,7 +139,7 @@
         fetchData(
             "{{route('setup-password-submit')}}",
             "POST",
-            {},
+            {"Content-Type":"application/json"},
             formdata
         )
         .then((response)=>{
