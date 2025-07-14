@@ -17,7 +17,10 @@
 	menus = localStorage.getItem("menu");
 	menus = JSON.parse(menus);
 
-	if(!sessionStorage.getItem("active_menu")) sessionStorage.setItem("active_menu","upcoming-events")
+	if(!sessionStorage.getItem("active_menu")) {
+		console.log(menus[0].route)
+		sessionStorage.setItem("active_menu",menus[0].route)
+	}
 
 	str_menu_list = "";
 	for(key in menus){
@@ -33,6 +36,27 @@
   		</li>
 		`
 	}
+
+	remove_not_granted_menu = function(){
+		document.addEventListener("DOMContentLoaded", function() {
+			all_content_container = document.querySelectorAll(`.content-container`);
+			not_granted_menu = [];
+
+			all_content_container.forEach((e) => {
+				is_granted = false;
+				for(value of menus){
+					if(e.classList.contains(value.route)) is_granted = true;
+				}
+				if(!is_granted) {
+					console.log(e);
+					e.remove();
+				}
+			})
+		});
+
+	}
+	remove_not_granted_menu();
+
 	menu_container.insertAdjacentHTML("afterbegin",str_menu_list);
 	loading = function(toggleTo,timeClose=500){
 		if(toggleTo == "show"){

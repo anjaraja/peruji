@@ -18,6 +18,10 @@
 @include('dashboard.newsroom')
 @include('dashboard.admin-emails')
 @include('dashboard.membership')
+@include('dashboard.personal-information')
+@include('dashboard.membership-status')
+@include('dashboard.document-resources')
+@include('dashboard.change-password')
 <script load-container>
     content_container = document.querySelector(`.content-container.${sessionStorage.getItem("active_menu")}`);
     content_container.classList.add("show");

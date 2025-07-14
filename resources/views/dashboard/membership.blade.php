@@ -183,7 +183,7 @@
 	        	</form>
 
 	        	<!-- MEMBERSHIP STATUS -->
-	        	<form class="section-box membership-status">
+	        	<!-- <form class="section-box membership-status">
 	          		<div class="section-header">MEMBERSHIP STATUS</div>
 		            <div class="row g-3 mt-2">
 		                <div class="col-md-6">
@@ -206,10 +206,10 @@
 		                  	<a href="#" class="btn btn-orange px-4">RENEW</a>
 		                </div>
 	              	</div>
-	        	</form>
+	        	</form> -->
 
 	            <!-- DOCUMENT & RESOURCES -->
-	            <form class="section-box">
+	            <!-- <form class="section-box">
 	              	<div class="section-header">DOCUMENT & RESOURCES</div>
 		            <div class="row g-3 mt-2 align-items-start">
 		                <div class="col-md-6">
@@ -229,10 +229,10 @@
 		                  	</div>
 		                </div>
 	          		</div>
-	        	</form>
+	        	</form> -->
 
 	            <!-- CHANGE PASSWORD -->
-	            <form class="section-box">
+	            <!-- <form class="section-box">
 		            <div class="section-header">CHANGE PASSWORD</div>
 		            <div class="row g-3 mt-2">
 		                <div class="col-md-6">
@@ -253,7 +253,7 @@
 		                  	<button class="btn btn-orange px-4">SEND LINK PASSWORD TO EMAIL</button>
 		                </div>
 		            </div>
-	            </form>
+	            </form> -->
           	</div>
           	<div class="modal-footer">
           		<input type="hidden" name="memberid">

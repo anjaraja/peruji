@@ -17,6 +17,7 @@ Route::get('/membership', "$path\LandingPageController@membership")->name("membe
 Route::get('/contact-us', "$path\LandingPageController@contactUs")->name("contact-us");
 
 Route::get('/admin', "$path\LandingPageController@admin")->name("admin");
+Route::get('/member-login', "$path\LandingPageController@admin")->name("member-login");
 
 Route::get('/dashboard', "$path\DashboardController@index")->name("dashboard-index");
 

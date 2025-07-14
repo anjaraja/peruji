@@ -57,8 +57,10 @@ class User extends Authenticatable implements JWTSubject
     {
         $userprofile = UserProfile::where('userid', $this->id)->first();
         $menu = Menu::select("menu.menuname","menu.icon","menu.route")
-            ->join("hakakses","hakakses.idmenu","=","menu.id")
-            ->where('hakakses.iduser', $this->id)
+            ->join("hakakses","menu.id","=","hakakses.idmenu")
+            ->join("grupakses","hakakses.idgrupakses","=","grupakses.id")
+            ->join("usergroup","grupakses.id","=","usergroup.idgrupakses")
+            ->where('usergroup.iduser', $this->id)
             ->where('hakakses.activestatus', 1)
             ->where('menu.activestatus', 1)
             ->orderBy("menu.position")
