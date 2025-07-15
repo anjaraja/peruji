@@ -101,6 +101,7 @@
 </div>
 <script type="text/javascript">
   const form = document.getElementById('login-form');
+  sessionStorage.setItem("roleDashboard","{{$loginAs}}")
 
   form.addEventListener('submit', function(event) {
     event.preventDefault();

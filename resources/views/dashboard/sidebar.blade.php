@@ -1,4 +1,4 @@
-<script src="{{asset('dash-js/auth_2.js')}}"></script>
+<script src="{{asset('dash-js/auth_3.js')}}"></script>
 <style>
     body {
       background-color: #f2f4f4;
@@ -8,7 +8,7 @@
     }
 </style>
 <nav class="col-auto col-md-2 d-flex flex-column p-3 min-vh-100 sidebar">
-	<h4 class="mb-4">Admin Dashboard</h4>
+	<h4 class="mb-4 title-dashboard">Admin Dashboard</h4>
 	<ul class="nav nav-pills flex-column mb-auto">
 	</ul>
 </nav>
@@ -18,9 +18,9 @@
 	menus = JSON.parse(menus);
 
 	if(!sessionStorage.getItem("active_menu")) {
-		console.log(menus[0].route)
 		sessionStorage.setItem("active_menu",menus[0].route)
 	}
+	document.querySelector("h4.title-dashboard").innerHTML = `${sessionStorage.getItem('roleDashboard')} Dashboard`;
 
 	str_menu_list = "";
 	for(key in menus){
@@ -86,7 +86,7 @@
 		active_menu = document.querySelector(".sidebar li span.active")
       	if (e.target.matches(".sidebar .nav-item span") && !e.target.matches(".sidebar .nav-item span.active")) {
       		loading("show");
-	      	active_menu.classList.remove("active");
+	      	active_menu?.classList.remove("active");
 	      	active_menu.classList.add("link-dark");
 
 	      	e.target.classList.remove("link-dark")

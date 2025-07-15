@@ -24,6 +24,8 @@ authenticate = function(){
 	                    window.location.href = "/admin";
 	                    return response.json();
 	                }
+                    localStorage.clear()
+					sessionStorage.clear();
 	                return response.json();
 	              })
 	              .then((data)=>{

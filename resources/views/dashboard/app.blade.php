@@ -49,6 +49,8 @@
                     window.location.href = "{{route('homepage')}}";
                     return response.json();
                 }
+                localStorage.clear()
+                sessionStorage.clear();
                 return response.json();
               })
               .then((data)=>{
