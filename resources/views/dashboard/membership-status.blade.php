@@ -5,7 +5,7 @@
             MEMBERSHIP STATUS
         </div>
     </div>
-    <form class="section-box membership-status">
+    <form class="section-box membership-status-member">
         <div class="row g-3 mt-2">
             <div class="col-md-6">
                 <label>Join Date</label>
@@ -26,3 +26,32 @@
         </div>
     </form>
 </div>
+<script>
+
+    showMembershipStatus = function(){
+        responseData = {}
+        fetchData(
+            "{{route('detail-membership-me')}}",
+            "GET",
+            {"Authorization":localStorage.getItem("Token")}
+        )
+        .then((response)=>{
+            if (response.status !== 200){
+                showAlert("not-ok","get")
+                return response.json();
+            }
+            return response.json();
+        })
+        .then((data)=>{
+            responseData = data["data"];
+        })
+        .finally(()=>{
+            membership_status = document.querySelector("form.membership-status-member");
+            membership_status.querySelector("input[name='joindate']").value = responseData?.joindate;
+            membership_status.querySelector("input[name='expiredate']").value = responseData?.expiredate;
+            membership_status.querySelector("input[name='number']").value = responseData?.number;
+            membership_status.querySelector("input[name='status']").value = responseData?.status;
+        });
+    }
+    showMembershipStatus()
+</script>

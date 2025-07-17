@@ -64,7 +64,7 @@
 
       $loginAs = $lastPath=="member-login"?"Member":"Admin";
     @endphp
-    <h2 class="mb-4">{{$loginAs}} Sign In</h2>
+    <h2 class="mb-4">{{$loginAs}} Login</h2>
 
     <div class="access-banner">ACCESS INFORMATION</div>
 

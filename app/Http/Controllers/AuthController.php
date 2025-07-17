@@ -150,6 +150,35 @@ class AuthController extends Controller
         }
     }
 
+    public function changePasswordMember(Request $request)
+    {
+        try{
+            $validated = Validator::make($request->all(),[
+                'old_password' => 'required',
+                'new_password' => 'required'
+            ]);
+            if ($validated->fails()) {
+                Log::channel('activity')->warning('[CHANGE PASSWORD MEMBER]', $request->all());
+                return response()->json(["message" => $validated->errors()], 422);
+            }
+
+            $user = auth("api")->user(); // or auth('web')->user() if using session
+
+            if (!Hash::check($request->old_password, $user->password)) {
+                return response()->json(["message" => "Current password is invalid"], 422);
+            }
+            
+            $user->password = Hash::make($request->new_password);
+            $user->save();
+
+            return response()->json(["message"=>"ok"],200);   
+        }
+        catch(\Exception $e){
+            Log::channel('errorlog')->error('[CHANGE PASSWORD MEMBER]', [$e->getMessage()]);
+            return response()->json(["message"=>"RC4"],401);   
+        }
+    }
+
     /**
      * @OA\Get(
      *     path="/api/me",

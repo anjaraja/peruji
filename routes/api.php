@@ -50,9 +50,12 @@ Route::middleware('auth:api')->group(function () {
     /* END EMAIL ADMIN */
 
     /* MEMBERSHIP */
+    Route::get('/membership/detail-member', "$path\MembershipController@memberShow")->name("detail-membership-me");
     Route::get('/membership/{page}', "$path\MembershipController@index")->name("list-membership");
     Route::get('/membership/detail/{page}', "$path\MembershipController@show")->name("detail-membership");
     Route::post('/update-membership/personal-information', "$path\MembershipController@updatePersonalInformation")->name("update-membership-personal-information");
+    Route::post('/update-membership/member-personal-information', "$path\MembershipController@memberUpdatePersonalInformation")->name("member-update-membership-personal-information");
+    Route::post('/update-membership/change-password-member', "$path\AuthController@changePasswordMember")->name("change-password-member");
     /* END MEMBERSHIP */
 
     // Route::get('/me', [AuthController::class, 'me']);
