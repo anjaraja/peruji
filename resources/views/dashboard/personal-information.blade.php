@@ -33,7 +33,7 @@
             </div>
             <div class="col-md-6">
                 <label>Date of Birth</label>
-                <input type="text" class="form-control" placeholder="Day / Month / Year" name="dob">
+                <input type="date" class="form-control" placeholder="Day / Month / Year" name="dob">
             </div>
             <div class="col-md-6">
                 <label>Work Email</label>
@@ -139,7 +139,11 @@
             // membership_status.querySelector("input[name='status']").value = responseData?.status;
         });
     }
-    showPersonalInformation()
+    document.addEventListener("DOMContentLoaded",function(){
+        if(document.querySelector("form.personal-information-member")){
+            showPersonalInformation()
+        }
+    })
 </script>
 <script>
     personal_information = document.querySelector("form.personal-information-member");

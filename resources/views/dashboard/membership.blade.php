@@ -93,6 +93,54 @@
           background-color: #d97e17;
         }
     /*End FOrm Membership*/
+
+    /*Card Member*/
+	    .card-container {
+	      width: 600px;
+	      height: 360px;
+	      /*background: url('/path-to-your-background.png') no-repeat center;*/
+	      background-size: cover;
+	      border-radius: 20px;
+	      position: relative;
+	      overflow: hidden;
+	      color: #fff;
+	      font-family: 'Arial', sans-serif;
+	      padding: 30px;
+	    }
+
+	    .profile-photo {
+	      width: 110px;
+	      height: 110px;
+	      border-radius: 50%;
+	      object-fit: cover;
+	      border: 5px solid #fff;
+	      position: absolute;
+	      bottom: 40px;
+	      left: 40px;
+	    }
+
+	    .info-name {
+	      font-weight: bold;
+	      font-size: 1.5rem;
+	    }
+
+	    .info-details {
+	      display: inline-block;
+	      padding: 4px 10px;
+	      margin-top: 5px;
+	      font-size: 0.9rem;
+	      border: 1px solid white;
+	    }
+	    .info-details:last-of-type {
+	    	margin-left: -5px;
+	    }
+
+	    .right-info {
+	      position: absolute;
+	      bottom: 40px;
+	      left: 170px;
+	    }
+    /*END CARD MEMBER*/
 </style>
 <div class="modal fade" id="membershipModal" tabindex="-1" role="dialog" aria-labelledby="membershipModalTitle" aria-hidden="true">
   	<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -131,7 +179,7 @@
 		                </div>
 		                <div class="col-md-6">
 		                  	<label>Date of Birth</label>
-		                  	<input type="text" class="form-control" placeholder="Day / Month / Year" name="dob">
+		                  	<input type="date" class="form-control" placeholder="Day / Month / Year" name="dob">
 		                </div>
 		                <div class="col-md-6">
 		                  	<label>Work Email</label>
@@ -154,24 +202,61 @@
 		                  	<input type="file" class="form-control" name="photo">
 		                </div>
 	          		</div>
+	              	<div class="section-header">DOCUMENT & RESOURCES</div>
+		            <div class="row g-3 mt-2 align-items-start">
+		                <div class="col-md-6">
+				          	<h5 class="text-warning fw-bold mb-3">E-Card</h5>
+		                  	<div class="card-container mb-3" id="cardPreview">
+							    <img src="" id="previewPhoto" class="profile-photo">
+							    <div class="right-info">
+							      	<div class="info-name" id="previewName">AIMAN HARITH NASIR</div>
+							      	<div class="info-details">
+							        	MANAGEMENT
+						      		</div>
+							      	<div class="info-details number">
+							        	0123456789
+						      		</div>
+							    </div>
+						  	</div>
+						  	<h5 onclick="downloadJPG()">Click to download</h5>
+		                </div>
+		                <div class="col-md-6">
+				          	<h5 class="text-warning fw-bold mb-3">Certificates</h5>
+				          	<div class="bg-light p-3 rounded shadow-sm">
+					            <ul class="list-unstyled list-of-previous-event">
+					            	<li class="text-black row-previous-event" style="cursor:pointer;" id="">Certificate IUS 2020</li>
+					            	<li class="text-black row-previous-event" style="cursor:pointer;" id="">Certificate IUS 2021</li>
+					            	<li class="text-black row-previous-event" style="cursor:pointer;" id="">Certificate IUS 2022</li>
+					            	<li class="text-black row-previous-event" style="cursor:pointer;" id="">Certificate IUS 2023</li>
+					            	<li class="text-black row-previous-event" style="cursor:pointer;" id="">Certificate IUS 2024</li>
+					            </ul>
+				          	</div>
+		                </div>
+	          		</div>
 	          		<div class="section-header">MEMBERSHIP STATUS *</div>
 	          		<div class="row g-3 mt-2">
 			            <div class="row g-3 mt-2">
 			                <div class="col-md-6">
 			                  	<label>Join Date</label>
-			                  	<input type="text" class="form-control" placeholder="Day / Month / Year" name="joindate">
+			                  	<input type="date" class="form-control" placeholder="Day / Month / Year" name="joindate" required>
 			                </div>
 			                <div class="col-md-6">
 			                  	<label>Expiry Date</label>
-			                  	<input type="text" class="form-control" placeholder="Day / Month / Year" name="expiredate">
+			                  	<input type="date" class="form-control" placeholder="Day / Month / Year" name="expiredate" required>
 			                </div>
 			                <div class="col-md-6">
 			                  	<label>Number</label>
-			                  	<input type="text" class="form-control" name="number">
+			                  	<input type="text" class="form-control" name="number" required>
 			                </div>
 			                <div class="col-md-6">
 			                  	<label>Status</label>
-			                  	<input type="text" class="form-control" placeholder="Active / Pending / Expired" name="status">
+				                <select class="form-control" name="status" required>
+				                    <option value="">--Active/Pending/Expired--</option>
+				                    <option value="active">Active</option>
+				                    <option value="pending">Pending</option>
+				                    <option value="expired">Expired</option>
+				                </select>
+			                  	<!-- <input type="text" class="form-control" placeholder="Active / Pending / Expired" name="status"> -->
 			                </div>
 		              	</div>
           			</div>
@@ -206,29 +291,6 @@
 		                  	<a href="#" class="btn btn-orange px-4">RENEW</a>
 		                </div>
 	              	</div>
-	        	</form> -->
-
-	            <!-- DOCUMENT & RESOURCES -->
-	            <!-- <form class="section-box">
-	              	<div class="section-header">DOCUMENT & RESOURCES</div>
-		            <div class="row g-3 mt-2 align-items-start">
-		                <div class="col-md-6">
-		                  	<label>E-Card</label>
-		                  	<img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="ecard-img" alt="E-card">
-		                  	<small>Click to download</small>
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Certificates</label>
-		                  	<div>
-		                    	<a href="#">Certificate IUS 2024.pdf</a><br>
-		                    	<a href="#">Certificate IUS 2023.pdf</a><br>
-		                    	<a href="#">Certificate IUS 2022.pdf</a><br>
-		                    	<a href="#">Certificate IUS 2021.pdf</a><br>
-		                    	<a href="#">Certificate IUS 2020.pdf</a><br>
-		                    	<a href="#">Certificate IUS 2019.pdf</a>
-		                  	</div>
-		                </div>
-	          		</div>
 	        	</form> -->
 
 	            <!-- CHANGE PASSWORD -->
@@ -301,6 +363,7 @@
       </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
     let currentPage = 1;
     const rowsPerPage = 10;
@@ -436,6 +499,12 @@
                         </span>
                     </div>
                 `)
+
+            	card_container = personal_information.querySelector(".card-container");
+            	card_container.querySelector(".info-name").innerHTML = responseData["fullname"];
+            	card_container.style.background = `url('${responseData["photo"]}') no-repeat center`;
+            	card_container.style.backgroundSize = "cover";
+            	card_container.querySelector(".profile-photo").setAttribute("src",responseData["photo"]);
             }
 
             // photo = personal_information.querySelector("input[name='photo']").files[0];
@@ -451,13 +520,28 @@
             //     formdata.append("photo",photo);
             // }
         	// personal_information.querySelector("input[name='photo']").value = responseData?.photo;
-
-        	membership_status = document.querySelector("form.membership-status");
-        	membership_status.querySelector("input[name='joindate']").value = responseData?.joindate;
-        	membership_status.querySelector("input[name='expiredate']").value = responseData?.expiredate;
-        	membership_status.querySelector("input[name='number']").value = responseData?.number;
-        	membership_status.querySelector("input[name='status']").value = responseData?.status;
+            if(typeof responseData['joindate'] !== "undefined"){
+            	if(responseData['joindate']){
+            		personal_information.querySelector("button").innerHTML = "UPDATE";
+            	}
+            	else{
+            		personal_information.querySelector("button").innerHTML = "VERIFIED & SEND EMAIL SETUP PASSWORD";
+            	}
+            }
+        	personal_information.querySelector("input[name='joindate']").value = responseData?.joindate;
+        	personal_information.querySelector("input[name='expiredate']").value = responseData?.expiredate;
+        	personal_information.querySelector("input[name='number']").value = responseData?.number;
+        	personal_information.querySelector("select[name='status']").value = responseData?.status;
         });
+    }
+
+    function downloadJPG() {
+      html2canvas(document.querySelector(".card-container")).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "membership-card.jpg";
+        link.href = canvas.toDataURL("image/jpeg", 1.0);
+        link.click();
+      });
     }
 </script>
 <script>
@@ -512,7 +596,7 @@
         formdata.append("expiredate",expiredate)
         number = this.querySelector("input[name='number']").value
         formdata.append("number",number)
-        status = this.querySelector("input[name='status']").value
+        status = this.querySelector("select[name='status']").value
         formdata.append("status",status)
 
         memberid = document.querySelector(".modal-footer input[name='memberid']").value

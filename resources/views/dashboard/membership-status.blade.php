@@ -27,7 +27,6 @@
     </form>
 </div>
 <script>
-
     showMembershipStatus = function(){
         responseData = {}
         fetchData(
@@ -53,5 +52,9 @@
             membership_status.querySelector("input[name='status']").value = responseData?.status;
         });
     }
-    showMembershipStatus()
+    document.addEventListener("DOMContentLoaded",function(){
+        if(document.querySelector("form.membership-status-member")){
+            showMembershipStatus()
+        }
+    })
 </script>

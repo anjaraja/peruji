@@ -48,7 +48,6 @@
 					if(e.classList.contains(value.route)) is_granted = true;
 				}
 				if(!is_granted) {
-					console.log(e);
 					e.remove();
 				}
 			})
