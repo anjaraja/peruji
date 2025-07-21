@@ -186,6 +186,8 @@ class MembershipController extends Controller
                 ->where("membership.id",$id)
                 ->first();
 
+            $membership->additionaldocument = json_decode($membership->additionaldocument);
+
             Log::channel('activity')->warning('[LOAD DETAIL MEMBERSHIP]', ["data"=>$membership]);
 
             return response()->json(["message"=>"ok","data"=>$membership],200);;
@@ -675,6 +677,51 @@ class MembershipController extends Controller
         catch(\Exception $e){
             Log::channel('errorlog')->error('[UPDATE PERSONAL INFORMATION]', ["message"=>$e->getMessage()]);
             return response()->json(["message"=>"RC6"],500);
+        }
+    }
+
+    public function addCertificate(Request $request){
+        try{
+            $validated = Validator::make($request->all(),[
+                'member' => 'required|string',
+                'certificate' => 'required|file|mimes:pdf',
+                'certificate_name' => 'required|string',
+            ]);
+
+            if ($validated->fails()) {
+                Log::channel('activity')->warning('[ADD CERTIFICATE]', [$request->all(),$validated->errors()]);
+                return response()->json(["message" => "RC7.1"], 422);
+            }
+
+            $userprofile = UserProfile::where("memberid",$request->member);
+            $userprofile_data = $userprofile->first();
+
+            $additional_document = json_decode($userprofile_data->additionaldocument);
+
+            if(isset($request->certificate)){
+                $certificate = $request->file("certificate");
+                $filename = time()."_".$request->certificate_name.".".$certificate->getClientOriginalExtension();
+                $path = $request->file('certificate')->storeAs('member-certificate', $filename, 'public');
+                $storage_path = Storage::url($path);
+                
+                $additional_document[] = ["name"=>$request->certificate_name,"path"=>$storage_path];
+
+                $store = [
+                    "additionaldocument"=>json_encode($additional_document),
+                    "modified_by"=>auth("api")->user()->id
+                ];
+
+                $store = $userprofile->update($store);
+
+                return response()->json(["message"=>"ok","data"=>$store],200);
+            }
+            
+            Log::channel('activity')->error('[FAILED ADD CERTIFICATE]', $request->all());
+            return response()->json(["message" => "RC7.2"], 422);
+        }
+        catch(\Exception $e){
+            Log::channel('errorlog')->error('[ADD CERTIFICATE]', ["message"=>$e->getMessage()]);
+            return response()->json(["message"=>"RC7"],500);
         }
     }
 }

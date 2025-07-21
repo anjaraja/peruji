@@ -362,6 +362,10 @@ html {
         transition: all .8s;
         padding-left: 15px;
     }
+    .list-unstyled .row-certificate a{
+        color: #757575 !important;
+        text-decoration: underline !important;
+    }
 /*End Row Data*/
 
 /*Previous Events*/

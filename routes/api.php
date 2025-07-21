@@ -56,6 +56,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/update-membership/personal-information', "$path\MembershipController@updatePersonalInformation")->name("update-membership-personal-information");
     Route::post('/update-membership/member-personal-information', "$path\MembershipController@memberUpdatePersonalInformation")->name("member-update-membership-personal-information");
     Route::post('/update-membership/change-password-member', "$path\AuthController@changePasswordMember")->name("change-password-member");
+    Route::post('/update-membership/add-certificate', "$path\MembershipController@addCertificate")->name("add-certificate");
     /* END MEMBERSHIP */
 
     // Route::get('/me', [AuthController::class, 'me']);

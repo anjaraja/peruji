@@ -92,12 +92,16 @@
         .btn-orange:hover {
           background-color: #d97e17;
         }
+
+        #membershipModal .list-unstyled{
+        	min-height: 150px;
+        }
     /*End FOrm Membership*/
 
     /*Card Member*/
 	    .card-container {
-	      width: 600px;
-	      height: 360px;
+	      width: 550px;
+	      height: 320px;
 	      /*background: url('/path-to-your-background.png') no-repeat center;*/
 	      background-size: cover;
 	      border-radius: 20px;
@@ -199,11 +203,11 @@
 		                </div>
 		                <div class="col-md-6">
 		                  	<label>Upload Photo</label>
-		                  	<input type="file" class="form-control" name="photo">
+		                  	<input type="file" class="form-control" name="photo" accept="image/png, image/jpeg, image/gif">
 		                </div>
 	          		</div>
 	              	<div class="section-header">DOCUMENT & RESOURCES</div>
-		            <div class="row g-3 mt-2 align-items-start">
+		            <div class="row g-3 mt-2 mb-4 align-items-start">
 		                <div class="col-md-6">
 				          	<h5 class="text-warning fw-bold mb-3">E-Card</h5>
 		                  	<div class="card-container mb-3" id="cardPreview">
@@ -218,19 +222,29 @@
 						      		</div>
 							    </div>
 						  	</div>
-						  	<h5 onclick="downloadJPG()">Click to download</h5>
+						  	<a href="#" onclick="downloadJPG()" class="btn btn-orange px-4">Download</a>
 		                </div>
 		                <div class="col-md-6">
 				          	<h5 class="text-warning fw-bold mb-3">Certificates</h5>
 				          	<div class="bg-light p-3 rounded shadow-sm">
-					            <ul class="list-unstyled list-of-previous-event">
-					            	<li class="text-black row-previous-event" style="cursor:pointer;" id="">Certificate IUS 2020</li>
-					            	<li class="text-black row-previous-event" style="cursor:pointer;" id="">Certificate IUS 2021</li>
-					            	<li class="text-black row-previous-event" style="cursor:pointer;" id="">Certificate IUS 2022</li>
-					            	<li class="text-black row-previous-event" style="cursor:pointer;" id="">Certificate IUS 2023</li>
-					            	<li class="text-black row-previous-event" style="cursor:pointer;" id="">Certificate IUS 2024</li>
+					            <ul class="list-unstyled list-of-certificate-member">
+					            	<!-- <li class="text-black row-previous-event" style="cursor:pointer;" id="">Certificate IUS 2020</li> -->
 					            </ul>
 				          	</div>
+
+			                <div class="row mt-4">
+			                	<div class="col-md-6">				                		
+				                  	<label>Certificate</label>
+				                  	<input type="file" class="form-control" name="certificate" accept=".pdf">
+			                	</div>
+				                <div class="col-md-6">
+				                  	<label>Certificate Name</label>
+				                  	<input type="text" class="form-control" name="certificate-name">
+				                </div>
+				                <div class="col-md-12 mt-4">
+				                  	<a href="#" class="btn btn-orange add-certificate">Upload</a>
+				                </div>
+			                </div>
 		                </div>
 	          		</div>
 	          		<div class="section-header">MEMBERSHIP STATUS *</div>
@@ -481,6 +495,10 @@
         	personal_information.querySelector("input[name='phone']").value = responseData?.phone;
         	personal_information.querySelector("input[name='website']").value = responseData?.website;
         	personal_information.querySelector("input[name='email']").value = responseData?.email;
+        	personal_information.querySelector("ul.list-of-certificate-member").innerHTML = "";
+        	for (value of responseData?.additionaldocument){
+        		personal_information.querySelector("ul.list-of-certificate-member").insertAdjacentHTML("beforeend",`<li class="row-certificate" style="cursor:pointer;"><a href="${value.path}" target="_BLANK">${value.name}</a></li>`)
+        	}
             if(responseData["photo"]){
                 input_photo = personal_information.querySelector("input[name='photo']");
                 input_photo.style.display = 'none';
@@ -503,6 +521,7 @@
             	card_container = personal_information.querySelector(".card-container");
             	card_container.querySelector(".info-name").innerHTML = responseData["fullname"];
             	card_container.style.background = `url('${responseData["photo"]}') no-repeat center`;
+            	card_container.style.backgroundPosition = "bottom";
             	card_container.style.backgroundSize = "cover";
             	card_container.querySelector(".profile-photo").setAttribute("src",responseData["photo"]);
             }
@@ -536,7 +555,7 @@
     }
 
     function downloadJPG() {
-      html2canvas(document.querySelector(".card-container")).then(canvas => {
+      html2canvas(document.querySelector(".card-container"), {backgroundColor:null}).then(canvas => {
         const link = document.createElement("a");
         link.download = "membership-card.jpg";
         link.href = canvas.toDataURL("image/jpeg", 1.0);
@@ -623,6 +642,59 @@
         })
         .finally(() =>{
             thisform.querySelector("input[name='photo']").value = ""
+            editRow(memberid,true);
+        });
+
+		return false;
+	})
+</script>
+<script add-certificate>
+	add_certificate = document.querySelector("a.add-certificate");
+	add_certificate.addEventListener("click",function(e){
+		e.preventDefault();
+		personal_information = document.querySelector("form.personal-information");
+
+		formdata = new FormData;
+
+		certificate = personal_information.querySelector("input[name='certificate']").files[0];
+		if(!certificate){
+			alert("Certificate is empty");
+			return false;
+		}
+        formdata.append("certificate",certificate);
+
+        certificate_name = personal_information.querySelector("input[name='certificate-name']").value;
+		if(!certificate_name){
+			alert("Certificate name is empty");
+			return false;
+		}
+        formdata.append("certificate_name",certificate_name);
+
+        memberid = document.querySelector(".modal-footer input[name='memberid']").value
+        formdata.append("member",memberid);
+
+        fetchData(
+            "{{route('add-certificate')}}",
+            "POST",
+            {"Authorization":localStorage.getItem("Token")},
+            formdata
+        )
+        .then((response)=>{
+            if (response.status !== 200){
+                showAlert("not-ok","updated")
+
+                return response.json();
+            }
+
+            showAlert("ok","updated")
+            return response.json();
+        })
+        .then((data)=>{
+        	personal_information.querySelector("input[name='certificate']").value = "";
+        	personal_information.querySelector("input[name='certificate-name']").value = "";
+            loadingModal("close",500,document.getElementById("membershipModal"));
+        })
+        .finally(() =>{
             editRow(memberid,true);
         });
 
