@@ -27,6 +27,7 @@ class UserProfile extends Model
         'expiredate',
         'status',
         'additionaldocument',
+        'title',
         'created_by',
         'modified_by'
     ];

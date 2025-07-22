@@ -102,8 +102,9 @@
 	    .card-container {
 	      width: 550px;
 	      height: 320px;
-	      /*background: url('/path-to-your-background.png') no-repeat center;*/
+	      background: url('{{asset("lp-img/card-member-background.png")}}') no-repeat center;
 	      background-size: cover;
+	      /*background-position: bottom;*/
 	      border-radius: 20px;
 	      position: relative;
 	      overflow: hidden;
@@ -211,7 +212,7 @@
 		                <div class="col-md-6">
 				          	<h5 class="text-warning fw-bold mb-3">E-Card</h5>
 		                  	<div class="card-container mb-3" id="cardPreview">
-							    <img src="" id="previewPhoto" class="profile-photo">
+							    <div src="" id="previewPhoto" class="profile-photo"></div>
 							    <div class="right-info">
 							      	<div class="info-name" id="previewName">AIMAN HARITH NASIR</div>
 							      	<div class="info-details">
@@ -269,6 +270,15 @@
 				                    <option value="active">Active</option>
 				                    <option value="pending">Pending</option>
 				                    <option value="expired">Expired</option>
+				                </select>
+			                  	<!-- <input type="text" class="form-control" placeholder="Active / Pending / Expired" name="status"> -->
+			                </div>
+			                <div class="col-md-6">
+			                  	<label>Title</label>
+				                <select class="form-control" name="title" required>
+				                    <option value="">--Management/Regular--</option>
+				                    <option value="management">Management</option>
+				                    <option value="member">Regular</option>
 				                </select>
 			                  	<!-- <input type="text" class="form-control" placeholder="Active / Pending / Expired" name="status"> -->
 			                </div>
@@ -496,8 +506,10 @@
         	personal_information.querySelector("input[name='website']").value = responseData?.website;
         	personal_information.querySelector("input[name='email']").value = responseData?.email;
         	personal_information.querySelector("ul.list-of-certificate-member").innerHTML = "";
-        	for (value of responseData?.additionaldocument){
-        		personal_information.querySelector("ul.list-of-certificate-member").insertAdjacentHTML("beforeend",`<li class="row-certificate" style="cursor:pointer;"><a href="${value.path}" target="_BLANK">${value.name}</a></li>`)
+        	if(responseData?.additionaldocument){
+	        	for (value of responseData?.additionaldocument){
+	        		personal_information.querySelector("ul.list-of-certificate-member").insertAdjacentHTML("beforeend",`<li class="row-certificate" style="cursor:pointer;"><a href="${value.path}" target="_BLANK">${value.name}</a></li>`)
+	        	}	
         	}
             if(responseData["photo"]){
                 input_photo = personal_information.querySelector("input[name='photo']");
@@ -517,15 +529,14 @@
                         </span>
                     </div>
                 `)
-
-            	card_container = personal_information.querySelector(".card-container");
-            	card_container.querySelector(".info-name").innerHTML = responseData["fullname"];
-            	card_container.style.background = `url('${responseData["photo"]}') no-repeat center`;
-            	card_container.style.backgroundPosition = "bottom";
-            	card_container.style.backgroundSize = "cover";
-            	card_container.querySelector(".profile-photo").setAttribute("src",responseData["photo"]);
             }
 
+        	card_container = personal_information.querySelector(".card-container");
+        	card_container.querySelector(".profile-photo").style.background = `url("${responseData["photo"]}") center no-repeat`;
+        	card_container.querySelector(".profile-photo").style.backgroundSize = "cover";
+        	card_container.querySelector(".info-name").innerHTML = responseData["fullname"];
+        	card_container.querySelector(".info-details").innerHTML = responseData["title"];
+        	card_container.querySelector(".info-details.number").innerHTML = responseData["number"];
             // photo = personal_information.querySelector("input[name='photo']").files[0];
             // if(!photo){
             //     input_photo = personal_information.querySelector("input[name='photo']");
@@ -551,6 +562,7 @@
         	personal_information.querySelector("input[name='expiredate']").value = responseData?.expiredate;
         	personal_information.querySelector("input[name='number']").value = responseData?.number;
         	personal_information.querySelector("select[name='status']").value = responseData?.status;
+        	personal_information.querySelector("select[name='title']").value = responseData?.title=="Regular"?"member":"management";
         });
     }
 
@@ -617,6 +629,8 @@
         formdata.append("number",number)
         status = this.querySelector("select[name='status']").value
         formdata.append("status",status)
+        title = this.querySelector("select[name='title']").value
+        formdata.append("title",title)
 
         memberid = document.querySelector(".modal-footer input[name='memberid']").value
         formdata.append("member",memberid);

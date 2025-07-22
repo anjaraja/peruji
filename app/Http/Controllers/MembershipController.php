@@ -181,7 +181,7 @@ class MembershipController extends Controller
     public function show($id)
     {
         try{
-            $membership = Membership::select(DB::raw("userprofile.id as userpfofileid, membership.id as memberid, userprofile.prefix, ifnull(userprofile.organization,membership.org)as organization, ifnull(userprofile.fullname,membership.fullname)as fullname, userprofile.ofcaddress, userprofile.suffix, userprofile.ofcphone, userprofile.dob, ifnull(userprofile.ofcemail,membership.ofcemail)as ofcemail, ifnull(userprofile.phone,membership.phone)as phone, userprofile.website, ifnull(userprofile.email,membership.email)as email, userprofile.photo, userprofile.joindate, userprofile.expiredate, userprofile.number, userprofile.status, userprofile.additionaldocument"))
+            $membership = Membership::select(DB::raw("userprofile.id as userpfofileid, membership.id as memberid, userprofile.prefix, ifnull(userprofile.organization,membership.org)as organization, ifnull(userprofile.fullname,membership.fullname)as fullname, userprofile.ofcaddress, userprofile.suffix, userprofile.ofcphone, userprofile.dob, ifnull(userprofile.ofcemail,membership.ofcemail)as ofcemail, ifnull(userprofile.phone,membership.phone)as phone, userprofile.website, ifnull(userprofile.email,membership.email)as email, userprofile.photo, userprofile.joindate, userprofile.expiredate, userprofile.number, userprofile.status, userprofile.additionaldocument, CASE WHEN userprofile.title != 'management' THEN 'Regular' ELSE 'Management' END as title"))
                 ->leftJoin("userprofile","membership.id","=","userprofile.memberid")
                 ->where("membership.id",$id)
                 ->first();
@@ -269,6 +269,12 @@ class MembershipController extends Controller
      *                      type="string",
      *                      enum={"pending","active","expired"},
      *                      description="Status: pending = Pending, active = Active, expired = Expired"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="title",
+     *                      type="string",
+     *                      enum={"management","member"},
+     *                      description="Status: management = Management, member = Regular"
      *                  )
      *              )
      *          )
@@ -293,7 +299,8 @@ class MembershipController extends Controller
                 'joindate' => 'required|string',
                 'expiredate' => 'required|string',
                 'number' => 'required|string',
-                'status' => 'required|string|in:pending,active,expired'
+                'status' => 'required|string|in:pending,active,expired',
+                'title' => 'required|string|in:member,management'
             ]);
 
             if ($validated->fails()) {
@@ -321,6 +328,7 @@ class MembershipController extends Controller
                 "expiredate"=>$request->expiredate,
                 "number"=>$request->number,
                 "status"=>$request->status,
+                "title"=>$request->title,
                 "modified_by"=>auth("api")->user()->email
             ];
             if(!$userprofiledata){
@@ -527,7 +535,7 @@ class MembershipController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/api/update-membership/personal-information",
+     *      path="/api/update-membership/member-personal-information",
      *      security={{"bearerAuth":{}}},
      *      tags={"Dashboard"}, 
      *      @OA\RequestBody(
@@ -570,27 +578,6 @@ class MembershipController extends Controller
      *                      property="photo",
      *                      type="string",
      *                      format="binary"
-     *                  ),
-     *                  @OA\Property(
-     *                      property="joindate",
-     *                      type="date",
-     *                      example="2025-01-01"
-     *                  ),
-     *                  @OA\Property(
-     *                      property="expiredate",
-     *                      type="date",
-     *                      example="2026-01-01"
-     *                  ),
-     *                  @OA\Property(
-     *                      property="number",
-     *                      type="string",
-     *                      example="0012025010101"
-     *                  ),
-     *                  @OA\Property(
-     *                      property="status",
-     *                      type="string",
-     *                      enum={"pending","active","expired"},
-     *                      description="Status: pending = Pending, active = Active, expired = Expired"
      *                  )
      *              )
      *          )
