@@ -94,18 +94,22 @@
         }
 
         #membershipModal .list-unstyled{
-        	min-height: 150px;
+        	min-height: 155px;
         }
     /*End FOrm Membership*/
 
     /*Card Member*/
+    	.border-card{
+    		border-radius: 20px;
+    		border-radius: 10px solid;
+    	}
 	    .card-container {
-	      width: 550px;
-	      height: 320px;
-	      background: url('{{asset("lp-img/card-member-background.png")}}') no-repeat center;
-	      background-size: cover;
+	      width: 556px;
+	      height: 349px;
+	      /*background: url('{{asset("lp-img/card-member-background.png")}}') no-repeat center;*/
+	      /*background-size: cover;*/
 	      /*background-position: bottom;*/
-	      border-radius: 20px;
+	      border-radius: 35px;
 	      position: relative;
 	      overflow: hidden;
 	      color: #fff;
@@ -120,7 +124,7 @@
 	      object-fit: cover;
 	      border: 5px solid #fff;
 	      position: absolute;
-	      bottom: 40px;
+	      top: 40px;
 	      left: 40px;
 	    }
 
@@ -142,8 +146,8 @@
 
 	    .right-info {
 	      position: absolute;
-	      bottom: 40px;
-	      left: 170px;
+	      bottom: 46px;
+	      left: 40px;
 	    }
     /*END CARD MEMBER*/
 </style>
@@ -223,7 +227,7 @@
 						      		</div>
 							    </div>
 						  	</div>
-						  	<a href="#" onclick="downloadJPG()" class="btn btn-orange px-4">Download</a>
+						  	<a href="#" onclick="downloadPNG()" class="btn btn-orange px-4">Download</a>
 		                </div>
 		                <div class="col-md-6">
 				          	<h5 class="text-warning fw-bold mb-3">Certificates</h5>
@@ -536,6 +540,15 @@
         	card_container.querySelector(".profile-photo").style.backgroundSize = "cover";
         	card_container.querySelector(".info-name").innerHTML = responseData["fullname"];
         	card_container.querySelector(".info-details").innerHTML = responseData["title"];
+        	if(responseData["title"] == "Management"){
+        		card_container.style.backgroundImage = `url("{{asset('lp-img/management-card.jpeg')}}")`;
+        	}
+        	else{
+        		card_container.style.backgroundImage = `url("{{asset('lp-img/regular-card.jpeg')}}")`;
+        	}
+    		card_container.style.backgroundPosition = `center`;
+    		card_container.style.backgroundRepeat = ` no-repeat`;
+    		card_container.style.backgroundSize = `cover`;
         	card_container.querySelector(".info-details.number").innerHTML = responseData["number"];
             // photo = personal_information.querySelector("input[name='photo']").files[0];
             // if(!photo){
@@ -566,13 +579,21 @@
         });
     }
 
-    function downloadJPG() {
-      html2canvas(document.querySelector(".card-container"), {backgroundColor:null}).then(canvas => {
-        const link = document.createElement("a");
-        link.download = "membership-card.jpg";
-        link.href = canvas.toDataURL("image/jpeg", 1.0);
-        link.click();
-      });
+    function downloadPNG() {
+      html2canvas(
+      		document.querySelector(".card-container"), 
+      		{
+      			scale:10,
+  				backgroundColor:null
+  			}
+		)
+      	.then(canvas => {
+	        const link = document.createElement("a");
+	        link.download = "membership-card.png";
+	        link.href = canvas.toDataURL("image/jpeg", 1.0);
+	        link.click();
+     	 }
+ 	 );
     }
 </script>
 <script>
