@@ -60,8 +60,8 @@
         .finally(()=>{
             document_resources = document.querySelector(".document-resources-index");
 
+            document_resources.querySelector("ul.list-of-certificate-member").innerHTML = "";
             if(responseData?.additionaldocument){
-                console.log(responseData.additionaldocument);
                 for (value of responseData?.additionaldocument){
                     document_resources.querySelector("ul.list-of-certificate-member").insertAdjacentHTML("beforeend",`<li class="row-certificate" style="cursor:pointer;"><a href="${value.path}" target="_BLANK">${value.name}</a></li>`)
                 }   
