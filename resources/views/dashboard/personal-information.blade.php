@@ -216,6 +216,7 @@
         .finally(() =>{
             thisform.querySelector("input[name='photo']").value = ""
             showPersonalInformation()
+            documentAndResources()
         });
 
         return false;

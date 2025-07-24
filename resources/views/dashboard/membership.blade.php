@@ -97,59 +97,6 @@
         	min-height: 155px;
         }
     /*End FOrm Membership*/
-
-    /*Card Member*/
-    	.border-card{
-    		border-radius: 20px;
-    		border-radius: 10px solid;
-    	}
-	    .card-container {
-	      width: 556px;
-	      height: 349px;
-	      /*background: url('{{asset("lp-img/card-member-background.png")}}') no-repeat center;*/
-	      /*background-size: cover;*/
-	      /*background-position: bottom;*/
-	      border-radius: 35px;
-	      position: relative;
-	      overflow: hidden;
-	      color: #fff;
-	      font-family: 'Arial', sans-serif;
-	      padding: 30px;
-	    }
-
-	    .profile-photo {
-	      width: 140px;
-	      height: 140px;
-	      border-radius: 50%;
-	      object-fit: cover;
-	      /*border: 5px solid #fff;*/
-	      position: absolute;
-	      top: 40px;
-	      left: 40px;
-	    }
-
-	    .info-name {
-	      font-weight: bold;
-	      font-size: 1.5rem;
-	    }
-
-	    .info-details {
-	      display: inline-block;
-	      padding: 4px 10px;
-	      margin-top: 5px;
-	      font-size: 0.9rem;
-	      border: 1px solid white;
-	    }
-	    .info-details:last-of-type {
-	    	margin-left: -5px;
-	    }
-
-	    .right-info {
-	      position: absolute;
-	      bottom: 46px;
-	      left: 40px;
-	    }
-    /*END CARD MEMBER*/
 </style>
 <div class="modal fade" id="membershipModal" tabindex="-1" role="dialog" aria-labelledby="membershipModalTitle" aria-hidden="true">
   	<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -468,7 +415,11 @@
     });
 
     // Initial
-    loadPage(currentPage);
+    document.addEventListener("DOMContentLoaded",function(){
+    	if(document.querySelector(".content-container.membership-index")){
+    		loadPage(currentPage);
+    	}
+    })
 </script>
 <script edit-script>
     editRow = function(id, isRecall=false){
@@ -579,9 +530,9 @@
         });
     }
 
-    function downloadPNG() {
+    function downloadPNG(thisbtn) {
       html2canvas(
-      		document.querySelector(".card-container"), 
+      		thisbtn.closest("div").querySelector(".card-container"), 
       		{
       			scale:10,
   				backgroundColor:null

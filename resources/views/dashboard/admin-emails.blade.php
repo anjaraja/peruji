@@ -80,7 +80,12 @@
             // })
         });   
     }
-    getAdminEmails();
+
+    document.addEventListener("DOMContentLoaded",function(){
+        if(document.querySelector(".content-container.admin-emails-index")){
+            getAdminEmails();
+        }
+    })
 </script>
 <script submit-admin-emails>
     emailadmin_form = document.querySelectorAll("div.admin-emails-index form");

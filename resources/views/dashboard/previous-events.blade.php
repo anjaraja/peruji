@@ -133,7 +133,12 @@
             }
         });
     }
-    getPreviousEvent();
+
+    document.addEventListener("DOMContentLoaded",function(){
+        if(document.querySelector(".content-container.previous-event")){
+            getPreviousEvent();
+        }
+    })
 </script>
 <script submit-previous-events>
     // previous_event_list = document.querySelectorAll(".row-previous-event");

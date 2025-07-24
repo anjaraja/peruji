@@ -79,7 +79,11 @@
             }
         });
     }
-    getNewsData();
+    document.addEventListener("DOMContentLoaded",function(){
+        if(document.querySelector(".content-container.newsroom")){
+            getNewsData();
+        }
+    })
 </script>
 <script submit-news>
     news_form = document.querySelector(".content-container.newsroom form");

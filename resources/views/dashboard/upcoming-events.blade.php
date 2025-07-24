@@ -138,7 +138,12 @@
             }
         });
     }
-    getUpcomingEvent();
+
+    document.addEventListener("DOMContentLoaded",function(){
+        if(document.querySelector(".content-container.upcoming-events")){
+            getUpcomingEvent();
+        }
+    })
 </script>
 <script submit-upcoming-events>
     upcoming_form = document.querySelectorAll(".content-container.upcoming-events form");
