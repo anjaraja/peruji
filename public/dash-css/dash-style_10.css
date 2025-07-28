@@ -488,6 +488,10 @@ html {
       bottom: 46px;
       left: 40px;
     }
+    .content-container.document-resources-index .card-container .right-info {
+      bottom: 35px;
+      left: 38px;
+    }
 /*END CARD MEMBER*/
 
 /*Utilities*/

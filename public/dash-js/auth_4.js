@@ -3,7 +3,7 @@ authenticate = function(){
 		alert("Session is end!");
 		localStorage.clear();
 		sessionStorage.clear();
-		window.location.href = "/admin";
+		window.location.href = "/";
 	}
 	else{
 		try{
@@ -21,7 +21,7 @@ authenticate = function(){
 						alert("Session is end!");
 	                    localStorage.clear()
 						sessionStorage.clear();
-	                    window.location.href = "/admin";
+	                    window.location.href = "/";
 	                    return response.json();
 	                }
                     localStorage.clear()
@@ -32,7 +32,7 @@ authenticate = function(){
 					alert("Session is end!");
 	                localStorage.clear()
 					sessionStorage.clear();
-	                window.location.href = "/admin";
+	                window.location.href = "/";
 	                // alert("success logout")
 	              });
 			}
@@ -45,7 +45,7 @@ authenticate = function(){
 			alert("Session is end!");
 			localStorage.clear();
 			sessionStorage.clear();
-			window.location.href = "/admin";
+			window.location.href = "/";
 	  	}
 	}	
 }
