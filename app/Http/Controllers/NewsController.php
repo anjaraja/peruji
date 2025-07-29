@@ -58,7 +58,7 @@ class NewsController extends Controller
      *          @OA\MediaType(
      *              mediaType="multipart/form-data",
      *              @OA\Schema(
-     *                  required={"news","newsname","newsdate","description","photo","additionalcontent"},
+     *                  required={"news","newsname","newsdate","description","eng_description","photo","additionalcontent"},
      *                  @OA\Property(
      *                      property="news",
      *                      type="integer",
@@ -77,7 +77,12 @@ class NewsController extends Controller
      *                  @OA\Property(
      *                      property="description",
      *                      type="text",
-     *                      example="News Description"
+     *                      example="News Description (IDN)"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="eng_description",
+     *                      type="text",
+     *                      example="News Description (ENG)"
      *                  ),
      *                  @OA\Property(
      *                      property="photo",
@@ -105,6 +110,7 @@ class NewsController extends Controller
                 'newsname' => 'required|string',
                 'newsdate' => 'required|string',
                 'description' => 'required|string',
+                'eng_description' => 'required|string',
                 'photo' => 'required|file|mimes:jpeg,jpg,png|max:2048',
                 'additionalcontent' => 'string',
             ]);
@@ -170,7 +176,12 @@ class NewsController extends Controller
      *                  @OA\Property(
      *                      property="description",
      *                      type="text",
-     *                      example="News Description"
+     *                      example="News Description (IDN)"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="eng_description",
+     *                      type="text",
+     *                      example="News Description (ENG)"
      *                  ),
      *                  @OA\Property(
      *                      property="photo",
@@ -199,6 +210,7 @@ class NewsController extends Controller
                 'newsname' => 'required|string',
                 'newsdate' => 'required|string',
                 'description' => 'required|string',
+                'eng_description' => 'required|string',
                 'photo' => 'nullable|file|mimes:jpeg,jpg,png|max:2048',
                 'additionalcontent' => 'string',
             ]);
@@ -234,9 +246,12 @@ class NewsController extends Controller
                 $data["photo"] = Storage::url($path);
             }
             else{
-                if ($photo_path && Storage::disk('public')->exists($photo_path)) {
-                    Storage::disk('public')->delete($photo_path);
-                    $data["photo"] = "";
+                if(isset($request->delete_photo)){
+                    if ($photo_path && Storage::disk('public')->exists($photo_path)) {
+                        Storage::disk('public')->delete($photo_path);
+                        $data["photo"] = null;
+                        unset($data["delete_photo"]);
+                    }
                 }
             } 
 

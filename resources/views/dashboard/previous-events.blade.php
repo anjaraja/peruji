@@ -135,9 +135,13 @@
     }
 
     document.addEventListener("DOMContentLoaded",function(){
-        if(document.querySelector(".content-container.previous-event")){
+        if(document.querySelector(".content-container.previous-events")){
             getPreviousEvent();
         }
+
+        document.querySelector("nav span[link='previous-events']").addEventListener("click",function(){
+            getPreviousEvent();
+        });
     })
 </script>
 <script submit-previous-events>
@@ -146,6 +150,11 @@
         loading("show")
         prev_event_id = this_element.getAttribute("id");
         list_previous_data = JSON.parse(sessionStorage.getItem("list-previous"))
+
+        this_element.closest("ul").querySelectorAll("li").forEach((el)=>{
+            el.classList.remove("active");
+        })
+        this_element.classList.add("active")
 
         source_form = document.querySelector(`form[source='update_event']`);
         source_form.querySelector("span[type='publish']")?.remove();

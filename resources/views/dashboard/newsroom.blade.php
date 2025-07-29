@@ -16,11 +16,15 @@
           </div>
           <div class="mb-3">
             <label class="form-label">Date</label>
-            <input type="text" class="form-control" placeholder="News date" name="newsdate">
+            <input type="date" class="form-control" placeholder="News date" name="newsdate">
           </div>
           <div class="mb-3">
-            <label class="form-label">Message</label>
+            <label class="form-label">Message (IDN)</label>
             <textarea class="form-control" rows="3" placeholder="One paragraph news" name="newsmessage"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Message (ENG)</label>
+            <textarea class="form-control" rows="3" placeholder="One paragraph news" name="eng_newsmessage"></textarea>
           </div>
           <div class="mb-3">
             <label class="form-label">Photo/Image</label>
@@ -104,6 +108,7 @@
                 news_form.querySelector("input[name='newstitle']").value = form_data["newsname"];
                 news_form.querySelector("input[name='newsdate']").value = form_data["newsdate"];
                 news_form.querySelector("textarea[name='newsmessage']").value = form_data["description"];
+                news_form.querySelector("textarea[name='eng_newsmessage']").value = form_data["eng_description"];
                 news_form.querySelector("textarea[name='newslinks']").value = form_data["additionalcontent"];
                 if(form_data["photo"]){
                     input_photo = news_form.querySelector("input[name='newsimage']");
@@ -157,12 +162,25 @@
         formdata.append("newsname",news_title)
         news_date = this.querySelector("input[name='newsdate']").value
         formdata.append("newsdate",news_date)
-        news_date = this.querySelector("textarea[name='newsmessage']").value
-        formdata.append("description",news_date)
+        news_message = this.querySelector("textarea[name='newsmessage']").value
+        formdata.append("description",news_message)
+        eng_news_message = this.querySelector("textarea[name='eng_newsmessage']").value
+        formdata.append("eng_description",eng_news_message)
         news_links = this.querySelector("textarea[name='newslinks']").value
         formdata.append("additionalcontent",news_links)
+
         news_image = this.querySelector("input[name='newsimage']").files[0]
-        if(news_image) formdata.append("photo",news_image)
+        if(!news_image){
+            input_news_image = this.querySelector("input[name='newsimage']");
+            exist_news_image = input_news_image.closest("div[class*='col-md']").querySelector("div[preview-file]");
+
+            if(!exist_news_image){
+                formdata.append("delete_photo",true);
+            }
+        }
+        else{
+            formdata.append("photo",news_image);
+        }
 
         specific_data = this.querySelector("input[name='news']");
         if(specific_data){
