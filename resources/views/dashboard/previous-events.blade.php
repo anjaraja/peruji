@@ -36,7 +36,7 @@
       <div class="row">
         <!-- Left: Form -->
         <div class="col-md-7">
-            <form class="row" source="update_event">
+            <form source="update_event">
                 <div class="col-md-12 p-0">
                     <div class="col-md-12 mb-3">
                         <label class="form-label">Title</label>
