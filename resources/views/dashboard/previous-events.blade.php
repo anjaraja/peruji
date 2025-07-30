@@ -165,6 +165,7 @@
                 if(!form_data["isprevious"]){
                     source_form.querySelector(".action-button").insertAdjacentHTML("beforeend",`<span type="publish" class="submit-btn" style="cursor:pointer;">PUBLISH</span>`);
                 }
+                source_form.querySelector("input[name='update_events']")?.remove();
                 source_form.insertAdjacentHTML("afterbegin",`<input name="update_events" value="${form_data["id"]}" style="display:none;">`)
                 source_form.querySelector("input[name='update_event_name']").value = form_data["eventname"];
                 source_form.querySelector("input[name='update_event_date']").value = form_data["eventdate"];

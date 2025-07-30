@@ -104,6 +104,7 @@
         for(key in list_news_data){
             if(list_news_data[key]["id"] == selected_news){
                 form_data = list_news_data[key];
+                news_form.querySelector("input[name='news']")?.remove();
                 news_form.insertAdjacentHTML("afterbegin",`<input name="news" value="${form_data["id"]}" style="display:none;">`)
                 news_form.querySelector("input[name='newstitle']").value = form_data["newsname"];
                 news_form.querySelector("input[name='newsdate']").value = form_data["newsdate"];
