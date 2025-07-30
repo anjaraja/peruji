@@ -34,12 +34,22 @@ async function asyncFetchData(url,method,headers={},body={}){
 		body = JSON.stringify(body)
 	}
 
-	try{
-		const response = await fetch(url,{
+	if (method != "GET"){
+		fetch_attribute = {
 	      	method: method,
 	      	headers: headers,
 	      	body: body
-	    })
+	    }
+	}
+	else{
+		fetch_attribute = {
+	      	method: method,
+	      	headers: headers
+	    }
+	}
+
+	try{
+		const response = await fetch(url,fetch_attribute)
 		const data = await response.json()
 	    return data;
 	}

@@ -8,6 +8,7 @@ class UserProfile extends Model
 {
     protected $table = "userprofile";
     protected $fillable = [
+        'memberid',
         'userid',
         'prefix',
         'fullname',
@@ -26,6 +27,7 @@ class UserProfile extends Model
         'expiredate',
         'status',
         'additionaldocument',
+        'title',
         'created_by',
         'modified_by'
     ];

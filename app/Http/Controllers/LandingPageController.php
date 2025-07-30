@@ -92,6 +92,7 @@ class LandingPageController extends Controller
      */
     public function contactUs()
     {
+        return redirect()->route("admin");
         return view('landingpage.contactus');
     }
 

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
@@ -28,7 +29,7 @@ class AuthController extends Controller
      *      )
      * )
      */
-    public function register(Request $request)
+    public static function register(Request $request)
     {
         DB::beginTransaction();
         try{
@@ -94,6 +95,8 @@ class AuthController extends Controller
             unset($dataLog["password"]);
 
             $credentials = $request->only('email', 'password');
+            
+            auth("api")->factory()->setTTL(60*12);
 
             if (!$token = auth("api")->attempt($credentials)) {
                 Log::channel('errorlog')->warning('[USER LOGIN]', [$dataLog,$token]);
@@ -104,12 +107,75 @@ class AuthController extends Controller
                 'access_token' => $token,
                 // 'user' => auth()->user(),
                 'token_type' => 'bearer',
-                'expires_in' => auth("api")->factory()->getTTL() * 60,
+                'expires_in' => auth("api")->factory()->getTTL(),
             ]);
         }
         catch(\Exception $e){
             Log::channel('errorlog')->error('[USER LOGIN]', [$dataLog,$e->getMessage()]);
             return response()->json(["message"=>"RC2"],500);
+        }
+    }
+
+    public function setupPasswordForm(Request $request)
+    {
+        // Signed URL validation already handled by middleware
+        $email = $request->query('email');
+        $fullname = $request->query('fullname');
+
+        $status = false;
+        $check_user = User::where("email",$email)->first();
+        Log::channel('activity')->error('[CHECK USER DATA]', [$check_user]);
+        if(!$check_user) $status = true;
+
+        return view('dashboard.setup-password', compact('email','fullname', 'status'));
+    }
+
+    public function setupPasswordSubmit(Request $request)
+    {
+        try{
+            $register = self::register($request);
+            Log::channel('activity')->error('[REGISTERING USER]', [$register]);
+
+            $register = json_decode($register->content());
+            Log::channel('activity')->error('[DECODE REGISTER OBJECT]', [$register]);
+            $userid = $register->user->id;
+
+            $userprofile = UserProfile::where("email",$request->email)->update(["userid"=>$userid]);
+
+            return response()->json(["message"=>"ok"],200);   
+        }
+        catch(\Exception $e){
+            Log::channel('errorlog')->error('[SUBMIT NEW MEMBER PASSWORD]', [$e->getMessage()]);
+            return response()->json(["message"=>"RC3"],401);   
+        }
+    }
+
+    public function changePasswordMember(Request $request)
+    {
+        try{
+            $validated = Validator::make($request->all(),[
+                'old_password' => 'required',
+                'new_password' => 'required'
+            ]);
+            if ($validated->fails()) {
+                Log::channel('activity')->warning('[CHANGE PASSWORD MEMBER]', $request->all());
+                return response()->json(["message" => $validated->errors()], 422);
+            }
+
+            $user = auth("api")->user(); // or auth('web')->user() if using session
+
+            if (!Hash::check($request->old_password, $user->password)) {
+                return response()->json(["message" => "Current password is invalid"], 422);
+            }
+            
+            $user->password = Hash::make($request->new_password);
+            $user->save();
+
+            return response()->json(["message"=>"ok"],200);   
+        }
+        catch(\Exception $e){
+            Log::channel('errorlog')->error('[CHANGE PASSWORD MEMBER]', [$e->getMessage()]);
+            return response()->json(["message"=>"RC4"],401);   
         }
     }
 

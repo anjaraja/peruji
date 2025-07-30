@@ -217,13 +217,13 @@ html {
         top: 8vh;
         right: -500px;
         opacity: 0;
-        z-index: 2;
         transition: all 0.8s;
     }
     .alert[data].show{
         right: 0;
         opacity: 1;
         transition: all 0.8s;
+        z-index: 10000;
     }
     ul li {
         list-style: none;
@@ -280,6 +280,12 @@ html {
         pointer-events: auto;
         background-color: rgba(255, 255, 255, 0.5);
     }
+    .modal-dialog .loading-container{
+        padding: 0 !important;
+        position: absolute;
+        width: 100% !important;
+        height: 100% !important;
+    }
     .form-label {
       font-weight: 500;
     }
@@ -291,6 +297,20 @@ html {
       padding: 10px 30px;
       border-radius: 20px;
     }
+    .cancel-form-btn {
+      /*opacity: 0;
+      pointer-events: none;*/
+      font-weight: bold;
+      border: none;
+      padding: 10px 30px !important;
+      border-radius: 20px !important;
+      /*transition: all .8s;*/
+    }
+    /*.cancel-form-btn.show{
+      opacity: 1;
+      pointer-events: auto;
+      transition: all .8s;
+    }*/
     .accordion-button{
       z-index: 1 !important;
     }
@@ -330,6 +350,149 @@ html {
         border-left: 20px solid #666 !important;
     }
 /*End Sidebar*/
+
+/*Row Data*/
+    .list-unstyled li{
+        padding-left: 5px;
+        transition: all .8s;
+    }
+    .list-unstyled .row-previous-event.active, .list-unstyled .row-news.active{
+        color: white !important;
+        background-color: #666;
+        transition: all .8s;
+        padding-left: 15px;
+    }
+    .list-unstyled .row-certificate a{
+        color: #757575 !important;
+        text-decoration: underline !important;
+    }
+/*End Row Data*/
+
+/*Previous Events*/
+    .gallery-modal, #membershipModal .modal-dialog{
+        max-width: 90vw !important;
+    }
+    .gallery-modal .modal-content{
+        height: 50vw !important;
+    }
+    .drop-zone {
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      background-color: #f9f9f9;
+    }
+
+    .drop-zone.dragover {
+      background-color: #e9ecef;
+    }
+
+    .gallery-preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .gallery-item {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      overflow: hidden;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .remove-btn {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      font-size: 14px;
+      line-height: 18px;
+      text-align: center;
+      cursor: pointer;
+    }
+/*End Previous Events*/
+
+
+/*Card Member*/
+    .border-card{
+        border-radius: 20px;
+        border-radius: 10px solid;
+    }
+    .card-container {
+      width: 556px;
+      height: 349px;
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      padding: 30px;
+    }
+    .content-container.document-resources-index .card-container{
+        width: 506px;
+        height: 318px;
+    }
+
+    .profile-photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      /*border: 5px solid #fff;*/
+      position: absolute;
+      top: 40px;
+      left: 40px;
+    }
+    .content-container.document-resources-index .card-container .profile-photo{
+        width: 120px;
+        height: 120px;
+        top: 38px;
+        left: 38px;
+    }
+
+    .info-name {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    .info-details {
+      display: inline-block;
+      padding: 4px 10px;
+      margin-top: 5px;
+      font-size: 0.9rem;
+      border: 1px solid white;
+    }
+    .info-details:last-of-type {
+        margin-left: -5px;
+    }
+
+    .right-info {
+      position: absolute;
+      bottom: 46px;
+      left: 40px;
+    }
+    .content-container.document-resources-index .card-container .right-info {
+      bottom: 35px;
+      left: 38px;
+    }
+/*END CARD MEMBER*/
 
 /*Utilities*/
 .sendToPdfFiller {

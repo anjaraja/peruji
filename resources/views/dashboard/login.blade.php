@@ -57,7 +57,14 @@
 </style>
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
   <div class="text-center" style="max-width: 400px; width: 100%;">
-    <h2 class="mb-4">Admin Sign In</h2>
+    @php
+      $url = $_SERVER['REQUEST_URI'];
+      $explode_url = explode("/",$url);
+      $lastPath = $explode_url[count($explode_url)-1];
+
+      $loginAs = $lastPath=="member-login"?"Member":"Admin";
+    @endphp
+    <h2 class="mb-4">{{$loginAs}} Login</h2>
 
     <div class="access-banner">ACCESS INFORMATION</div>
 
@@ -94,6 +101,7 @@
 </div>
 <script type="text/javascript">
   const form = document.getElementById('login-form');
+  sessionStorage.setItem("roleDashboard","{{$loginAs}}")
 
   form.addEventListener('submit', function(event) {
     event.preventDefault();

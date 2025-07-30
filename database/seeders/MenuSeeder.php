@@ -98,11 +98,70 @@ class MenuSeeder extends Seeder
                     'icon' => null,
                     'route' => 'membership-index',
                     'parent' => null,
-                    'activestatus' => 0,
+                    'activestatus' => 1,
                     'created_by' => "System",
                     'modified_by' => "System"
                 ]
             );
         }
+
+        // PART MEMBER MENU
+            if (!Menu::where('menuname', 'Personal Information')->first()){
+                Menu::create(
+                    [
+                        'menuname' => 'Personal Information',
+                        'position' => 7,
+                        'icon' => null,
+                        'route' => 'personal-information-index',
+                        'parent' => null,
+                        'activestatus' => 1,
+                        'created_by' => "System",
+                        'modified_by' => "System"
+                    ]
+                );
+            }
+            if (!Menu::where('menuname', 'Membership Status')->first()){
+                Menu::create(
+                    [
+                        'menuname' => 'Membership Status',
+                        'position' => 8,
+                        'icon' => null,
+                        'route' => 'membership-status-index',
+                        'parent' => null,
+                        'activestatus' => 1,
+                        'created_by' => "System",
+                        'modified_by' => "System"
+                    ]
+                );
+            }
+            if (!Menu::where('menuname', 'Document & Resources')->first()){
+                Menu::create(
+                    [
+                        'menuname' => 'Document & Resources',
+                        'position' => 9,
+                        'icon' => null,
+                        'route' => 'document-resources-index',
+                        'parent' => null,
+                        'activestatus' => 1,
+                        'created_by' => "System",
+                        'modified_by' => "System"
+                    ]
+                );
+            }
+            if (!Menu::where('menuname', 'Change Password')->first()){
+                Menu::create(
+                    [
+                        'menuname' => 'Change Password',
+                        'position' => 10,
+                        'icon' => null,
+                        'route' => 'change-password-index',
+                        'parent' => null,
+                        'activestatus' => 1,
+                        'created_by' => "System",
+                        'modified_by' => "System"
+                    ]
+                );
+            }
+        // END PART MEMBER MENU
     }
 }

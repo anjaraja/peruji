@@ -58,7 +58,12 @@ class NewsController extends Controller
      *          @OA\MediaType(
      *              mediaType="multipart/form-data",
      *              @OA\Schema(
-     *                  required={"newsname","newsdate","description","photo","additionalcontent"},
+     *                  required={"news","newsname","newsdate","description","eng_description","photo","additionalcontent"},
+     *                  @OA\Property(
+     *                      property="news",
+     *                      type="integer",
+     *                      example=1
+     *                  ),
      *                  @OA\Property(
      *                      property="newsname",
      *                      type="string",
@@ -72,7 +77,12 @@ class NewsController extends Controller
      *                  @OA\Property(
      *                      property="description",
      *                      type="text",
-     *                      example="News Description"
+     *                      example="News Description (IDN)"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="eng_description",
+     *                      type="text",
+     *                      example="News Description (ENG)"
      *                  ),
      *                  @OA\Property(
      *                      property="photo",
@@ -100,6 +110,7 @@ class NewsController extends Controller
                 'newsname' => 'required|string',
                 'newsdate' => 'required|string',
                 'description' => 'required|string',
+                'eng_description' => 'required|string',
                 'photo' => 'required|file|mimes:jpeg,jpg,png|max:2048',
                 'additionalcontent' => 'string',
             ]);
@@ -165,7 +176,12 @@ class NewsController extends Controller
      *                  @OA\Property(
      *                      property="description",
      *                      type="text",
-     *                      example="News Description"
+     *                      example="News Description (IDN)"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="eng_description",
+     *                      type="text",
+     *                      example="News Description (ENG)"
      *                  ),
      *                  @OA\Property(
      *                      property="photo",
@@ -194,6 +210,7 @@ class NewsController extends Controller
                 'newsname' => 'required|string',
                 'newsdate' => 'required|string',
                 'description' => 'required|string',
+                'eng_description' => 'required|string',
                 'photo' => 'nullable|file|mimes:jpeg,jpg,png|max:2048',
                 'additionalcontent' => 'string',
             ]);
@@ -214,9 +231,9 @@ class NewsController extends Controller
             $data["modified_by"] = auth("api")->user()->email;
             Log::channel('activity')->info('[UPDATE NEWS][DATA]', $data);
 
+            $photo_path = str_replace("storage/", "", $news_data->photo);
             // BEGIN UPLOAD
             if ($request->hasFile('photo')) {
-                $photo_path = str_replace("storage/", "", $news_data->photo);
                 // Delete old image if it exists
                 if ($photo_path && Storage::disk('public')->exists($photo_path)) {
                     Storage::disk('public')->delete($photo_path);
@@ -228,7 +245,15 @@ class NewsController extends Controller
                 $path = $request->file('photo')->storeAs('news', $filename, 'public');
                 $data["photo"] = Storage::url($path);
             }
-            else unset($data["photo"]);
+            else{
+                if(isset($request->delete_photo)){
+                    if ($photo_path && Storage::disk('public')->exists($photo_path)) {
+                        Storage::disk('public')->delete($photo_path);
+                        $data["photo"] = null;
+                        unset($data["delete_photo"]);
+                    }
+                }
+            } 
 
             // END UPLOAD
 

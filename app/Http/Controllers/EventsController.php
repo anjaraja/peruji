@@ -362,6 +362,10 @@ class EventsController extends Controller
 
             $data = $request->all();
             $data["id"] = $request->events;
+            if(isset($request->eventdisplaydate)){
+                $data["publishdate"] = $data["eventdisplaydate"];
+                unset($data["eventdisplaydate"]);   
+            }
             $data["modified_by"] = auth("api")->user()->email;
             Log::channel('activity')->info('[UPDATE EVENTS][DATA]', $data);
 
@@ -380,9 +384,12 @@ class EventsController extends Controller
                 $data["banner"] = Storage::url($path);
             }
             else {
-                if ($banner_path && Storage::disk('public')->exists($banner_path)) {
-                    Storage::disk('public')->delete($banner_path);
-                    $data["banner"] = null;
+                if(isset($request->delete_banner)){
+                    if ($banner_path && Storage::disk('public')->exists($banner_path)) {
+                        Storage::disk('public')->delete($banner_path);
+                        $data["banner"] = null;
+                        unset($data["delete_banner"]);
+                    }
                 }
                 // else{
                 //     unset($data["banner"]);
@@ -405,9 +412,12 @@ class EventsController extends Controller
                 $data["thumbnail"] = Storage::url($path);
             }
             else {
-                if ($thumbnail_path && Storage::disk('public')->exists($thumbnail_path)) {
-                    Storage::disk('public')->delete($thumbnail_path);
-                    $data["thumbnail"] = null;
+                if(isset($request->delete_thumbnail)){
+                    if ($thumbnail_path && Storage::disk('public')->exists($thumbnail_path)) {
+                        Storage::disk('public')->delete($thumbnail_path);
+                        $data["thumbnail"] = null;
+                        unset($data["delete_thumbnail"]);
+                    }
                 }
                 // unset($data["thumbnail"]);
             }
@@ -442,9 +452,12 @@ class EventsController extends Controller
                 $data["agenda"] = Storage::url($path);
             }
             else {
-                if ($agenda_path && Storage::disk('public')->exists($agenda_path)) {
-                    Storage::disk('public')->delete($agenda_path);
-                    $data["agenda"] = null;
+                if(isset($request->delete_agenda)){
+                    if ($agenda_path && Storage::disk('public')->exists($agenda_path)) {
+                        Storage::disk('public')->delete($agenda_path);
+                        $data["agenda"] = null;
+                        unset($data["delete_agenda"]);
+                    }   
                 }
                 // unset($data["agenda"]);
             }
@@ -559,9 +572,10 @@ class EventsController extends Controller
             $photos = json_decode($events_data->photo);
             if(isset($request->photo)){
                 $photo = $request->file("photo");
-                $filename = time()."_".$events_data->eventname.".".$photo->getClientOriginalExtension();
+                $filename = count($photos)."_".time()."_".$events_data->eventname.".".$photo->getClientOriginalExtension();
                 $path = $request->file('photo')->storeAs('event-photo', $filename, 'public');
-                $photos[] = Storage::url($path);
+                $storage_path = Storage::url($path);
+                $photos[] = $storage_path;
             }
             $data["photo"] = $photos;
             // END UPLOAD PHOTO
@@ -569,7 +583,7 @@ class EventsController extends Controller
             unset($data["events"]);
             $store = $events->update($data);
 
-            return response()->json(["message"=>"ok"],200);
+            return response()->json(["message"=>"ok","data"=>$storage_path],200);
         }
         catch(\Exception $e){
             Log::channel('errorlog')->error('[UPDATE PHOTO GALLERY AGENDA]', ["message"=>$e->getMessage()]);
@@ -713,6 +727,40 @@ class EventsController extends Controller
         }
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/show-event-gallery/{event}",
+     *      tags={"Landingpage"}, 
+     *      @OA\Parameter(
+     *          name="event",
+     *          in="path",
+     *          description="eventid",
+     *          @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *      )
+     * )
+     */
+    public function eventShowPhotoGallery($id){
+        try{
+            $events = Events::select("photo")->where("id",$id);
+            $events_data = $events->first();
+            if(!$events_data){
+                Log::channel('activity')->warning('[UPDATE PHOTO GALLERY EVENTS]', ["Data not found with id",$request->events]);
+                return response()->json(["message" => "RC8.2"], 422);
+            }
+
+            $data = json_decode($events_data->photo,true);
+
+            return response()->json(["message"=>"ok","data"=>$data],200);
+        }
+        catch(\Exception $e){
+            Log::channel('errorlog')->error('[UPDATE PHOTO GALLERY AGENDA]', ["message"=>$e->getMessage()]);
+            return response()->json(["message"=>"RC8.3"],500);;
+        }
+    }
 
     /**
      * @OA\Post(
@@ -769,7 +817,7 @@ class EventsController extends Controller
             Log::channel('activity')->info('[UPDATE PHOTO GALLERY EVENTS][DATA]', $data);
 
             // BEGIN UPLOAD PHOTO
-            $photos = json_decode($events_data->photo);
+            $photos = json_decode($events_data->photo,true);
             foreach($photos as $key => $value){
                 if($value == $request->photo){
                     $photo_path = str_replace("storage/", "", $value);

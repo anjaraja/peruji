@@ -159,6 +159,8 @@
                     <li class="label-nav-item" lang="eng"><a href="{{route('membership')}}#terms-condition">Terms & Condition</a></li>
                     <li class="label-nav-item" lang="idn"><a href="{{route('membership')}}#benefits">Manfaat Keanggotaan</a></li>
                     <li class="label-nav-item" lang="eng"><a href="{{route('membership')}}#benefits">Membership Benefits</a></li>
+                    <li class="label-nav-item" lang="idn"><a href="{{route('member-login')}}">Login Anggota</a></li>
+                    <li class="label-nav-item" lang="eng"><a href="{{route('member-login')}}">Member Login</a></li>
                 </ul>
             </li>
             <li class="label-nav label-nav-contact-lg">
