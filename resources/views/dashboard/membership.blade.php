@@ -174,7 +174,7 @@
 						      		</div>
 							    </div>
 						  	</div>
-						  	<a href="#" onclick="downloadPNG()" class="btn btn-orange px-4">Download</a>
+						  	<a href="#" onclick="downloadPNG(this)" class="btn btn-orange px-4">Download</a>
 		                </div>
 		                <div class="col-md-6">
 				          	<h5 class="text-warning fw-bold mb-3">Certificates</h5>
@@ -295,7 +295,7 @@
           	<div class="modal-footer">
           		<input type="hidden" name="memberid">
           		<input type="hidden" name="userprofileid">
-	            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
 	            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
           	</div>
         </div>
