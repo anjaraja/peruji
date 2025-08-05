@@ -390,6 +390,9 @@ class EventsController extends Controller
                         $data["banner"] = null;
                         unset($data["delete_banner"]);
                     }
+                    else{
+                        unset($data["delete_banner"]);
+                    }
                 }
                 // else{
                 //     unset($data["banner"]);
@@ -416,6 +419,9 @@ class EventsController extends Controller
                     if ($thumbnail_path && Storage::disk('public')->exists($thumbnail_path)) {
                         Storage::disk('public')->delete($thumbnail_path);
                         $data["thumbnail"] = null;
+                        unset($data["delete_thumbnail"]);
+                    }
+                    else{
                         unset($data["delete_thumbnail"]);
                     }
                 }
@@ -457,7 +463,10 @@ class EventsController extends Controller
                         Storage::disk('public')->delete($agenda_path);
                         $data["agenda"] = null;
                         unset($data["delete_agenda"]);
-                    }   
+                    }
+                    else{
+                        unset($data["delete_agenda"]);
+                    }
                 }
                 // unset($data["agenda"]);
             }
