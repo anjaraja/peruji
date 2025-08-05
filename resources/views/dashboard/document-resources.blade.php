@@ -73,10 +73,10 @@
             card_container.querySelector(".info-name").innerHTML = responseData["fullname"];
             card_container.querySelector(".info-details").innerHTML = responseData["title"];
             if(responseData["title"] == "Management"){
-                card_container.style.backgroundImage = `url("{{asset('lp-img/management-card.jpeg')}}")`;
+                card_container.style.backgroundImage = `url("{{asset('dash-img/management-card.png')}}")`;
             }
             else{
-                card_container.style.backgroundImage = `url("{{asset('lp-img/regular-card.jpeg')}}")`;
+                card_container.style.backgroundImage = `url("{{asset('dash-img/regular-card.png')}}")`;
             }
             card_container.style.backgroundPosition = `center`;
             card_container.style.backgroundRepeat = ` no-repeat`;

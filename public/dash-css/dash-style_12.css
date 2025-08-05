@@ -457,14 +457,14 @@ html {
       object-fit: cover;
       /*border: 5px solid #fff;*/
       position: absolute;
-      top: 40px;
-      left: 40px;
+      bottom: 44px;
+      left: 42px;
     }
     .content-container.document-resources-index .card-container .profile-photo{
         width: 120px;
         height: 120px;
-        top: 38px;
-        left: 38px;
+        bottom: 44px;
+        left: 39px;
     }
 
     .info-name {
@@ -489,11 +489,11 @@ html {
     .right-info {
       position: absolute;
       bottom: 46px;
-      left: 40px;
+      left: 200px;
     }
     .content-container.document-resources-index .card-container .right-info {
-      bottom: 35px;
-      left: 38px;
+      bottom: 46px;
+      left: 180px;
     }
 /*END CARD MEMBER*/
 

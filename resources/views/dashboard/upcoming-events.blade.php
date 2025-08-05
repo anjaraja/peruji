@@ -171,7 +171,7 @@
             formdata.append("eng_description",eng_event_message)
             event_banner = thisform.querySelector("input[name='event_banner']").files[0];
             if(!event_banner){
-                input_banner = source_form.querySelector("input[name='event_banner']");
+                input_banner = thisform.querySelector("input[name='event_banner']");
                 exist_banner = input_banner.closest("div.mb-3").querySelector("div[preview-file]");
 
                 if(!exist_banner){
@@ -183,7 +183,7 @@
             }
             event_agenda = thisform.querySelector("input[name='event_agenda']").files[0]
             if(!event_agenda){
-                input_agenda = source_form.querySelector("input[name='event_agenda']");
+                input_agenda = thisform.querySelector("input[name='event_agenda']");
                 exist_agenda = input_agenda.closest("div.mb-3").querySelector("div[preview-file]");
 
                 if(!exist_agenda){

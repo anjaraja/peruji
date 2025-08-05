@@ -70,10 +70,54 @@
             </div>
             <div class="pt-section-content align-self-center">
                 <div class="desc-isi-content" lang="idn">
-                    The Life Underwriter Club Indonesia (LUCI) secara resmi didirikan setelah terselenggaranya acara Underwriter Gathering yang diinisiasi oleh ReINDO pada tanggal 18–19 Juni 2014 di Michael Resort. Pertemuan penting ini mempertemukan 30 underwriter yang mewakili 32 perusahaan asuransi jiwa, menciptakan forum yang vital untuk kolaborasi industri dan dialog profesional. Keberhasilan inisiatif ini secara langsung mendorong terbentuknya LUCI sebagai komunitas profesional yang berdedikasi, dengan penunjukan tujuh orang formatur untuk membentuk dan menjalankan kepengurusan perdana.
+                    PERUJI berkomitmen untuk memajukan profesi underwriting di Indonesia melalui pengetahuan, integritas, dan kolaborasi. Kami berupaya untuk:
+                    <ol class="list-of-vision-mission">
+                        <li>Aktif Mendukung berkembangnya pengetahuan Seleksi Risiko Asuransi Jiwa di Indonesia.</li>
+                        <li>Meningkatkan pemahaman Anggota mengenai seleksi risiko Asuransi Jiwa.</li>
+                        <li>Mendorong dan memelihara penerapan standar kompetensi yang tinggi dan dilaksanakannya Kode Etik Underwriter Jiwa di lingkungan profesi Underwriter Jiwa dengan penuh kesadaran dan tanggung jawab diantara para Anggota.</li>
+                        <li>Mendorong dan Membina terpeliharanya hubungan baik antara para Anggota Organisasi.</li>
+                        <li>Mendukung berkembangnya Asuransi Jiwa yang sehat di Indonesia.</li>
+                    </ol>
+                </div>
+                <div class="desc-isi-content mt-5" lang="idn">
+                    Untuk mencapai tujuan kita, PERUJI melakukan inisiatif berikut:
+                    <ol class="list-of-vision-mission">
+                        <li>Merumuskan dan menerapkan system pendidikan awal bagi calon Anggota dan pendidikan lanjutan bagi Anggota.</li>
+                        <li>Melakukan atau mendukung penelitian ilmiah di bidang Seleksi Risiko dan atau bidang lain yang dapat dilakukan atau didukung oleh ilmu Seleksi Risiko (Underwriting).</li>
+                        <li>Menyelenggarakan diskusi, seminar, lokakarya dan kegiatan sejenis lainnya dalam rangka pengembangan dan pemasyarakatan ilmu Seleksi Risiko (Underwriting} dan profesi Underwriter.</li>
+                        <li>Mengadakan kerja sama dengan organisasi, Perkumpulan profesi, lembaga atau institusi lainnya, baik di dalam negeri maupun di luar negeri, dalam rangka mengembangkan ilmu Seleksi Risiko dan penerapannya.</li>
+                        <li>Merumuskan standarisasi minimum dalam melakukan proses Seleksi Risiko Asuransi Jiwa.</li>
+                        <li>Melakukan Pengawasan dan pengembangan, dalam arti yang seluas-luasnya, dalam rangka meningkatkan profesionalisme bagi para Anggota dengan memegang teguh Kode Etik Profesi.</li>
+                        <li>Melakukan Penerbitan Jurnal Perkumpulan, media profesi, karya-karya ilmiah dan informasi lainnya.</li>
+                        <li>Merumuskan untuk pembentukan dan pengelolaan Lembaga Sertifikasi Profesi Underwriter.</li>
+                        <li>Memberikan masukan kepada Regulator berkaitan dengan Kebijakan yang berhubungan dengan seleksi risiko.</li>
+                        <li>Melakukan Kegiatan-kegiatan lain yang dianggap perlu sepanjang tidak bertentangan dengan tujuan Perkumpulan.</li>
+                    </ol>
                 </div>
                 <div class="desc-isi-content" lang="eng">
-                    The Life Underwriter Club Indonesia (LUCI) was formally established following the Underwriter Gathering, an event orchestrated by ReINDO on June 18–19, 2014, at Michael Resort. This significant gathering convened 30 underwriters representing 32 life insurance companies, creating a vital forum for industry collaboration and professional dialogue. The success of this initiative directly led to the founding of LUCI as a dedicated professional community, with a seven-member formateur board appointed to serve as its inaugural executive committee.
+                    PERUJI is committed to advancing the underwriting profession in Indonesia through knowledge, integrity, and collaboration. We strive to:
+                    <ol class="list-of-vision-mission">
+                        <li>Actively support the development of life insurance risk selection knowledge in Indonesia.</li>
+                        <li>Enhance members’ understanding and capability in life insurance underwriting.</li>
+                        <li>Promote and uphold high competency standards and ethical conduct within the underwriting profession, carried out with awareness and responsibility.</li>
+                        <li>Encourage and nurture strong, professional relationships among members.</li>
+                        <li>Support the growth of a healthy and sustainable life insurance industry in Indonesia.</li>
+                    </ol>
+                </div>
+                <div class="desc-isi-content mt-4" lang="eng">
+                    To achieve our objectives, PERUJI implements the following initiatives:
+                    <ol class="list-of-vision-mission">
+                        <li>Develop and deliver foundational education programs for new members, as well as advanced training for existing members.</li>
+                        <li>Conduct or support scientific research in risk selection and related disciplines.</li>
+                        <li>Organize seminars, workshops, discussions, and other professional development events to promote underwriting science and practice.</li>
+                        <li>Collaborate with national and international organizations, associations, and institutions to expand knowledge and its practical applications.</li>
+                        <li>Define and promote minimum standards for the life insurance underwriting process.</li>
+                        <li>Monitor and support continuous professional development, upholding the ethical standards of the profession.</li>
+                        <li>Publish journals, professional media, research papers, and other relevant information.</li>
+                        <li>Propose and manage a professional certification body for life underwriters.</li>
+                        <li>Provide recommendations to regulators on policies related to risk selection.</li>
+                        <li>Engage in other initiatives that align with the goals of the organization.</li>
+                    </ol>
                 </div>
             </div>
         </div>
