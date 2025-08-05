@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Setup Password | PERUJI</title>
-    <link rel="stylesheet" href="{{ asset('dash-css/dash-style_10.css') }}">
+    <link rel="stylesheet" href="{{ asset('dash-css/dash-style_11.css') }}">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <script src="{{asset('dash-js/fetchhelper_3.js')}}"></script>
@@ -119,7 +119,7 @@
             <div class="content">
                 <h2>Congratulations! Your account verified and the password setup is complete.</h2>
                 <h2>We will redirecting you to login page in 5 seconds.</h2>
-                <h2>If it's not automatically redirect, click this <a href="{{route('admin')}}">Link</a></h2>
+                <h2>If it's not automatically redirect, click this <a href="{{route('member-login')}}">Link</a></h2>
             </div>
         </div>
     </div>
@@ -129,7 +129,7 @@
             <div class="content">
                 <h2>Congratulations! Your account verified and the password setup is complete.</h2>
                 <h2>We will redirecting you to login page in 5 seconds.</h2>
-                <h2>If it's not automatically redirect, click this <a href="{{route('admin')}}">Link</a></h2>
+                <h2>If it's not automatically redirect, click this <a href="{{route('member-login')}}">Link</a></h2>
             </div>
         </div>
     </div>
@@ -168,7 +168,7 @@
         .then((data)=>{
             document.querySelector(".info-done").classList.add("show");
             setTimeout(function(){
-                window.location = "{{route('admin')}}"
+                window.location = "{{route('member-login')}}"
             },5000)
         })
         .finally(() =>{

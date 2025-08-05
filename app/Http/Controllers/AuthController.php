@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\UserProfile;
+use App\Models\UserGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
@@ -141,6 +142,15 @@ class AuthController extends Controller
             $userid = $register->user->id;
 
             $userprofile = UserProfile::where("email",$request->email)->update(["userid"=>$userid]);
+
+            $usergroup_data = [
+                "iduser"=>$userid,
+                "idgrupakses"=>2,
+                "activestatus"=>1,
+                "created_by"=>"REGISTER USER - $request->email",
+                "modified_by"=>"REGISTER USER - $request->email"
+            ];
+            $usergroup = UserGroup::create($usergroup_data);
 
             return response()->json(["message"=>"ok"],200);   
         }

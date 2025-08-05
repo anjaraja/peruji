@@ -478,6 +478,9 @@ html {
       margin-top: 5px;
       font-size: 0.9rem;
       border: 1px solid white;
+      min-width: 106px;
+        min-height: 32px;
+        vertical-align: middle;
     }
     .info-details:last-of-type {
         margin-left: -5px;
