@@ -63,15 +63,16 @@ class NewsController extends Controller
                 $news["data"][$key]["display_newsdate"] = "$start_date $month_name $end_year";
 
                 $description = $news["data"][$key]["description"];
+                $eng_description = $news["data"][$key]["eng_description"];
                 if (strlen($description) >= 710){
                     $news["data"][$key]["shorted"] = true;
                     $news["data"][$key]["short_description"] = substr($description, 0, 710).".....";
-                    $news["data"][$key]["short_eng_description"] = substr($description, 0, 710).".....";
+                    $news["data"][$key]["short_eng_description"] = substr($eng_description, 0, 710).".....";
                 }
                 else{
                     $news["data"][$key]["shorted"] = false;
                     $news["data"][$key]["short_description"] = $description;
-                    $news["data"][$key]["short_eng_description"] = $description;
+                    $news["data"][$key]["short_eng_description"] = $eng_description;
                 }
             }
 
