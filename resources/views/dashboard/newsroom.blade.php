@@ -33,7 +33,7 @@
           </div>
           <div class="mb-3">
             <label class="form-label">News Links</label>
-            <textarea type="text" class="form-control" placeholder="Provide link/s if available" name="newslinks"></textarea>
+            <textarea type="text" class="form-control" placeholder="Provide links if available" name="newslinks"></textarea>
           </div>
           <button type="submit" class="submit-btn">UPLOAD</button>
           <button type="reset" class="cancel-form-btn btn btn-danger">CANCEL</button>

@@ -30,12 +30,51 @@ class NewsController extends Controller
      *      )
      * )
      */
-    public function index($page)
+    public function index($page,$for="dashboard")
     {
+        $idn_month = [
+            "January"=>"Januari",
+            "February"=>"Februari",
+            "March"=>"Maret",
+            "April"=>"April",
+            "May"=>"Mei",
+            "June"=>"Juni",
+            "July"=>"Juli",
+            "August"=>"Agustus",
+            "September"=>"September",
+            "October"=>"Oktober",
+            "November"=>"November",
+            "December"=>"Desember"
+        ];
         try{
             $page = is_int($page)?$page:1;
 
-            $news = News::orderBy("created_at","desc")->paginate(15, ["*"], "page", $page)->toArray();
+            $news = News::when($for!="dashboard",function($news){
+                    $news->where("activestatus",1);
+                })
+                ->orderBy("newsdate","desc")->paginate(15, ["*"], "page", $page)->toArray();
+
+            foreach($news["data"] as $key => $value){
+                $start_date = date('d', strtotime($value["newsdate"]));
+                $eng_month_name = date('F', strtotime($value["newsdate"]));
+                $month_name = $idn_month[$eng_month_name];
+                $end_year = date('Y', strtotime($value["newsdate"]));
+                $news["data"][$key]["display_eng_newsdate"] = "$start_date $eng_month_name $end_year";
+                $news["data"][$key]["display_newsdate"] = "$start_date $month_name $end_year";
+
+                $description = $news["data"][$key]["description"];
+                if (strlen($description) >= 710){
+                    $news["data"][$key]["shorted"] = true;
+                    $news["data"][$key]["short_description"] = substr($description, 0, 710).".....";
+                    $news["data"][$key]["short_eng_description"] = substr($description, 0, 710).".....";
+                }
+                else{
+                    $news["data"][$key]["shorted"] = false;
+                    $news["data"][$key]["short_description"] = $description;
+                    $news["data"][$key]["short_eng_description"] = $description;
+                }
+            }
+
             $news = Pagination::ClearObject($news);
 
             Log::channel('activity')->warning('[LOAD NEWS]', ["page"=>$page]);
@@ -111,8 +150,8 @@ class NewsController extends Controller
                 'newsdate' => 'required|string',
                 'description' => 'required|string',
                 'eng_description' => 'required|string',
-                'photo' => 'required|file|mimes:jpeg,jpg,png|max:2048',
-                'additionalcontent' => 'string',
+                'photo' => 'required|file|mimes:jpeg,jpg,png',
+                'additionalcontent' => 'nullable|string',
             ]);
             if ($validated->fails()) {
                 Log::channel('activity')->warning('[CREATE NEWS]', $request->all());
@@ -211,8 +250,8 @@ class NewsController extends Controller
                 'newsdate' => 'required|string',
                 'description' => 'required|string',
                 'eng_description' => 'required|string',
-                'photo' => 'nullable|file|mimes:jpeg,jpg,png|max:2048',
-                'additionalcontent' => 'string',
+                'photo' => 'nullable|file|mimes:jpeg,jpg,png',
+                'additionalcontent' => 'nullable|string',
             ]);
             if ($validated->fails()) {
                 Log::channel('activity')->warning('[UPDATE NEWS]', [$validated->errors(),$request->all()]);

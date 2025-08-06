@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\NewsController;
 
 class LandingPageController extends Controller
 {
@@ -92,7 +93,6 @@ class LandingPageController extends Controller
      */
     public function contactUs()
     {
-        return redirect()->route("admin");
         return view('landingpage.contactus');
     }
 
@@ -102,5 +102,19 @@ class LandingPageController extends Controller
     public function admin()
     {
         return view('dashboard.login');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function newsroom()
+    {
+        $newsroom = new NewsController();
+        $newsroom = $newsroom->index(1,"landingpage");
+        // print_r($newsroom->original["data"]);exit;
+        return view(
+            'landingpage.newsroom',
+            $newsroom->original["data"]
+        );
     }
 }

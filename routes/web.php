@@ -15,6 +15,7 @@ Route::get('/event-detail/{events}', "$path\LandingPageController@eventsDetail")
 Route::get('/membership-signup', "$path\LandingPageController@membershipSignup")->name("membership-signup");
 Route::get('/membership', "$path\LandingPageController@membership")->name("membership");
 Route::get('/contact-us', "$path\LandingPageController@contactUs")->name("contact-us");
+Route::get('/newsroom', "$path\LandingPageController@newsroom")->name("newsroom");
 
 Route::get('/admin', "$path\LandingPageController@admin")->name("admin");
 Route::get('/member-login', "$path\LandingPageController@admin")->name("member-login");

@@ -150,6 +150,10 @@
                 </ul>
             </li>
             <li class="label-nav pb-4">
+                <a href="{{route('newsroom')}}" lang="idn">BERITA</a>
+                <a href="{{route('newsroom')}}" lang="eng">NEWSROOM</a>
+            </li>
+            <li class="label-nav pb-4">
                 <a href="{{route('membership')}}" lang="idn">KEANGGOTAAN</a>
                 <a href="{{route('membership')}}" lang="eng">MEMBERSHIP</a>
                 <ul>

@@ -72,26 +72,26 @@
                 <div class="desc-isi-content" lang="idn">
                     PERUJI berkomitmen untuk memajukan profesi underwriting di Indonesia melalui pengetahuan, integritas, dan kolaborasi. Kami berupaya untuk:
                     <ol class="list-of-vision-mission">
-                        <li>Aktif Mendukung berkembangnya pengetahuan Seleksi Risiko Asuransi Jiwa di Indonesia.</li>
-                        <li>Meningkatkan pemahaman Anggota mengenai seleksi risiko Asuransi Jiwa.</li>
-                        <li>Mendorong dan memelihara penerapan standar kompetensi yang tinggi dan dilaksanakannya Kode Etik Underwriter Jiwa di lingkungan profesi Underwriter Jiwa dengan penuh kesadaran dan tanggung jawab diantara para Anggota.</li>
-                        <li>Mendorong dan Membina terpeliharanya hubungan baik antara para Anggota Organisasi.</li>
-                        <li>Mendukung berkembangnya Asuransi Jiwa yang sehat di Indonesia.</li>
+                        <li>Aktif mendukung berkembangnya pengetahuan seleksi risiko asuransi jiwa di Indonesia.</li>
+                        <li>Meningkatkan pemahaman anggota mengenai seleksi risiko asuransi jiwa. </li>
+                        <li>Mendorong dan memelihara penerapan standa kompetensi yang tinggi dan dilaksanakannya kode etik underwriter jiwa di lingkungan profesi underwriter jiwa dengan penuh kesadaran dan tanggung jawab diantara para anggota.</li>
+                        <li>Mendorong dan membina terpeliharanya hubungan baik antara para anggota organisasi.</li>
+                        <li>Mendukung berkembangnya asuransi jiwa yang sehat di Indonesia. </li>
                     </ol>
                 </div>
                 <div class="desc-isi-content mt-5" lang="idn">
                     Untuk mencapai tujuan kita, PERUJI melakukan inisiatif berikut:
                     <ol class="list-of-vision-mission">
-                        <li>Merumuskan dan menerapkan system pendidikan awal bagi calon Anggota dan pendidikan lanjutan bagi Anggota.</li>
-                        <li>Melakukan atau mendukung penelitian ilmiah di bidang Seleksi Risiko dan atau bidang lain yang dapat dilakukan atau didukung oleh ilmu Seleksi Risiko (Underwriting).</li>
-                        <li>Menyelenggarakan diskusi, seminar, lokakarya dan kegiatan sejenis lainnya dalam rangka pengembangan dan pemasyarakatan ilmu Seleksi Risiko (Underwriting} dan profesi Underwriter.</li>
-                        <li>Mengadakan kerja sama dengan organisasi, Perkumpulan profesi, lembaga atau institusi lainnya, baik di dalam negeri maupun di luar negeri, dalam rangka mengembangkan ilmu Seleksi Risiko dan penerapannya.</li>
-                        <li>Merumuskan standarisasi minimum dalam melakukan proses Seleksi Risiko Asuransi Jiwa.</li>
-                        <li>Melakukan Pengawasan dan pengembangan, dalam arti yang seluas-luasnya, dalam rangka meningkatkan profesionalisme bagi para Anggota dengan memegang teguh Kode Etik Profesi.</li>
-                        <li>Melakukan Penerbitan Jurnal Perkumpulan, media profesi, karya-karya ilmiah dan informasi lainnya.</li>
-                        <li>Merumuskan untuk pembentukan dan pengelolaan Lembaga Sertifikasi Profesi Underwriter.</li>
-                        <li>Memberikan masukan kepada Regulator berkaitan dengan Kebijakan yang berhubungan dengan seleksi risiko.</li>
-                        <li>Melakukan Kegiatan-kegiatan lain yang dianggap perlu sepanjang tidak bertentangan dengan tujuan Perkumpulan.</li>
+                        <li>Merumuskan dan menerapkan sistem pendidikan awal bagi calon anggota dan pendidikan lanjutan bagi anggota.</li>
+                        <li>Melakukan atau mendukung penelitian ilmiah di bidang seleksi risiko dan atau bidang lain yang dapat dilakukan atau didukung oleh ilmu seleksi risiko (underwriting).</li>
+                        <li>Menyelenggarakan diskusi, seminar, lokakarya dan kegiatan sejenis lainnya dalam rangka pengembangan dan pemasyarakatan ilmu seleksi risiko (underwriting) dan profesi underwriter. </li>
+                        <li>Mengadakan kerja sama dengan organisasi, perkumpulan profesi, lembaga atau institusi lainnya, baik di dalam negeri maupun di luar negeri, dalam rangka mengembangkan ilmu seleksi risiko dan penerapannya. </li>
+                        <li>Merumuskan standarisasi minimum dalam melakukan proses seleksi risiko asuransi jiwa.</li>
+                        <li>Melakukan pengawasan dan pengembangan, dalam arti yang seluas-luasnya, dalam rangka meningkatkan profesionalisme bagi para anggota dengan memegang teguh kode etik profesi.</li>
+                        <li>Penerbitan jurnal perkumpulan, media profesi, karya-karya ilmiah dan informasi lainnya.</li>
+                        <li>Merumuskan untuk pembentukan dan pengelolaan lembaga sertifikasi profesi underwriter. </li>
+                        <li>Memberikan masukan kepada regulator berkaitan dengan kebijakan yang berhubungan dengan seleksi risiko.</li>
+                        <li>Kegiatan-kegiatan lain yang dianggap perlu sepanjang tidak bertentangan dengan tujuan perkumpulan.</li>
                     </ol>
                 </div>
                 <div class="desc-isi-content" lang="eng">

@@ -32,23 +32,6 @@
 }
 </style>
 @section('content')
-    <style>
-        .thumbnail-event-img{
-            height: 100%;
-            width: 100%;
-            background-position: center;
-            background-size: cover;
-            min-height: 467.762px;
-            max-height: 491px;
-            background-color: #E5E5E5;
-        }
-        @media (max-width: 600px){
-            .thumbnail-event-img{
-                min-height: auto !important;
-                height: auto !important;
-            }
-        }
-    </style>
     <div class="modal fade gallery-modal" id="galleryModal" tabindex="-1">
         <div class="modal-dialog modal-fullscreen">
           <div class="modal-content">
