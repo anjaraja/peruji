@@ -103,7 +103,7 @@
         <div class="modal-content">
           	<div class="modal-header">
 	            <h5 class="modal-title" id="membershipModalLongTitle">MEMBERSHIP DETAIL</h5>
-              	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              	<button type="button" class="btn-close close-modal" data-bs-dismiss="modal" aria-label="Close"></button>
           	</div>
           	<div class="modal-body">
 	            <form class="section-box personal-information">
@@ -295,7 +295,7 @@
           	<div class="modal-footer">
           		<input type="hidden" name="memberid">
           		<input type="hidden" name="userprofileid">
-	            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
+	            <button type="button" class="btn btn-secondary close-modal" data-bs-dismiss="modal" aria-label="Close">Close</button>
 	            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
           	</div>
         </div>
@@ -339,6 +339,18 @@
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+	document.addEventListener("DOMContentLoaded",function(){
+        modalElement = document.getElementById('membershipModal');
+        membershipModal = new bootstrap.Modal(modalElement);
+
+        this.querySelectorAll(".close-modal").foreach(function(thisEl){
+        	thisEl.addEventListener("click",function(){
+        		membershipModal.hide();
+        	})
+        })
+	})
+</script>
 <script>
     let currentPage = 1;
     const rowsPerPage = 10;
@@ -423,9 +435,6 @@
 </script>
 <script edit-script>
     editRow = function(id, isRecall=false){
-        const modalElement = document.getElementById('membershipModal');
-        const membershipModal = new bootstrap.Modal(modalElement);
-
         if(!isRecall) membershipModal.show()
 
         responseData = {}
