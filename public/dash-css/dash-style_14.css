@@ -463,6 +463,10 @@ html {
       position: absolute;
       bottom: 44px;
       left: 42px;
+      background-position-x: center !important;
+      background-position-y: top !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
     }
     .content-container.document-resources-index .card-container .profile-photo{
         width: 120px;

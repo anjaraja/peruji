@@ -344,7 +344,7 @@
         modalElement = document.getElementById('membershipModal');
         membershipModal = new bootstrap.Modal(modalElement);
 
-        this.querySelectorAll(".close-modal").foreach(function(thisEl){
+        this.querySelectorAll(".close-modal").forEach(function(thisEl){
         	thisEl.addEventListener("click",function(){
         		membershipModal.hide();
         	})
@@ -496,8 +496,7 @@
             }
 
         	card_container = personal_information.querySelector(".card-container");
-        	card_container.querySelector(".profile-photo").style.background = `url("${responseData["photo"]}") center no-repeat`;
-        	card_container.querySelector(".profile-photo").style.backgroundSize = "cover";
+        	card_container.querySelector(".profile-photo").style.backgroundImage = `url("${responseData["photo"]}")`;
         	card_container.querySelector(".info-name").innerHTML = responseData["fullname"]?.toUpperCase();
         	card_container.querySelector(".info-details").innerHTML =  responseData["title"]?.toUpperCase();
         	if(responseData["title"] == "Management"){
