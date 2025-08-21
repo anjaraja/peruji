@@ -68,7 +68,7 @@
                 </div>
             </div>
             <div class="person-2">
-                <img src="{{asset('lp-img/BOM/dr-dessy-kusumayati.png')}}" style="opacity:0;">
+                <img src="{{asset('lp-img/BOM/dr-martrifena-joseph.png')}}">
                 <div class="text-person-2">
                     <div class="label-person-content" lang="eng">VICE SECRETARY</div>
                     <div class="label-person-content" lang="idn">WAKIL SEKRETARIS</div>
