@@ -70,10 +70,54 @@
             </div>
             <div class="pt-section-content align-self-center">
                 <div class="desc-isi-content" lang="idn">
-                    The Life Underwriter Club Indonesia (LUCI) secara resmi didirikan setelah terselenggaranya acara Underwriter Gathering yang diinisiasi oleh ReINDO pada tanggal 18–19 Juni 2014 di Michael Resort. Pertemuan penting ini mempertemukan 30 underwriter yang mewakili 32 perusahaan asuransi jiwa, menciptakan forum yang vital untuk kolaborasi industri dan dialog profesional. Keberhasilan inisiatif ini secara langsung mendorong terbentuknya LUCI sebagai komunitas profesional yang berdedikasi, dengan penunjukan tujuh orang formatur untuk membentuk dan menjalankan kepengurusan perdana.
+                    PERUJI berkomitmen untuk memajukan profesi underwriting di Indonesia melalui pengetahuan, integritas, dan kolaborasi. Kami berupaya untuk:
+                    <ol class="list-of-vision-mission">
+                        <li>Aktif mendukung berkembangnya pengetahuan seleksi risiko asuransi jiwa di Indonesia.</li>
+                        <li>Meningkatkan pemahaman anggota mengenai seleksi risiko asuransi jiwa. </li>
+                        <li>Mendorong dan memelihara penerapan standa kompetensi yang tinggi dan dilaksanakannya kode etik underwriter jiwa di lingkungan profesi underwriter jiwa dengan penuh kesadaran dan tanggung jawab diantara para anggota.</li>
+                        <li>Mendorong dan membina terpeliharanya hubungan baik antara para anggota organisasi.</li>
+                        <li>Mendukung berkembangnya asuransi jiwa yang sehat di Indonesia. </li>
+                    </ol>
+                </div>
+                <div class="desc-isi-content mt-5" lang="idn">
+                    Untuk mencapai tujuan kita, PERUJI melakukan inisiatif berikut:
+                    <ol class="list-of-vision-mission">
+                        <li>Merumuskan dan menerapkan sistem pendidikan awal bagi calon anggota dan pendidikan lanjutan bagi anggota.</li>
+                        <li>Melakukan atau mendukung penelitian ilmiah di bidang seleksi risiko dan atau bidang lain yang dapat dilakukan atau didukung oleh ilmu seleksi risiko (underwriting).</li>
+                        <li>Menyelenggarakan diskusi, seminar, lokakarya dan kegiatan sejenis lainnya dalam rangka pengembangan dan pemasyarakatan ilmu seleksi risiko (underwriting) dan profesi underwriter. </li>
+                        <li>Mengadakan kerja sama dengan organisasi, perkumpulan profesi, lembaga atau institusi lainnya, baik di dalam negeri maupun di luar negeri, dalam rangka mengembangkan ilmu seleksi risiko dan penerapannya. </li>
+                        <li>Merumuskan standarisasi minimum dalam melakukan proses seleksi risiko asuransi jiwa.</li>
+                        <li>Melakukan pengawasan dan pengembangan, dalam arti yang seluas-luasnya, dalam rangka meningkatkan profesionalisme bagi para anggota dengan memegang teguh kode etik profesi.</li>
+                        <li>Penerbitan jurnal perkumpulan, media profesi, karya-karya ilmiah dan informasi lainnya.</li>
+                        <li>Merumuskan untuk pembentukan dan pengelolaan lembaga sertifikasi profesi underwriter. </li>
+                        <li>Memberikan masukan kepada regulator berkaitan dengan kebijakan yang berhubungan dengan seleksi risiko.</li>
+                        <li>Kegiatan-kegiatan lain yang dianggap perlu sepanjang tidak bertentangan dengan tujuan perkumpulan.</li>
+                    </ol>
                 </div>
                 <div class="desc-isi-content" lang="eng">
-                    The Life Underwriter Club Indonesia (LUCI) was formally established following the Underwriter Gathering, an event orchestrated by ReINDO on June 18–19, 2014, at Michael Resort. This significant gathering convened 30 underwriters representing 32 life insurance companies, creating a vital forum for industry collaboration and professional dialogue. The success of this initiative directly led to the founding of LUCI as a dedicated professional community, with a seven-member formateur board appointed to serve as its inaugural executive committee.
+                    PERUJI is committed to advancing the underwriting profession in Indonesia through knowledge, integrity, and collaboration. We strive to:
+                    <ol class="list-of-vision-mission">
+                        <li>Actively support the development of life insurance risk selection knowledge in Indonesia.</li>
+                        <li>Enhance members’ understanding and capability in life insurance underwriting.</li>
+                        <li>Promote and uphold high competency standards and ethical conduct within the underwriting profession, carried out with awareness and responsibility.</li>
+                        <li>Encourage and nurture strong, professional relationships among members.</li>
+                        <li>Support the growth of a healthy and sustainable life insurance industry in Indonesia.</li>
+                    </ol>
+                </div>
+                <div class="desc-isi-content mt-4" lang="eng">
+                    To achieve our objectives, PERUJI implements the following initiatives:
+                    <ol class="list-of-vision-mission">
+                        <li>Develop and deliver foundational education programs for new members, as well as advanced training for existing members.</li>
+                        <li>Conduct or support scientific research in risk selection and related disciplines.</li>
+                        <li>Organize seminars, workshops, discussions, and other professional development events to promote underwriting science and practice.</li>
+                        <li>Collaborate with national and international organizations, associations, and institutions to expand knowledge and its practical applications.</li>
+                        <li>Define and promote minimum standards for the life insurance underwriting process.</li>
+                        <li>Monitor and support continuous professional development, upholding the ethical standards of the profession.</li>
+                        <li>Publish journals, professional media, research papers, and other relevant information.</li>
+                        <li>Propose and manage a professional certification body for life underwriters.</li>
+                        <li>Provide recommendations to regulators on policies related to risk selection.</li>
+                        <li>Engage in other initiatives that align with the goals of the organization.</li>
+                    </ol>
                 </div>
             </div>
         </div>
@@ -90,7 +134,7 @@
                     The Life Underwriter Club Indonesia (LUCI) awalnya muncul dari acara Underwriter Gathering yang diselenggarakan secara profesional oleh ReINDO di Michael Resort pada tanggal 18–19 Juni 2014. Pertemuan penting ini mempertemukan 30 underwriter dari 32 perusahaan asuransi jiwa, membentuk sebuah platform yang vital untuk pertukaran profesional dan kolaborasi antar pelaku industri. Keberhasilan acara tersebut menghasilkan pembentukan LUCI sebagai komunitas profesional yang resmi, dengan penunjukan tujuh orang formatur sebagai tim eksekutif pendiri.
                 </div>
                 <div class="desc-isi-content" lang="eng">
-                    The Life Underwriter Club Indonesia (LUCI) initially emerged from the Underwriter Gathering, an event expertly organized by ReINDO at Michael Resort on June 18–19, 2014. This crucial gathering brought together 30 underwriters from 32 life insurance companies, establishing a vital platform for professional exchange and industry collaboration. The successful event culminated in the formation of LUCI as a formal professional community, with a seven-member formateur board appointed to serve as its founding executive committee.
+                    The Life Underwriter Club Indonesia (LUCI) initially emerged from the Underwriter Gathering, an event expertly organized by ReINDO at The Michael Resort on June 18–19, 2014. This crucial gathering brought together 30 underwriters from 32 life insurance companies, establishing a vital platform for professional exchange and industry collaboration. The successful event culminated in the formation of LUCI as a formal professional community, with a seven-member formateur board appointed to serve as its founding executive committee.
                 </div>
             </div>
             <div class="pt-section-content align-self-center">

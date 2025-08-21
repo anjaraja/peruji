@@ -103,7 +103,7 @@
         <div class="modal-content">
           	<div class="modal-header">
 	            <h5 class="modal-title" id="membershipModalLongTitle">MEMBERSHIP DETAIL</h5>
-              	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              	<button type="button" class="btn-close close-modal" data-bs-dismiss="modal" aria-label="Close"></button>
           	</div>
           	<div class="modal-body">
 	            <form class="section-box personal-information">
@@ -295,7 +295,7 @@
           	<div class="modal-footer">
           		<input type="hidden" name="memberid">
           		<input type="hidden" name="userprofileid">
-	            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
+	            <button type="button" class="btn btn-secondary close-modal" data-bs-dismiss="modal" aria-label="Close">Close</button>
 	            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
           	</div>
         </div>
@@ -339,6 +339,18 @@
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+	document.addEventListener("DOMContentLoaded",function(){
+        modalElement = document.getElementById('membershipModal');
+        membershipModal = new bootstrap.Modal(modalElement);
+
+        this.querySelectorAll(".close-modal").forEach(function(thisEl){
+        	thisEl.addEventListener("click",function(){
+        		membershipModal.hide();
+        	})
+        })
+	})
+</script>
 <script>
     let currentPage = 1;
     const rowsPerPage = 10;
@@ -423,9 +435,6 @@
 </script>
 <script edit-script>
     editRow = function(id, isRecall=false){
-        const modalElement = document.getElementById('membershipModal');
-        const membershipModal = new bootstrap.Modal(modalElement);
-
         if(!isRecall) membershipModal.show()
 
         responseData = {}
@@ -487,15 +496,14 @@
             }
 
         	card_container = personal_information.querySelector(".card-container");
-        	card_container.querySelector(".profile-photo").style.background = `url("${responseData["photo"]}") center no-repeat`;
-        	card_container.querySelector(".profile-photo").style.backgroundSize = "cover";
-        	card_container.querySelector(".info-name").innerHTML = responseData["fullname"];
-        	card_container.querySelector(".info-details").innerHTML = responseData["title"];
+        	card_container.querySelector(".profile-photo").style.backgroundImage = `url("${responseData["photo"]}")`;
+        	card_container.querySelector(".info-name").innerHTML = responseData["fullname"]?.toUpperCase();
+        	card_container.querySelector(".info-details").innerHTML =  responseData["title"]?.toUpperCase();
         	if(responseData["title"] == "Management"){
-        		card_container.style.backgroundImage = `url("{{asset('lp-img/management-card.jpeg')}}")`;
+        		card_container.style.backgroundImage = `url("{{asset('dash-img/management-card.png')}}")`;
         	}
         	else{
-        		card_container.style.backgroundImage = `url("{{asset('lp-img/regular-card.jpeg')}}")`;
+        		card_container.style.backgroundImage = `url("{{asset('dash-img/regular-card.png')}}")`;
         	}
     		card_container.style.backgroundPosition = `center`;
     		card_container.style.backgroundRepeat = ` no-repeat`;

@@ -32,23 +32,6 @@
 }
 </style>
 @section('content')
-    <style>
-        .thumbnail-event-img{
-            height: 100%;
-            width: 100%;
-            background-position: center;
-            background-size: cover;
-            min-height: 467.762px;
-            max-height: 491px;
-            background-color: #E5E5E5;
-        }
-        @media (max-width: 600px){
-            .thumbnail-event-img{
-                min-height: auto !important;
-                height: auto !important;
-            }
-        }
-    </style>
     <div class="modal fade gallery-modal" id="galleryModal" tabindex="-1">
         <div class="modal-dialog modal-fullscreen">
           <div class="modal-content">
@@ -261,9 +244,20 @@
                     @endif
                     <div class="news-link-container" prev-event-row="{{$value['id']}}">
                         <h1>{{$value["eventname"]}}</h1>
-                        @foreach(explode("\n",$value["additionalcontent"]) as $key2 => $value2)
-                            <a href="{{$value2}}" target="_BLANK">{{$value2}}</a>
-                        @endforeach
+                        @php
+                            $additionalcontent = explode("\n",$value["additionalcontent"]);
+                            if(count($additionalcontent) == 1){
+                                if($additionalcontent[0] == '') $additionalcontent = [];
+                            }
+                        @endphp
+                        @if($additionalcontent)
+                            @foreach($additionalcontent as $key2 => $value2)
+                                <a href="{{$value2}}" target="_BLANK">{{$value2}}</a>
+                            @endforeach
+                        @else
+                            <p lang="idn">Tidak ada link yang tersedia</p>
+                            <p lang="eng">Link is not available</p>
+                        @endif
                     </div>
                 @endforeach
             </div>
@@ -315,9 +309,9 @@
             news_link_container_showed.classList.remove("show");
         }
 
-        // if(this_element.matches(".news-link")){
-        //     showLink(this_element)
-        // }
+        if(this_element.matches(".news-link")){
+            showLink(this_element)
+        }
 
     })
 </script>

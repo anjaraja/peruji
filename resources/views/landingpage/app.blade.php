@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('lp-css/global.css') }}"> 
     <link rel="stylesheet" href="{{ asset('lp-css/navbar_16.css') }}"> 
     <link rel="stylesheet" href="{{ asset('lp-css/events_5.css') }}"> 
-    <link rel="stylesheet" href="{{ asset('lp-css/styless_37.css') }}">
+    <link rel="stylesheet" href="{{ asset('lp-css/styless_39.css') }}">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
     <script src="{{asset('dash-js/fetchhelper_3.js')}}"></script>
     <script src="{{asset('dash-js/jquery.js')}}"></script>
