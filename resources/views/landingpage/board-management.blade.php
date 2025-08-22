@@ -158,7 +158,7 @@
                 </div>
             </div>
             <div class="person-2">
-                <img src="{{asset('lp-img/BOM/dr-dessy-kusumayati.png')}}" style="opacity:0;">
+                <img src="{{asset('lp-img/BOM/dr-heru-sutomo.png')}}">
                 <div class="text-person-2">
                     <div class="label-person-content" lang="eng">HEAD OF PUBLIC RELATIONS & WEBSITE</div>
                     <div class="label-person-content" lang="idn">KETUA BIDANG HUMAS & WEBSITE</div>
