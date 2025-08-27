@@ -12,23 +12,23 @@
         <form>
           <div class="mb-3">
             <label class="form-label">News Title</label>
-            <input type="text" class="form-control" placeholder="Title" name="newstitle">
+            <input type="text" class="form-control" placeholder="Title" name="newstitle" required>
           </div>
           <div class="mb-3">
             <label class="form-label">Date</label>
-            <input type="date" class="form-control" placeholder="News date" name="newsdate">
+            <input type="date" class="form-control" placeholder="News date" name="newsdate" required>
           </div>
           <div class="mb-3">
             <label class="form-label">Message (IDN)</label>
-            <textarea class="form-control" rows="3" placeholder="One paragraph news" name="newsmessage"></textarea>
+            <textarea class="form-control" rows="3" placeholder="One paragraph news" name="newsmessage" required></textarea>
           </div>
           <div class="mb-3">
             <label class="form-label">Message (ENG)</label>
-            <textarea class="form-control" rows="3" placeholder="One paragraph news" name="eng_newsmessage"></textarea>
+            <textarea class="form-control" rows="3" placeholder="One paragraph news" name="eng_newsmessage" required></textarea>
           </div>
           <div class="mb-3">
             <label class="form-label">Photo/Image</label>
-            <input type="file" class="form-control" accept="image/png, image/jpeg" name="newsimage">
+            <input type="file" class="form-control" accept="image/png, image/jpeg" name="newsimage" required>
             <small class="form-text text-muted">Photo size 756x491 pixels (jpg/png)</small>
           </div>
           <div class="mb-3">
