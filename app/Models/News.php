@@ -11,6 +11,7 @@ class News extends Model
         'newsname',
         'newsdate',
         'description',
+        'eng_description',
         'photo',
         'additionalcontent',
         'activestatus',
