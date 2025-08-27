@@ -155,7 +155,7 @@ class NewsController extends Controller
                 'additionalcontent' => 'nullable|string',
             ]);
             if ($validated->fails()) {
-                Log::channel('activity')->warning('[CREATE NEWS]', $request->all());
+                Log::channel('activity')->warning('[CREATE NEWS]', [$validated->errors(),$request->all()]);
                 return response()->json(["message" => "RC2.1"], 422);
             }
 
