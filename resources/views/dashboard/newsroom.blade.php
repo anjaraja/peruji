@@ -148,7 +148,7 @@
         })
         input_thumbnail = news_form.querySelector("input[name='newsimage']");
         input_thumbnail.closest("div.mb-3").querySelector("div[preview-file]")?.remove();
-        this.querySelector("input[name='update_news']")?.remove();
+        this.querySelector("input[name='news']")?.remove();
         input_thumbnail.style.display = 'block';
         // this.querySelector("button.cancel-form-btn").classList.remove("show");
     })
