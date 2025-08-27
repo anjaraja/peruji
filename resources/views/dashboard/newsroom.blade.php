@@ -28,7 +28,7 @@
           </div>
           <div class="mb-3">
             <label class="form-label">Photo/Image</label>
-            <input type="file" class="form-control" accept="image/png, image/jpeg" name="newsimage" required>
+            <input type="file" class="form-control" accept="image/png, image/jpeg" name="newsimage">
             <small class="form-text text-muted">Photo size 756x491 pixels (jpg/png)</small>
           </div>
           <div class="mb-3">
