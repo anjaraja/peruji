@@ -133,14 +133,13 @@ class MembershipController extends Controller
                         "company"=>$request->org,
                         "department"=>$request->department,
                         "funct"=>$request->funct,
-                        "ofcemaail"=>$request->ofcemaail
+                        "ofcemail"=>$request->ofcemail
                     ];
 
                     if($value->emails){
                         Log::channel('activity')->info('[SENDING EMAIL TO ADMIN]', [$value->emails]);
                         try{
-                            $sendemail = Mail::to($value->emails)->send(new SendMail($view, $subject, $data));
-                            Log::channel('activity')->info('[SUCCESS SEND TO ADMIN]', [$value->emails, $sendemail]);
+                            Mail::to($value->emails)->send(new SendMail($view, $subject, $data));
                         } catch (\Exception $e) {
                             // Log the error and continue
                             Log::channel('errorlog')->info('[FAILED SENDING EMAIL]', [$value->emails], $e->getMessage());
