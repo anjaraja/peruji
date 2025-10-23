@@ -133,7 +133,7 @@ class MembershipController extends Controller
                         "company"=>$request->org,
                         "department"=>$request->department,
                         "funct"=>$request->funct,
-                        "ofcemaail"=>$request->ofcemaail
+                        "ofcemail"=>$request->ofcemail
                     ];
 
                     if($value->emails){
