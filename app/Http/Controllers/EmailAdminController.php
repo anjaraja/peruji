@@ -117,6 +117,7 @@ class EmailAdminController extends Controller
                     $store_data = [];
                     $store_data["emailfor"] = $data["emailfor"];
                     $store_data["rawemail"] = $value??"";
+                    $store_data["activestatus"] = 1;
                     $store_data["created_by"] = auth("api")->user()->email;
                     $store_data["modified_by"] = auth("api")->user()->email;
                     Log::channel('activity')->info('[CREATE EMAIL ADMIN][DATA]', $store_data);
