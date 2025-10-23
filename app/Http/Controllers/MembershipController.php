@@ -121,33 +121,33 @@ class MembershipController extends Controller
                 ->where("activestatus",1)
                 ->get();
 
-            // if($email_admin){
-            //     $view = 'mailtemplate.membership'; // dynamic
-            //     $subject = "Someone Register Membership";
-            //     foreach($email_admin as $key => $value){
-            //         $data = [
-            //             "fullname"=>$request->fullname,
-            //             "gender"=>$request->gender=="M"?"Male":"Female",
-            //             "email"=>$request->email,
-            //             "phone"=>$request->phone,
-            //             "company"=>$request->org,
-            //             "department"=>$request->department,
-            //             "funct"=>$request->funct,
-            //             "ofcemaail"=>$request->ofcemaail
-            //         ];
+            if($email_admin){
+                $view = 'mailtemplate.membership'; // dynamic
+                $subject = "Someone Register Membership";
+                foreach($email_admin as $key => $value){
+                    $data = [
+                        "fullname"=>$request->fullname,
+                        "gender"=>$request->gender=="M"?"Male":"Female",
+                        "email"=>$request->email,
+                        "phone"=>$request->phone,
+                        "company"=>$request->org,
+                        "department"=>$request->department,
+                        "funct"=>$request->funct,
+                        "ofcemaail"=>$request->ofcemaail
+                    ];
 
-            //         if($value->emails){
-            //             Log::channel('activity')->info('[SENDING EMAIL TO ADMIN]', [$value->emails]);
-            //             try{
-            //                 Mail::to($value->emails)->send(new SendMail($view, $subject, $data));
-            //             } catch (\Exception $e) {
-            //                 // Log the error and continue
-            //                 Log::channel('errorlog')->info('[FAILED SENDING EMAIL]', [$value->emails], $e->getMessage());
-            //                 continue;
-            //             }
-            //         }
-            //     }
-            // }
+                    if($value->emails){
+                        Log::channel('activity')->info('[SENDING EMAIL TO ADMIN]', [$value->emails]);
+                        try{
+                            Mail::to($value->emails)->send(new SendMail($view, $subject, $data));
+                        } catch (\Exception $e) {
+                            // Log the error and continue
+                            Log::channel('errorlog')->info('[FAILED SENDING EMAIL]', [$value->emails], $e->getMessage());
+                            continue;
+                        }
+                    }
+                }
+            }
 
             Log::channel('activity')->info('[MEMBERSHIP REGISTER]', $request->all());
             $store = Membership::create($request->all());
