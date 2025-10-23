@@ -151,8 +151,8 @@ class MembershipController extends Controller
 
             Log::channel('activity')->info('[MEMBERSHIP REGISTER]', $request->all());
             $storeData = $request->all();
-            $storeData["org"] = $request->companyname
-            $store = Membership::create($request->all());
+            $storeData["org"] = $request->companyname;
+            $store = Membership::create($storeData);
 
             DB::commit();
             return response()->json([
