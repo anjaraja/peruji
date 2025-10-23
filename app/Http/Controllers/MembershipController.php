@@ -130,7 +130,7 @@ class MembershipController extends Controller
                         "gender"=>$request->gender=="M"?"Male":"Female",
                         "email"=>$request->email,
                         "phone"=>$request->phone,
-                        "company"=>$request->org,
+                        "company"=>$request->companyname,
                         "department"=>$request->department,
                         "funct"=>$request->funct,
                         "ofcemail"=>$request->ofcemail
@@ -150,6 +150,8 @@ class MembershipController extends Controller
             }
 
             Log::channel('activity')->info('[MEMBERSHIP REGISTER]', $request->all());
+            $storeData = $request->all();
+            $storeData["org"] = $request->companyname
             $store = Membership::create($request->all());
 
             DB::commit();
