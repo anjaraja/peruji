@@ -41,11 +41,16 @@ class MembershipController extends Controller
     public function index($page)
     {
         try{
-            $page = is_int($page)?$page:1;
+            $page = $page?$page:1;
+
+            $offset = $page == 1?0:(10*$page);
 
             $membership = Membership::select(DB::raw("membership.id as membership, ifnull(userprofile.fullname,membership.fullname)as fullname, ifnull(userprofile.email,membership.email)as email, DATE(membership.created_at)AS registered_date, ifnull(userprofile.status,'pending')as status"))
                 ->leftJoin("userprofile","membership.id","=","userprofile.memberid")
-                ->orderBy("membership.created_at","desc")->paginate(10, ["*"], "page", $page)->toArray();
+                ->orderBy("membership.created_at","desc")
+                ->paginate(10, ["*"], "page", $page)
+                // ->skip($offset)->take(10)->get()
+                ->toArray();
             $membership = Pagination::ClearObject($membership);
 
             Log::channel('activity')->warning('[LOAD MEMBERSHIP]', ["page"=>$page]);
@@ -130,7 +135,7 @@ class MembershipController extends Controller
                         "gender"=>$request->gender=="M"?"Male":"Female",
                         "email"=>$request->email,
                         "phone"=>$request->phone,
-                        "company"=>$request->org,
+                        "company"=>$request->companyname,
                         "department"=>$request->department,
                         "funct"=>$request->funct,
                         "ofcemail"=>$request->ofcemail
@@ -150,7 +155,9 @@ class MembershipController extends Controller
             }
 
             Log::channel('activity')->info('[MEMBERSHIP REGISTER]', $request->all());
-            $store = Membership::create($request->all());
+            $storeData = $request->all();
+            $storeData["org"] = $request->companyname;
+            $store = Membership::create($storeData);
 
             DB::commit();
             return response()->json([
