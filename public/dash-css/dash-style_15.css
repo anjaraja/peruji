@@ -510,6 +510,12 @@ html {
     }
 /*END CARD MEMBER*/
 
+/*TABLE MEMBER*/
+    .table-responsive{
+        min-height: 70vh !important;
+    }
+/*END TABLE MEMBER*/
+
 /*Utilities*/
 .sendToPdfFiller {
   display: none !important;
