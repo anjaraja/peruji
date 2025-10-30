@@ -41,7 +41,7 @@ class MembershipController extends Controller
     public function index($page)
     {
         try{
-            $page = is_int($page)?$page:1;
+            $page = $page?$page:1;
 
             $offset = $page == 1?0:(10*$page);
 
