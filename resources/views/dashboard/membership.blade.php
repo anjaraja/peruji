@@ -122,8 +122,24 @@
 		                 	<input type="text" class="form-control" placeholder="Day / Month / Year" name="fullname">
 		                </div>
 		                <div class="col-md-6">
+		                  	<label>Gender</label>
+				                <select class="form-control" name="gender" required>
+				                    <option value="">--Gender--</option>
+				                    <option value="M">Male</option>
+				                    <option value="F">Female</option>
+				                </select>
+		                </div>
+		                <div class="col-md-6">
 		                  	<label>Work Address</label>
 		                  	<input type="text" class="form-control" placeholder="Company Address" name="ofcaddress">
+		                </div>
+		                <div class="col-md-6">
+		                  	<label>Function</label>
+		                  	<input type="text" class="form-control" placeholder="Function" name="function">
+		                </div>
+		                <div class="col-md-6">
+		                  	<label>Department</label>
+		                  	<input type="text" class="form-control" placeholder="Department" name="department">
 		                </div>
 		                <div class="col-md-6">
 		                  	<label>Suffix</label>
@@ -131,7 +147,7 @@
 		                </div>
 		                <div class="col-md-6">
 		                  	<label>Work Phone</label>
-		                  	<input type="text" class="form-control" name="ofcphone">
+		                  	<input class="form-control" name="ofcphone" type="tel" inputmode="numeric" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
 		                </div>
 		                <div class="col-md-6">
 		                  	<label>Date of Birth</label>
@@ -143,7 +159,7 @@
 		                </div>
 		                <div class="col-md-6">
 		                  	<label>Phone</label>
-		                  	<input type="text" class="form-control" name="phone">
+		                  	<input class="form-control" name="phone" type="tel" inputmode="numeric" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
 		                </div>
 		                <div class="col-md-6">
 		                  	<label>Website</label>
@@ -461,7 +477,10 @@
         	personal_information.querySelector("input[name='prefix']").value = responseData?.prefix;
         	personal_information.querySelector("input[name='organization']").value = responseData?.organization;
         	personal_information.querySelector("input[name='fullname']").value = responseData?.fullname;
+        	personal_information.querySelector("select[name='gender']").value = responseData?.gender;
         	personal_information.querySelector("input[name='ofcaddress']").value = responseData?.ofcaddress;
+        	personal_information.querySelector("input[name='function']").value = responseData?.funct;
+        	personal_information.querySelector("input[name='department']").value = responseData?.department;
         	personal_information.querySelector("input[name='suffix']").value = responseData?.suffix;
         	personal_information.querySelector("input[name='ofcphone']").value = responseData?.ofcphone;
         	personal_information.querySelector("input[name='dob']").value = responseData?.dob;
@@ -572,8 +591,14 @@
         formdata.append("organization",organization)
         fullname = this.querySelector("input[name='fullname']").value
         formdata.append("fullname",fullname)
+        gender = this.querySelector("select[name='gender']").value
+        formdata.append("gender",gender)
         ofcaddress = this.querySelector("input[name='ofcaddress']").value
         formdata.append("ofcaddress",ofcaddress)
+        funct = this.querySelector("input[name='function']").value
+        formdata.append("funct",funct)
+        department = this.querySelector("input[name='department']").value
+        formdata.append("department",department)
         suffix = this.querySelector("input[name='suffix']").value
         formdata.append("suffix",suffix)
         ofcphone = this.querySelector("input[name='ofcphone']").value
@@ -621,22 +646,20 @@
             {"Authorization":localStorage.getItem("Token")},
             formdata
         )
-        .then((response)=>{
+        .then(async (response)=>{
+            loadingModal("close",500,document.getElementById("membershipModal"));
+
+          	result = await response.json();
             if (response.status !== 200){
-                showAlert("not-ok","updated")
+                showAlert("not-ok","updated",result.message)
 
                 return response.json();
             }
 
-            showAlert("ok","updated")
-            return response.json();
-        })
-        .then((data)=>{
-            loadingModal("close",500,document.getElementById("membershipModal"));
-        })
-        .finally(() =>{
+            showAlert("ok","updated");
             thisform.querySelector("input[name='photo']").value = ""
-            editRow(memberid,true);
+          	editRow(memberid,true);
+            return response.json();
         });
 
 		return false;

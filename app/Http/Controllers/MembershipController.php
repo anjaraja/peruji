@@ -196,7 +196,7 @@ class MembershipController extends Controller
     public function show($id)
     {
         try{
-            $membership = Membership::select(DB::raw("userprofile.id as userpfofileid, membership.id as memberid, userprofile.prefix, ifnull(userprofile.organization,membership.org)as organization, ifnull(userprofile.fullname,membership.fullname)as fullname, userprofile.ofcaddress, userprofile.suffix, userprofile.ofcphone, userprofile.dob, ifnull(userprofile.ofcemail,membership.ofcemail)as ofcemail, ifnull(userprofile.phone,membership.phone)as phone, userprofile.website, ifnull(userprofile.email,membership.email)as email, userprofile.photo, userprofile.joindate, userprofile.expiredate, userprofile.number, userprofile.status, userprofile.additionaldocument, CASE WHEN userprofile.title != 'management' THEN 'Regular' ELSE 'Management' END as title"))
+            $membership = Membership::select(DB::raw("userprofile.id as userpfofileid, membership.id as memberid, userprofile.prefix, ifnull(userprofile.organization,membership.org)as organization, membership.gender, ifnull(userprofile.fullname,membership.fullname)as fullname, userprofile.ofcaddress, membership.funct, membership.department, userprofile.suffix, userprofile.ofcphone, userprofile.dob, ifnull(userprofile.ofcemail,membership.ofcemail)as ofcemail, ifnull(userprofile.phone,membership.phone)as phone, userprofile.website, ifnull(userprofile.email,membership.email)as email, userprofile.photo, userprofile.joindate, userprofile.expiredate, userprofile.number, userprofile.status, userprofile.additionaldocument, CASE WHEN userprofile.title != 'management' THEN 'Regular' ELSE 'Management' END as title"))
                 ->leftJoin("userprofile","membership.id","=","userprofile.memberid")
                 ->where("membership.id",$id)
                 ->first();
@@ -346,6 +346,23 @@ class MembershipController extends Controller
                 "title"=>$request->title,
                 "modified_by"=>auth("api")->user()->email
             ];
+
+            $membership_data = [
+                "gender"=>$request->gender,
+                "funct"=>$request->funct,
+                "department"=>$request->department,
+                "updated_at" => now()
+            ];
+
+            $check_membership = Membership::where("email",$request->email)->where('id','<>',$request->member)->first();
+            if($check_membership){
+                DB::rollback();
+                Log::channel('activity')->warning('[MEMBERSHIP REGISTER EMAIL EXISTS]', $request->all());
+                return response()->json([
+                    "message" => "The email has already registered."
+                ], 422);
+            }
+
             if(!$userprofiledata){
                 $store_data["memberid"] = $request->member;
                 $store_data["created_by"] = auth("api")->user()->email;
@@ -381,9 +398,13 @@ class MembershipController extends Controller
                     return response()->json(["message" => "RC3.2","wording" => "Failed when sending email to member"], 422);
                 }
 
+                $membership_data["email"] = $request->email;
+                $membership = Membership::where("id",$request->member)->update($membership_data);
+
                 $store = UserProfile::create($store_data);
             }
             else{
+                $membership = Membership::where("id",$request->member)->update($membership_data);
                 $store_data["modified_by"] = auth("api")->user()->email;
 
                 // BEGIN UPLOAD PHOTO

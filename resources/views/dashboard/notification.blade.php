@@ -1,4 +1,4 @@
-<script src="{{asset('dash-js/menu_1.js')}}"></script>
+<script src="{{asset('dash-js/menu_2.js')}}"></script>
 <div class="alert alert-success ok" role="alert" data="created">
     Create Data Success
 </div>
