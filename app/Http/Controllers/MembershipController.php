@@ -6,6 +6,7 @@ use App\Helpers\Pagination;
 use App\Models\Membership;
 use App\Models\UserProfile;
 use App\Models\EmailAdmin;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Http\Request;
@@ -748,6 +749,76 @@ class MembershipController extends Controller
         catch(\Exception $e){
             Log::channel('errorlog')->error('[ADD CERTIFICATE]', ["message"=>$e->getMessage()]);
             return response()->json(["message"=>"RC7"],500);
+        }
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/api/delete-membership",
+     *      security={{"bearerAuth":{}}},
+     *      tags={"Dashboard"}, 
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(
+     *              mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  required={"member"},
+     *                  @OA\Property(
+     *                      property="member",
+     *                      type="integer",
+     *                      example="1"
+     *                  )
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *      )
+     * )
+     */
+    public function deleteMember(Request $request){
+        DB::beginTransaction();
+        try{
+            $validated = Validator::make($request->all(),[
+                'member' => 'required|string'
+            ]);
+
+            if ($validated->fails()) {
+                Log::channel('activity')->warning('[DELETE MEMBER]', [$request->all(),$validated->errors()]);
+                return response()->json(["message" => "RC8.1"], 422);
+            }   
+
+            $member = Membership::where("id",$request->member);
+            $deletedMember = $member->first();
+            if($deletedMember){
+                Log::channel('activity')->warning('[DELETE MEMBER]', [$deletedMember]);
+                $member->delete();
+            }
+
+            $userprofile = UserProfile::where("memberid",$request->member);
+            $deletedUserProfile = $userprofile->first();
+            if($deletedUserProfile){
+                Log::channel('activity')->warning('[DELETE MEMBER USERPROFILE]', [$deletedUserProfile]);
+                $userprofile->delete();
+            }
+
+            if($deletedUserProfile->userid){
+                $user = User::where("id",$deletedUserProfile->userid);
+                $deletedUser = $user->first();
+                if($deletedUser){
+                    Log::channel('activity')->warning('[DELETE MEMBER USER]', [$deletedUser]);
+                    $user->delete();
+                }
+            }
+
+            DB::commit();
+            return response()->json(["message"=>"ok","data"=>null],200);
+        }
+        catch(\Exception $e){
+            DB::rollback();
+            Log::channel('errorlog')->error('[DELETE MEMBER]', ["message"=>$e->getMessage()]);
+            return response()->json(["message"=>"RC8"],500);
         }
     }
 }
