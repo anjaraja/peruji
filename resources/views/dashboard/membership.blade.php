@@ -547,7 +547,11 @@
         	card_container = personal_information.querySelector(".card-container");
         	card_container.querySelector(".profile-photo").style.backgroundImage = `url("${responseData["photo"]}")`;
         	card_container.querySelector(".info-name").innerHTML = responseData["fullname"]?.toUpperCase();
-        	card_container.querySelector(".info-details").innerHTML =  responseData["title"]?.toUpperCase()=="MEMBER"?"Regular":responseData["title"]?.toUpperCase();
+        	title = responseData["title"]?.toUpperCase();
+        	if(typeof title === "undefined"){
+        		title = "";
+        	}
+        	card_container.querySelector(".info-details").innerHTML =  title=="MEMBER"?"REGULAR":title;
         	if(responseData["title"] == "management" || responseData["title"] == "priority"){
         		card_container.style.backgroundImage = `url("{{asset('dash-img/management-card.png')}}")`;
         	}
