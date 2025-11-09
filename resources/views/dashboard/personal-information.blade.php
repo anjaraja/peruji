@@ -40,6 +40,10 @@
                 <input type="email" class="form-control" name="ofcemail">
             </div>
             <div class="col-md-6">
+                <label>Hobby</label>
+                <input type="text" class="form-control" placeholder="Badminton, Padel, Running, Marathon" name="hobby">
+            </div>
+            <div class="col-md-6">
                 <label>Phone</label>
                 <input type="text" class="form-control" name="phone">
             </div>
@@ -95,6 +99,7 @@
             personal_information.querySelector("input[name='suffix']").value = responseData?.suffix;
             personal_information.querySelector("input[name='ofcphone']").value = responseData?.ofcphone;
             personal_information.querySelector("input[name='dob']").value = responseData?.dob;
+            personal_information.querySelector("input[name='hobby']").value = responseData?.hobby;
             personal_information.querySelector("input[name='ofcemail']").value = responseData?.ofcemail;
             personal_information.querySelector("input[name='phone']").value = responseData?.phone;
             personal_information.querySelector("input[name='website']").value = responseData?.website;
@@ -170,6 +175,8 @@
         formdata.append("ofcphone",ofcphone)
         dob = this.querySelector("input[name='dob']").value
         formdata.append("dob",dob)
+        hobby = this.querySelector("input[name='hobby']").value
+        formdata.append("hobby",hobby)
         ofcemail = this.querySelector("input[name='ofcemail']").value
         formdata.append("ofcemail",ofcemail)
         phone = this.querySelector("input[name='phone']").value

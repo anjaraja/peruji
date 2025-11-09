@@ -197,7 +197,7 @@ class MembershipController extends Controller
     public function show($id)
     {
         try{
-            $membership = Membership::select(DB::raw("userprofile.id as userpfofileid, membership.id as memberid, userprofile.prefix, ifnull(userprofile.organization,membership.org)as organization, membership.gender, ifnull(userprofile.fullname,membership.fullname)as fullname, userprofile.ofcaddress, membership.funct, membership.department, userprofile.suffix, userprofile.ofcphone, userprofile.dob, ifnull(userprofile.ofcemail,membership.ofcemail)as ofcemail, ifnull(userprofile.phone,membership.phone)as phone, userprofile.website, ifnull(userprofile.email,membership.email)as email, userprofile.photo, userprofile.joindate, userprofile.expiredate, userprofile.number, userprofile.status, userprofile.additionaldocument, CASE WHEN userprofile.title != 'management' THEN 'Regular' ELSE 'Management' END as title"))
+            $membership = Membership::select(DB::raw("userprofile.id as userpfofileid, membership.id as memberid, userprofile.prefix, ifnull(userprofile.organization,membership.org)as organization, membership.gender, ifnull(userprofile.fullname,membership.fullname)as fullname, userprofile.ofcaddress, membership.funct, membership.department, userprofile.suffix, userprofile.ofcphone, userprofile.dob, ifnull(userprofile.ofcemail,membership.ofcemail)as ofcemail, ifnull(userprofile.phone,membership.phone)as phone, userprofile.website, ifnull(userprofile.email,membership.email)as email, userprofile.photo, userprofile.joindate, userprofile.expiredate, userprofile.number, userprofile.status, userprofile.additionaldocument, userprofile.title, userprofile.hobby"))
                 ->leftJoin("userprofile","membership.id","=","userprofile.memberid")
                 ->where("membership.id",$id)
                 ->first();
@@ -249,6 +249,11 @@ class MembershipController extends Controller
      *                      property="dob",
      *                      type="date",
      *                      example="1999-01-01"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="hobby",
+     *                      type="string",
+     *                      example="Badminton, Padel, Running, Marathon"
      *                  ),
      *                  @OA\Property(
      *                      property="phone",
@@ -309,6 +314,7 @@ class MembershipController extends Controller
                 'organization' => 'nullable|string',
                 'fullname' => 'required|string',
                 'dob' => 'nullable|date',
+                'hobby' => 'nullable|string',
                 'phone' => 'required|string',
                 'email' => 'required|email',
                 'photo' => 'nullable|file|mimes:jpeg,jpg,png',
@@ -316,7 +322,7 @@ class MembershipController extends Controller
                 'expiredate' => 'required|string',
                 'number' => 'required|string',
                 'status' => 'required|string|in:pending,active,expired',
-                'title' => 'required|string|in:member,management'
+                'title' => 'required|string|in:member,special,priority,management'
             ]);
 
             if ($validated->fails()) {
@@ -332,6 +338,7 @@ class MembershipController extends Controller
                 "fullname"=>$request->fullname,
                 "suffix"=>$request->suffix,
                 "dob"=>$request->dob,
+                "hobby"=>$request->hobby,
                 "phone"=>$request->phone,
                 "email"=>$request->email,
                 "organization"=>$request->organization,
@@ -555,7 +562,7 @@ class MembershipController extends Controller
     {
         try{
             $id = auth("api")->user()->id;
-            $membership = Membership::select(DB::raw("userprofile.id as userpfofileid, membership.id as memberid, userprofile.prefix, ifnull(userprofile.organization,membership.org)as organization, ifnull(userprofile.fullname,membership.fullname)as fullname, userprofile.ofcaddress, userprofile.suffix, userprofile.ofcphone, userprofile.dob, ifnull(userprofile.ofcemail,membership.ofcemail)as ofcemail, ifnull(userprofile.phone,membership.phone)as phone, userprofile.website, ifnull(userprofile.email,membership.email)as email, userprofile.photo, userprofile.joindate, userprofile.expiredate, userprofile.number, userprofile.status, userprofile.additionaldocument, CASE WHEN userprofile.title != 'management' THEN 'Regular' ELSE 'Management' END as title"))
+            $membership = Membership::select(DB::raw("userprofile.id as userpfofileid, membership.id as memberid, userprofile.prefix, ifnull(userprofile.organization,membership.org)as organization, ifnull(userprofile.fullname,membership.fullname)as fullname, userprofile.ofcaddress, userprofile.suffix, userprofile.ofcphone, userprofile.dob, ifnull(userprofile.ofcemail,membership.ofcemail)as ofcemail, ifnull(userprofile.phone,membership.phone)as phone, userprofile.website, ifnull(userprofile.email,membership.email)as email, userprofile.photo, userprofile.joindate, userprofile.expiredate, userprofile.number, userprofile.status, userprofile.additionaldocument, userprofile.title, userprofile.hobby"))
                 ->leftJoin("userprofile","membership.id","=","userprofile.memberid")
                 ->where("userprofile.userid",$id)
                 ->first();
@@ -605,6 +612,11 @@ class MembershipController extends Controller
      *                      example="1999-01-01"
      *                  ),
      *                  @OA\Property(
+     *                      property="hobby",
+     *                      type="string",
+     *                      example="Badminton, Padel, Running, Marathon"
+     *                  ),
+     *                  @OA\Property(
      *                      property="phone",
      *                      type="string",
      *                      example="08123123123"
@@ -650,6 +662,7 @@ class MembershipController extends Controller
                 "fullname"=>$request->fullname,
                 "suffix"=>$request->suffix,
                 "dob"=>$request->dob,
+                "hobby"=>$request->hobby,
                 "phone"=>$request->phone,
                 "email"=>$request->email,
                 "organization"=>$request->organization,
@@ -803,7 +816,7 @@ class MembershipController extends Controller
                 $userprofile->delete();
             }
 
-            if($deletedUserProfile->userid){
+            if(isset($deletedUserProfile->userid)){
                 $user = User::where("id",$deletedUserProfile->userid);
                 $deletedUser = $user->first();
                 if($deletedUser){

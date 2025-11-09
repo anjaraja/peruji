@@ -6,7 +6,7 @@
     Update Data Success
 </div>
 <div class="alert alert-success ok" role="alert" data="deleted">
-    Update Data Success
+    Delete Data Success
 </div>
 
 <div class="alert alert-danger not-ok" role="alert" data="get">
@@ -19,5 +19,5 @@
     Failed When Update Data
 </div>
 <div class="alert alert-danger not-ok" role="alert" data="deleted">
-    Failed WHen Delete Data
+    Failed When Delete Data
 </div>
