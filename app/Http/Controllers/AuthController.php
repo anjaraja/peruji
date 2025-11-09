@@ -247,6 +247,7 @@ class AuthController extends Controller
 
             $user = User::where("email",$request->email);
             $check_user = $user->first();
+            $url = "";
 
             if($check_user){
                 $url = URL::temporarySignedRoute(
@@ -277,7 +278,7 @@ class AuthController extends Controller
         }
         catch(\Exception $e){
             Log::channel('errorlog')->error('[FORGOT PASSWORD MEMBER]', [$e->getMessage(),$request->all()]);
-            return response()->json(["message" => "RC5"], 500);
+            return response()->json(["message" => "Something wrong when processing your request."], 500);
         }
     }
 
@@ -304,7 +305,7 @@ class AuthController extends Controller
 
             Log::channel('activity')->error('[SUBMIT FORGOT PASSWORD]', [$user_data]);
 
-            return response()->json(["message"=>"Your password has been changed. You will be redirect to login page."],200);   
+            return response()->json(["message"=>"Your password has been changed. You will be redirect in a few seconds."],200);   
         }
         catch(\Exception $e){
             Log::channel('errorlog')->error('[SUBMIT FORGOT PASSWORD]', [$e->getMessage()]);
