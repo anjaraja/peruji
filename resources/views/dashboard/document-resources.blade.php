@@ -70,7 +70,7 @@
             card_container.querySelector(".profile-photo").style.backgroundSize = "cover";
             card_container.querySelector(".info-name").innerHTML = responseData["fullname"]?.toUpperCase();
             card_container.querySelector(".info-details").innerHTML = responseData["title"]?.toUpperCase();
-            if(responseData["title"] == "Management"){
+            if(responseData["title"] == "management" || responseData["title"] == "priority"){
                 card_container.style.backgroundImage = `url("{{asset('dash-img/management-card.png')}}")`;
             }
             else{

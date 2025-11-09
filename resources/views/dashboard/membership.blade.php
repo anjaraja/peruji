@@ -98,6 +98,22 @@
         }
     /*End FOrm Membership*/
 </style>
+<div class="modal fade" id="delete-member-confirmation" tabindex="-1">
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<h5 class="modal-title">DELETE MEMBER</h5>
+      		</div>
+	      	<div class="modal-body">
+	        	<p>Are you sure want to delete?</p>
+	      	</div>
+	      	<div class="modal-footer">
+	        	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+	        	<button type="button" class="btn btn-danger" action-for="delete">Yes, delete</button>
+	      	</div>
+    	</div>
+  	</div>
+</div>
 <div class="modal fade" id="membershipModal" tabindex="-1" role="dialog" aria-labelledby="membershipModalTitle" aria-hidden="true">
   	<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -152,6 +168,10 @@
 		                <div class="col-md-6">
 		                  	<label>Date of Birth</label>
 		                  	<input type="date" class="form-control" placeholder="Day / Month / Year" name="dob">
+		                </div>
+		                <div class="col-md-6">
+		                  	<label>Hobby</label>
+		                  	<input type="text" class="form-control" placeholder="Badminton, Padel, Running, Marathon" name="hobby">
 		                </div>
 		                <div class="col-md-6">
 		                  	<label>Work Email</label>
@@ -243,9 +263,11 @@
 			                <div class="col-md-6">
 			                  	<label>Title</label>
 				                <select class="form-control" name="title" required>
-				                    <option value="">--Management/Regular--</option>
-				                    <option value="management">Management</option>
+				                    <option value="">--Select Title--</option>
 				                    <option value="member">Regular</option>
+				                    <option value="special">Special</option>
+				                    <option value="priority">Priority</option>
+				                    <option value="management">Management</option>
 				                </select>
 			                  	<!-- <input type="text" class="form-control" placeholder="Active / Pending / Expired" name="status"> -->
 			                </div>
@@ -360,6 +382,9 @@
         modalElement = document.getElementById('membershipModal');
         membershipModal = new bootstrap.Modal(modalElement);
 
+        confirmDeleteModalElement = document.getElementById('delete-member-confirmation');
+        confirmDeleteModal = new bootstrap.Modal(confirmDeleteModalElement);
+
         this.querySelectorAll(".close-modal").forEach(function(thisEl){
         	thisEl.addEventListener("click",function(){
         		membershipModal.hide();
@@ -406,6 +431,9 @@
         pageInput.value = currentPage;
 
         // Arrow states
+        if(currentPage === 1){
+        	pageInput.setAttribute('disabled', 'disabled');
+        }
         prevPage.classList.toggle('disabled', currentPage === 1);
         nextPage.classList.toggle('disabled', currentPage === totalPages);
     }
@@ -423,6 +451,7 @@
           <td>${row.status}</td>
           <td class="text-center action-icons">
             <i class="bi bi-pencil-square" title="Edit" onclick="editRow(${row.membership})"></i>
+            <i class="bi bi-trash3-fill text-danger" title="Delete" onclick="deleteRow(${row.membership})"></i>
           </td>
         `;
         tbody.appendChild(tr);
@@ -484,6 +513,7 @@
         	personal_information.querySelector("input[name='suffix']").value = responseData?.suffix;
         	personal_information.querySelector("input[name='ofcphone']").value = responseData?.ofcphone;
         	personal_information.querySelector("input[name='dob']").value = responseData?.dob;
+        	personal_information.querySelector("input[name='hobby']").value = responseData?.hobby;
         	personal_information.querySelector("input[name='ofcemail']").value = responseData?.ofcemail;
         	personal_information.querySelector("input[name='phone']").value = responseData?.phone;
         	personal_information.querySelector("input[name='website']").value = responseData?.website;
@@ -500,8 +530,8 @@
                 input_photo.closest("div[class*='col-md']").querySelector("div[preview-file]")?.remove();
                 input_photo.closest("div[class*='col-md']").insertAdjacentHTML("beforeend",`
                     <div preview-file>
-                        <div class="form-control" style="border:none;">
-                            <img src="${responseData['photo']}" style="max-width:400px">
+                        <div class="form-control" style="border:none;padding-left:0;">
+                            <img src="${responseData['photo']}" style="max-width:180px">
                         </div>
                         <span class="btn btn-danger" for="delete-preview-file">
                             <i class="bi text-white">
@@ -517,8 +547,8 @@
         	card_container = personal_information.querySelector(".card-container");
         	card_container.querySelector(".profile-photo").style.backgroundImage = `url("${responseData["photo"]}")`;
         	card_container.querySelector(".info-name").innerHTML = responseData["fullname"]?.toUpperCase();
-        	card_container.querySelector(".info-details").innerHTML =  responseData["title"]?.toUpperCase();
-        	if(responseData["title"] == "Management"){
+        	card_container.querySelector(".info-details").innerHTML =  responseData["title"]?.toUpperCase()=="MEMBER"?"Regular":responseData["title"]?.toUpperCase();
+        	if(responseData["title"] == "management" || responseData["title"] == "priority"){
         		card_container.style.backgroundImage = `url("{{asset('dash-img/management-card.png')}}")`;
         	}
         	else{
@@ -553,7 +583,7 @@
         	personal_information.querySelector("input[name='expiredate']").value = responseData?.expiredate;
         	personal_information.querySelector("input[name='number']").value = responseData?.number;
         	personal_information.querySelector("select[name='status']").value = responseData?.status;
-        	personal_information.querySelector("select[name='title']").value = responseData?.title=="Regular"?"member":"management";
+        	personal_information.querySelector("select[name='title']").value = responseData?.title;
         });
     }
 
@@ -605,6 +635,8 @@
         formdata.append("ofcphone",ofcphone)
         dob = this.querySelector("input[name='dob']").value
         formdata.append("dob",dob)
+        hobby = this.querySelector("input[name='hobby']").value
+        formdata.append("hobby",hobby)
         ofcemail = this.querySelector("input[name='ofcemail']").value
         formdata.append("ofcemail",ofcemail)
         phone = this.querySelector("input[name='phone']").value
@@ -717,4 +749,44 @@
 
 		return false;
 	})
+</script>
+<script delete-member>
+	deleteRow = function(id){
+		confirmDeleteModal.show()
+
+		confirmDeleteModalElement = document.getElementById("delete-member-confirmation");
+		buttonExecDelete = confirmDeleteModalElement.querySelector("button[action-for='delete']");
+
+		buttonExecDelete.setAttribute("onclick",`execDelete(${id})`);
+	}
+
+	execDelete = function(id){
+        loading("show");
+
+		confirmDeleteModal.hide();
+
+		formdata = new FormData;
+		formdata.append("member",id);
+
+        fetchData(
+            "{{route('delete-membership')}}",
+            "POST",
+            {"Authorization":localStorage.getItem("Token")},
+            formdata
+        )
+        .then(async (response)=>{
+            loading("close",500);
+
+          	result = await response.json();
+            if (response.status !== 200){
+                showAlert("not-ok","deleted",result.message)
+
+                return response.json();
+            }
+
+            showAlert("ok","deleted");
+			loadPage(currentPage);
+            return response.json();
+        });
+	}
 </script>
