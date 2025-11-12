@@ -105,6 +105,21 @@ class MenuSeeder extends Seeder
             );
         }
 
+        if (!Menu::where('menuname', 'Membership Benefits')->first()){
+            Menu::create(
+                [
+                    'menuname' => 'Membership Benefits',
+                    'position' => 11,
+                    'icon' => null,
+                    'route' => 'membership-benefits-index',
+                    'parent' => null,
+                    'activestatus' => 1,
+                    'created_by' => "System",
+                    'modified_by' => "System"
+                ]
+            );
+        }
+
         // PART MEMBER MENU
             if (!Menu::where('menuname', 'Personal Information')->first()){
                 Menu::create(

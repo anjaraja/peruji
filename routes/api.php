@@ -62,6 +62,12 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/delete-membership', "$path\MembershipController@deleteMember")->name("delete-membership");
     /* END MEMBERSHIP */
 
+    /* MEMBERSHIP BENEFITS */
+    Route::get('/membership-benefits/{page}', "$path\MembershipBenefitController@index")->name("list-membership-benefits");
+    Route::post('/update-membership-benefits/', "$path\MembershipBenefitController@update")->name("update-membership-benefits");
+    Route::get('/membership-benefits-detail/{id}', "$path\MembershipBenefitController@show")->name("membership-benefits-detail");
+    /* END MEMBERSHIP BENEFITS */
+
     // Route::get('/me', [AuthController::class, 'me']);
     Route::get('/logout', "$path\AuthController@logout")->name("logout");
     // Route::post('/refresh', [AuthController::class, 'refresh']);

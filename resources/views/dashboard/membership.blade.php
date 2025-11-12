@@ -393,14 +393,14 @@
 	})
 </script>
 <script>
-    let currentPage = 1;
-    const rowsPerPage = 10;
-    totalRows = 0; // simulate from backend
-    totalPages = Math.ceil(totalRows / rowsPerPage);
+    let currentPageMembership = 1;
+    const rowsPerPageMembership = 10;
+    totalRowsMembership = 0; // simulate from backend
+    totalPagesMembership = Math.ceil(totalRowsMembership / rowsPerPageMembership);
 
-    const pageInput = document.getElementById('pageInput');
-    const prevPage = document.getElementById('prevPage');
-    const nextPage = document.getElementById('nextPage');
+    const pageInputMembership = document.querySelector('.membership-index #pageInput');
+    const prevPageMembership = document.querySelector('.membership-index #prevPage');
+    const nextPageMembership = document.querySelector('.membership-index #nextPage');
 
     // Simulate API call
     // function fetchDataFromAPI(page) {
@@ -413,33 +413,32 @@
 
     async function loadPage(page) {
       // Load data
-
         const data = await asyncFetchData(
             "{{route('list-membership','')}}/"+page,
             "GET",
             {"Authorization":localStorage.getItem("Token")}
         );
         row_data = data.data.data
-        totalRows = data.data.total
-        totalPages = data.data.last_page
+        totalRowsMembership = data.data.total
+        totalPagesMembership = data.data.last_page
         renderTable(row_data);
 
         if (isNaN(page) || page < 1) page = 1;
-        if (page > totalPages) page = totalPages;
+        if (page > totalPagesMembership) page = totalPagesMembership;
         
-        currentPage = page;
-        pageInput.value = currentPage;
+        currentPageMembership = page;
+        pageInputMembership.value = currentPageMembership;
 
         // Arrow states
-        if(currentPage === 1){
-        	pageInput.setAttribute('disabled', 'disabled');
+        if(currentPageMembership === 1){
+        	pageInputMembership.setAttribute('disabled', 'disabled');
         }
-        prevPage.classList.toggle('disabled', currentPage === 1);
-        nextPage.classList.toggle('disabled', currentPage === totalPages);
+        prevPageMembership.classList.toggle('disabled', currentPageMembership === 1);
+        nextPageMembership.classList.toggle('disabled', currentPageMembership === totalPagesMembership);
     }
 
     function renderTable(data) {
-      const tbody = document.getElementById('tableBody');
+      const tbody = document.querySelector('.membership-index #tableBody');
       tbody.innerHTML = '';
       data.forEach((row, index) => {
         const tr = document.createElement('tr');
@@ -459,22 +458,22 @@
     }
 
     // Events
-    pageInput.addEventListener('change', () => {
-      loadPage(parseInt(pageInput.value));
+    pageInputMembership.addEventListener('change', () => {
+      loadPage(parseInt(pageInputMembership.value));
     });
 
-    prevPage.addEventListener('click', () => {
-      if (currentPage > 1) loadPage(currentPage - 1);
+    prevPageMembership.addEventListener('click', () => {
+      if (currentPageMembership > 1) loadPage(currentPageMembership - 1);
     });
 
-    nextPage.addEventListener('click', () => {
-      if (currentPage < totalPages) loadPage(currentPage + 1);
+    nextPageMembership.addEventListener('click', () => {
+      if (currentPageMembership < totalPagesMembership) loadPage(currentPageMembership + 1);
     });
 
     // Initial
     document.addEventListener("DOMContentLoaded",function(){
     	if(document.querySelector(".content-container.membership-index")){
-    		loadPage(currentPage);
+    		loadPage(currentPageMembership);
     	}
     })
 </script>
@@ -789,7 +788,7 @@
             }
 
             showAlert("ok","deleted");
-			loadPage(currentPage);
+			loadPage(currentPageMembership);
             return response.json();
         });
 	}

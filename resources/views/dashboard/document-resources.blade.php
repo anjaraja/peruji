@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#" onclick="downloadPNG(this)" class="btn btn-orange px-4">Download</a>
+            <a href="#" onclick="downloadDirectPNG(this)" class="btn btn-orange px-4">Download</a>
         </div>
         <div class="col-md-6">
             <h5 class="text-warning fw-bold mb-3">Certificates</h5>
@@ -80,6 +80,24 @@
             card_container.style.backgroundRepeat = ` no-repeat`;
             card_container.style.backgroundSize = `cover`;
             card_container.querySelector(".info-details.number").innerHTML = responseData["number"];
+
+
+            html2canvas(
+                card_container, 
+                {
+                    scale:10,
+                    backgroundColor:null
+                }
+            )
+            .then(canvas => {
+                    const link = document.createElement("a");
+                    link.download = "membership-card.png";
+                    link.href = canvas.toDataURL("image/jpeg", 1.0);
+                    card_container.insertAdjacentHTML("afterend",`<img class="mb-3" src="${link.href}" style="width:100%;border-radius:28px;">`);
+                    // card_container.remove();
+                    // link.click();
+                }
+            );
         });
     }
     document.addEventListener("DOMContentLoaded",function(){
@@ -87,4 +105,20 @@
             documentAndResources()
         }
     })
+    downloadDirectPNG = function(thisel){
+        html2canvas(
+            thisel.closest("div").querySelector("img"),
+            {
+                scale:10,
+                backgroundColor:null
+            }
+        )
+        .then(canvas => {
+                const link = document.createElement("a");
+                link.download = "membership-card.png";
+                link.href = canvas.toDataURL("image/jpeg", 1.0);
+                link.click();
+            }
+        );
+    }
 </script>

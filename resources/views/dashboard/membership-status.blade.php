@@ -43,6 +43,7 @@
         })
         .then((data)=>{
             responseData = data["data"];
+            sessionStorage.setItem("currentTitle",responseData?.title);
         })
         .finally(()=>{
             membership_status = document.querySelector("form.membership-status-member");

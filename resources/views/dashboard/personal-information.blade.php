@@ -111,7 +111,7 @@
                 input_photo.closest("div[class*='col-md']").insertAdjacentHTML("beforeend",`
                     <div preview-file>
                         <div class="form-control" style="border:none;">
-                            <img src="${responseData['photo']}" style="max-width:400px">
+                            <img src="${responseData['photo']}" style="max-width:180px;">
                         </div>
                         <span class="btn btn-danger" for="delete-preview-file">
                             <i class="bi text-white">
