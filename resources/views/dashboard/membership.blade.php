@@ -421,7 +421,7 @@
         row_data = data.data.data
         totalRowsMembership = data.data.total
         totalPagesMembership = data.data.last_page
-        renderTable(row_data);
+        renderTable(row_data,page);
 
         if (isNaN(page) || page < 1) page = 1;
         if (page > totalPagesMembership) page = totalPagesMembership;
@@ -437,11 +437,11 @@
         nextPageMembership.classList.toggle('disabled', currentPageMembership === totalPagesMembership);
     }
 
-    function renderTable(data) {
+    function renderTable(data,page=1) {
       const tbody = document.querySelector('.membership-index #tableBody');
       tbody.innerHTML = '';
       data.forEach((row, index) => {
-      	rowNumber = currentPageMembership==1?currentPageMembership:currentPageMembership*10;
+      	rowNumber = page==1?page:page*10;
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td>${rowNumber+index}</td>
