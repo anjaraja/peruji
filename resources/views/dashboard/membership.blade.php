@@ -444,7 +444,7 @@
       	rowNumber = page==1?page:page+10;
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td>${rowNumber+index}</td>
+          <td>${rowNumber}</td>
           <td>${row.fullname}</td>
           <td>${row.email}</td>
           <td>${row.registered_date}</td>
