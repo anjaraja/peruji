@@ -441,9 +441,10 @@
       const tbody = document.querySelector('.membership-index #tableBody');
       tbody.innerHTML = '';
       data.forEach((row, index) => {
+      	rowNumber = currentPageMembership==1?currentPageMembership:currentPageMembership*10;
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td>${index+1}</td>
+          <td>${rowNumber+index}</td>
           <td>${row.fullname}</td>
           <td>${row.email}</td>
           <td>${row.registered_date}</td>
