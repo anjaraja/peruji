@@ -441,10 +441,10 @@
       const tbody = document.querySelector('.membership-index #tableBody');
       tbody.innerHTML = '';
       data.forEach((row, index) => {
-      	rowNumber = page==1?page:page+10;
+      	rowNumber = page==1?page:page+9;
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td>${rowNumber}</td>
+          <td>${rowNumber+index}</td>
           <td>${row.fullname}</td>
           <td>${row.email}</td>
           <td>${row.registered_date}</td>
