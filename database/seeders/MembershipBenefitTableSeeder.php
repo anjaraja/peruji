@@ -38,7 +38,7 @@ class MembershipBenefitTableSeeder extends Seeder
         if (!MembershipBenefit::where('name', 'Management')->first()){
             MembershipBenefit::create(
                 [
-                    'name' => 'management',
+                    'name' => 'executive',
                     'description' => "",
                     'activestatus' => 0,
                     'created_by' => "System",

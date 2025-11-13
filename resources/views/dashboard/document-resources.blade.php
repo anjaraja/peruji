@@ -70,12 +70,22 @@
             card_container.querySelector(".profile-photo").style.backgroundSize = "cover";
             card_container.querySelector(".info-name").innerHTML = responseData["fullname"]?.toUpperCase();
             card_container.querySelector(".info-details").innerHTML = responseData["title"]?.toUpperCase();
-            if(responseData["title"] == "management" || responseData["title"] == "priority"){
-                card_container.style.backgroundImage = `url("{{asset('dash-img/management-card.png')}}")`;
+
+            card_background = {
+                "regular":`url("{{asset('dash-img/regular-card1.png')}}")`,
+                "special":`url("{{asset('dash-img/special-card.png')}}")`,
+                "priority":`url("{{asset('dash-img/priority-card.png')}}")`,
+                "executive":`url("{{asset('dash-img/executive-card.png')}}")`
             }
-            else{
-                card_container.style.backgroundImage = `url("{{asset('dash-img/regular-card.png')}}")`;
-            }
+            member_title = responseData["title"]=="member"?"regular":responseData["title"];
+            card_container.style.backgroundImage = card_background[member_title];
+            
+            // if(responseData["title"] == "management" || responseData["title"] == "priority"){
+            //     card_container.style.backgroundImage = `url("{{asset('dash-img/management-card.png')}}")`;
+            // }
+            // else{
+            //     card_container.style.backgroundImage = `url("{{asset('dash-img/regular-card.png')}}")`;
+            // }
             card_container.style.backgroundPosition = `center`;
             card_container.style.backgroundRepeat = ` no-repeat`;
             card_container.style.backgroundSize = `cover`;

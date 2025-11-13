@@ -322,7 +322,7 @@ class MembershipController extends Controller
                 'expiredate' => 'required|string',
                 'number' => 'required|string',
                 'status' => 'required|string|in:pending,active,expired',
-                'title' => 'required|string|in:member,special,priority,management'
+                'title' => 'required|string|in:member,special,priority,executive'
             ]);
 
             if ($validated->fails()) {
@@ -397,12 +397,12 @@ class MembershipController extends Controller
                 $data = [
                     "url"=>$url,
                 ];
-                Log::channel('activity')->info('[SENDING EMAIL TO MEMBER]', [$member->email]);
+                Log::channel('activity')->info('[SENDING EMAIL TO MEMBER]', [$request->email]);
                 try{
-                    Mail::to($member->email)->send(new SendMail($view, $subject, $data));
+                    Mail::to($request->email)->send(new SendMail($view, $subject, $data));
                 } catch (\Exception $e) {
                     // Log the error and continue
-                    Log::channel('errorlog')->info('[FAILED SENDING EMAIL TO MEMBER]', [$member->email], $e->getMessage());
+                    Log::channel('errorlog')->info('[FAILED SENDING EMAIL TO MEMBER]', [$request->email], $e->getMessage());
                     return response()->json(["message" => "RC3.2","wording" => "Failed when sending email to member"], 422);
                 }
 
