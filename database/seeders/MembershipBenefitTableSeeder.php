@@ -13,10 +13,10 @@ class MembershipBenefitTableSeeder extends Seeder
      */
     public function run(): void
     {
-        if (!MembershipBenefit::where('name', 'member')->first()){
+        if (!MembershipBenefit::where('name', 'regular')->first()){
             MembershipBenefit::create(
                 [
-                    'name' => 'member',
+                    'name' => 'regular',
                     'description' => "",
                     'activestatus' => 0,
                     'created_by' => "System",
@@ -35,7 +35,7 @@ class MembershipBenefitTableSeeder extends Seeder
                 ]
             );
         }
-        if (!MembershipBenefit::where('name', 'Management')->first()){
+        if (!MembershipBenefit::where('name', 'executive')->first()){
             MembershipBenefit::create(
                 [
                     'name' => 'executive',
@@ -46,7 +46,7 @@ class MembershipBenefitTableSeeder extends Seeder
                 ]
             );
         }
-        if (!MembershipBenefit::where('name', 'Priority')->first()){
+        if (!MembershipBenefit::where('name', 'priority')->first()){
             MembershipBenefit::create(
                 [
                     'name' => 'priority',
