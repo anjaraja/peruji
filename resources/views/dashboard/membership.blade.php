@@ -264,7 +264,7 @@
 			                  	<label>Title</label>
 				                <select class="form-control" name="title" required>
 				                    <option value="">--Select Title--</option>
-				                    <option value="member">Regular</option>
+				                    <option value="regular">Regular</option>
 				                    <option value="special">Special</option>
 				                    <option value="priority">Priority</option>
 				                    <option value="executive">Executive</option>
