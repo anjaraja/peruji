@@ -130,12 +130,16 @@
 		                  	<input type="text" class="form-control" name="prefix" placeholder="Prof. / dr. / Dr. / dll.">
 		                </div>
 		                <div class="col-md-6">
-			                <label>Organization</label>
-			                 <input type="text" class="form-control" placeholder="Company" name="organization">
-		                </div>
-		                <div class="col-md-6">
 		                 	<label>Full Name</label>
 		                 	<input type="text" class="form-control" placeholder="Day / Month / Year" name="fullname">
+		                </div>
+		                <div class="col-md-6">
+		                  	<label>Suffix</label>
+		                  	<input type="text" class="form-control" placeholder="Gelar: S. Ked. / SH / MM / AAIJ / dll." name="suffix">
+		                </div>
+		                <div class="col-md-6">
+		                  	<label>Date of Birth</label>
+		                  	<input type="date" class="form-control" placeholder="Day / Month / Year" name="dob">
 		                </div>
 		                <div class="col-md-6">
 		                  	<label>Gender</label>
@@ -146,44 +150,12 @@
 				                </select>
 		                </div>
 		                <div class="col-md-6">
-		                  	<label>Work Address</label>
-		                  	<input type="text" class="form-control" placeholder="Company Address" name="ofcaddress">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Function</label>
-		                  	<input type="text" class="form-control" placeholder="Function" name="function">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Department</label>
-		                  	<input type="text" class="form-control" placeholder="Department" name="department">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Suffix</label>
-		                  	<input type="text" class="form-control" placeholder="Gelar: S. Ked. / SH / MM / AAIJ / dll." name="suffix">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Work Phone</label>
-		                  	<input class="form-control" name="ofcphone" type="tel" inputmode="numeric" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Date of Birth</label>
-		                  	<input type="date" class="form-control" placeholder="Day / Month / Year" name="dob">
-		                </div>
-		                <div class="col-md-6">
 		                  	<label>Hobby</label>
 		                  	<input type="text" class="form-control" placeholder="Badminton, Padel, Running, Marathon" name="hobby">
 		                </div>
 		                <div class="col-md-6">
-		                  	<label>Work Email</label>
-		                  	<input type="email" class="form-control" name="ofcemail">
-		                </div>
-		                <div class="col-md-6">
 		                  	<label>Phone</label>
 		                  	<input class="form-control" name="phone" type="tel" inputmode="numeric" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Website</label>
-		                  	<input type="url" class="form-control" placeholder="www.example.com" name="website">
 		                </div>
 		                <div class="col-md-6">
 		                  	<label>Email</label>
@@ -192,6 +164,34 @@
 		                <div class="col-md-6">
 		                  	<label>Upload Photo</label>
 		                  	<input type="file" class="form-control" name="photo" accept="image/png, image/jpeg, image/gif">
+		                </div>
+		                <div class="col-md-6">
+			                <label>Organization</label>
+			                 <input type="text" class="form-control" placeholder="Company" name="organization">
+		                </div>
+		                <div class="col-md-6">
+		                  	<label>Work Address</label>
+		                  	<input type="text" class="form-control" placeholder="Company Address" name="ofcaddress">
+		                </div>
+		                <div class="col-md-6">
+		                  	<label>Work Phone</label>
+		                  	<input class="form-control" name="ofcphone" type="tel" inputmode="numeric" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+		                </div>
+		                <div class="col-md-6">
+		                  	<label>Work Email</label>
+		                  	<input type="email" class="form-control" name="ofcemail">
+		                </div>
+		                <div class="col-md-6">
+		                  	<label>Website</label>
+		                  	<input type="url" class="form-control" placeholder="www.example.com" name="website">
+		                </div>
+		                <div class="col-md-6">
+		                  	<label>Function</label>
+		                  	<input type="text" class="form-control" placeholder="Function" name="function">
+		                </div>
+		                <div class="col-md-6">
+		                  	<label>Department</label>
+		                  	<input type="text" class="form-control" placeholder="Department" name="department">
 		                </div>
 	          		</div>
 	              	<div class="section-header">DOCUMENT & RESOURCES</div>
@@ -243,12 +243,12 @@
 			                  	<input type="date" class="form-control" placeholder="Day / Month / Year" name="joindate" required>
 			                </div>
 			                <div class="col-md-6">
-			                  	<label>Expiry Date</label>
-			                  	<input type="date" class="form-control" placeholder="Day / Month / Year" name="expiredate" required>
-			                </div>
-			                <div class="col-md-6">
 			                  	<label>Number</label>
 			                  	<input type="text" class="form-control" name="number" required>
+			                </div>
+			                <div class="col-md-6">
+			                  	<label>Expiry Date</label>
+			                  	<input type="date" class="form-control" placeholder="Day / Month / Year" name="expiredate" required>
 			                </div>
 			                <div class="col-md-6">
 			                  	<label>Status</label>

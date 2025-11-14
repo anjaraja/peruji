@@ -12,32 +12,16 @@
                 <input type="text" class="form-control" name="prefix" placeholder="Prof. / dr. / Dr. / dll.">
             </div>
             <div class="col-md-6">
-                <label>Organization</label>
-                 <input type="text" class="form-control" placeholder="Company" name="organization">
-            </div>
-            <div class="col-md-6">
                 <label>Full Name</label>
                 <input type="text" class="form-control" placeholder="Day / Month / Year" name="fullname">
-            </div>
-            <div class="col-md-6">
-                <label>Work Address</label>
-                <input type="text" class="form-control" placeholder="Company Address" name="ofcaddress">
             </div>
             <div class="col-md-6">
                 <label>Suffix</label>
                 <input type="text" class="form-control" placeholder="Gelar: S. Ked. / SH / MM / AAIJ / dll." name="suffix">
             </div>
             <div class="col-md-6">
-                <label>Work Phone</label>
-                <input type="text" class="form-control" name="ofcphone">
-            </div>
-            <div class="col-md-6">
                 <label>Date of Birth</label>
                 <input type="date" class="form-control" placeholder="Day / Month / Year" name="dob">
-            </div>
-            <div class="col-md-6">
-                <label>Work Email</label>
-                <input type="email" class="form-control" name="ofcemail">
             </div>
             <div class="col-md-6">
                 <label>Hobby</label>
@@ -48,10 +32,6 @@
                 <input type="text" class="form-control" name="phone">
             </div>
             <div class="col-md-6">
-                <label>Website</label>
-                <input type="url" class="form-control" placeholder="www.example.com" name="website">
-            </div>
-            <div class="col-md-6">
                 <label>Email</label>
                 <input type="email" class="form-control" name="email">
             </div>
@@ -60,6 +40,26 @@
                 <input type="file" class="form-control" name="photo">
                 <input type="hidden" name="memberid">
                 <input type="hidden" name="userprofileid">
+            </div>
+            <div class="col-md-6">
+                <label>Organization</label>
+                 <input type="text" class="form-control" placeholder="Company" name="organization">
+            </div>
+            <div class="col-md-6">
+                <label>Work Address</label>
+                <input type="text" class="form-control" placeholder="Company Address" name="ofcaddress">
+            </div>
+            <div class="col-md-6">
+                <label>Work Phone</label>
+                <input type="text" class="form-control" name="ofcphone">
+            </div>
+            <div class="col-md-6">
+                <label>Work Email</label>
+                <input type="email" class="form-control" name="ofcemail">
+            </div>
+            <div class="col-md-6">
+                <label>Website</label>
+                <input type="url" class="form-control" placeholder="www.example.com" name="website">
             </div>
         </div>
         <div class="row g-3 mt-2">

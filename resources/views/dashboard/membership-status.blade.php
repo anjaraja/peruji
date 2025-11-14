@@ -12,12 +12,12 @@
                 <input type="text" class="form-control" placeholder="Day / Month / Year" name="joindate" disabled>
             </div>
             <div class="col-md-6">
-                <label>Expiry Date</label>
-                <input type="text" class="form-control" placeholder="Day / Month / Year" name="expiredate" disabled>
-            </div>
-            <div class="col-md-6">
                 <label>Number</label>
                 <input type="text" class="form-control" name="number" disabled>
+            </div>
+            <div class="col-md-6">
+                <label>Expiry Date</label>
+                <input type="text" class="form-control" placeholder="Day / Month / Year" name="expiredate" disabled>
             </div>
             <div class="col-md-6">
                 <label>Status</label>
