@@ -154,16 +154,8 @@
                 if(current_running_text != result.data.description){
                     current_running_text = result.data.description;
                     containerRunningText = document.querySelector("div[id='benefits-running-text'] div.marquee-content");
-
-                    if(result.data.description == null){
-                        document.querySelectorAll("div[id='benefits-running-text']").forEach(function(e){
-                            e.remove();
-                        })
-                        return true;
-                    }
-
                     if(containerRunningText){
-                        containerRunningText.innerHTML = result.data.description;
+                        containerRunningText.innerHTML = `<p class="mb-0 pt-2 pb-2" style="text-align:right;">${result.data.description}</p>`;
                     }
                     else{
                         document.querySelector("main").insertAdjacentHTML(
@@ -188,6 +180,12 @@
                         )
                     }
                 }
+            }
+            else{
+                current_running_text = result.data.description;
+                document.querySelectorAll(".marquee-container").forEach((e) => {
+                    e.remove();
+                })
             }
         });
     }
