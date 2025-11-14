@@ -156,7 +156,9 @@
                     containerRunningText = document.querySelector("div[id='benefits-running-text'] div.marquee-content");
 
                     if(result.data.description == null){
-                        containerRunningText.closest("div[id='benefits-running-text']").remove();
+                        document.querySelectorAll("div[id='benefits-running-text']").forEach(function(e){
+                            e.remove();
+                        })
                         return true;
                     }
 
