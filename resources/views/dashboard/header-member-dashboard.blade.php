@@ -155,7 +155,7 @@
                     current_running_text = result.data.description;
                     containerRunningText = document.querySelector("div[id='benefits-running-text'] div.marquee-content");
 
-                    if(!result.data.description == null){
+                    if(result.data.description == null){
                         containerRunningText.closest("div[id='benefits-running-text']").remove();
                         return true;
                     }
