@@ -441,7 +441,7 @@
       const tbody = document.querySelector('.membership-index #tableBody');
       tbody.innerHTML = '';
       data.forEach((row, index) => {
-      	rowNumber = page==1?page:page+9;
+      	rowNumber = page==1?page:page*10-9;
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td>${rowNumber+index}</td>
