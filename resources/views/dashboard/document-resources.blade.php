@@ -118,8 +118,18 @@
             //   // link.href = dataUrl;
             //   // link.click();
             // });
+
+            cloned_card_container = card_container.cloneNode(true);
+            cloned_card_container.style.position = "absolute";
+            cloned_card_container.style.top = "-200vh";
+            cloned_card_container.style.left = "-200vw";
+            cloned_card_container.style.display = "block";
+            console.log(cloned_card_container);
+
+            document.querySelector("main").insertAdjacentHTML("afterbegin",cloned_card_container.outerHTML);
+
             html2canvas(
-                card_container, 
+                document.querySelector("main").querySelector(".card-container"), 
                 {
                     scale: window.devicePixelRatio * 2, // best quality
                     useCORS: true,
@@ -143,6 +153,7 @@
         if(document.querySelector(".content-container.document-resources-index")){
             documentAndResources()
         }
+
     })
     downloadDirectPNG = function(thisel){
         html2canvas(
