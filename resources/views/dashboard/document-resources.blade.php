@@ -2,6 +2,14 @@
     .document-resources-index .list-unstyled{
         min-height: 268px;
     }
+    .card-preview-mobile{
+        display: none;
+    }
+    @media(max-width: 600px){
+        .card-preview-mobile{
+            display: block;
+        }
+    }
 </style>
 <div class="content-container document-resources-index">
     <!-- Header -->
@@ -37,6 +45,7 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/dom-to-image@2.6.0/dist/dom-to-image.min.js"></script>
 <script>
     const documentAndResources = function(){
         responseData = {}
@@ -91,19 +100,39 @@
             card_container.style.backgroundSize = `cover`;
             card_container.querySelector(".info-details.number").innerHTML = responseData["number"];
 
-
+            // var options = {
+            //   quality: 0,
+            //   bgcolor: 'transparent',
+            //   style: {
+            //     width:card_container.offsetWidth,
+            //     height:card_container.offsetHeight,
+            //     // transform: "scale(3)",
+            //     // transformOrigin: "top left",
+            //     // backgroundSize:"10px"
+            //   }
+            // };
+            // domtoimage.toPng(card_container, options).then(dataUrl => {
+            //   var link = document.createElement('a');
+            //   link.download = "image.png";
+            //     card_container.insertAdjacentHTML("afterend",`<img class="mb-3" src="${dataUrl}" style="width:100%;border-radius:28px;">`);
+            //   // link.href = dataUrl;
+            //   // link.click();
+            // });
             html2canvas(
                 card_container, 
                 {
-                    scale:10,
+                    scale: window.devicePixelRatio * 2, // best quality
+                    useCORS: true,
+                    logging: false,
+                    allowTaint: false,
                     backgroundColor:null
                 }
             )
             .then(canvas => {
                     const link = document.createElement("a");
                     link.download = "membership-card.png";
-                    link.href = canvas.toDataURL("image/jpeg", 1.0);
-                    card_container.insertAdjacentHTML("afterend",`<img class="mb-3" src="${link.href}" style="width:100%;border-radius:28px;">`);
+                    link.href = canvas.toDataURL("image/png", 1.0);
+                    card_container.insertAdjacentHTML("afterend",`<img class="mb-3 card-preview-mobile" src="${link.href}" style="width:100%;border-radius:28px;">`);
                     // card_container.remove();
                     // link.click();
                 }
@@ -117,7 +146,7 @@
     })
     downloadDirectPNG = function(thisel){
         html2canvas(
-            thisel.closest("div").querySelector("img"),
+            thisel.closest("div").querySelector("#cardPreview"),
             {
                 scale:10,
                 backgroundColor:null
@@ -126,7 +155,7 @@
         .then(canvas => {
                 const link = document.createElement("a");
                 link.download = "membership-card.png";
-                link.href = canvas.toDataURL("image/jpeg", 1.0);
+                link.href = canvas.toDataURL("image/png", 1.0);
                 link.click();
             }
         );

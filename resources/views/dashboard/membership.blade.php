@@ -603,14 +603,17 @@
       html2canvas(
       		thisbtn.closest("div").querySelector(".card-container"), 
       		{
-      			scale:10,
-  				backgroundColor:null
-  			}
-		)
+            scale: window.devicePixelRatio * 2, // best quality
+            useCORS: true,
+            logging: false,
+            allowTaint: false,
+            backgroundColor:null
+  				}
+			)
       	.then(canvas => {
 	        const link = document.createElement("a");
 	        link.download = "membership-card.png";
-	        link.href = canvas.toDataURL("image/jpeg", 1.0);
+	        link.href = canvas.toDataURL("image/png", 1.0);
 	        link.click();
      	 }
  	 );
