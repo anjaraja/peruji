@@ -80,7 +80,7 @@
 			                </div>
 			                <div class="col-md-12">
 			                  	<label>Benefits Description</label>
-			                  	<input type="text" class="form-control" placeholder="Regular member will receive some benefits" name="description" required>
+			                  	<input type="text" class="form-control" placeholder="Regular member will receive some benefits" name="description">
 			                </div>
 		              	</div>
           			</div>

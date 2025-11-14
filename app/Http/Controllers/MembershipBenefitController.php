@@ -117,7 +117,7 @@ class MembershipBenefitController extends Controller
         try{
             $validated = Validator::make($request->all(),[
                 'membership_benefits' => 'required|int',
-                'description' => 'required|string'
+                'description' => 'nullable|string'
             ]);
             if ($validated->fails()) {
                 Log::channel('activity')->warning('[UPDATE MEMBERSHIP BENEFIT]', [$validated->errors(),$request->all()]);
