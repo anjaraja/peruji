@@ -382,6 +382,9 @@ html {
             padding-left: 10vw !important;
             padding-ritgh: 10vw !important;
         }
+        .content-container.is-have-title-desc{
+            padding-top: 10vh;
+        }
     }
 /* Close Global */
 

@@ -5,25 +5,30 @@
         color: white;
         position: absolute;
         left: 0;
-      overflow: hidden; /* Hides content outside the container */
-      white-space: nowrap; /* Prevents text from wrapping */
-      background-color: black;
+        overflow: hidden; /* Hides content outside the container */
+        white-space: nowrap; /* Prevents text from wrapping */
+        height: 0;
+        transition: all 0.8s;
     }
-    .marquee-container.on-body{
+    .marquee-container.show{
+        height: 37px;
+        transition: all 0.8s;
+    }
+    /*.marquee-container.on-body{
         top: 7.5vh !important;
         position: relative !important;
-    }
+    }*/
 
     .marquee-content {
         width: 100%;
         font-size:14px;
-      display: inline-block; /* Allows content to flow horizontally */
-      animation: marquee-scroll 15s linear infinite; /* Adjust duration and timing as needed */
+        display: inline-block; /* Allows content to flow horizontally */
+        animation: marquee-scroll 15s linear infinite; /* Adjust duration and timing as needed */
     }
 
     @keyframes marquee-scroll {
-      from { transform: translateX(35%); }
-      to { transform: translateX(-100%); } /* Scrolls from right to left */
+        from { transform: translateX(35%); }
+        to { transform: translateX(-100%); } /* Scrolls from right to left */
     }
     @media(max-width: 600px){
         .marquee-container.on-body{
@@ -77,6 +82,9 @@
             <div class="member-name" style="font-size: 14px;color: black;font-weight: bold;"></div>
             <div class="member-number" style="font-size: 14px;color: black;font-weight: bold;"></div>
         </div>
+    </div>
+    <div class="marquee-container" id="benefits-running-text">
+        
     </div>
 </div>
 <script>
@@ -149,8 +157,12 @@
         .then(async (response)=>{
             result = await response.json();
             if(result?.data?.description){
-                document.querySelector(".header-member-dashboard").classList.add("is-have-title-desc")
+                headermemberdashboard = document.querySelector(".header-member-dashboard");
+                headermemberdashboard.classList.add("is-have-title-desc")
                 document.querySelector("nav.sidebar").classList.add("is-have-title-desc")
+                document.querySelectorAll(".content-container").forEach((e)=>{
+                    e.classList.add("is-have-title-desc");
+                })
                 if(current_running_text != result.data.description){
                     current_running_text = result.data.description;
                     containerRunningText = document.querySelector("div[id='benefits-running-text'] div.marquee-content");
@@ -158,40 +170,42 @@
                         containerRunningText.innerHTML = `<p class="mb-0 pt-2 pb-2" style="text-align:right;">${result.data.description}</p>`;
                     }
                     else{
-                        document.querySelector("main").insertAdjacentHTML(
-                            "beforebegin",
-                            `
-                                <div class="marquee-container on-body" id="benefits-running-text">
+                        setTimeout(function(){
+                            containernav = document.querySelector(".container-nav").closest("nav").querySelector(".marquee-container");
+                            containernav.classList.add("show");
+                            containernav.insertAdjacentHTML(
+                                "afterbegin",
+                                `
                                     <div class="marquee-content">
                                         <p class="mb-0 pt-2 pb-2" style="text-align:right;">${result.data.description}</p>
                                     </div>
-                                </div>
-                            `
-                        );
-                        document.querySelector(".header-member-dashboard").insertAdjacentHTML(
-                            "beforeend",
-                            `
-                                <div class="marquee-container" id="benefits-running-text">
+                                `
+                            );
+                            headermemberdashboard.querySelector(".marquee-container").classList.add("show");
+                            headermemberdashboard.querySelector(".marquee-container").insertAdjacentHTML(
+                                "afterbegin",
+                                `
                                     <div class="marquee-content">
                                         <p class="mb-0 pt-2 pb-2" style="text-align:right;">${result.data.description}</p>
                                     </div>
-                                </div>
-                            `                      
-                        )
+                                `                      
+                            )
+                        },500)
                     }
                 }
             }
             else{
                 current_running_text = result.data.description;
                 document.querySelectorAll(".marquee-container").forEach((e) => {
-                    e.remove();
+                    e.classList.remove("show");
+                    e.querySelector(".marquee-content").remove();
                 })
             }
         });
     }
+    get_current_title();
     document.addEventListener("DOMContentLoaded", function() {
         if(sessionStorage.getItem("roleDashboard") == "Member"){
-            get_current_title();
             setInterval(function(){
                 get_current_title();
             },5000)
