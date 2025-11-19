@@ -4,7 +4,7 @@
         background-color: black;
         color: white;
         position: absolute;
-        left: 0;
+        right: 0;
         overflow: hidden; /* Hides content outside the container */
         white-space: nowrap; /* Prevents text from wrapping */
         height: 0;
@@ -30,22 +30,12 @@
         from { transform: translateX(35%); }
         to { transform: translateX(-100%); } /* Scrolls from right to left */
     }
-    @media(max-width: 600px){
-        .marquee-container.on-body{
-            display: none;
-        }
-        @keyframes marquee-scroll {
-          from { transform: translateX(100%); }
-          to { transform: translateX(-100%); } /* Scrolls from right to left */
-        }
-    }
-
     .mobile-menu-member{
-        top: 15vh;
+        top: 10vh;
         left: 9vw;
         width: 80vw;
         padding: 15px;
-        position: absolute;
+        position: fixed;
         background-color: black;
         opacity: 0;
         pointer-events: none;
@@ -61,17 +51,36 @@
     .mobile-menu-member li span{
         color: white !important;
     }
+    .burger-menu{
+        display: none;
+        position:fixed;
+        left:0;
+        width: 69px;
+        height: 36.5px;
+        justify-content: end;
+        padding-right: 15px;
+        align-items: center;
+        z-index: 1;
+        background-color: black;
+    }
+
+    @media(max-width: 600px){
+        .burger-menu{
+            display: flex;
+        }
+        .marquee-container{
+            width: 85vw;
+            height: 37px;
+        }
+        @keyframes marquee-scroll {
+          from { transform: translateX(100%); }
+          to { transform: translateX(-100%); } /* Scrolls from right to left */
+        }
+    }
 </style>
 <div class="header-member-dashboard">
     <!-- Header -->
-    <div class="mb-4">
-        <div class="burger-menu" style="position:absolute;top:10.5vh;left:9vw;">
-            <svg width="30" height="29" viewBox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="30" height="5.8" fill="black"/>
-                <rect y="11.6" width="30" height="5.8" fill="black"/>
-                <rect y="23.2" width="30" height="5.8" fill="black"/>
-            </svg>
-        </div>
+    <div>
         <div class="sidebar mobile-menu-member">
             <ul class="nav nav-pills flex-column mb-auto">
             </ul>
@@ -82,9 +91,6 @@
             <div class="member-name" style="font-size: 14px;color: black;font-weight: bold;"></div>
             <div class="member-number" style="font-size: 14px;color: black;font-weight: bold;"></div>
         </div>
-    </div>
-    <div class="marquee-container" id="benefits-running-text">
-        
     </div>
 </div>
 <script>
@@ -181,15 +187,15 @@
                                     </div>
                                 `
                             );
-                            headermemberdashboard.querySelector(".marquee-container").classList.add("show");
-                            headermemberdashboard.querySelector(".marquee-container").insertAdjacentHTML(
-                                "afterbegin",
-                                `
-                                    <div class="marquee-content">
-                                        <p class="mb-0 pt-2 pb-2" style="text-align:right;">${result.data.description}</p>
-                                    </div>
-                                `                      
-                            )
+                            // headermemberdashboard.querySelector(".marquee-container").classList.add("show");
+                            // headermemberdashboard.querySelector(".marquee-container").insertAdjacentHTML(
+                            //     "afterbegin",
+                            //     `
+                            //         <div class="marquee-content">
+                            //             <p class="mb-0 pt-2 pb-2" style="text-align:right;">${result.data.description}</p>
+                            //         </div>
+                            //     `                      
+                            // )
                         },500)
                     }
                 }

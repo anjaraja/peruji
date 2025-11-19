@@ -382,8 +382,8 @@ html {
             padding-left: 10vw !important;
             padding-ritgh: 10vw !important;
         }
-        .content-container.is-have-title-desc{
-            padding-top: 10vh;
+        .content-container{
+            padding-top: 5vh !important;
         }
     }
 /* Close Global */
@@ -619,6 +619,12 @@ html {
     @media (max-width:600px) { 
         .header-member-dashboard{
             display: block;
+        }
+        .header-member-dashboard.is-have-title-desc{
+            margin-top : 15vh !important;
+        }
+        .header-member-dashboard.is-have-title-desc .{
+            margin-top : 15vh !important;
         }
     }
 /* END HEADER MEMBER DASHBOARD */

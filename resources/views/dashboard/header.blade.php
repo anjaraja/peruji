@@ -116,6 +116,13 @@
             </div>
         </div>
     </div>
+    <div class="burger-menu">
+        <svg width="20" height="19" viewBox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="30" height="5.8" fill="white"/>
+            <rect y="11.6" width="30" height="5.8" fill="white"/>
+            <rect y="23.2" width="30" height="5.8" fill="white"/>
+        </svg>
+    </div>
     <div class="marquee-container on-body" id="benefits-running-text">
         
     </div>
