@@ -322,7 +322,7 @@ class MembershipController extends Controller
                 'expiredate' => 'required|string',
                 'number' => 'required|string',
                 'status' => 'required|string|in:pending,active,expired',
-                'title' => 'required|string|in:member,special,priority,executive'
+                'title' => 'required|string|in:regular,special,priority,executive'
             ]);
 
             if ($validated->fails()) {
