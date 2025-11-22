@@ -8,7 +8,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\URL;
+use Carbon\Carbon;
 use DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
 
 class AuthController extends Controller
 {
@@ -229,5 +233,83 @@ class AuthController extends Controller
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 1440
         ]);
+    }
+
+    public function sendEmailForgotPassword(Request $request){
+        try{
+            $validated = Validator::make($request->all(),[
+                'email' => 'required'
+            ]);
+            if ($validated->fails()) {
+                Log::channel('errorlog')->error('[FORGOT PASSWORD MEMBER]', [$validated->errors(),$request->all()]);
+                return response()->json(["message" => "RC5.1"], 422);
+            }
+
+            $user = User::where("email",$request->email);
+            $check_user = $user->first();
+            $url = "";
+
+            if($check_user){
+                $url = URL::temporarySignedRoute(
+                    'forgot-password-submission',
+                    now()->addDays(1),
+                    ['email' => $check_user->email, 'fullname' => $check_user->name]
+                );
+
+                $view = 'mailtemplate.forgot-password'; // dynamic
+                $subject = "Setup Your New Password of Peruji Account";
+                $data = [
+                    "url"=>$url,
+                ];
+                Log::channel('activity')->info('[SENDING EMAIL TO MEMBER]', [$check_user->email]);
+
+                $updateUser = User::where("id",$check_user->id)->update([
+                    "request_forgot"=>now()
+                ]);
+                try{
+                    Mail::to($check_user->email)->send(new SendMail($view, $subject, $data));
+                } catch (\Exception $e) {
+                    // Log the error and continue
+                    Log::channel('errorlog')->info('[FAILED SENDING EMAIL TO MEMBER]', [$check_user->email], $e->getMessage());
+                }
+            }
+
+            return response()->json(["message"=>"If an account exists with this email, you will receive password reset instructions","data"=>[$url]],200);
+        }
+        catch(\Exception $e){
+            Log::channel('errorlog')->error('[FORGOT PASSWORD MEMBER]', [$e->getMessage(),$request->all()]);
+            return response()->json(["message" => "Something wrong when processing your request."], 500);
+        }
+    }
+
+    public function forgotPasswordSubmisison(Request $request){
+        try{
+            $validated = Validator::make($request->all(),[
+                'email' => 'required',
+                'password' => 'required'
+            ]);
+            if ($validated->fails()) {
+                Log::channel('errorlog')->error('[SUBMIT FORGOT PASSWORD]', [$validated->errors(),$request->all()]);
+                return response()->json(["message" => "Something wrong when processing your new password"], 422);
+            }
+
+            $user = User::where('email',$request->email);
+            $user_data = $user->first();
+            if($user_data->request_forgot){
+                $user->update([
+                    'password' => Hash::make($request->password),
+                    'request_forgot' => null,
+                    'updated_at' => now()
+                ]);                
+            }
+
+            Log::channel('activity')->error('[SUBMIT FORGOT PASSWORD]', [$user_data]);
+
+            return response()->json(["message"=>"Your password has been changed. You will be redirect in a few seconds."],200);   
+        }
+        catch(\Exception $e){
+            Log::channel('errorlog')->error('[SUBMIT FORGOT PASSWORD]', [$e->getMessage()]);
+                return response()->json(["message" => "Something wrong when processing your new password"], 401);
+        }
     }
 }

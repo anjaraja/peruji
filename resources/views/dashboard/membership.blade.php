@@ -98,6 +98,22 @@
         }
     /*End FOrm Membership*/
 </style>
+<div class="modal fade" id="delete-member-confirmation" tabindex="-1">
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<h5 class="modal-title">DELETE MEMBER</h5>
+      		</div>
+	      	<div class="modal-body">
+	        	<p>Are you sure want to delete?</p>
+	      	</div>
+	      	<div class="modal-footer">
+	        	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+	        	<button type="button" class="btn btn-danger" action-for="delete">Yes, delete</button>
+	      	</div>
+    	</div>
+  	</div>
+</div>
 <div class="modal fade" id="membershipModal" tabindex="-1" role="dialog" aria-labelledby="membershipModalTitle" aria-hidden="true">
   	<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -114,12 +130,16 @@
 		                  	<input type="text" class="form-control" name="prefix" placeholder="Prof. / dr. / Dr. / dll.">
 		                </div>
 		                <div class="col-md-6">
-			                <label>Organization</label>
-			                 <input type="text" class="form-control" placeholder="Company" name="organization">
-		                </div>
-		                <div class="col-md-6">
 		                 	<label>Full Name</label>
 		                 	<input type="text" class="form-control" placeholder="Day / Month / Year" name="fullname">
+		                </div>
+		                <div class="col-md-6">
+		                  	<label>Suffix</label>
+		                  	<input type="text" class="form-control" placeholder="Gelar: S. Ked. / SH / MM / AAIJ / dll." name="suffix">
+		                </div>
+		                <div class="col-md-6">
+		                  	<label>Date of Birth</label>
+		                  	<input type="date" class="form-control" placeholder="Day / Month / Year" name="dob">
 		                </div>
 		                <div class="col-md-6">
 		                  	<label>Gender</label>
@@ -130,40 +150,12 @@
 				                </select>
 		                </div>
 		                <div class="col-md-6">
-		                  	<label>Work Address</label>
-		                  	<input type="text" class="form-control" placeholder="Company Address" name="ofcaddress">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Function</label>
-		                  	<input type="text" class="form-control" placeholder="Function" name="function">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Department</label>
-		                  	<input type="text" class="form-control" placeholder="Department" name="department">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Suffix</label>
-		                  	<input type="text" class="form-control" placeholder="Gelar: S. Ked. / SH / MM / AAIJ / dll." name="suffix">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Work Phone</label>
-		                  	<input class="form-control" name="ofcphone" type="tel" inputmode="numeric" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Date of Birth</label>
-		                  	<input type="date" class="form-control" placeholder="Day / Month / Year" name="dob">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Work Email</label>
-		                  	<input type="email" class="form-control" name="ofcemail">
+		                  	<label>Hobby</label>
+		                  	<input type="text" class="form-control" placeholder="Badminton, Padel, Running, Marathon" name="hobby">
 		                </div>
 		                <div class="col-md-6">
 		                  	<label>Phone</label>
 		                  	<input class="form-control" name="phone" type="tel" inputmode="numeric" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Website</label>
-		                  	<input type="url" class="form-control" placeholder="www.example.com" name="website">
 		                </div>
 		                <div class="col-md-6">
 		                  	<label>Email</label>
@@ -172,6 +164,34 @@
 		                <div class="col-md-6">
 		                  	<label>Upload Photo</label>
 		                  	<input type="file" class="form-control" name="photo" accept="image/png, image/jpeg, image/gif">
+		                </div>
+		                <div class="col-md-6">
+			                <label>Organization</label>
+			                 <input type="text" class="form-control" placeholder="Company" name="organization">
+		                </div>
+		                <div class="col-md-6">
+		                  	<label>Work Address</label>
+		                  	<input type="text" class="form-control" placeholder="Company Address" name="ofcaddress">
+		                </div>
+		                <div class="col-md-6">
+		                  	<label>Work Phone</label>
+		                  	<input class="form-control" name="ofcphone" type="tel" inputmode="numeric" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+		                </div>
+		                <div class="col-md-6">
+		                  	<label>Work Email</label>
+		                  	<input type="email" class="form-control" name="ofcemail">
+		                </div>
+		                <div class="col-md-6">
+		                  	<label>Website</label>
+		                  	<input type="url" class="form-control" placeholder="www.example.com" name="website">
+		                </div>
+		                <div class="col-md-6">
+		                  	<label>Function</label>
+		                  	<input type="text" class="form-control" placeholder="Function" name="function">
+		                </div>
+		                <div class="col-md-6">
+		                  	<label>Department</label>
+		                  	<input type="text" class="form-control" placeholder="Department" name="department">
 		                </div>
 	          		</div>
 	              	<div class="section-header">DOCUMENT & RESOURCES</div>
@@ -223,12 +243,12 @@
 			                  	<input type="date" class="form-control" placeholder="Day / Month / Year" name="joindate" required>
 			                </div>
 			                <div class="col-md-6">
-			                  	<label>Expiry Date</label>
-			                  	<input type="date" class="form-control" placeholder="Day / Month / Year" name="expiredate" required>
-			                </div>
-			                <div class="col-md-6">
 			                  	<label>Number</label>
 			                  	<input type="text" class="form-control" name="number" required>
+			                </div>
+			                <div class="col-md-6">
+			                  	<label>Expiry Date</label>
+			                  	<input type="date" class="form-control" placeholder="Day / Month / Year" name="expiredate" required>
 			                </div>
 			                <div class="col-md-6">
 			                  	<label>Status</label>
@@ -243,9 +263,11 @@
 			                <div class="col-md-6">
 			                  	<label>Title</label>
 				                <select class="form-control" name="title" required>
-				                    <option value="">--Management/Regular--</option>
-				                    <option value="management">Management</option>
-				                    <option value="member">Regular</option>
+				                    <option value="">--Select Title--</option>
+				                    <option value="regular">Regular</option>
+				                    <option value="special">Special</option>
+				                    <option value="priority">Priority</option>
+				                    <option value="executive">Executive</option>
 				                </select>
 			                  	<!-- <input type="text" class="form-control" placeholder="Active / Pending / Expired" name="status"> -->
 			                </div>
@@ -360,6 +382,9 @@
         modalElement = document.getElementById('membershipModal');
         membershipModal = new bootstrap.Modal(modalElement);
 
+        confirmDeleteModalElement = document.getElementById('delete-member-confirmation');
+        confirmDeleteModal = new bootstrap.Modal(confirmDeleteModalElement);
+
         this.querySelectorAll(".close-modal").forEach(function(thisEl){
         	thisEl.addEventListener("click",function(){
         		membershipModal.hide();
@@ -368,14 +393,14 @@
 	})
 </script>
 <script>
-    let currentPage = 1;
-    const rowsPerPage = 10;
-    totalRows = 0; // simulate from backend
-    totalPages = Math.ceil(totalRows / rowsPerPage);
+    let currentPageMembership = 1;
+    const rowsPerPageMembership = 10;
+    totalRowsMembership = 0; // simulate from backend
+    totalPagesMembership = Math.ceil(totalRowsMembership / rowsPerPageMembership);
 
-    const pageInput = document.getElementById('pageInput');
-    const prevPage = document.getElementById('prevPage');
-    const nextPage = document.getElementById('nextPage');
+    const pageInputMembership = document.querySelector('.membership-index #pageInput');
+    const prevPageMembership = document.querySelector('.membership-index #prevPage');
+    const nextPageMembership = document.querySelector('.membership-index #nextPage');
 
     // Simulate API call
     // function fetchDataFromAPI(page) {
@@ -388,41 +413,45 @@
 
     async function loadPage(page) {
       // Load data
-
         const data = await asyncFetchData(
             "{{route('list-membership','')}}/"+page,
             "GET",
             {"Authorization":localStorage.getItem("Token")}
         );
         row_data = data.data.data
-        totalRows = data.data.total
-        totalPages = data.data.last_page
-        renderTable(row_data);
+        totalRowsMembership = data.data.total
+        totalPagesMembership = data.data.last_page
+        renderTable(row_data,page);
 
         if (isNaN(page) || page < 1) page = 1;
-        if (page > totalPages) page = totalPages;
+        if (page > totalPagesMembership) page = totalPagesMembership;
         
-        currentPage = page;
-        pageInput.value = currentPage;
+        currentPageMembership = page;
+        pageInputMembership.value = currentPageMembership;
 
         // Arrow states
-        prevPage.classList.toggle('disabled', currentPage === 1);
-        nextPage.classList.toggle('disabled', currentPage === totalPages);
+        if(currentPageMembership === 1){
+        	pageInputMembership.setAttribute('disabled', 'disabled');
+        }
+        prevPageMembership.classList.toggle('disabled', currentPageMembership === 1);
+        nextPageMembership.classList.toggle('disabled', currentPageMembership === totalPagesMembership);
     }
 
-    function renderTable(data) {
-      const tbody = document.getElementById('tableBody');
+    function renderTable(data,page=1) {
+      const tbody = document.querySelector('.membership-index #tableBody');
       tbody.innerHTML = '';
       data.forEach((row, index) => {
+      	rowNumber = page==1?page:page*10-9;
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td>${index+1}</td>
+          <td>${rowNumber+index}</td>
           <td>${row.fullname}</td>
           <td>${row.email}</td>
           <td>${row.registered_date}</td>
           <td>${row.status}</td>
           <td class="text-center action-icons">
             <i class="bi bi-pencil-square" title="Edit" onclick="editRow(${row.membership})"></i>
+            <i class="bi bi-trash3-fill text-danger" title="Delete" onclick="deleteRow(${row.membership})"></i>
           </td>
         `;
         tbody.appendChild(tr);
@@ -430,22 +459,22 @@
     }
 
     // Events
-    pageInput.addEventListener('change', () => {
-      loadPage(parseInt(pageInput.value));
+    pageInputMembership.addEventListener('change', () => {
+      loadPage(parseInt(pageInputMembership.value));
     });
 
-    prevPage.addEventListener('click', () => {
-      if (currentPage > 1) loadPage(currentPage - 1);
+    prevPageMembership.addEventListener('click', () => {
+      if (currentPageMembership > 1) loadPage(currentPageMembership - 1);
     });
 
-    nextPage.addEventListener('click', () => {
-      if (currentPage < totalPages) loadPage(currentPage + 1);
+    nextPageMembership.addEventListener('click', () => {
+      if (currentPageMembership < totalPagesMembership) loadPage(currentPageMembership + 1);
     });
 
     // Initial
     document.addEventListener("DOMContentLoaded",function(){
     	if(document.querySelector(".content-container.membership-index")){
-    		loadPage(currentPage);
+    		loadPage(currentPageMembership);
     	}
     })
 </script>
@@ -484,6 +513,7 @@
         	personal_information.querySelector("input[name='suffix']").value = responseData?.suffix;
         	personal_information.querySelector("input[name='ofcphone']").value = responseData?.ofcphone;
         	personal_information.querySelector("input[name='dob']").value = responseData?.dob;
+        	personal_information.querySelector("input[name='hobby']").value = responseData?.hobby;
         	personal_information.querySelector("input[name='ofcemail']").value = responseData?.ofcemail;
         	personal_information.querySelector("input[name='phone']").value = responseData?.phone;
         	personal_information.querySelector("input[name='website']").value = responseData?.website;
@@ -500,8 +530,8 @@
                 input_photo.closest("div[class*='col-md']").querySelector("div[preview-file]")?.remove();
                 input_photo.closest("div[class*='col-md']").insertAdjacentHTML("beforeend",`
                     <div preview-file>
-                        <div class="form-control" style="border:none;">
-                            <img src="${responseData['photo']}" style="max-width:400px">
+                        <div class="form-control" style="border:none;padding-left:0;">
+                            <img src="${responseData['photo']}" style="max-width:180px">
                         </div>
                         <span class="btn btn-danger" for="delete-preview-file">
                             <i class="bi text-white">
@@ -517,13 +547,25 @@
         	card_container = personal_information.querySelector(".card-container");
         	card_container.querySelector(".profile-photo").style.backgroundImage = `url("${responseData["photo"]}")`;
         	card_container.querySelector(".info-name").innerHTML = responseData["fullname"]?.toUpperCase();
-        	card_container.querySelector(".info-details").innerHTML =  responseData["title"]?.toUpperCase();
-        	if(responseData["title"] == "Management"){
-        		card_container.style.backgroundImage = `url("{{asset('dash-img/management-card.png')}}")`;
+        	title = responseData["title"]?.toUpperCase();
+        	if(typeof title === "undefined"){
+        		title = "";
         	}
-        	else{
-        		card_container.style.backgroundImage = `url("{{asset('dash-img/regular-card.png')}}")`;
+        	card_container.querySelector(".info-details").innerHTML =  title=="MEMBER"?"REGULAR":title;
+        	card_background = {
+        		"regular":`url("{{asset('dash-img/regular-card1.png')}}")`,
+        		"special":`url("{{asset('dash-img/special-card.png')}}")`,
+        		"priority":`url("{{asset('dash-img/priority-card.png')}}")`,
+        		"executive":`url("{{asset('dash-img/executive-card.png')}}")`
         	}
+        	member_title = responseData["title"]=="member"?"regular":responseData["title"];
+      		card_container.style.backgroundImage = card_background[member_title];
+        	// if(responseData["title"] == "management" || responseData["title"] == "priority"){
+        	// 	card_container.style.backgroundImage = `url("{{asset('dash-img/management-card.png')}}")`;
+        	// }
+        	// else{
+        	// 	card_container.style.backgroundImage = `url("{{asset('dash-img/regular-card.png')}}")`;
+        	// }
     		card_container.style.backgroundPosition = `center`;
     		card_container.style.backgroundRepeat = ` no-repeat`;
     		card_container.style.backgroundSize = `cover`;
@@ -553,7 +595,7 @@
         	personal_information.querySelector("input[name='expiredate']").value = responseData?.expiredate;
         	personal_information.querySelector("input[name='number']").value = responseData?.number;
         	personal_information.querySelector("select[name='status']").value = responseData?.status;
-        	personal_information.querySelector("select[name='title']").value = responseData?.title=="Regular"?"member":"management";
+        	personal_information.querySelector("select[name='title']").value = responseData?.title;
         });
     }
 
@@ -561,14 +603,17 @@
       html2canvas(
       		thisbtn.closest("div").querySelector(".card-container"), 
       		{
-      			scale:10,
-  				backgroundColor:null
-  			}
-		)
+            scale: window.devicePixelRatio * 2, // best quality
+            useCORS: true,
+            logging: false,
+            allowTaint: false,
+            backgroundColor:null
+  				}
+			)
       	.then(canvas => {
 	        const link = document.createElement("a");
 	        link.download = "membership-card.png";
-	        link.href = canvas.toDataURL("image/jpeg", 1.0);
+	        link.href = canvas.toDataURL("image/png", 1.0);
 	        link.click();
      	 }
  	 );
@@ -605,6 +650,8 @@
         formdata.append("ofcphone",ofcphone)
         dob = this.querySelector("input[name='dob']").value
         formdata.append("dob",dob)
+        hobby = this.querySelector("input[name='hobby']").value
+        formdata.append("hobby",hobby)
         ofcemail = this.querySelector("input[name='ofcemail']").value
         formdata.append("ofcemail",ofcemail)
         phone = this.querySelector("input[name='phone']").value
@@ -717,4 +764,44 @@
 
 		return false;
 	})
+</script>
+<script delete-member>
+	deleteRow = function(id){
+		confirmDeleteModal.show()
+
+		confirmDeleteModalElement = document.getElementById("delete-member-confirmation");
+		buttonExecDelete = confirmDeleteModalElement.querySelector("button[action-for='delete']");
+
+		buttonExecDelete.setAttribute("onclick",`execDelete(${id})`);
+	}
+
+	execDelete = function(id){
+        loading("show");
+
+		confirmDeleteModal.hide();
+
+		formdata = new FormData;
+		formdata.append("member",id);
+
+        fetchData(
+            "{{route('delete-membership')}}",
+            "POST",
+            {"Authorization":localStorage.getItem("Token")},
+            formdata
+        )
+        .then(async (response)=>{
+            loading("close",500);
+
+          	result = await response.json();
+            if (response.status !== 200){
+                showAlert("not-ok","deleted",result.message)
+
+                return response.json();
+            }
+
+            showAlert("ok","deleted");
+			loadPage(currentPageMembership);
+            return response.json();
+        });
+	}
 </script>

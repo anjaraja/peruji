@@ -16,6 +16,8 @@ Route::post('/membership', "$path\MembershipController@store")->name('memberShip
 Route::post('/contact-us', "$path\ContactusController@store")->name('contactUs');
 Route::post('/event-registration', "$path\EventRegistrationController@store")->name('eventRegis');
 
+Route::post('/forgot-password', "$path\AuthController@sendEmailForgotPassword")->name('send-email-forgot-password');
+Route::post('/forgot-password-submission', "$path\AuthController@forgotPasswordSubmisison")->name('post-forgot-password-submission');
 Route::post('/setup-password', "$path\AuthController@setupPasswordSubmit")->name('setup-password-submit');
 Route::post('/register', "$path\AuthController@register");
 Route::post('/login', "$path\AuthController@login")->name("login");
@@ -57,7 +59,14 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/update-membership/member-personal-information', "$path\MembershipController@memberUpdatePersonalInformation")->name("member-update-membership-personal-information");
     Route::post('/update-membership/change-password-member', "$path\AuthController@changePasswordMember")->name("change-password-member");
     Route::post('/update-membership/add-certificate', "$path\MembershipController@addCertificate")->name("add-certificate");
+    Route::post('/delete-membership', "$path\MembershipController@deleteMember")->name("delete-membership");
     /* END MEMBERSHIP */
+
+    /* MEMBERSHIP BENEFITS */
+    Route::get('/membership-benefits/{page}', "$path\MembershipBenefitController@index")->name("list-membership-benefits");
+    Route::post('/update-membership-benefits/', "$path\MembershipBenefitController@update")->name("update-membership-benefits");
+    Route::get('/membership-benefits-detail/{id}', "$path\MembershipBenefitController@show")->name("membership-benefits-detail");
+    /* END MEMBERSHIP BENEFITS */
 
     // Route::get('/me', [AuthController::class, 'me']);
     Route::get('/logout', "$path\AuthController@logout")->name("logout");

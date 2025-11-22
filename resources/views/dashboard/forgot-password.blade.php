@@ -57,43 +57,28 @@
 </style>
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
   <div class="text-center" style="max-width: 400px; width: 100%;">
-    @php
-      $url = $_SERVER['REQUEST_URI'];
-      $explode_url = explode("/",$url);
-      $lastPath = $explode_url[count($explode_url)-1];
-
-      $loginAs = $lastPath=="member-login"?"Member":"Admin";
-    @endphp
-    <h2 class="mb-4">{{$loginAs}} Login</h2>
+    <h2 class="mb-4">Forgot Password</h2>
 
     <div class="access-banner">ACCESS INFORMATION</div>
 
     <form class="container-fluid p-0" id="login-form">
-      <div class="invalid-feedback text-start p-0 pb-3">
-        Email / Password is incorrect
-      </div>
       <div class="text-start mb-3">
         <label for="email" class="form-label">Email</label>
         <input type="email" id="email" class="form-control" />
       </div>
 
-      <div class="text-start mb-2">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" id="password" class="form-control" />
-      </div>
-
       <div class="text-end mb-3">
-        <a href="{{ route('forgot-password') }}" class="text-primary text-decoration-none" style="font-size: 14px;">Forgot your password?</a>
+        <a href="#" class="text-primary text-decoration-none" for="signin" style="font-size: 14px;">Sign in</a>
       </div>
 
       <div class="text-start mb-2">
-        <button type="submit" class="btn btn-black">SIGN IN</button>
+        <button type="submit" class="btn btn-black">Submit</button>
       </div>
     </form>
     <div class="container-fluid p-0">
       <div class="col-md-12">
         <p class="note mt-4">
-          You will receive a notification email regarding your website access to help ensure transparency and security.
+          You will receive an email for setup your password.
         </p>
       </div>
     </div>
@@ -101,42 +86,41 @@
 </div>
 <script type="text/javascript">
   const form = document.getElementById('login-form');
-  sessionStorage.setItem("roleDashboard","{{$loginAs}}")
+
+  document.querySelector("a[for='signin']").addEventListener("click",function(){
+    if(sessionStorage.getItem("roleDashboard") == "Admin"){
+      window.location = "admin";
+    }
+    else{
+      window.location = "member-login";
+    }
+  })
 
   form.addEventListener('submit', function(event) {
     event.preventDefault();
 
-    email = document.getElementById("email").value;
-    password = document.getElementById("password").value;
+    formdata = new FormData;
 
-    loginprocess = fetchData(
-        "{{route('login')}}",
+    email = this.querySelector("input[id='email']").value;
+    formdata.append("email",email);
+
+    fetchData(
+        "{{route('send-email-forgot-password')}}",
         "POST",
-        {"Content-Type":"application/json"},
-        {"email":email,"password":password}
+        {},
+        formdata
       )
-      .then((response)=>{
-        if (response.status !== 200){
-          return response.json();
-        }
-        return response.json();
-      })
-      .then((data)=>{
-        invalid_message = document.querySelector(".invalid-feedback");
-        invalid_message?.classList.remove("show")
+      .then(async (response)=>{
+          result = await response.json();
+          if (response.status !== 200){
+              showAlert("not-ok","updated",result.message)
 
-        if(typeof data.access_token === "undefined" || !data.access_token){
-          console.log(data)
-          invalid_message?.classList.add("show")
-          return false;
-          // window.location.href = "{{route('admin')}}";
-          // return false;
-        }
-        else{
-          localStorage.setItem("Token",data.access_token);
-          window.location.href = "{{route('dashboard-index')}}"
-          return false; 
-        }
+              return response.json();
+          }
+
+          showAlert("ok","updated",result.message)
+          document.getElementById("email").value = "";
+          return response.json();
       });
 
     // console.log(loginprocess);

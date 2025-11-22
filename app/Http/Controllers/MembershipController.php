@@ -6,6 +6,7 @@ use App\Helpers\Pagination;
 use App\Models\Membership;
 use App\Models\UserProfile;
 use App\Models\EmailAdmin;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Http\Request;
@@ -196,7 +197,7 @@ class MembershipController extends Controller
     public function show($id)
     {
         try{
-            $membership = Membership::select(DB::raw("userprofile.id as userpfofileid, membership.id as memberid, userprofile.prefix, ifnull(userprofile.organization,membership.org)as organization, membership.gender, ifnull(userprofile.fullname,membership.fullname)as fullname, userprofile.ofcaddress, membership.funct, membership.department, userprofile.suffix, userprofile.ofcphone, userprofile.dob, ifnull(userprofile.ofcemail,membership.ofcemail)as ofcemail, ifnull(userprofile.phone,membership.phone)as phone, userprofile.website, ifnull(userprofile.email,membership.email)as email, userprofile.photo, userprofile.joindate, userprofile.expiredate, userprofile.number, userprofile.status, userprofile.additionaldocument, CASE WHEN userprofile.title != 'management' THEN 'Regular' ELSE 'Management' END as title"))
+            $membership = Membership::select(DB::raw("userprofile.id as userpfofileid, membership.id as memberid, userprofile.prefix, ifnull(userprofile.organization,membership.org)as organization, membership.gender, ifnull(userprofile.fullname,membership.fullname)as fullname, userprofile.ofcaddress, membership.funct, membership.department, userprofile.suffix, userprofile.ofcphone, userprofile.dob, ifnull(userprofile.ofcemail,membership.ofcemail)as ofcemail, ifnull(userprofile.phone,membership.phone)as phone, userprofile.website, ifnull(userprofile.email,membership.email)as email, userprofile.photo, userprofile.joindate, userprofile.expiredate, userprofile.number, userprofile.status, userprofile.additionaldocument, userprofile.title, userprofile.hobby"))
                 ->leftJoin("userprofile","membership.id","=","userprofile.memberid")
                 ->where("membership.id",$id)
                 ->first();
@@ -248,6 +249,11 @@ class MembershipController extends Controller
      *                      property="dob",
      *                      type="date",
      *                      example="1999-01-01"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="hobby",
+     *                      type="string",
+     *                      example="Badminton, Padel, Running, Marathon"
      *                  ),
      *                  @OA\Property(
      *                      property="phone",
@@ -308,6 +314,7 @@ class MembershipController extends Controller
                 'organization' => 'nullable|string',
                 'fullname' => 'required|string',
                 'dob' => 'nullable|date',
+                'hobby' => 'nullable|string',
                 'phone' => 'required|string',
                 'email' => 'required|email',
                 'photo' => 'nullable|file|mimes:jpeg,jpg,png',
@@ -315,7 +322,7 @@ class MembershipController extends Controller
                 'expiredate' => 'required|string',
                 'number' => 'required|string',
                 'status' => 'required|string|in:pending,active,expired',
-                'title' => 'required|string|in:member,management'
+                'title' => 'required|string|in:regular,special,priority,executive'
             ]);
 
             if ($validated->fails()) {
@@ -331,6 +338,7 @@ class MembershipController extends Controller
                 "fullname"=>$request->fullname,
                 "suffix"=>$request->suffix,
                 "dob"=>$request->dob,
+                "hobby"=>$request->hobby,
                 "phone"=>$request->phone,
                 "email"=>$request->email,
                 "organization"=>$request->organization,
@@ -389,12 +397,12 @@ class MembershipController extends Controller
                 $data = [
                     "url"=>$url,
                 ];
-                Log::channel('activity')->info('[SENDING EMAIL TO MEMBER]', [$member->email]);
+                Log::channel('activity')->info('[SENDING EMAIL TO MEMBER]', [$request->email]);
                 try{
-                    Mail::to($member->email)->send(new SendMail($view, $subject, $data));
+                    Mail::to($request->email)->send(new SendMail($view, $subject, $data));
                 } catch (\Exception $e) {
                     // Log the error and continue
-                    Log::channel('errorlog')->info('[FAILED SENDING EMAIL TO MEMBER]', [$member->email], $e->getMessage());
+                    Log::channel('errorlog')->info('[FAILED SENDING EMAIL TO MEMBER]', [$request->email], $e->getMessage());
                     return response()->json(["message" => "RC3.2","wording" => "Failed when sending email to member"], 422);
                 }
 
@@ -554,7 +562,7 @@ class MembershipController extends Controller
     {
         try{
             $id = auth("api")->user()->id;
-            $membership = Membership::select(DB::raw("userprofile.id as userpfofileid, membership.id as memberid, userprofile.prefix, ifnull(userprofile.organization,membership.org)as organization, ifnull(userprofile.fullname,membership.fullname)as fullname, userprofile.ofcaddress, userprofile.suffix, userprofile.ofcphone, userprofile.dob, ifnull(userprofile.ofcemail,membership.ofcemail)as ofcemail, ifnull(userprofile.phone,membership.phone)as phone, userprofile.website, ifnull(userprofile.email,membership.email)as email, userprofile.photo, userprofile.joindate, userprofile.expiredate, userprofile.number, userprofile.status, userprofile.additionaldocument, CASE WHEN userprofile.title != 'management' THEN 'Regular' ELSE 'Management' END as title"))
+            $membership = Membership::select(DB::raw("userprofile.id as userpfofileid, membership.id as memberid, userprofile.prefix, ifnull(userprofile.organization,membership.org)as organization, ifnull(userprofile.fullname,membership.fullname)as fullname, userprofile.ofcaddress, userprofile.suffix, userprofile.ofcphone, userprofile.dob, ifnull(userprofile.ofcemail,membership.ofcemail)as ofcemail, ifnull(userprofile.phone,membership.phone)as phone, userprofile.website, ifnull(userprofile.email,membership.email)as email, userprofile.photo, userprofile.joindate, userprofile.expiredate, userprofile.number, userprofile.status, userprofile.additionaldocument, userprofile.title, userprofile.hobby"))
                 ->leftJoin("userprofile","membership.id","=","userprofile.memberid")
                 ->where("userprofile.userid",$id)
                 ->first();
@@ -604,6 +612,11 @@ class MembershipController extends Controller
      *                      example="1999-01-01"
      *                  ),
      *                  @OA\Property(
+     *                      property="hobby",
+     *                      type="string",
+     *                      example="Badminton, Padel, Running, Marathon"
+     *                  ),
+     *                  @OA\Property(
      *                      property="phone",
      *                      type="string",
      *                      example="08123123123"
@@ -649,6 +662,7 @@ class MembershipController extends Controller
                 "fullname"=>$request->fullname,
                 "suffix"=>$request->suffix,
                 "dob"=>$request->dob,
+                "hobby"=>$request->hobby,
                 "phone"=>$request->phone,
                 "email"=>$request->email,
                 "organization"=>$request->organization,
@@ -748,6 +762,76 @@ class MembershipController extends Controller
         catch(\Exception $e){
             Log::channel('errorlog')->error('[ADD CERTIFICATE]', ["message"=>$e->getMessage()]);
             return response()->json(["message"=>"RC7"],500);
+        }
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/api/delete-membership",
+     *      security={{"bearerAuth":{}}},
+     *      tags={"Dashboard"}, 
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(
+     *              mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  required={"member"},
+     *                  @OA\Property(
+     *                      property="member",
+     *                      type="integer",
+     *                      example="1"
+     *                  )
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *      )
+     * )
+     */
+    public function deleteMember(Request $request){
+        DB::beginTransaction();
+        try{
+            $validated = Validator::make($request->all(),[
+                'member' => 'required|string'
+            ]);
+
+            if ($validated->fails()) {
+                Log::channel('activity')->warning('[DELETE MEMBER]', [$request->all(),$validated->errors()]);
+                return response()->json(["message" => "RC8.1"], 422);
+            }   
+
+            $member = Membership::where("id",$request->member);
+            $deletedMember = $member->first();
+            if($deletedMember){
+                Log::channel('activity')->warning('[DELETE MEMBER]', [$deletedMember]);
+                $member->delete();
+            }
+
+            $userprofile = UserProfile::where("memberid",$request->member);
+            $deletedUserProfile = $userprofile->first();
+            if($deletedUserProfile){
+                Log::channel('activity')->warning('[DELETE MEMBER USERPROFILE]', [$deletedUserProfile]);
+                $userprofile->delete();
+            }
+
+            if(isset($deletedUserProfile->userid)){
+                $user = User::where("id",$deletedUserProfile->userid);
+                $deletedUser = $user->first();
+                if($deletedUser){
+                    Log::channel('activity')->warning('[DELETE MEMBER USER]', [$deletedUser]);
+                    $user->delete();
+                }
+            }
+
+            DB::commit();
+            return response()->json(["message"=>"ok","data"=>null],200);
+        }
+        catch(\Exception $e){
+            DB::rollback();
+            Log::channel('errorlog')->error('[DELETE MEMBER]', ["message"=>$e->getMessage()]);
+            return response()->json(["message"=>"RC8"],500);
         }
     }
 }

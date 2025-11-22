@@ -107,6 +107,30 @@ class LandingPageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+    public function forgotPassword()
+    {
+        return view('dashboard.forgot-password');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function sendEmailForgotPassword()
+    {
+        return view('dashboard.forgot-password');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function forgotPasswordSubmission()
+    {
+        return view('dashboard.forgot-password-submission');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
     public function newsroom()
     {
         $newsroom = new NewsController();

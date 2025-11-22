@@ -18,6 +18,8 @@
 @include('dashboard.newsroom')
 @include('dashboard.admin-emails')
 @include('dashboard.membership')
+@include('dashboard.membership-benefits')
+@include('dashboard.header-member-dashboard')
 @include('dashboard.personal-information')
 @include('dashboard.membership-status')
 @include('dashboard.document-resources')

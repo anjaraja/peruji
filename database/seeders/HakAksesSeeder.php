@@ -47,6 +47,11 @@ class HakAksesSeeder extends Seeder
                     ['idgrupakses' => 1,'idmenu' => 6,'action' => json_encode(["view","create","update","delete"]),'activestatus' => 1,'created_by' => "System",'modified_by' => "System"]
                 );
             }
+            if (!HakAkses::where(['idgrupakses'=>1, 'idmenu'=>11])->first()){
+                HakAkses::create(
+                    ['idgrupakses' => 1,'idmenu' => 11,'action' => json_encode(["view","create","update","delete"]),'activestatus' => 1,'created_by' => "System",'modified_by' => "System"]
+                );
+            }
         //END ADMINISTRATOR
 
         //BEGIN MEMBERSHIP

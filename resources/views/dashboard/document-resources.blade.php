@@ -2,6 +2,14 @@
     .document-resources-index .list-unstyled{
         min-height: 268px;
     }
+    .card-preview-mobile{
+        display: none;
+    }
+    @media(max-width: 600px){
+        .card-preview-mobile{
+            display: block;
+        }
+    }
 </style>
 <div class="content-container document-resources-index">
     <!-- Header -->
@@ -25,7 +33,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#" onclick="downloadPNG(this)" class="btn btn-orange px-4">Download</a>
+            <a href="#" onclick="downloadDirectPNG(this)" class="btn btn-orange px-4">Download</a>
         </div>
         <div class="col-md-6">
             <h5 class="text-warning fw-bold mb-3">Certificates</h5>
@@ -37,6 +45,7 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/dom-to-image@2.6.0/dist/dom-to-image.min.js"></script>
 <script>
     const documentAndResources = function(){
         responseData = {}
@@ -70,21 +79,96 @@
             card_container.querySelector(".profile-photo").style.backgroundSize = "cover";
             card_container.querySelector(".info-name").innerHTML = responseData["fullname"]?.toUpperCase();
             card_container.querySelector(".info-details").innerHTML = responseData["title"]?.toUpperCase();
-            if(responseData["title"] == "Management"){
-                card_container.style.backgroundImage = `url("{{asset('dash-img/management-card.png')}}")`;
+
+            card_background = {
+                "regular":`url("{{asset('dash-img/regular-card1.png')}}")`,
+                "special":`url("{{asset('dash-img/special-card.png')}}")`,
+                "priority":`url("{{asset('dash-img/priority-card.png')}}")`,
+                "executive":`url("{{asset('dash-img/executive-card.png')}}")`
             }
-            else{
-                card_container.style.backgroundImage = `url("{{asset('dash-img/regular-card.png')}}")`;
-            }
+            member_title = responseData["title"]=="member"?"regular":responseData["title"];
+            card_container.style.backgroundImage = card_background[member_title];
+            
+            // if(responseData["title"] == "management" || responseData["title"] == "priority"){
+            //     card_container.style.backgroundImage = `url("{{asset('dash-img/management-card.png')}}")`;
+            // }
+            // else{
+            //     card_container.style.backgroundImage = `url("{{asset('dash-img/regular-card.png')}}")`;
+            // }
             card_container.style.backgroundPosition = `center`;
             card_container.style.backgroundRepeat = ` no-repeat`;
             card_container.style.backgroundSize = `cover`;
             card_container.querySelector(".info-details.number").innerHTML = responseData["number"];
+
+            // var options = {
+            //   quality: 0,
+            //   bgcolor: 'transparent',
+            //   style: {
+            //     width:card_container.offsetWidth,
+            //     height:card_container.offsetHeight,
+            //     // transform: "scale(3)",
+            //     // transformOrigin: "top left",
+            //     // backgroundSize:"10px"
+            //   }
+            // };
+            // domtoimage.toPng(card_container, options).then(dataUrl => {
+            //   var link = document.createElement('a');
+            //   link.download = "image.png";
+            //     card_container.insertAdjacentHTML("afterend",`<img class="mb-3" src="${dataUrl}" style="width:100%;border-radius:28px;">`);
+            //   // link.href = dataUrl;
+            //   // link.click();
+            // });
+
+            cloned_card_container = card_container.cloneNode(true);
+            cloned_card_container.style.position = "absolute";
+            cloned_card_container.style.top = "-200vh";
+            cloned_card_container.style.left = "-200vw";
+            cloned_card_container.style.display = "block";
+            console.log(cloned_card_container);
+
+            document.querySelector("main").insertAdjacentHTML("afterbegin",cloned_card_container.outerHTML);
+
+            html2canvas(
+                document.querySelector("main").querySelector(".card-container"), 
+                {
+                    scale: window.devicePixelRatio * 2, // best quality
+                    useCORS: true,
+                    logging: false,
+                    allowTaint: false,
+                    backgroundColor:null
+                }
+            )
+            .then(canvas => {
+                    const link = document.createElement("a");
+                    link.download = "membership-card.png";
+                    link.href = canvas.toDataURL("image/png", 1.0);
+                    card_container.insertAdjacentHTML("afterend",`<img class="mb-3 card-preview-mobile" src="${link.href}" style="width:100%;border-radius:28px;">`);
+                    // card_container.remove();
+                    // link.click();
+                }
+            );
         });
     }
     document.addEventListener("DOMContentLoaded",function(){
         if(document.querySelector(".content-container.document-resources-index")){
             documentAndResources()
         }
+
     })
+    downloadDirectPNG = function(thisel){
+        html2canvas(
+            thisel.closest("div").querySelector("#cardPreview"),
+            {
+                scale:10,
+                backgroundColor:null
+            }
+        )
+        .then(canvas => {
+                const link = document.createElement("a");
+                link.download = "membership-card.png";
+                link.href = canvas.toDataURL("image/png", 1.0);
+                link.click();
+            }
+        );
+    }
 </script>

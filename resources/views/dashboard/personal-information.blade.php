@@ -12,40 +12,24 @@
                 <input type="text" class="form-control" name="prefix" placeholder="Prof. / dr. / Dr. / dll.">
             </div>
             <div class="col-md-6">
-                <label>Organization</label>
-                 <input type="text" class="form-control" placeholder="Company" name="organization">
-            </div>
-            <div class="col-md-6">
                 <label>Full Name</label>
                 <input type="text" class="form-control" placeholder="Day / Month / Year" name="fullname">
-            </div>
-            <div class="col-md-6">
-                <label>Work Address</label>
-                <input type="text" class="form-control" placeholder="Company Address" name="ofcaddress">
             </div>
             <div class="col-md-6">
                 <label>Suffix</label>
                 <input type="text" class="form-control" placeholder="Gelar: S. Ked. / SH / MM / AAIJ / dll." name="suffix">
             </div>
             <div class="col-md-6">
-                <label>Work Phone</label>
-                <input type="text" class="form-control" name="ofcphone">
-            </div>
-            <div class="col-md-6">
                 <label>Date of Birth</label>
                 <input type="date" class="form-control" placeholder="Day / Month / Year" name="dob">
             </div>
             <div class="col-md-6">
-                <label>Work Email</label>
-                <input type="email" class="form-control" name="ofcemail">
+                <label>Hobby</label>
+                <input type="text" class="form-control" placeholder="Badminton, Padel, Running, Marathon" name="hobby">
             </div>
             <div class="col-md-6">
                 <label>Phone</label>
                 <input type="text" class="form-control" name="phone">
-            </div>
-            <div class="col-md-6">
-                <label>Website</label>
-                <input type="url" class="form-control" placeholder="www.example.com" name="website">
             </div>
             <div class="col-md-6">
                 <label>Email</label>
@@ -56,6 +40,26 @@
                 <input type="file" class="form-control" name="photo">
                 <input type="hidden" name="memberid">
                 <input type="hidden" name="userprofileid">
+            </div>
+            <div class="col-md-6">
+                <label>Organization</label>
+                 <input type="text" class="form-control" placeholder="Company" name="organization">
+            </div>
+            <div class="col-md-6">
+                <label>Work Address</label>
+                <input type="text" class="form-control" placeholder="Company Address" name="ofcaddress">
+            </div>
+            <div class="col-md-6">
+                <label>Work Phone</label>
+                <input type="text" class="form-control" name="ofcphone">
+            </div>
+            <div class="col-md-6">
+                <label>Work Email</label>
+                <input type="email" class="form-control" name="ofcemail">
+            </div>
+            <div class="col-md-6">
+                <label>Website</label>
+                <input type="url" class="form-control" placeholder="www.example.com" name="website">
             </div>
         </div>
         <div class="row g-3 mt-2">
@@ -95,6 +99,7 @@
             personal_information.querySelector("input[name='suffix']").value = responseData?.suffix;
             personal_information.querySelector("input[name='ofcphone']").value = responseData?.ofcphone;
             personal_information.querySelector("input[name='dob']").value = responseData?.dob;
+            personal_information.querySelector("input[name='hobby']").value = responseData?.hobby;
             personal_information.querySelector("input[name='ofcemail']").value = responseData?.ofcemail;
             personal_information.querySelector("input[name='phone']").value = responseData?.phone;
             personal_information.querySelector("input[name='website']").value = responseData?.website;
@@ -106,7 +111,7 @@
                 input_photo.closest("div[class*='col-md']").insertAdjacentHTML("beforeend",`
                     <div preview-file>
                         <div class="form-control" style="border:none;">
-                            <img src="${responseData['photo']}" style="max-width:400px">
+                            <img src="${responseData['photo']}" style="max-width:180px;">
                         </div>
                         <span class="btn btn-danger" for="delete-preview-file">
                             <i class="bi text-white">
@@ -170,6 +175,8 @@
         formdata.append("ofcphone",ofcphone)
         dob = this.querySelector("input[name='dob']").value
         formdata.append("dob",dob)
+        hobby = this.querySelector("input[name='hobby']").value
+        formdata.append("hobby",hobby)
         ofcemail = this.querySelector("input[name='ofcemail']").value
         formdata.append("ofcemail",ofcemail)
         phone = this.querySelector("input[name='phone']").value

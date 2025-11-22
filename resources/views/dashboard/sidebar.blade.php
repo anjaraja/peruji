@@ -71,25 +71,34 @@
 	loadingModal = function(toggleTo,timeClose=500, modalElement){
 		if(toggleTo == "show"){
 	    loading_container = document.querySelector(`.loading-container`).outerHTML;
-			modalElement.querySelector(".modal-dialog").insertAdjacentHTML("afterbegin",loading_container)
+			modalElement.querySelector(".modal-content").insertAdjacentHTML("afterbegin",loading_container)
 	    modalElement.querySelector(".loading-container").classList.add("show");
 		}
 		else{
   		setTimeout(() => {
-  			modalElement.querySelector(".modal-dialog").querySelector(".loading-container").classList.remove("show");
-	    	modalElement.querySelector(".modal-dialog").querySelector(".loading-container").remove();
+  			modalElement.querySelector(".modal-content").querySelector(".loading-container").classList.remove("show");
+	    	modalElement.querySelector(".modal-content").querySelector(".loading-container").remove();
   		},timeClose)
 		}
 	}
 	document.addEventListener("click", function (e) {
 		active_menu = document.querySelector(".sidebar li span.active")
+		active_menu_mobile = document.querySelector(".mobile-menu-member li span.active")
+
       	if (e.target.matches(".sidebar .nav-item span") && !e.target.matches(".sidebar .nav-item span.active")) {
       		loading("show");
 	      	active_menu?.classList.remove("active");
+	      	active_menu_mobile?.classList.remove("active");
 	      	active_menu.classList.add("link-dark");
+	      	active_menu_mobile?.classList.add("link-dark");
 
 	      	e.target.classList.remove("link-dark")
 	      	e.target.classList.add("active")
+
+	      	setTimeout(function(){
+	            floating_menu_mobile_member = document.querySelector(".mobile-menu-member");
+	            floating_menu_mobile_member?.classList.remove("show");
+	      	},500)
 
       		link = e.target.getAttribute("link");
 
