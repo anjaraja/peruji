@@ -365,15 +365,15 @@
     </div>
 
     <div class="d-flex align-items-center mt-3 page-control-wrapper justify-content-center">
-      <div id="prevPage" class="page-arrow" title="Previous">
+      <button id="prevPage" class="page-arrow" title="Previous">
         <i class="bi bi-chevron-left"></i>
-      </div>
+      </button>
 
       <input type="number" class="form-control page-input" id="pageInput" value="1" min="1">
 
-      <div id="nextPage" class="page-arrow" title="Next">
+      <button id="nextPage" class="page-arrow" title="Next">
         <i class="bi bi-chevron-right"></i>
-      </div>
+      </button>
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -451,6 +451,8 @@
 		        if(currentPageMembership === 1){
 		        	pageInputMembership.setAttribute('disabled', 'disabled');
 		        }
+		    	prevPageMembership.removeAttribute("disabled");
+		    	nextPageMembership.removeAttribute("disabled");
 		        prevPageMembership.classList.toggle('disabled', currentPageMembership === 1);
 		        nextPageMembership.classList.toggle('disabled', currentPageMembership === totalPagesMembership);
         	}
@@ -484,11 +486,13 @@
     });
 
     prevPageMembership.addEventListener('click', () => {
-      if (currentPageMembership > 1) loadPage(currentPageMembership - 1);
+    	prevPageMembership.setAttribute("disabled","disabled");
+      	if (currentPageMembership > 1) loadPage(currentPageMembership - 1);
     });
 
     nextPageMembership.addEventListener('click', () => {
-      if (currentPageMembership < totalPagesMembership) loadPage(currentPageMembership + 1);
+    	nextPageMembership.setAttribute("disabled","disabled");
+      	if (currentPageMembership < totalPagesMembership) loadPage(currentPageMembership + 1);
     });
 
     // Initial
