@@ -413,28 +413,48 @@
 
     async function loadPage(page) {
       // Load data
-        const data = await asyncFetchData(
+        row_data = {}
+        totalRowsMembership = 0
+        totalPagesMembership = 0
+
+        const data = fetchData(
             "{{route('list-membership','')}}/"+page,
             "GET",
             {"Authorization":localStorage.getItem("Token")}
-        );
-        row_data = data.data.data
-        totalRowsMembership = data.data.total
-        totalPagesMembership = data.data.last_page
-        renderTable(row_data,page);
+        )
+        .then((response)=>{
+    		loading("show");
+            if (response.status !== 200){
+                showAlert("not-ok","get")
+                return response.json();
+            }
+            return response.json();
+        })
+        .then((data)=>{
+	        row_data = data.data.data
+	        totalRowsMembership = data.data.total
+	        totalPagesMembership = data.data.last_page
 
-        if (isNaN(page) || page < 1) page = 1;
-        if (page > totalPagesMembership) page = totalPagesMembership;
-        
-        currentPageMembership = page;
-        pageInputMembership.value = currentPageMembership;
+    		loading("close");
+        })
+        .finally(() =>{
+        	if(row_data){
+        		renderTable(row_data,page);
 
-        // Arrow states
-        if(currentPageMembership === 1){
-        	pageInputMembership.setAttribute('disabled', 'disabled');
-        }
-        prevPageMembership.classList.toggle('disabled', currentPageMembership === 1);
-        nextPageMembership.classList.toggle('disabled', currentPageMembership === totalPagesMembership);
+		        if (isNaN(page) || page < 1) page = 1;
+		        if (page > totalPagesMembership) page = totalPagesMembership;
+		        
+		        currentPageMembership = page;
+		        pageInputMembership.value = currentPageMembership;
+
+		        // Arrow states
+		        if(currentPageMembership === 1){
+		        	pageInputMembership.setAttribute('disabled', 'disabled');
+		        }
+		        prevPageMembership.classList.toggle('disabled', currentPageMembership === 1);
+		        nextPageMembership.classList.toggle('disabled', currentPageMembership === totalPagesMembership);
+        	}
+        })
     }
 
     function renderTable(data,page=1) {
