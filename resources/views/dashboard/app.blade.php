@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('dash-css/dash-style_18.css') }}">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <script src="{{asset('dash-js/fetchhelper_3.js')}}"></script>
+    <script src="{{asset('dash-js/fetchhelper_4.js')}}"></script>
 </head>
 <body>
     @include('dashboard.header')

@@ -63,6 +63,27 @@
       text-align: center;
     }
 
+    table th.sort-trigger{
+    	cursor: pointer;
+    }
+    table i[sort]{
+    	color: #666;
+    	transition: all 0.2s;
+    }
+    table i[sort].selected{
+    	color: #f7941d;
+    	transition: all 0.2s;
+    }
+    .arrow-sort-container{
+	    display: flex;
+    	flex-direction: column;
+    	font-size: 10px;
+    	justify-content: start;
+    }
+    .arrow-sort-container div{
+    	height: 8px;
+    }
+
     /*Form Membership*/
         .section-header {
           background-color: #f7941d;
@@ -347,14 +368,77 @@
         </div>
     </div>
     <div class="table-responsive">
+    	<div class="row mb-2">
+    		<div class="filter-input d-flex justify-content-end">
+    			<div class="col-md-3">
+    				<input class="form-control" type="text" name="search" placeholder="Search">
+    			</div>
+    		</div>
+    	</div>
         <table class="clean-table">
+	      	<colgroup>
+	        	<col style="width: 0%;">
+	        	<col style="width: 30%;">
+	        	<col style="width: 25%;">
+	        	<col style="width: 20%;">
+	        	<col style="width: 15%;">
+	        	<col style="width: 10%;">
+	      	</colgroup>
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Register Date</th>
-                    <th>Status</th>
+                    <th class="sort-trigger"> 
+                    	<div style="display:flex;justify-content: space-between;">
+                    		<span>Name</span>
+                    		<div class="arrow-sort-container">
+		                    	<div>
+		                    		<i class="bi bi-caret-up-fill" sort type="asc" sort-data="name"></i>
+		                    	</div>
+		                    	<div>
+		                    		<i class="bi bi-caret-down-fill" sort type="desc" sort-data="name"></i>
+		                    	</div>
+                    		</div>
+                    	</div>
+                    </th>
+                    <th class="sort-trigger"> 
+                    	<div style="display:flex;justify-content: space-between;">
+                    		<span>Email</span>
+                    		<div class="arrow-sort-container">
+		                    	<div>
+		                    		<i class="bi bi-caret-up-fill" sort type="asc" sort-data="email"></i>
+		                    	</div>
+		                    	<div>
+		                    		<i class="bi bi-caret-down-fill" sort type="desc" sort-data="email"></i>
+		                    	</div>
+                    		</div>
+                    	</div>
+                    </th>
+                    <th class="sort-trigger"> 
+                    	<div style="display:flex;justify-content: space-between;">
+                    		<span>Register Date</span>
+                    		<div class="arrow-sort-container">
+		                    	<div>
+		                    		<i class="bi bi-caret-up-fill" sort type="asc" sort-data="register_date"></i>
+		                    	</div>
+		                    	<div>
+		                    		<i class="bi bi-caret-down-fill" sort type="desc" sort-data="register_date"></i>
+		                    	</div>
+                    		</div>
+                    	</div>
+                    </th>
+                    <th class="sort-trigger"> 
+                    	<div style="display:flex;justify-content: space-between;">
+                    		<span>Status</span>
+                    		<div class="arrow-sort-container">
+		                    	<div>
+		                    		<i class="bi bi-caret-up-fill" sort type="asc" sort-data="status"></i>
+		                    	</div>
+		                    	<div>
+		                    		<i class="bi bi-caret-down-fill" sort type="desc" sort-data="status"></i>
+		                    	</div>
+                    		</div>
+                    	</div>
+                    </th>
                     <th class="text-center">Action</th>
                 </tr>
             </thead>
@@ -393,6 +477,9 @@
 	})
 </script>
 <script>
+	let sort_column = "register_date";
+	let sort_type = "desc";
+	let query_search = "";
     let currentPageMembership = 1;
     const rowsPerPageMembership = 10;
     totalRowsMembership = 0; // simulate from backend
@@ -402,23 +489,16 @@
     const prevPageMembership = document.querySelector('.membership-index #prevPage');
     const nextPageMembership = document.querySelector('.membership-index #nextPage');
 
-    // Simulate API call
-    // function fetchDataFromAPI(page) {
-    //   return new Promise((resolve) => {
-    //     setTimeout(() => {
-    //       resolve(data);
-    //     }, 250);
-    //   });
-    // }
-
-    async function loadPage(page) {
-      // Load data
+    async function loadPage(page, query="", sort_column="register_date",sort_type="desc") {
+      	// Load data
+      	base_sort_column = {"name":"fullname", "email":"email", "register_date":"created_at", "status":"status"};
+      	sort_column = base_sort_column[sort_column];
         row_data = {}
         totalRowsMembership = 0
         totalPagesMembership = 0
 
         const data = fetchData(
-            "{{route('list-membership','')}}/"+page,
+            "{{route('list-membership','')}}/"+page+`?search=${query}&sort_column=${sort_column}&sort_type=${sort_type}`,
             "GET",
             {"Authorization":localStorage.getItem("Token")}
         )
@@ -482,25 +562,79 @@
 
     // Events
     pageInputMembership.addEventListener('change', () => {
-      loadPage(parseInt(pageInputMembership.value));
+      loadPage(parseInt(pageInputMembership.value),query_search,sort_column, sort_type);
     });
 
     prevPageMembership.addEventListener('click', () => {
     	prevPageMembership.setAttribute("disabled","disabled");
-      	if (currentPageMembership > 1) loadPage(currentPageMembership - 1);
+      	if (currentPageMembership > 1) loadPage((currentPageMembership - 1),query_search,sort_column, sort_type);
     });
 
     nextPageMembership.addEventListener('click', () => {
     	nextPageMembership.setAttribute("disabled","disabled");
-      	if (currentPageMembership < totalPagesMembership) loadPage(currentPageMembership + 1);
+      	if (currentPageMembership < totalPagesMembership) loadPage((currentPageMembership + 1),query_search,sort_column, sort_type);
     });
 
     // Initial
     document.addEventListener("DOMContentLoaded",function(){
     	if(document.querySelector(".content-container.membership-index")){
-    		loadPage(currentPageMembership);
+    		loadPage(currentPageMembership,query_search,sort_column, sort_type);
     	}
     })
+
+    document.querySelectorAll(".content-container .sort-trigger").forEach((e)=>{
+    	e.addEventListener("click",function(){
+    		sortTriggerEl = this;
+    		sortTriggerEl.closest("tr").querySelectorAll(".sort-trigger").forEach((allE)=>{
+    			if(sortTriggerEl != allE){
+    				allE.querySelectorAll("i").forEach((arrowEl)=>{
+    					arrowEl.classList.remove("selected");	
+    				})
+    			}
+    		})
+    		sort_asc = this.querySelector(".arrow-sort-container i[type='asc']");
+    		sort_desc = this.querySelector(".arrow-sort-container i[type='desc']");
+
+    		if(sort_asc.classList.contains("selected")){
+    			sort_asc.classList.remove("selected");
+    			sort_desc.classList.add("selected");
+    		}
+    		else{
+    			sort_desc.classList.remove("selected");
+    			sort_asc.classList.add("selected");
+    		}
+
+    		selected_sort = this.querySelector(".arrow-sort-container i.selected");
+    		sort_column = selected_sort.getAttribute("sort-data");
+    		sort_type = selected_sort.getAttribute("type");
+
+    		loadPage(1,query_search,sort_column, sort_type);
+    	})
+    })
+
+    // document.querySelectorAll(".content-container i[sort]").forEach((e)=>{
+    // 	e.addEventListener("click",function(){
+    // 		this.closest("tr").querySelectorAll("th i").forEach((allE)=>{
+    // 			allE.classList.remove("selected");
+    // 		})
+    // 		this.classList.add("selected")
+    // 		sort_column = this.getAttribute("sort-data");
+    // 		sort_type = this.getAttribute("type");
+
+    // 		loadPage(1,query_search,sort_column, sort_type);
+    // 	})
+    // })
+
+    search_input = document.querySelector(".content-container input[name='search']");
+
+    const handleSearch = debounce(function (value) {
+	  	loadPage(1,value,sort_column,sort_type)
+	}, 500);
+
+	search_input.addEventListener("input", e => {
+		query_search = e.target.value
+	  	handleSearch(query_search);
+	});
 </script>
 <script edit-script>
     editRow = function(id, isRecall=false){
@@ -730,6 +864,7 @@
             showAlert("ok","updated");
             thisform.querySelector("input[name='photo']").value = ""
           	editRow(memberid,true);
+          	loadPage(currentPageMembership,query_search,sort_column, sort_type);
             return response.json();
         });
 
@@ -824,7 +959,7 @@
             }
 
             showAlert("ok","deleted");
-			loadPage(currentPageMembership);
+			loadPage(currentPageMembership,query_search,sort_column, sort_type);
             return response.json();
         });
 	}

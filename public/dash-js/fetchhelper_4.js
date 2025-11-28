@@ -56,24 +56,11 @@ async function asyncFetchData(url,method,headers={},body={}){
 	catch (error) {
 	    return error;
   	}
-
-    // const response = await fetch(url,{
-    //   method: method,
-    //   headers: headers,
-    //   body: JSON.stringify(body)	
-    // })
-    //   .then((response) => {
-    //     if (response.status === 200) {
-    //       return response.json();
-    //     } else {
-    //       throw new Error("Something went wrong");
-    //     }
-    //   })
-    //   .then((response) => {
-    //     // console.debug(response);
-    //     // …
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
+}
+function debounce(fn, delay = 500) {
+  	let timer;
+  	return function (...args) {
+    	clearTimeout(timer);
+    	timer = setTimeout(() => fn.apply(this, args), delay);
+  	};
 }
