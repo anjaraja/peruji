@@ -42,13 +42,29 @@ class MembershipController extends Controller
     public function index($page)
     {
         try{
+            $request = new Request($_REQUEST);
+
             $page = $page?$page:1;
 
             $offset = $page == 1?0:(10*$page);
 
             $membership = Membership::select(DB::raw("membership.id as membership, ifnull(userprofile.fullname,membership.fullname)as fullname, ifnull(userprofile.email,membership.email)as email, DATE(membership.created_at)AS registered_date, ifnull(userprofile.status,'pending')as status"))
                 ->leftJoin("userprofile","membership.id","=","userprofile.memberid")
-                ->orderBy("membership.created_at","desc")
+                ->when(isset($request->search),function($membership) use (&$request){
+                    // $membership->where(DB::raw("(userprofile.fullname like '%$request->search%' or userprofile.email like '%$request->search%')"));
+                    $membership->whereRaw("(membership.fullname like '%$request->search%' or userprofile.fullname like '%$request->search%' or membership.email like '%$request->search%') or ifnull(userprofile.status,'pending') like '%$request->search%'");
+                    // $membership->orWhere(DB::raw("LOWER(membership.email)"), "like", "%$request->search%");
+                    // $membership->orWhere(DB::raw("ifnull(userprofile.status,'pending')"), "like", "%$request->search%");
+                })
+                ->when(isset($request->sort_column)&&isset($request->sort_type),function($membership) use (&$request){
+                    if($request->sort_column == 'status'){
+                        $membership->orderBy(DB::raw("ifnull(userprofile.status,'pending')"),$request->sort_type);
+                    }
+                    else{
+                        $membership->orderBy("membership.".$request->sort_column,$request->sort_type);
+                    }
+                })
+                // ->orderBy("membership.created_at","desc")
                 ->paginate(10, ["*"], "page", $page)
                 // ->skip($offset)->take(10)->get()
                 ->toArray();
