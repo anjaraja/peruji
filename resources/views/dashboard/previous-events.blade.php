@@ -13,14 +13,15 @@
             </div>
         </div>
     </div>
-</div><div class="modal fade" id="delete-previous-event-confirmation" tabindex="-1">
+</div>
+<div class="modal fade" id="delete-previous-event-confirmation" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">DELETE PREVIOUS EVENT</h5>
             </div>
             <div class="modal-body">
-                <p>Are You Sure You Want to Delete this News?</p>
+                <p>Are You Sure You Want to Delete this Previous Event?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -629,18 +630,20 @@
     });
 
     document.querySelector("form[source='update_event'] .cancel-form-btn").addEventListener("click",function() {
-        if(document.querySelector("form[source='update_event'] input[name='update_events']")){
+        // if(document.querySelector("form[source='update_event'] input[name='update_events']")){
             cancelPreviousEventModal.show()
-        }
+        // }
     })
 
     resetFormPrevious = function(loadBack=false){
         thisform = document.querySelector("form[source='update_event']");
         specific_data = thisform.querySelector("input[name='update_events']");
+        thisform.querySelector("input[name='update_events']").remove();
         thisform.querySelector("input[name='update_event_thumbnail']").value = ""
         input_thumbnail = source_form.querySelector("input[name='update_event_thumbnail']");
         input_thumbnail.closest("div.mb-3").querySelector("div[preview-file]")?.remove();
         input_thumbnail.closest("div").querySelector(".thumbnail-wrapper").style.display = "block";
+        document.querySelector(".modal-body #previewContainer").innerHTML = "";
 
         getPreviousEvent();
         if(loadBack){
@@ -650,6 +653,7 @@
         }
         thisform.reset();
         thisform.querySelector(".submit-btn").innerHTML = "UPLOAD";
+        document.querySelector(".previous-event-delete").classList.add("d-none");
         cancelPreviousEventModal.hide()
     }
 
