@@ -547,7 +547,7 @@
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td>${rowNumber+index}</td>
-          <td>${row.fullname}</td>
+          <td>${row.prefix?row.prefix+' ':''}${row.fullname}${row.suffix?' '+row.suffix:''}</td>
           <td>${row.email}</td>
           <td>${row.registered_date}</td>
           <td>${row.status}</td>

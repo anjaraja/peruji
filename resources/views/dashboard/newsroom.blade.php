@@ -78,7 +78,7 @@
       <!-- Right: News List -->
       <div class="col-md-5">
         <h5 class="text-warning fw-bold mb-3">Edit News</h5>
-        <div class="bg-light p-3 rounded shadow-sm">
+        <div class="bg-light p-3 rounded shadow-sm side-list-data">
           <ul class="list-unstyled list-of-news">
           </ul>
         </div>

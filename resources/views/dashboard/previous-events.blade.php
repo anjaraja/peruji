@@ -5,11 +5,11 @@
                 <h5 class="modal-title">CANCEL FORM PREVIOUS EVENT</h5>
             </div>
             <div class="modal-body">
-                <p>Are you sure cancel and reset the form?</p>
+                <p>Are you sure to cancel and reset the form?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button onclick="resetFormPrevious()" type="button" class="btn btn-danger" action-for="delete">Yes, Reset Form</button>
+                <button onclick="resetFormPrevious()" type="button" class="btn btn-danger" action-for="delete">Yes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
             </div>
         </div>
     </div>
@@ -24,8 +24,8 @@
                 <p>Are You Sure You Want to Delete this Previous Event?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button onclick="deletePrevious()" type="button" class="btn btn-danger" action-for="delete">Yes, Delete</button>
+                <button onclick="deletePrevious()" type="button" class="btn btn-danger" action-for="delete">Yes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
             </div>
         </div>
     </div>
@@ -139,7 +139,7 @@
         <!-- Right: List of Previous Events -->
         <div class="col-md-5">
           <h5 class="text-warning fw-bold mb-3">Edit Previous Events</h5>
-          <div class="bg-light p-3 rounded shadow-sm">
+          <div class="bg-light p-3 rounded shadow-sm side-list-data">
             <ul class="list-unstyled list-of-previous-event">
             </ul>
           </div>
@@ -480,7 +480,7 @@
     source_form.querySelector(".gallery-btn").addEventListener("click",function(e){
         selected_event = source_form.querySelector("input[name='update_events']");
         if(!selected_event){
-            showAlert("not-ok","created","Gallery only available after submit and then edit the Previous Event");
+            showAlert("not-ok","created","Gallery only available after create and then edit the Previous Event");
             return false;
         }
         else{
@@ -638,7 +638,7 @@
     resetFormPrevious = function(loadBack=false){
         thisform = document.querySelector("form[source='update_event']");
         specific_data = thisform.querySelector("input[name='update_events']");
-        thisform.querySelector("input[name='update_events']").remove();
+        thisform.querySelector("input[name='update_events']")?.remove();
         thisform.querySelector("input[name='update_event_thumbnail']").value = ""
         input_thumbnail = source_form.querySelector("input[name='update_event_thumbnail']");
         input_thumbnail.closest("div.mb-3").querySelector("div[preview-file]")?.remove();

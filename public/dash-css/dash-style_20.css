@@ -386,6 +386,12 @@ html {
     .accordion-button{
       z-index: 1 !important;
     }
+    .side-list-data{
+        position: relative;
+        float: left;
+        height: 68vh;
+        overflow: auto;
+    }
     @media(max-width: 600px){
         .content-container{
             padding-left: 10vw !important;

@@ -48,11 +48,11 @@ class MembershipController extends Controller
 
             $offset = $page == 1?0:(10*$page);
 
-            $membership = Membership::select(DB::raw("membership.id as membership, ifnull(userprofile.fullname,membership.fullname)as fullname, ifnull(userprofile.email,membership.email)as email, DATE(membership.created_at)AS registered_date, ifnull(userprofile.status,'pending')as status"))
+            $membership = Membership::select(DB::raw("membership.id as membership, userprofile.prefix, userprofile.suffix, ifnull(userprofile.fullname,membership.fullname)as fullname, ifnull(userprofile.email,membership.email)as email, DATE(membership.created_at)AS registered_date, ifnull(userprofile.status,'pending')as status"))
                 ->leftJoin("userprofile","membership.id","=","userprofile.memberid")
                 ->when(isset($request->search),function($membership) use (&$request){
                     // $membership->where(DB::raw("(userprofile.fullname like '%$request->search%' or userprofile.email like '%$request->search%')"));
-                    $membership->whereRaw("(membership.fullname like '%$request->search%' or userprofile.fullname like '%$request->search%' or membership.email like '%$request->search%') or ifnull(userprofile.status,'pending') like '%$request->search%'");
+                    $membership->whereRaw("(membership.fullname like '%$request->search%' or userprofile.fullname like '%$request->search%' or membership.email like '%$request->search%') or ifnull(userprofile.status,'pending') like '%$request->search%' or userprofile.prefix like '%$request->search%' or userprofile.suffix like '%$request->search%'");
                     // $membership->orWhere(DB::raw("LOWER(membership.email)"), "like", "%$request->search%");
                     // $membership->orWhere(DB::raw("ifnull(userprofile.status,'pending')"), "like", "%$request->search%");
                 })
