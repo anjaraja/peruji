@@ -169,7 +169,7 @@
                 document.querySelectorAll(".content-container").forEach((e)=>{
                     e.classList.add("is-have-title-desc");
                 })
-                if(current_running_text != result.data.description){
+                if(current_running_text != result.data?.description){
                     current_running_text = result.data.description;
                     containerRunningText = document.querySelector("div[id='benefits-running-text'] div.marquee-content");
                     if(containerRunningText){
@@ -209,7 +209,9 @@
             }
         });
     }
-    get_current_title();
+    if(sessionStorage.getItem("roleDashboard") == "Member"){
+        get_current_title();
+    }
     document.addEventListener("DOMContentLoaded", function() {
         if(sessionStorage.getItem("roleDashboard") == "Member"){
             setInterval(function(){
