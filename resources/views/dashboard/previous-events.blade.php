@@ -641,6 +641,7 @@
         thisform.querySelector("input[name='update_events']")?.remove();
         thisform.querySelector("input[name='update_event_thumbnail']").value = ""
         input_thumbnail = source_form.querySelector("input[name='update_event_thumbnail']");
+        document.querySelector(".thumbnail-file-name").textContent = "No photo selected";
         input_thumbnail.closest("div.mb-3").querySelector("div[preview-file]")?.remove();
         input_thumbnail.closest("div").querySelector(".thumbnail-wrapper").style.display = "block";
         document.querySelector(".modal-body #previewContainer").innerHTML = "";
