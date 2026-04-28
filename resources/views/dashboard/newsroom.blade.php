@@ -8,8 +8,8 @@
                 <p>Are you sure cancel and reset the form?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button onclick="resetFormNews()" type="button" class="btn btn-danger" action-for="delete">Yes, Reset Form</button>
+                <button onclick="resetFormNews()" type="button" class="btn btn-danger" action-for="delete">Yes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
             </div>
         </div>
     </div>
@@ -21,11 +21,11 @@
                 <h5 class="modal-title">DELETE NEWS</h5>
             </div>
             <div class="modal-body">
-                <p>Are You Sure You Want to Delete this News?</p>
+                <p>This action can’t be undone. Delete news?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button onclick="deleteNews()" type="button" class="btn btn-danger" action-for="delete">Yes, Delete</button>
+                <button onclick="deleteNews()" type="button" class="btn btn-danger" action-for="delete">Yes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
             </div>
         </div>
     </div>

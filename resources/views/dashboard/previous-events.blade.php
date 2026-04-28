@@ -18,10 +18,10 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">DELETE PREVIOUS EVENT</h5>
+                <h5 class="modal-title">DELETE EVENT</h5>
             </div>
             <div class="modal-body">
-                <p>Are You Sure You Want to Delete this Previous Event?</p>
+                <p>This action can’t be undone. Delete event?</p>
             </div>
             <div class="modal-footer">
                 <button onclick="deletePrevious()" type="button" class="btn btn-danger" action-for="delete">Yes</button>
