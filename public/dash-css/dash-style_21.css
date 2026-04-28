@@ -392,6 +392,9 @@ html {
         height: 68vh;
         overflow: auto;
     }
+    .newsroom .side-list-data{
+        height: 72.5vh;
+    }
     @media(max-width: 600px){
         .content-container{
             padding-left: 10vw !important;
