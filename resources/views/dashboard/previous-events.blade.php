@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">CANCEL FORM PREVIOUS EVENT</h5>
+                <h5 class="modal-title">Reset Form</h5>
             </div>
             <div class="modal-body">
                 <p>Are you sure to cancel and reset the form?</p>
@@ -18,7 +18,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">DELETE EVENT</h5>
+                <h5 class="modal-title">Delete Event</h5>
             </div>
             <div class="modal-body">
                 <p>This action can’t be undone. Delete event?</p>
