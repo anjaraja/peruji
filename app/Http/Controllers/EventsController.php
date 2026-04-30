@@ -650,7 +650,7 @@ class EventsController extends Controller
                 ->when($for!="dashboard",function($events){
                     $events->where("isprevious",1);
                 })
-                ->orderBy("eventdate","desc")
+                ->orderBy("eventdate","asc")
                 ->paginate(15, ["*"], "page", $page)
                 ->toArray();
 

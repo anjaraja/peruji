@@ -48,7 +48,8 @@
           </div>
           <div class="mb-3">
             <label class="form-label">Date</label>
-            <input type="date" class="form-control" placeholder="News date" name="newsdate" required>
+            <input type="text" readonly class="form-control" placeholder="News date" name="newsdate" required>
+            <!-- <input type="date" class="form-control" placeholder="News date" name="newsdate" required> -->
           </div>
           <div class="mb-3">
             <label class="form-label">Description (IDN)</label>
@@ -60,7 +61,7 @@
           </div>
           <div class="mb-3">
             <label class="form-label">Photo/Image</label>
-            <input type="file" class="form-control" accept="image/png, image/jpeg" name="newsimage">
+            <input type="file" class="form-control" accept="image/png, image/jpeg" name="newsimage" required>
             <!-- <small class="form-text text-muted">Photo size 756x491 pixels (jpg/png)</small> -->
           </div>
           <div class="mb-3">
@@ -124,11 +125,22 @@
             getNewsData();
         }
 
+        document.querySelector("nav span[link='newsroom']").addEventListener("click",function(){
+            resetFormNews();
+            getNewsData();
+        });
+
         cancelNewsModalElement = document.getElementById('cancel-news-confirmation');
         cancelNewsModal = new bootstrap.Modal(cancelNewsModalElement);
 
         deleteNewsModalElement = document.getElementById('delete-news-confirmation');
         deleteNewsModal = new bootstrap.Modal(deleteNewsModalElement);
+
+
+        fp_news = flatpickr("input[name='newsdate']", {
+            dateFormat: "Y-m-d",
+            maxDate: "today",
+        });
     })
 </script>
 <script submit-news>
@@ -322,7 +334,7 @@
         thisform.querySelector("div[preview-file]")?.remove();
 
         getNewsData();
-        if(loadBack){
+        if(loadBack && specific_data){
             setTimeout(function(){
                 document.querySelector(`.row-news[id='${specific_data.value}']`).click()
             },500)

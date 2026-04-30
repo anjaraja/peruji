@@ -75,9 +75,13 @@
                         <input type="text" name="update_event_name" class="form-control" placeholder="Title" required>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-md-6 mb-3">
+                        <!-- <div class="col-md-6 mb-3"> -->
+                            <!-- <label class="form-label">Date</label> -->
+                            <!-- <input type="date" name="update_event_date" class="form-control" placeholder="Event date" required> -->
+                        <!-- </div> -->
+                        <div class="col-md-12 mb-3">
                             <label class="form-label">Date</label>
-                            <input type="date" name="update_event_date" class="form-control" placeholder="Event date" required>
+                            <input type="text" name="update_event_date" class="form-control" placeholder="Event date" required readonly>
                         </div>
                         <!-- <div class="col-md-6 mb-3">
                             <label class="form-label">Event Duration (Days)</label>
@@ -175,7 +179,7 @@
             for(key in row_data){
                 previous_event = row_data[key];
                 container_list_previous_event.insertAdjacentHTML("afterbegin",`
-                    <li class="text-black row-previous-event" onclick="showToFormNews(this)" style="cursor:pointer;" id="${previous_event['id']}">${previous_event['eventname']}</li>
+                    <li class="text-black row-previous-event" onclick="showToFormPrevious(this)" style="cursor:pointer;" id="${previous_event['id']}">${previous_event['eventname']}</li>
                 `)
             }
         });
@@ -187,6 +191,7 @@
         }
 
         document.querySelector("nav span[link='previous-events']").addEventListener("click",function(){
+            resetFormPrevious();
             getPreviousEvent();
         });
 
@@ -195,6 +200,19 @@
 
         deletePreviousEventModalElement = document.getElementById('delete-previous-event-confirmation');
         deletePreviousEventModal = new bootstrap.Modal(deletePreviousEventModalElement);
+
+        fp_event_date = flatpickr("input[name='update_event_date']", {
+            mode: "range",
+            dateFormat: "Y-m-d",
+            maxDate: "today",
+            locale: {
+                rangeSeparator: " → " // change "to" → "-"
+            }
+        });
+        // document.querySelector("input[name='update_event_date']").addEventListener("change",function(){
+        //     // console.log(this.value.split("→"));
+        //     // console.log(diffDays(this.value.split("→")[0],this.value.split("→")[1]));
+        // })
 
         // this.querySelectorAll(".close-modal").forEach(function(thisEl){
         //     thisEl.addEventListener("click",function(){
@@ -233,7 +251,10 @@
                 source_form.querySelector("input[name='update_events']")?.remove();
                 source_form.insertAdjacentHTML("afterbegin",`<input name="update_events" value="${form_data["id"]}" style="display:none;">`)
                 source_form.querySelector("input[name='update_event_name']").value = form_data["eventname"];
-                source_form.querySelector("input[name='update_event_date']").value = form_data["eventdate"];
+                duration = form_data["duration"] || 1;
+                end_date = addDays(form_data["eventdate"],duration);
+                fp_event_date.setDate([form_data["eventdate"],end_date]);
+                // source_form.querySelector("input[name='update_event_date']").value = form_data["eventdate"];
                 // source_form.querySelector("input[name='update_event_duration']").value = form_data["duration"];
                 source_form.querySelector("textarea[name='update_event_message']").value = form_data["description"];
                 source_form.querySelector("textarea[name='update_eng_event_message']").value = form_data["eng_description"];
@@ -282,6 +303,7 @@
                 else{
                     input_thumbnail = source_form.querySelector("input[name='update_event_thumbnail']");
                     input_thumbnail.closest("div.mb-3").querySelector("div[preview-file]")?.remove();
+                    input_thumbnail.closest("div.mb-3").querySelector(".thumbnail-wrapper").style.display = 'block';
                     // input_thumbnail.style.display = 'block';
                 }
                 // if(form_data["agenda"]){
@@ -369,10 +391,22 @@
 
         event_name = this.querySelector("input[name='update_event_name']").value
         formdata.append("eventname",event_name)
+        
         event_date = this.querySelector("input[name='update_event_date']").value
+        
+        range_date_event = event_date.split("→");
+
+        event_date = range_date_event[0];
         formdata.append("eventdate",event_date)
-        // event_duration = this.querySelector("input[name='update_event_duration']").value
-        // formdata.append("duration",event_duration)
+
+        if(range_date_event.length == 1){
+            event_duration = 1;
+        }
+        else{
+            event_duration = diffDays(range_date_event[0],range_date_event[1]) + 1;
+        }
+        formdata.append("duration",event_duration)
+
         // event_display_date = this.querySelector("input[name='update_event_display_date']").value
         // formdata.append("eventdisplaydate",event_display_date)
         event_message = this.querySelector("textarea[name='update_event_message']").value
@@ -474,6 +508,20 @@
 
         return false;
     })
+
+    function diffDays(start, end) {
+        const startDate = new Date(start);
+        const endDate = new Date(end);
+
+        const diffTime = endDate - startDate;
+        return diffTime / (1000 * 60 * 60 * 24);
+    }
+    function addDays(dateStr, days) {
+    const date = new Date(dateStr + "T00:00:00");
+        date.setDate(date.getDate() + days);
+        
+        return date.toISOString().split("T")[0];
+    }
 </script>
 <script gallery-upload>
     source_form = document.querySelector(`form[source='update_event']`);
@@ -484,22 +532,45 @@
             return false;
         }
         else{
-            galleryModalElement = document.getElementById('galleryModal');
-            galleryModal = new bootstrap.Modal(galleryModalElement);
+            this_route = "{{ route('event-detail', ':page') }}";
+            this_route = this_route.replace(':page', selected_event.value);
+            fetchData(
+                this_route,
+                "GET",
+                {"Authorization":localStorage.getItem("Token")}
+            )
+            .then((response)=>{
+                return response.json();
+            })
+            .then((data)=>{
+                event_detail = data?.data;
+                list_previous = JSON.parse(sessionStorage.getItem("list-previous"));
+                list_previous.forEach(function(value,key){
+                    if(value?.id == event_detail?.id){
+                        list_previous[key] = event_detail;
+                    }
+                })
+                sessionStorage.setItem("list-previous",JSON.stringify(list_previous));
+            })
+            .finally(() =>{
+                galleryModalElement = document.getElementById('galleryModal');
+                galleryModal = new bootstrap.Modal(galleryModalElement);
 
-            previous_event = JSON.parse(sessionStorage.getItem("list-previous"))
-            galleryModalElement.querySelector(".modal-body #previewContainer").innerHTML = "";
-            for (value of previous_event){
-                if(value["id"] == selected_event.value){
-                    gallery_photo = JSON.parse(value["photo"]);
-                    for(key2 in gallery_photo){
-                        value2 = gallery_photo[key2]
-                        galleryModalElement.querySelector(".modal-body #previewContainer").insertAdjacentHTML("beforeend",`<div class="gallery-item"><img src="${value2}" path="${value2}"><button class="remove-btn">x</button></div>`)
+                previous_event = JSON.parse(sessionStorage.getItem("list-previous"))
+                galleryModalElement.querySelector(".modal-body #previewContainer").innerHTML = "";
+                for (value of previous_event){
+                    if(value["id"] == selected_event.value){
+                        if(typeof value["photo"] === 'string') gallery_photo = JSON.parse(value["photo"]);
+                        else gallery_photo = value["photo"];
+                        for(key2 in gallery_photo){
+                            value2 = gallery_photo[key2]
+                            galleryModalElement.querySelector(".modal-body #previewContainer").insertAdjacentHTML("beforeend",`<div class="gallery-item"><img src="${value2}" path="${value2}"><button class="remove-btn">x</button></div>`)
+                        }
                     }
                 }
-            }
 
-            galleryModal.show();
+                galleryModal.show();
+            });
         }
         // alert(selected_event.value);
     })
@@ -642,16 +713,22 @@
         thisform.querySelector("input[name='update_event_thumbnail']").value = ""
         input_thumbnail = source_form.querySelector("input[name='update_event_thumbnail']");
         document.querySelector(".thumbnail-file-name").textContent = "No photo selected";
-        input_thumbnail.closest("div.mb-3").querySelector("div[preview-file]")?.remove();
-        input_thumbnail.closest("div").querySelector(".thumbnail-wrapper").style.display = "block";
+        input_thumbnail?.closest("div.mb-3")?.querySelector("div[preview-file]")?.remove();
+        if(input_thumbnail){
+            input_thumbnail.closest("div").querySelector(".thumbnail-wrapper").style.display = "block";
+        }
         document.querySelector(".modal-body #previewContainer").innerHTML = "";
 
         getPreviousEvent();
-        if(loadBack){
+        if(loadBack && specific_data){
             setTimeout(function(){
                 document.querySelector(`.row-previous-event[id='${specific_data.value}']`).click()
             },500)
         }
+        if(!loadBack){
+            source_form.querySelector("span[type='publish']")?.remove();
+        }
+        fp_event_date.clear();
         thisform.reset();
         thisform.querySelector(".submit-btn").innerHTML = "UPLOAD";
         document.querySelector(".previous-event-delete").classList.add("d-none");
@@ -698,8 +775,6 @@
         .finally(()=>{
             loading("close",500)
             resetFormPrevious();
-            document.querySelector(".previous-event-delete").classList.add("d-none");
-            source_form.querySelector("span[type='publish']")?.remove();
             deletePreviousEventModal.hide();
         })
     }
