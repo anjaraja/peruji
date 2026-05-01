@@ -645,14 +645,17 @@ class EventsController extends Controller
         try{
             $page = is_int($page)?$page:1;
 
-            $events = Events::where("activestatus",1)
+            $events = ["data"=>[]];
+            $events["data"] = Events::where("activestatus",1)
                 ->where("eventdate","<=",Carbon::now()->format("Y-m-d"))
                 ->when($for!="dashboard",function($events){
                     $events->where("isprevious",1);
                 })
                 ->orderBy("eventdate","asc")
-                ->paginate(15, ["*"], "page", $page)
+                ->get()
                 ->toArray();
+                // ->paginate(15, ["*"], "page", $page)
+                // ->toArray();
 
             foreach($events["data"] as $key => $value){
                 $start_date = date('d', strtotime($value["eventdate"]));

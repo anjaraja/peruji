@@ -197,6 +197,9 @@
                     </div>
                 </div>
                 @foreach ($previous_events as $key => $value)
+                    @php
+                        $exists_item_gallery = json_decode($value['photo'])?'':'text-muted pe-none';
+                    @endphp
                     @if($key % 2 === 0)
                         <div class="row" label="odd">
                             <div class="col-12 col-md-6 p-0 order-first order-md-first">
@@ -214,8 +217,8 @@
                                 <i class="news-link" prev-event-row="{{$value['id']}}" lang="idn">Tautan Berita</i>
                                 <i class="news-link" prev-event-row="{{$value['id']}}" lang="eng">News Links</i>
                                 <div class="text-black mx-2 d-block d-md-none">|</div>
-                                <i class="gallery-link ms-md-auto" lang="idn" number="{{$value['id']}}">Galeri Foto</i>
-                                <i class="gallery-link ms-md-auto" lang="eng" number="{{$value['id']}}">Photo Gallery</i>
+                                <i class="gallery-link ms-md-auto {{$exists_item_gallery}}" lang="idn" number="{{$value['id']}}">Galeri Foto</i>
+                                <i class="gallery-link ms-md-auto {{$exists_item_gallery}}" lang="eng" number="{{$value['id']}}">Photo Gallery</i>
                               </div>
                             </div>
                         </div>
@@ -233,8 +236,8 @@
                                 <i class="news-link" prev-event-row="{{$value['id']}}" lang="idn">Tautan Berita</i>
                                 <i class="news-link" prev-event-row="{{$value['id']}}" lang="eng">News Links</i>
                                 <div class="text-black mx-2 d-block d-md-none">|</div>
-                                <i class="gallery-link ms-md-auto" lang="idn" number="{{$value['id']}}">Galeri Foto</i>
-                                <i class="gallery-link ms-md-auto" lang="eng" number="{{$value['id']}}">Photo Gallery</i>
+                                <i class="gallery-link ms-md-auto {{$exists_item_gallery}}" lang="idn" number="{{$value['id']}}">Galeri Foto</i>
+                                <i class="gallery-link ms-md-auto {{$exists_item_gallery}}" lang="eng" number="{{$value['id']}}">Photo Gallery</i>
                               </div>
                             </div>
                             <div class="col-12 col-md-6 p-0">
@@ -324,18 +327,58 @@
 
         let currentIndex = 0;
 
+        // function renderThumbnails() {
+        //   thumbnailStrip.innerHTML = '';
+        //   images.forEach((src, index) => {
+        //     const img = document.createElement('img');
+        //     img.loading = "lazy";
+        //     img.src = src;
+        //     if (index === currentIndex) img.classList.add('active');
+        //     img.onclick = () => {
+        //       currentIndex = index;
+        //       updateMainPreview();
+        //     };
+        //     thumbnailStrip.appendChild(img);
+        //   });
+        // }
         function renderThumbnails() {
-          thumbnailStrip.innerHTML = '';
-          images.forEach((src, index) => {
-            const img = document.createElement('img');
-            img.src = src;
-            if (index === currentIndex) img.classList.add('active');
-            img.onclick = () => {
-              currentIndex = index;
-              updateMainPreview();
-            };
-            thumbnailStrip.appendChild(img);
-          });
+            thumbnailStrip.innerHTML = '';
+
+            images.forEach((src, index) => {
+                const img = document.createElement('img');
+
+                img.src = "https://placehold.net/400x400.png"; // small image first
+                img.dataset.src = src;       // real image
+
+                if (index === currentIndex) img.classList.add('active');
+
+                img.onclick = () => {
+                    currentIndex = index;
+                    updateMainPreview();
+                };
+
+                thumbnailStrip.appendChild(img);
+            });
+
+            lazyLoadImages();
+        }
+
+        function lazyLoadImages() {
+            const imgs = document.querySelectorAll('#thumbnailStrip img');
+
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+
+                        img.src = img.dataset.src;
+
+                        obs.unobserve(img);
+                    }
+                });
+            });
+
+            imgs.forEach(img => observer.observe(img));
         }
 
         function updateMainPreview() {
@@ -346,7 +389,7 @@
           });
         }
 
-        function navigate(direction) {
+        navigate = function(direction) {
           currentIndex += direction;
           if (currentIndex < 0) currentIndex = 0;
           if (currentIndex >= images.length) currentIndex = images.length - 1;
@@ -362,6 +405,7 @@
     document.addEventListener("click",function(e){
         if(e.target.matches("i.gallery-link")){
             thisEl = e.target;
+            document.getElementById('thumbnailStrip').innerHTML = '';
             matchData = thisEl.getAttribute("number");
 
             galleryModalElement = document.getElementById('galleryModal');
