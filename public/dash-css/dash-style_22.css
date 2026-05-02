@@ -600,6 +600,12 @@ html {
       background-repeat: no-repeat !important;
       background-size: cover !important;
     }
+
+    .profile-photo.header-personal{
+        position: relative !important;
+        bottom: unset;
+        left: unset;
+    }
     .content-container.document-resources-index .card-container .profile-photo{
         width: 120px;
         height: 120px;

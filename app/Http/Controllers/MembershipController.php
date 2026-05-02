@@ -578,7 +578,7 @@ class MembershipController extends Controller
     {
         try{
             $id = auth("api")->user()->id;
-            $membership = Membership::select(DB::raw("userprofile.id as userpfofileid, membership.id as memberid, userprofile.prefix, ifnull(userprofile.organization,membership.org)as organization, ifnull(userprofile.fullname,membership.fullname)as fullname, userprofile.ofcaddress, userprofile.suffix, userprofile.ofcphone, userprofile.dob, ifnull(userprofile.ofcemail,membership.ofcemail)as ofcemail, ifnull(userprofile.phone,membership.phone)as phone, userprofile.website, ifnull(userprofile.email,membership.email)as email, userprofile.photo, userprofile.joindate, userprofile.expiredate, userprofile.number, userprofile.status, userprofile.additionaldocument, userprofile.title, userprofile.hobby"))
+            $membership = Membership::select(DB::raw("userprofile.id as userpfofileid, membership.id as memberid, userprofile.prefix, ifnull(userprofile.organization,membership.org)as organization, ifnull(userprofile.fullname,membership.fullname)as fullname, userprofile.ofcaddress, userprofile.suffix, userprofile.ofcphone, userprofile.dob, ifnull(userprofile.ofcemail,membership.ofcemail)as ofcemail, ifnull(userprofile.phone,membership.phone)as phone, userprofile.website, ifnull(userprofile.email,membership.email)as email, userprofile.photo, userprofile.joindate, userprofile.expiredate, userprofile.number, userprofile.status, userprofile.additionaldocument, userprofile.title, userprofile.hobby, membership.funct"))
                 ->leftJoin("userprofile","membership.id","=","userprofile.memberid")
                 ->where("userprofile.userid",$id)
                 ->first();
@@ -687,7 +687,8 @@ class MembershipController extends Controller
                 "ofcemail"=>$request->ofcemail,
                 "website"=>$request->website,
                 "member"=>$request->member,
-                "modified_by"=>auth("api")->user()->email
+                "modified_by"=>auth("api")->user()->email,
+                "updated_at"=>now()
             ];
             if(!$userprofiledata){
                 Log::channel('errorlog')->error('[UPDATE PERSONAL INFORMATION]', ["message"=>"userprofile not found"]);
@@ -724,7 +725,21 @@ class MembershipController extends Controller
                 }
                 // END UPLOAD PHOTO
 
+                $membership = Membership::where("id",$userprofiledata->memberid);
+                $membership_data = $membership->first();
+                if(!$membership_data){
+                    Log::channel('errorlog')->error('[UPDATE PERSONAL INFORMATION]', ["message"=>"membership not found"]);
+                    return response()->json(["message"=>"RC6.3"],500);
+                }
+                $store_data_membership = [
+                    "funct"=>$request->funct,
+                    "updated_at"=>now()
+                ];
+
+                $update_membership = $membership->update($store_data_membership);
+
                 unset($store_data["member"]);
+                unset($store_data["funct"]);
                 $store = UserProfile::where("userid",auth("api")->user()->id)->update($store_data);
             }
 
