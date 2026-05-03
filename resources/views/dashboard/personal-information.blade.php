@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group">
                     <label>Hobby</label>
-                    <input type="text" class="form-control" placeholder="Badminton, Padel, Running, Marathon" name="hobby">
+                    <input type="text" class="form-control" placeholder="Sebutkan satu atau lebih" name="hobby">
                 </div>
                 <div class="form-group">
                     <label>Phone</label>

@@ -372,9 +372,9 @@ class MembershipController extends Controller
             ];
 
             $membership_data = [
-                "gender"=>$request->gender,
+                // "gender"=>$request->gender,
                 "funct"=>$request->funct,
-                "department"=>$request->department,
+                // "department"=>$request->department,
                 "updated_at" => now()
             ];
 
