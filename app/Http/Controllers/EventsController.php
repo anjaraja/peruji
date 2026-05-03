@@ -651,11 +651,12 @@ class EventsController extends Controller
                 ->when($for!="dashboard",function($events){
                     $events->where("isprevious",1);
                 })
-                ->orderBy("eventdate","asc")
+                ->orderBy("eventdate","desc")
                 ->get()
                 ->toArray();
                 // ->paginate(15, ["*"], "page", $page)
                 // ->toArray();
+            // print_r($events['data']);exit;
 
             foreach($events["data"] as $key => $value){
                 $start_date = date('d', strtotime($value["eventdate"]));

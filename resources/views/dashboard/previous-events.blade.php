@@ -178,7 +178,7 @@
             container_list_previous_event.replaceChildren();
             for(key in row_data){
                 previous_event = row_data[key];
-                container_list_previous_event.insertAdjacentHTML("afterbegin",`
+                container_list_previous_event.insertAdjacentHTML("beforeend",`
                     <li class="text-black row-previous-event" onclick="showToFormPrevious(this)" style="cursor:pointer;" id="${previous_event['id']}">${previous_event['eventname']}</li>
                 `)
             }
