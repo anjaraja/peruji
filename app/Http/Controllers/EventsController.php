@@ -186,6 +186,7 @@ class EventsController extends Controller
                 'photo.*' => 'nullable|file|mimes:jpeg,jpg,png',
                 'agenda' => 'nullable|file|mimes:pdf',
                 'additionalcontent' => 'nullable|string',
+                'isprevious' => 'nullable|boolean'
             ]);
             if ($validated->fails()) {
                 Log::channel('activity')->warning('[CREATE EVENTS]', [$request->all(),$validated->errors()]);
@@ -197,6 +198,14 @@ class EventsController extends Controller
             $data["publishdate"] = $data["eventdisplaydate"];
             unset($data["eventdisplaydate"]);
             $data["activestatus"] = 1;
+            if(isset($data['isprevious'])){
+                if($data['isprevious']){
+                    $data["isprevious"] = true;
+                }
+            }
+            else{
+                $data['isprevious'] = false;
+            }
             $data["created_by"] = auth("api")->user()->email;
             $data["modified_by"] = auth("api")->user()->email;
             Log::channel('activity')->info('[CREATE EVENTS][DATA]', $data);
@@ -244,7 +253,7 @@ class EventsController extends Controller
 
             $store = Events::create($data);
 
-            return response()->json(["message"=>"ok"],200);
+            return response()->json(["message"=>"ok","data"=>$store],200);
         }
         catch(\Exception $e){
             Log::channel('errorlog')->error('[CREATE EVENTS]', ["message"=>$e->getMessage()]);
@@ -636,13 +645,18 @@ class EventsController extends Controller
         try{
             $page = is_int($page)?$page:1;
 
-            $events = Events::where("eventdate","<=",Carbon::now()->format("Y-m-d"))
+            $events = ["data"=>[]];
+            $events["data"] = Events::where("activestatus",1)
+                ->where("eventdate","<=",Carbon::now()->format("Y-m-d"))
                 ->when($for!="dashboard",function($events){
                     $events->where("isprevious",1);
                 })
                 ->orderBy("eventdate","desc")
-                ->paginate(15, ["*"], "page", $page)
+                ->get()
                 ->toArray();
+                // ->paginate(15, ["*"], "page", $page)
+                // ->toArray();
+            // print_r($events['data']);exit;
 
             foreach($events["data"] as $key => $value){
                 $start_date = date('d', strtotime($value["eventdate"]));
@@ -848,6 +862,66 @@ class EventsController extends Controller
         catch(\Exception $e){
             Log::channel('errorlog')->error('[UPDATE PHOTO GALLERY AGENDA]', ["message"=>$e->getMessage()]);
             return response()->json(["message"=>"RC8.3"],500);;
+        }
+    }
+
+
+    /**
+     * @OA\Post(
+     *      path="/api/delete-previous-events/",
+     *      security={{"bearerAuth":{}}},
+     *      tags={"Dashboard"}, 
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(
+     *              mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  required={"events"},
+     *                  @OA\Property(
+     *                      property="events",
+     *                      type="integer",
+     *                      example=1
+     *                  )
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *      )
+     * )
+     */
+    public function deletePrevious(Request $request)
+    {
+        try{
+            $validated = Validator::make($request->all(),[
+                'events' => 'required|integer'
+            ]);
+            if ($validated->fails()) {
+                Log::channel('activity')->warning('[DELETE PREVIOUS EVENTS]', [$validated->errors(),$request->all()]);
+                return response()->json(["message" => "RC9.1"], 422);
+            }
+
+            $events = Events::where("id",$request->events);
+            $event_data = $events->first();
+            if($event_data){
+                $events->update([
+                    "activestatus" => 0,
+                    "modified_by" => auth("api")->user()->email,
+                    "updated_at" => now()
+                ]);
+
+                Log::channel('activity')->warning('[DELETE PREVIOUS EVENTS]', [$validated->errors(),$request->all()]);
+                return response()->json(["message" => "ok"], 200);
+            }
+            else{
+                Log::channel('activity')->warning('[DELETE PREVIOUS EVENTS]', ["DATA NOT FOUND",$request->all()]);
+                return response()->json(["message" => "RC9.2"], 422);
+            }
+        }
+        catch(\Exception $e){
+            Log::channel('errorlog')->error('[DELETE PREVIOUS EVENTS]', ["message"=>$e->getMessage()]);
+            return response()->json(["message"=>"RC9"],500);
         }
     }
 }

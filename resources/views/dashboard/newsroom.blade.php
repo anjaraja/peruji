@@ -1,3 +1,35 @@
+<div class="modal fade" id="cancel-news-confirmation" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Reset Form</h5>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure cancel and reset the form?</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="resetFormNews()" type="button" class="btn btn-danger" action-for="delete">Yes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="delete-news-confirmation" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete News</h5>
+            </div>
+            <div class="modal-body">
+                <p>This action can’t be undone. Delete news?</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="deleteNews()" type="button" class="btn btn-danger" action-for="delete">Yes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="content-container newsroom">
 
     <!-- Header -->
@@ -9,44 +41,49 @@
     <div class="row">
       <!-- Left: News Form -->
       <div class="col-md-7">
-        <form>
+        <form source="form-news">
           <div class="mb-3">
             <label class="form-label">News Title</label>
             <input type="text" class="form-control" placeholder="Title" name="newstitle" required>
           </div>
           <div class="mb-3">
             <label class="form-label">Date</label>
-            <input type="date" class="form-control" placeholder="News date" name="newsdate" required>
+            <input type="text" readonly class="form-control" placeholder="News date" name="newsdate" required>
+            <!-- <input type="date" class="form-control" placeholder="News date" name="newsdate" required> -->
           </div>
           <div class="mb-3">
-            <label class="form-label">Message (IDN)</label>
+            <label class="form-label">Description (IDN)</label>
             <textarea class="form-control" rows="3" placeholder="One paragraph news" name="newsmessage" required></textarea>
           </div>
           <div class="mb-3">
-            <label class="form-label">Message (ENG)</label>
+            <label class="form-label">Description (ENG)</label>
             <textarea class="form-control" rows="3" placeholder="One paragraph news" name="eng_newsmessage" required></textarea>
           </div>
           <div class="mb-3">
             <label class="form-label">Photo/Image</label>
-            <input type="file" class="form-control" accept="image/png, image/jpeg" name="newsimage">
-            <small class="form-text text-muted">Photo size 756x491 pixels (jpg/png)</small>
+            <input type="file" class="form-control" accept="image/png, image/jpeg" name="newsimage" required>
+            <!-- <small class="form-text text-muted">Photo size 756x491 pixels (jpg/png)</small> -->
           </div>
           <div class="mb-3">
             <label class="form-label">News Links</label>
             <textarea type="text" class="form-control" placeholder="Provide links if available" name="newslinks"></textarea>
           </div>
-          <button type="submit" class="submit-btn">UPLOAD</button>
-          <button type="reset" class="cancel-form-btn btn btn-danger">CANCEL</button>
+
+            <div class="d-flex flex-row px-0 action-button justify-content-between">
+                <button type="submit" class="submit-btn">UPLOAD</button>
+                <a class="cancel-form-btn btn btn-secondary">CANCEL</a>
+            </div>
         </form>
       </div>
 
       <!-- Right: News List -->
       <div class="col-md-5">
         <h5 class="text-warning fw-bold mb-3">Edit News</h5>
-        <div class="bg-light p-3 rounded shadow-sm">
+        <div class="bg-light p-3 rounded shadow-sm side-list-data">
           <ul class="list-unstyled list-of-news">
           </ul>
         </div>
+          <button onclick="deleteNewsConfirmation()" class="news-delete delete-btn btn btn-danger mt-2 d-none">DELETE</button>
       </div>
     </div>
 </div>
@@ -87,6 +124,23 @@
         if(document.querySelector(".content-container.newsroom")){
             getNewsData();
         }
+
+        document.querySelector("nav span[link='newsroom']").addEventListener("click",function(){
+            resetFormNews();
+            getNewsData();
+        });
+
+        cancelNewsModalElement = document.getElementById('cancel-news-confirmation');
+        cancelNewsModal = new bootstrap.Modal(cancelNewsModalElement);
+
+        deleteNewsModalElement = document.getElementById('delete-news-confirmation');
+        deleteNewsModal = new bootstrap.Modal(deleteNewsModalElement);
+
+
+        fp_news = flatpickr("input[name='newsdate']", {
+            dateFormat: "Y-m-d",
+            maxDate: "today",
+        });
     })
 </script>
 <script submit-news>
@@ -101,8 +155,11 @@
         selected_news = this_element.getAttribute("id");
         list_news_data = JSON.parse(sessionStorage.getItem("list-news"))
 
+
         for(key in list_news_data){
             if(list_news_data[key]["id"] == selected_news){
+                news_form.querySelector(".submit-btn").innerHTML = "UPDATE";
+                document.querySelector(".news-delete").classList.remove("d-none");
                 form_data = list_news_data[key];
                 news_form.querySelector("input[name='news']")?.remove();
                 news_form.insertAdjacentHTML("afterbegin",`<input name="news" value="${form_data["id"]}" style="display:none;">`)
@@ -213,9 +270,78 @@
             loading("close",500)
         })
         .finally(() => {
-            getNewsData();
+            resetFormNews(true);
         });
         this.reset();
         return false;
     })
+
+    document.querySelector("form[source='form-news'] .cancel-form-btn").addEventListener("click",function() {
+        // if(document.querySelector("form[source='news'] input[name='update_events']")){
+            cancelNewsModal.show()
+        // }
+    })
+
+    deleteNewsConfirmation = function(){
+        selected_news = news_form.querySelector("input[name='news']");
+        if(selected_news){
+            deleteNewsModal.show();
+        }
+        else{
+            return false;
+        }
+    }
+
+
+    const deleteNews = function(){
+        selected_news = news_form.querySelector("input[name='news']").value;
+        // if(!selected_news) return false;
+        loading("show");
+        responseData = {};
+
+        formdata = new FormData();
+        formdata.append("news",selected_news);
+
+        fetchData(
+            "{{route('delete-news')}}",
+            "POST",
+            {},
+            formdata
+        )
+        .then((response)=>{
+            if (response.status !== 200){
+                showAlert("not-ok","deleted")
+                return response.json();
+            }
+
+            showAlert("ok","deleted")
+            return response.json();
+        })
+        .then((data)=>{
+            responseData = data;
+        })
+        .finally(()=>{
+            loading("close",500)
+            resetFormNews();
+            document.querySelector(".news-delete").classList.add("d-none");
+            deleteNewsModal.hide();
+        })
+    }
+
+    resetFormNews = function(loadBack=false){
+        thisform = document.querySelector("form[source='form-news']");
+        specific_data = thisform.querySelector("input[name='news']");
+        thisform.querySelector("div[preview-file]")?.remove();
+
+        getNewsData();
+        if(loadBack && specific_data){
+            setTimeout(function(){
+                document.querySelector(`.row-news[id='${specific_data.value}']`).click()
+            },500)
+        }
+        thisform.reset();
+        thisform.querySelector(".submit-btn").innerHTML = "UPLOAD";
+        document.querySelector(".news-delete").classList.add("d-none");
+        cancelNewsModal.hide()
+    }
 </script>

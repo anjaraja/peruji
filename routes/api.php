@@ -33,6 +33,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/news/{page}', "$path\NewsController@index")->name("list-news");
     Route::post('/news/', "$path\NewsController@store")->name("create-news");
     Route::post('/update-news/', "$path\NewsController@update")->name("update-news");
+    Route::post('/delete-news/', "$path\NewsController@delete")->name("delete-news");
     /* END NEWS */
 
     /* EVENTS */
@@ -43,6 +44,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/upload-gallery-events', "$path\EventsController@eventUploadPhotoGallery")->name("upload-gallery-events");
     Route::post('/delete-photo-gallery-events', "$path\EventsController@deletePhotoGalleryEvent")->name("delete-gallery-events");
     Route::post('/publish-previous-events', "$path\EventsController@publishToPrevious")->name("publish-previous-events");
+    Route::post('/delete-previous-events', "$path\EventsController@deletePrevious")->name("delete-previous-events");
     /* END EVENTS */
 
     /* EMAIL ADMIN */

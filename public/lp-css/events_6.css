@@ -31,6 +31,7 @@
 }
 .news-link, .gallery-link{
     color: #003ACD;
+    cursor: pointer;
 }
 .ml-auto{
     margin-left: auto !important;

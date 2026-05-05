@@ -1,3 +1,35 @@
+<div class="modal fade" id="cancel-previous-event-confirmation" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Reset Form</h5>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure to cancel and reset the form?</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="resetFormPrevious()" type="button" class="btn btn-danger" action-for="delete">Yes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="delete-previous-event-confirmation" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Event</h5>
+            </div>
+            <div class="modal-body">
+                <p>This action can’t be undone. Delete event?</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="deletePrevious()" type="button" class="btn btn-danger" action-for="delete">Yes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered gallery-modal">
         <div class="modal-content">
@@ -39,18 +71,22 @@
             <form source="update_event">
                 <div class="col-md-12 p-0">
                     <div class="col-md-12 mb-3">
-                        <label class="form-label">Title</label>
+                        <label class="form-label">Event Title</label>
                         <input type="text" name="update_event_name" class="form-control" placeholder="Title" required>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-md-6 mb-3">
+                        <!-- <div class="col-md-6 mb-3"> -->
+                            <!-- <label class="form-label">Date</label> -->
+                            <!-- <input type="date" name="update_event_date" class="form-control" placeholder="Event date" required> -->
+                        <!-- </div> -->
+                        <div class="col-md-12 mb-3">
                             <label class="form-label">Date</label>
-                            <input type="date" name="update_event_date" class="form-control" placeholder="Event date" required>
+                            <input type="text" name="update_event_date" class="form-control" placeholder="Event date" required readonly>
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <!-- <div class="col-md-6 mb-3">
                             <label class="form-label">Event Duration (Days)</label>
                             <input type="text" name="update_event_duration" class="form-control" placeholder="Event date" required>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="row mb-3">
                         <div class="col-6">
@@ -62,30 +98,44 @@
                             <textarea class="form-control" name="update_eng_event_message" rows="3" placeholder="Describe the event in one paragraph" required></textarea>
                         </div>
                     </div>
-                    <div class="col-md-12 mb-3">
+                    <!-- <div class="col-md-12 mb-3">
                         <label class="form-label">Photo/Image Banner</label>
                         <input type="file" name="update_event_banner" class="form-control" accept="image/png, image/jpeg, image/gif">
                         <small class="form-text text-muted">Banner size 720x150 pixels (jpg/png/gif)</small>
-                    </div>
+                    </div> -->
                     <div class="col-md-12 mb-3">
-                        <label class="form-label">Thumbnail</label>
-                        <input type="file" name="update_event_thumbnail" class="form-control" accept="image/png, image/jpeg, image/gif">
+                        <label class="form-label">
+                          Cover Photo
+                        </label>
+                        <!-- <input type="file" name="update_event_thumbnail" class="custom-file-input">
+                        <span class="file-name">Choose Photo</span> -->
+                        <div class="thumbnail-wrapper">
+                          <label for="thumbnail-fileUpload" class="thumbnail-file-button">
+                            Choose Photo
+                          </label>
+                          <span id="thumbnail-fileName" class="thumbnail-file-name">
+                            No photo selected
+                          </span>
+                        </div>
+
+                        <input type="file" name="update_event_thumbnail" id="thumbnail-fileUpload" accept="image/png, image/jpeg, image/gif">
                     </div>
                     <div class="col-md-12 mb-3">
                         <label class="form-label">Gallery</label>
                         <span class="btn btn-primary gallery-btn">Upload photo to gallery</span>
                     </div>
-                    <div class="col-md-12 mb-3">
+                    <!-- <div class="col-md-12 mb-3">
                         <label class="form-label">Event Agenda</label>
                         <input type="file" name="update_event_agenda" class="form-control" accept="application/pdf">
-                    </div>
+                    </div> -->
                     <div class="col-md-12 mb-3">
-                        <label class="form-label">Additional Links</label>
+                        <label class="form-label">Media Coverage Links</label>
                         <textarea class="form-control" name="update_event_links" rows="3" placeholder="list all of links"></textarea>
                     </div>
                 </div>
                 <div class="d-flex flex-row px-0 action-button justify-content-between">
                     <button type="submit" class="submit-btn">UPLOAD</button>
+                    <span class="btn btn-secondary cancel-form-btn">CANCEL</span>
                 </div>
             </form>
         </div>
@@ -93,10 +143,11 @@
         <!-- Right: List of Previous Events -->
         <div class="col-md-5">
           <h5 class="text-warning fw-bold mb-3">Edit Previous Events</h5>
-          <div class="bg-light p-3 rounded shadow-sm">
+          <div class="bg-light p-3 rounded shadow-sm side-list-data">
             <ul class="list-unstyled list-of-previous-event">
             </ul>
           </div>
+          <button onclick="deletePreviousConfirmation()" class="previous-event-delete delete-btn btn btn-danger mt-2 d-none">DELETE</button>
         </div>
       </div>
 </div>
@@ -127,8 +178,8 @@
             container_list_previous_event.replaceChildren();
             for(key in row_data){
                 previous_event = row_data[key];
-                container_list_previous_event.insertAdjacentHTML("afterbegin",`
-                    <li class="text-black row-previous-event" onclick="showToFormNews(this)" style="cursor:pointer;" id="${previous_event['id']}">${previous_event['eventname']}</li>
+                container_list_previous_event.insertAdjacentHTML("beforeend",`
+                    <li class="text-black row-previous-event" onclick="showToFormPrevious(this)" style="cursor:pointer;" id="${previous_event['id']}">${previous_event['eventname']}</li>
                 `)
             }
         });
@@ -140,11 +191,40 @@
         }
 
         document.querySelector("nav span[link='previous-events']").addEventListener("click",function(){
+            resetFormPrevious();
             getPreviousEvent();
         });
+
+        cancelPreviousEventModalElement = document.getElementById('cancel-previous-event-confirmation');
+        cancelPreviousEventModal = new bootstrap.Modal(cancelPreviousEventModalElement);
+
+        deletePreviousEventModalElement = document.getElementById('delete-previous-event-confirmation');
+        deletePreviousEventModal = new bootstrap.Modal(deletePreviousEventModalElement);
+
+        fp_event_date = flatpickr("input[name='update_event_date']", {
+            mode: "range",
+            dateFormat: "Y-m-d",
+            maxDate: "today",
+            locale: {
+                rangeSeparator: " → " // change "to" → "-"
+            }
+        });
+        // document.querySelector("input[name='update_event_date']").addEventListener("change",function(){
+        //     // console.log(this.value.split("→"));
+        //     // console.log(diffDays(this.value.split("→")[0],this.value.split("→")[1]));
+        // })
+
+        // this.querySelectorAll(".close-modal").forEach(function(thisEl){
+        //     thisEl.addEventListener("click",function(){
+        //         cancelPreviousEventModal.hide();
+        //     })
+        // })
     })
 </script>
 <script submit-previous-events>
+    document.querySelector("input[name='update_event_thumbnail']").addEventListener("change", function () {
+      document.querySelector(".thumbnail-file-name").textContent = this.files[0]?.name || "No photo selected";
+    });
     // previous_event_list = document.querySelectorAll(".row-previous-event");
     const showToFormPrevious = function(this_element){
         loading("show")
@@ -159,51 +239,58 @@
         source_form = document.querySelector(`form[source='update_event']`);
         source_form.querySelector("span[type='publish']")?.remove();
 
+        document.querySelector(".previous-event-delete").classList.remove("d-none");
+
         for(key in list_previous_data){
             if(list_previous_data[key]["id"] == prev_event_id){
                 form_data = list_previous_data[key];
+                source_form.querySelector(".action-button .submit-btn").innerHTML = "UPDATE";
                 if(!form_data["isprevious"]){
-                    source_form.querySelector(".action-button").insertAdjacentHTML("beforeend",`<span type="publish" class="submit-btn" style="cursor:pointer;">PUBLISH</span>`);
+                    source_form.querySelector(".action-button .cancel-form-btn").insertAdjacentHTML("beforebegin",`<span type="publish" class="submit-btn" style="cursor:pointer;">PUBLISH</span>`);
                 }
                 source_form.querySelector("input[name='update_events']")?.remove();
                 source_form.insertAdjacentHTML("afterbegin",`<input name="update_events" value="${form_data["id"]}" style="display:none;">`)
                 source_form.querySelector("input[name='update_event_name']").value = form_data["eventname"];
-                source_form.querySelector("input[name='update_event_date']").value = form_data["eventdate"];
-                source_form.querySelector("input[name='update_event_duration']").value = form_data["duration"];
+                duration = form_data["duration"] || 1;
+                end_date = addDays(form_data["eventdate"],duration);
+                fp_event_date.setDate([form_data["eventdate"],end_date]);
+                // source_form.querySelector("input[name='update_event_date']").value = form_data["eventdate"];
+                // source_form.querySelector("input[name='update_event_duration']").value = form_data["duration"];
                 source_form.querySelector("textarea[name='update_event_message']").value = form_data["description"];
                 source_form.querySelector("textarea[name='update_eng_event_message']").value = form_data["eng_description"];
                 source_form.querySelector("textarea[name='update_event_links']").value = form_data["additionalcontent"];
-                if(form_data["banner"]){
-                    input_banner = source_form.querySelector("input[name='update_event_banner']");
-                    input_banner.closest("div.mb-3").querySelector("div[preview-file]")?.remove();
-                    input_banner.style.display = 'none';
-                    input_banner.closest("div.mb-3").insertAdjacentHTML("beforeend",`
-                        <div preview-file>
-                            <div class="form-control" style="border:none;">
-                                <img src="${form_data['banner']}" style="max-width:400px">
-                            </div>
-                            <span>Banner image ${form_data["eventname"]}</span>
-                            <span class="btn btn-danger" for="delete-preview-file">
-                                <i class="bi text-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
-                                    </svg>
-                                </i> Delete
-                            </span>
-                        </div>
-                    `)
-                }
+                // if(form_data["banner"]){
+                //     input_banner = source_form.querySelector("input[name='update_event_banner']");
+                //     input_banner.closest("div.mb-3").querySelector("div[preview-file]")?.remove();
+                //     input_banner.style.display = 'none';
+                //     input_banner.closest("div.mb-3").insertAdjacentHTML("beforeend",`
+                //         <div preview-file>
+                //             <div class="form-control" style="border:none;">
+                //                 <img src="${form_data['banner']}" style="max-width:400px">
+                //             </div>
+                //             <span>Banner image ${form_data["eventname"]}</span>
+                //             <span class="btn btn-danger" for="delete-preview-file">
+                //                 <i class="bi text-white">
+                //                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                //                         <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                //                     </svg>
+                //                 </i> Delete
+                //             </span>
+                //         </div>
+                //     `)
+                // }
                 if(form_data["thumbnail"]){
                     input_thumbnail = source_form.querySelector("input[name='update_event_thumbnail']");
+                    input_thumbnail.closest("div.mb-3").querySelector(".thumbnail-wrapper").style.display = 'none';
                     input_thumbnail.closest("div.mb-3").querySelector("div[preview-file]")?.remove();
-                    input_thumbnail.style.display = 'none';
+                    // input_thumbnail.style.display = 'none';
                     input_thumbnail.closest("div.mb-3").insertAdjacentHTML("beforeend",`
                         <div preview-file>
                             <div class="form-control" style="border:none;">
                                 <img src="${form_data['thumbnail']}" style="max-width:400px">
                             </div>
-                            <span>Thumbnail image ${form_data["eventname"]}</span>
-                            <span class="btn btn-danger" for="delete-preview-file">
+                            <span>Cover photo image ${form_data["eventname"]}</span>
+                            <span class="btn btn-danger" for="delete-preview-file-thumbnail">
                                 <i class="bi text-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                                         <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
@@ -216,30 +303,31 @@
                 else{
                     input_thumbnail = source_form.querySelector("input[name='update_event_thumbnail']");
                     input_thumbnail.closest("div.mb-3").querySelector("div[preview-file]")?.remove();
-                    input_thumbnail.style.display = 'block';
+                    input_thumbnail.closest("div.mb-3").querySelector(".thumbnail-wrapper").style.display = 'block';
+                    // input_thumbnail.style.display = 'block';
                 }
-                if(form_data["agenda"]){
-                    input_agenda = source_form.querySelector("input[name='update_event_agenda']");
-                    input_agenda.style.display = 'none'
-                    input_agenda.closest("div.mb-3").querySelector("div[preview-file]")?.remove();
-                    input_agenda.closest("div.mb-3").insertAdjacentHTML("beforeend",`
-                        <div preview-file>
-                            <a href="${form_data["agenda"]}" class="form-control" style="border:none;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.6 11.85H0v3.999h.791v-1.342h.803q.43 0 .732-.173.305-.175.463-.474a1.4 1.4 0 0 0 .161-.677q0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.38.57.57 0 0 1-.238.241.8.8 0 0 1-.375.082H.788V12.48h.66q.327 0 .512.181.185.183.185.522m1.217-1.333v3.999h1.46q.602 0 .998-.237a1.45 1.45 0 0 0 .595-.689q.196-.45.196-1.084 0-.63-.196-1.075a1.43 1.43 0 0 0-.589-.68q-.396-.234-1.005-.234zm.791.645h.563q.371 0 .609.152a.9.9 0 0 1 .354.454q.118.302.118.753a2.3 2.3 0 0 1-.068.592 1.1 1.1 0 0 1-.196.422.8.8 0 0 1-.334.252 1.3 1.3 0 0 1-.483.082h-.563zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638z"/>
-                                </svg>
-                            </a>
-                            <span>${form_data["eventname"]}.pdf</span>
-                            <span class="btn btn-danger" for="delete-preview-file">
-                                <i class="bi text-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
-                                    </svg>
-                                </i> Delete
-                            </span>
-                        </div>
-                    `)
-                }
+                // if(form_data["agenda"]){
+                //     input_agenda = source_form.querySelector("input[name='update_event_agenda']");
+                //     input_agenda.style.display = 'none'
+                //     input_agenda.closest("div.mb-3").querySelector("div[preview-file]")?.remove();
+                //     input_agenda.closest("div.mb-3").insertAdjacentHTML("beforeend",`
+                //         <div preview-file>
+                //             <a href="${form_data["agenda"]}" class="form-control" style="border:none;">
+                //                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16">
+                //                     <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.6 11.85H0v3.999h.791v-1.342h.803q.43 0 .732-.173.305-.175.463-.474a1.4 1.4 0 0 0 .161-.677q0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.38.57.57 0 0 1-.238.241.8.8 0 0 1-.375.082H.788V12.48h.66q.327 0 .512.181.185.183.185.522m1.217-1.333v3.999h1.46q.602 0 .998-.237a1.45 1.45 0 0 0 .595-.689q.196-.45.196-1.084 0-.63-.196-1.075a1.43 1.43 0 0 0-.589-.68q-.396-.234-1.005-.234zm.791.645h.563q.371 0 .609.152a.9.9 0 0 1 .354.454q.118.302.118.753a2.3 2.3 0 0 1-.068.592 1.1 1.1 0 0 1-.196.422.8.8 0 0 1-.334.252 1.3 1.3 0 0 1-.483.082h-.563zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638z"/>
+                //                 </svg>
+                //             </a>
+                //             <span>${form_data["eventname"]}.pdf</span>
+                //             <span class="btn btn-danger" for="delete-preview-file">
+                //                 <i class="bi text-white">
+                //                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                //                         <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                //                     </svg>
+                //                 </i> Delete
+                //             </span>
+                //         </div>
+                //     `)
+                // }
             }
         }
 
@@ -303,10 +391,22 @@
 
         event_name = this.querySelector("input[name='update_event_name']").value
         formdata.append("eventname",event_name)
+        
         event_date = this.querySelector("input[name='update_event_date']").value
+        
+        range_date_event = event_date.split("→");
+
+        event_date = range_date_event[0];
         formdata.append("eventdate",event_date)
-        event_duration = this.querySelector("input[name='update_event_duration']").value
+
+        if(range_date_event.length == 1){
+            event_duration = 1;
+        }
+        else{
+            event_duration = diffDays(range_date_event[0],range_date_event[1]) + 1;
+        }
         formdata.append("duration",event_duration)
+
         // event_display_date = this.querySelector("input[name='update_event_display_date']").value
         // formdata.append("eventdisplaydate",event_display_date)
         event_message = this.querySelector("textarea[name='update_event_message']").value
@@ -325,37 +425,45 @@
         else{
             formdata.append("thumbnail",event_thumbnail);
         }
-        event_banner = this.querySelector("input[name='update_event_banner']").files[0]
-        if(!event_banner){
-            input_banner = source_form.querySelector("input[name='update_event_banner']");
-            exist_banner = input_banner.closest("div.mb-3").querySelector("div[preview-file]");
+        // event_banner = this.querySelector("input[name='update_event_banner']").files[0]
+        // if(!event_banner){
+        //     input_banner = source_form.querySelector("input[name='update_event_banner']");
+        //     exist_banner = input_banner.closest("div.mb-3").querySelector("div[preview-file]");
 
-            if(!exist_banner){
-                formdata.append("delete_banner",true);
-            }
-        }
-        else{
-            formdata.append("banner",event_banner);
-        }
-        event_agenda = this.querySelector("input[name='update_event_agenda']").files[0]
-        if(!event_agenda){
-            input_agenda = source_form.querySelector("input[name='update_event_agenda']");
-            exist_agenda = input_agenda.closest("div.mb-3").querySelector("div[preview-file]");
+        //     if(!exist_banner){
+        //         formdata.append("delete_banner",true);
+        //     }
+        // }
+        // else{
+        //     formdata.append("banner",event_banner);
+        // }
+        // event_agenda = this.querySelector("input[name='update_event_agenda']").files[0]
+        // if(!event_agenda){
+        //     input_agenda = source_form.querySelector("input[name='update_event_agenda']");
+        //     exist_agenda = input_agenda.closest("div.mb-3").querySelector("div[preview-file]");
 
-            if(!exist_agenda){
-                formdata.append("delete_agenda",true);
-            }
-        }
-        else{
-            formdata.append("agenda",event_banner);
-        }
+        //     if(!exist_agenda){
+        //         formdata.append("delete_agenda",true);
+        //     }
+        // }
+        // else{
+        //     formdata.append("agenda",event_banner);
+        // }
         event_additional_links = this.querySelector("textarea[name='update_event_links']").value
         formdata.append("additionalcontent",event_additional_links)
 
         specific_data = this.querySelector("input[name='update_events']");
 
-        this_route = "{{route('update-events')}}";
-        formdata.append("events",specific_data.value)
+        if(specific_data?.value){
+            this_route = "{{route('update-events')}}";
+            formdata.append("events",specific_data.value);
+        }
+        else{
+            this_route = "{{route('create-events')}}";
+            formdata.append("isprevious",1);
+            formdata.append("eventsource","event1");
+            formdata.append("eventdisplaydate",event_date);
+        }
 
         fetchData(
             this_route,
@@ -365,54 +473,104 @@
         )
         .then((response)=>{
             if (response.status !== 200){
-                showAlert("not-ok","updated")
+                if(specific_data?.value){
+                    showAlert("not-ok","updated");
+                }
+                else{
+                    showAlert("not-ok","created");
+                }
 
                 return response.json();
             }
 
-            showAlert("ok","updated")
+            if(specific_data?.value){
+                showAlert("ok","updated")
+            }
+            else{
+                showAlert("ok","created");
+            }
+
             return response.json();
         })
         .then((data)=>{
             loading("close",500);
         })
         .finally(() =>{
-            thisform.querySelector("input[name='update_event_thumbnail']").value = ""
-            thisform.querySelector("input[name='update_event_banner']").value = ""
-            thisform.querySelector("input[name='update_event_agenda']").value = ""
-            getPreviousEvent();
-            setTimeout(function(){
-                document.querySelector(`.row-previous-event[id='${specific_data.value}']`).click()
-            },500)
+            resetFormPrevious(true);
+            // thisform.querySelector("input[name='update_event_thumbnail']").value = ""
+            // // thisform.querySelector("input[name='update_event_banner']").value = ""
+            // // thisform.querySelector("input[name='update_event_agenda']").value = ""
+            // getPreviousEvent();
+            // setTimeout(function(){
+            //     document.querySelector(`.row-previous-event[id='${specific_data.value}']`).click()
+            // },500)
         });
 
         return false;
     })
+
+    function diffDays(start, end) {
+        const startDate = new Date(start);
+        const endDate = new Date(end);
+
+        const diffTime = endDate - startDate;
+        return diffTime / (1000 * 60 * 60 * 24);
+    }
+    function addDays(dateStr, days) {
+    const date = new Date(dateStr + "T00:00:00");
+        date.setDate(date.getDate() + days);
+        
+        return date.toISOString().split("T")[0];
+    }
 </script>
 <script gallery-upload>
     source_form = document.querySelector(`form[source='update_event']`);
     source_form.querySelector(".gallery-btn").addEventListener("click",function(e){
         selected_event = source_form.querySelector("input[name='update_events']");
         if(!selected_event){
+            showAlert("not-ok","created","Gallery only available after create and then edit the Previous Event");
             return false;
         }
         else{
-            galleryModalElement = document.getElementById('galleryModal');
-            galleryModal = new bootstrap.Modal(galleryModalElement);
+            this_route = "{{ route('event-detail', ':page') }}";
+            this_route = this_route.replace(':page', selected_event.value);
+            fetchData(
+                this_route,
+                "GET",
+                {"Authorization":localStorage.getItem("Token")}
+            )
+            .then((response)=>{
+                return response.json();
+            })
+            .then((data)=>{
+                event_detail = data?.data;
+                list_previous = JSON.parse(sessionStorage.getItem("list-previous"));
+                list_previous.forEach(function(value,key){
+                    if(value?.id == event_detail?.id){
+                        list_previous[key] = event_detail;
+                    }
+                })
+                sessionStorage.setItem("list-previous",JSON.stringify(list_previous));
+            })
+            .finally(() =>{
+                galleryModalElement = document.getElementById('galleryModal');
+                galleryModal = new bootstrap.Modal(galleryModalElement);
 
-            previous_event = JSON.parse(sessionStorage.getItem("list-previous"))
-            galleryModalElement.querySelector(".modal-body #previewContainer").innerHTML = "";
-            for (value of previous_event){
-                if(value["id"] == selected_event.value){
-                    gallery_photo = JSON.parse(value["photo"]);
-                    for(key2 in gallery_photo){
-                        value2 = gallery_photo[key2]
-                        galleryModalElement.querySelector(".modal-body #previewContainer").insertAdjacentHTML("beforeend",`<div class="gallery-item"><img src="${value2}" path="${value2}"><button class="remove-btn">x</button></div>`)
+                previous_event = JSON.parse(sessionStorage.getItem("list-previous"))
+                galleryModalElement.querySelector(".modal-body #previewContainer").innerHTML = "";
+                for (value of previous_event){
+                    if(value["id"] == selected_event.value){
+                        if(typeof value["photo"] === 'string') gallery_photo = JSON.parse(value["photo"]);
+                        else gallery_photo = value["photo"];
+                        for(key2 in gallery_photo){
+                            value2 = gallery_photo[key2]
+                            galleryModalElement.querySelector(".modal-body #previewContainer").insertAdjacentHTML("beforeend",`<div class="gallery-item"><img src="${value2}" path="${value2}"><button class="remove-btn">x</button></div>`)
+                        }
                     }
                 }
-            }
 
-            galleryModal.show();
+                galleryModal.show();
+            });
         }
         // alert(selected_event.value);
     })
@@ -531,6 +689,95 @@
             });  
         }
     })
+
+
+    delete_preview_button = document.addEventListener("click",function(e){
+        this_element = e.target;
+        if(this_element.matches("span[for='delete-preview-file-thumbnail']")){
+            if(this_element.closest("div.mb-3")) this_element.closest("div.mb-3").querySelector(".thumbnail-wrapper").style.display = "block";
+            // else if(this_element.closest("div[class*='col-md']")) this_element.closest("div[class*='col-md']").querySelector("input").style.display = "block";
+            this_element.closest("div[preview-file]").remove();
+        }
+    });
+
+    document.querySelector("form[source='update_event'] .cancel-form-btn").addEventListener("click",function() {
+        // if(document.querySelector("form[source='update_event'] input[name='update_events']")){
+            cancelPreviousEventModal.show()
+        // }
+    })
+
+    resetFormPrevious = function(loadBack=false){
+        thisform = document.querySelector("form[source='update_event']");
+        specific_data = thisform.querySelector("input[name='update_events']");
+        thisform.querySelector("input[name='update_events']")?.remove();
+        thisform.querySelector("input[name='update_event_thumbnail']").value = ""
+        input_thumbnail = source_form.querySelector("input[name='update_event_thumbnail']");
+        document.querySelector(".thumbnail-file-name").textContent = "No photo selected";
+        input_thumbnail?.closest("div.mb-3")?.querySelector("div[preview-file]")?.remove();
+        if(input_thumbnail){
+            input_thumbnail.closest("div").querySelector(".thumbnail-wrapper").style.display = "block";
+        }
+        document.querySelector(".modal-body #previewContainer").innerHTML = "";
+
+        getPreviousEvent();
+        if(loadBack && specific_data){
+            setTimeout(function(){
+                document.querySelector(`.row-previous-event[id='${specific_data.value}']`).click()
+            },500)
+        }
+        if(!loadBack){
+            source_form.querySelector("span[type='publish']")?.remove();
+        }
+        fp_event_date.clear();
+        thisform.reset();
+        thisform.querySelector(".submit-btn").innerHTML = "UPLOAD";
+        document.querySelector(".previous-event-delete").classList.add("d-none");
+        cancelPreviousEventModal.hide()
+    }
+
+    deletePreviousConfirmation = function(){
+        selected_event = source_form.querySelector("input[name='update_events']");
+        if(selected_event){
+            deletePreviousEventModal.show();
+        }
+        else{
+            return false;
+        }
+    }
+
+    const deletePrevious = function(){
+        selected_event = source_form.querySelector("input[name='update_events']").value;
+        if(!selected_event) return false;
+        loading("show");
+        responseData = {};
+
+        formdata = new FormData();
+        formdata.append("events",selected_event);
+
+        fetchData(
+            "{{route('delete-previous-events')}}",
+            "POST",
+            {},
+            formdata
+        )
+        .then((response)=>{
+            if (response.status !== 200){
+                showAlert("not-ok","deleted")
+                return response.json();
+            }
+
+            showAlert("ok","deleted")
+            return response.json();
+        })
+        .then((data)=>{
+            responseData = data;
+        })
+        .finally(()=>{
+            loading("close",500)
+            resetFormPrevious();
+            deletePreviousEventModal.hide();
+        })
+    }
 
     // uploadBtn.addEventListener('click', () => {
     //   const filteredFiles = selectedFiles.filter(f => f); // remove deleted

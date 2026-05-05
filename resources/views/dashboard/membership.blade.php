@@ -143,26 +143,78 @@
               	<button type="button" class="btn-close close-modal" data-bs-dismiss="modal" aria-label="Close"></button>
           	</div>
           	<div class="modal-body">
-	            <form class="section-box personal-information">
-	              	<div class="section-header">PERSONAL INFORMATION</div>
+	            <form class="section-box personal-information pt-0">
+						    <div class="row mb-2">
+						        <div class="col-md-12">
+						            @php $default_profile = asset('dash-img/default-profile.png'); @endphp
+						            <div class="profile-photo header-personal" exist-photo="not-exists" style="background: url('{{$default_profile}}') center center / cover no-repeat;"></div>
+						            <p class="m-0 mt-3 fw-bolder text-black" for="member-name">-</p>
+						            <p class="m-0 fw-bolder text-black" for="member-number">-</p>
+						        </div>
+						    </div>
+              	<div class="section-header">PERSONAL INFORMATION</div>
 	          		<div class="row g-3 mt-2 mb-4">
 		                <div class="col-md-6">
-		                  	<label>Prefix</label>
-		                  	<input type="text" class="form-control" name="prefix" placeholder="Prof. / dr. / Dr. / dll.">
+		                		<div class="form-group">
+			                  	<label>Prefix</label>
+			                  	<input type="text" class="form-control" name="prefix" placeholder="Gelar: Prof. / dr. / Dr. / dll.">
+		                		</div>
+		                		<div class="form-group">
+				                 	<label>Full Name</label>
+				                 	<input type="text" class="form-control" name="fullname">
+		                		</div>
+		                		<div class="form-group">
+			                  	<label>Suffix</label>
+			                  	<input type="text" class="form-control" placeholder="Gelar: S. Ked. / SH / MM / AAIJ / dll." name="suffix">
+		                		</div>
+		                		<div class="form-group">
+			                  	<label>Date of Birth</label>
+			                  	<input type="date" class="form-control" placeholder="Day / Month / Year" name="dob">
+		                		</div>
+		                		<div class="form-group">
+			                  	<label>Hobby</label>
+			                  	<input type="text" class="form-control" placeholder="Sebutkan satu atau lebih" name="hobby">
+		                		</div>
+		                		<div class="form-group">
+			                  	<label>Phone</label>
+			                  	<input class="form-control" name="phone" type="tel" inputmode="numeric" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+		                		</div>
+		                		<div class="form-group">
+			                  	<label>Email</label>
+			                  	<input type="email" class="form-control" placeholder="nama@contoh.com" name="email">
+		                		</div>
+		                		<div class="form-group">
+			                  	<label>Upload Photo</label>
+			                  	<input type="file" class="form-control" name="photo" accept="image/png, image/jpeg, image/gif">
+		                		</div>
 		                </div>
 		                <div class="col-md-6">
-		                 	<label>Full Name</label>
-		                 	<input type="text" class="form-control" placeholder="Day / Month / Year" name="fullname">
+		                	<div class="form-group">
+				                <label>Organization</label>
+				                <input type="text" class="form-control" placeholder="Nama Perusahaan" name="organization">
+		                	</div>
+		                	<div class="form-group">
+		                  	<label>Title</label>
+		                  	<input type="text" class="form-control" placeholder="Jabatan" name="function">
+		                	</div>
+		                	<div class="form-group">
+		                  	<label>Work Address</label>
+		                  	<input type="text" class="form-control" placeholder="Alamat Perusahaan" name="ofcaddress">
+		                	</div>
+		                	<div class="form-group">
+		                  	<label>Work Phone</label>
+		                  	<input class="form-control" name="ofcphone" type="tel" inputmode="numeric" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+		                	</div>
+		                	<div class="form-group">
+		                  	<label>Work Email</label>
+		                  	<input type="email" class="form-control" placeholder="nama@perusahaan.com" name="ofcemail">
+		                	</div>
+		                	<div class="form-group">
+		                  	<label>Website</label>
+		                  	<input type="url" class="form-control" placeholder="www.example.com" name="website">
+		                	</div>
 		                </div>
-		                <div class="col-md-6">
-		                  	<label>Suffix</label>
-		                  	<input type="text" class="form-control" placeholder="Gelar: S. Ked. / SH / MM / AAIJ / dll." name="suffix">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Date of Birth</label>
-		                  	<input type="date" class="form-control" placeholder="Day / Month / Year" name="dob">
-		                </div>
-		                <div class="col-md-6">
+		                <!-- <div class="col-md-6">
 		                  	<label>Gender</label>
 				                <select class="form-control" name="gender" required>
 				                    <option value="">--Gender--</option>
@@ -171,49 +223,9 @@
 				                </select>
 		                </div>
 		                <div class="col-md-6">
-		                  	<label>Hobby</label>
-		                  	<input type="text" class="form-control" placeholder="Badminton, Padel, Running, Marathon" name="hobby">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Phone</label>
-		                  	<input class="form-control" name="phone" type="tel" inputmode="numeric" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Email</label>
-		                  	<input type="email" class="form-control" name="email">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Upload Photo</label>
-		                  	<input type="file" class="form-control" name="photo" accept="image/png, image/jpeg, image/gif">
-		                </div>
-		                <div class="col-md-6">
-			                <label>Organization</label>
-			                 <input type="text" class="form-control" placeholder="Company" name="organization">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Work Address</label>
-		                  	<input type="text" class="form-control" placeholder="Company Address" name="ofcaddress">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Work Phone</label>
-		                  	<input class="form-control" name="ofcphone" type="tel" inputmode="numeric" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Work Email</label>
-		                  	<input type="email" class="form-control" name="ofcemail">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Website</label>
-		                  	<input type="url" class="form-control" placeholder="www.example.com" name="website">
-		                </div>
-		                <div class="col-md-6">
-		                  	<label>Function</label>
-		                  	<input type="text" class="form-control" placeholder="Function" name="function">
-		                </div>
-		                <div class="col-md-6">
 		                  	<label>Department</label>
 		                  	<input type="text" class="form-control" placeholder="Department" name="department">
-		                </div>
+		                </div> -->
 	          		</div>
 	              	<div class="section-header">DOCUMENT & RESOURCES</div>
 		            <div class="row g-3 mt-2 mb-4 align-items-start">
@@ -547,7 +559,7 @@
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td>${rowNumber+index}</td>
-          <td>${row.fullname}</td>
+          <td>${row.prefix?row.prefix+' ':''}${row.fullname}${row.suffix?' '+row.suffix:''}</td>
           <td>${row.email}</td>
           <td>${row.registered_date}</td>
           <td>${row.status}</td>
@@ -664,10 +676,15 @@
         	personal_information.querySelector("input[name='prefix']").value = responseData?.prefix;
         	personal_information.querySelector("input[name='organization']").value = responseData?.organization;
         	personal_information.querySelector("input[name='fullname']").value = responseData?.fullname;
-        	personal_information.querySelector("select[name='gender']").value = responseData?.gender;
+
+          name_with_prefix = (responseData?.prefix?responseData.prefix+" ":"")+responseData?.fullname+(responseData?.suffix?" "+responseData.suffix:"");
+        	document.querySelector("p[for='member-name']").textContent = name_with_prefix;
+        	document.querySelector("p[for='member-number']").textContent = "No. "+(responseData?.number!=null?responseData.number:'-');
+
+        	// personal_information.querySelector("select[name='gender']").value = responseData?.gender;
         	personal_information.querySelector("input[name='ofcaddress']").value = responseData?.ofcaddress;
         	personal_information.querySelector("input[name='function']").value = responseData?.funct;
-        	personal_information.querySelector("input[name='department']").value = responseData?.department;
+        	// personal_information.querySelector("input[name='department']").value = responseData?.department;
         	personal_information.querySelector("input[name='suffix']").value = responseData?.suffix;
         	personal_information.querySelector("input[name='ofcphone']").value = responseData?.ofcphone;
         	personal_information.querySelector("input[name='dob']").value = responseData?.dob;
@@ -683,27 +700,33 @@
 	        	}	
         	}
             if(responseData["photo"]){
-                input_photo = personal_information.querySelector("input[name='photo']");
-                input_photo.style.display = 'none';
-                input_photo.closest("div[class*='col-md']").querySelector("div[preview-file]")?.remove();
-                input_photo.closest("div[class*='col-md']").insertAdjacentHTML("beforeend",`
-                    <div preview-file>
-                        <div class="form-control" style="border:none;padding-left:0;">
-                            <img src="${responseData['photo']}" style="max-width:180px">
-                        </div>
-                        <span class="btn btn-danger" for="delete-preview-file">
-                            <i class="bi text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
-                                </svg>
-                            </i> Delete
-                        </span>
-                    </div>
-                `)
+                document.querySelector(".profile-photo.header-personal").setAttribute("exist-photo","exists");
+                document.querySelector(".profile-photo.header-personal").style = `background: url('${responseData['photo']}') center center / cover no-repeat;`;
+                // input_photo = personal_information.querySelector("input[name='photo']");
+                // input_photo.style.display = 'none';
+                // input_photo.closest("div[class*='col-md']").querySelector("div[preview-file]")?.remove();
+                // input_photo.closest("div[class*='col-md']").insertAdjacentHTML("beforeend",`
+                //     <div preview-file>
+                //         <div class="form-control" style="border:none;padding-left:0;">
+                //             <img src="${responseData['photo']}" style="max-width:180px">
+                //         </div>
+                //         <span class="btn btn-danger" for="delete-preview-file">
+                //             <i class="bi text-white">
+                //                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                //                     <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                //                 </svg>
+                //             </i> Delete
+                //         </span>
+                //     </div>
+                // `)
+            }
+            else{
+              document.querySelector(".profile-photo.header-personal").setAttribute("exist-photo","not-exists");
             }
 
         	card_container = personal_information.querySelector(".card-container");
-        	card_container.querySelector(".profile-photo").style.backgroundImage = `url("${responseData["photo"]}")`;
+        	default_profile = "{{asset('dash-img/default-profile.png')}}";
+        	card_container.querySelector(".profile-photo").style.backgroundImage = `url("${responseData?.photo??default_profile}")`;
         	card_container.querySelector(".info-name").innerHTML = responseData["fullname"]?.toUpperCase();
         	title = responseData["title"]?.toUpperCase();
         	if(typeof title === "undefined"){
@@ -716,7 +739,9 @@
         		"priority":`url("{{asset('dash-img/priority-card.png')}}")`,
         		"executive":`url("{{asset('dash-img/executive-card.png')}}")`
         	}
-        	member_title = responseData["title"]=="member"?"regular":responseData["title"];
+
+        	member_title = (responseData["title"]=="member"?"regular":responseData["title"])??'regular';
+
       		card_container.style.backgroundImage = card_background[member_title];
         	// if(responseData["title"] == "management" || responseData["title"] == "priority"){
         	// 	card_container.style.backgroundImage = `url("{{asset('dash-img/management-card.png')}}")`;
@@ -754,6 +779,7 @@
         	personal_information.querySelector("input[name='number']").value = responseData?.number;
         	personal_information.querySelector("select[name='status']").value = responseData?.status;
         	personal_information.querySelector("select[name='title']").value = responseData?.title;
+
         });
     }
 
@@ -794,14 +820,14 @@
         formdata.append("organization",organization)
         fullname = this.querySelector("input[name='fullname']").value
         formdata.append("fullname",fullname)
-        gender = this.querySelector("select[name='gender']").value
-        formdata.append("gender",gender)
+        // gender = this.querySelector("select[name='gender']").value
+        // formdata.append("gender",gender)
         ofcaddress = this.querySelector("input[name='ofcaddress']").value
         formdata.append("ofcaddress",ofcaddress)
         funct = this.querySelector("input[name='function']").value
         formdata.append("funct",funct)
-        department = this.querySelector("input[name='department']").value
-        formdata.append("department",department)
+        // department = this.querySelector("input[name='department']").value
+        // formdata.append("department",department)
         suffix = this.querySelector("input[name='suffix']").value
         formdata.append("suffix",suffix)
         ofcphone = this.querySelector("input[name='ofcphone']").value
@@ -821,9 +847,10 @@
         photo = this.querySelector("input[name='photo']").files[0]
         if(!photo){
             input_photo = this.querySelector("input[name='photo']");
-            exist_photo = input_photo.closest("div[class*='col-md']").querySelector("div[preview-file]");
+            // exist_photo = input_photo.closest("div[class*='col-md']").querySelector("div[preview-file]");
+            exist_photo = document.querySelector(".profile-photo.header-personal").getAttribute("exist-photo");
 
-            if(!exist_photo){
+            if(exist_photo != "exists"){
                 formdata.append("delete_photo",true);
             }
         }

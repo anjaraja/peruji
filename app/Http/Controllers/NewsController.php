@@ -49,9 +49,7 @@ class NewsController extends Controller
         try{
             $page = is_int($page)?$page:1;
 
-            $news = News::when($for!="dashboard",function($news){
-                    $news->where("activestatus",1);
-                })
+            $news = News::where("activestatus",1)
                 ->orderBy("newsdate","desc")->paginate(15, ["*"], "page", $page)->toArray();
 
             foreach($news["data"] as $key => $value){
@@ -305,6 +303,67 @@ class NewsController extends Controller
         catch(\Exception $e){
             Log::channel('errorlog')->error('[UPDATE NEWS]', ["message"=>$e->getMessage()]);
             return response()->json(["message"=>"RC3.3"],500);;
+        }
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/api/delete-news/",
+     *      security={{"bearerAuth":{}}},
+     *      tags={"Dashboard"}, 
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(
+     *              mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  required={"news"},
+     *                  @OA\Property(
+     *                      property="news",
+     *                      type="string",
+     *                      example=1
+     *                  )
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *      )
+     * )
+     */
+    public function delete(Request $request)
+    {
+        try{
+            $validated = Validator::make($request->all(),[
+                'news' => 'required|int'
+            ]);
+            if ($validated->fails()) {
+                Log::channel('activity')->warning('[DELETE NEWS]', [$validated->errors(),$request->all()]);
+                return response()->json(["message" => "RC4.1"], 422);
+            }
+
+            $news = News::where("id",$request->news);
+            $news_data = $news->first();
+            if(!$news_data){
+                Log::channel('activity')->warning('[DELETE NEWS]', ["Data not found with id",$request->news]);
+                return response()->json(["message" => "RC4.2"], 422);
+            }
+
+            $data = $request->all();
+            $data["id"] = $request->news;
+            $data["activestatus"] = 0;
+            $data["modified_by"] = auth("api")->user()->email;
+            $data["updated_at"] = now();
+            Log::channel('activity')->info('[DELETE NEWS][DATA]', $data);
+
+            unset($data["news"]);
+            $store = $news->update($data);
+
+            return response()->json(["message"=>"ok"],200);
+        }
+        catch(\Exception $e){
+            Log::channel('errorlog')->error('[DELETE NEWS]', ["message"=>$e->getMessage()]);
+            return response()->json(["message"=>"RC4.3"],500);;
         }
     }
 

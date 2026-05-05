@@ -369,6 +369,15 @@ html {
       border-radius: 20px !important;
       /*transition: all .8s;*/
     }
+    .delete-btn {
+      /*opacity: 0;
+      pointer-events: none;*/
+      font-weight: bold;
+      border: none;
+      padding: 10px 30px !important;
+      border-radius: 20px !important;
+      /*transition: all .8s;*/
+    }
     /*.cancel-form-btn.show{
       opacity: 1;
       pointer-events: auto;
@@ -376,6 +385,15 @@ html {
     }*/
     .accordion-button{
       z-index: 1 !important;
+    }
+    .side-list-data{
+        position: relative;
+        float: left;
+        height: 68vh;
+        overflow: auto;
+    }
+    .newsroom .side-list-data{
+        height: 72.5vh;
     }
     @media(max-width: 600px){
         .content-container{
@@ -507,6 +525,44 @@ html {
       text-align: center;
       cursor: pointer;
     }
+    .thumbnail-wrapper {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        overflow: hidden;
+        font-family: sans-serif;
+        font-size: 14px;
+        width: 100%;
+        background-color: #fff;
+    }
+
+    .thumbnail-file-button {
+        background: #f8f9fa;
+        padding: 6px 12px;
+        cursor: pointer;
+        border-right: 1px solid #ccc;
+        white-space: nowrap;
+        color: black;
+        font-size: 1rem;
+    }
+    .thumbnail-file-button:hover {
+        background: #e0e0e0;
+    }
+
+    .thumbnail-file-button:active {
+        background: #d6d6d6;
+    }
+
+    .thumbnail-file-name {
+        padding: 6px 10px;
+        color: #000;
+        min-width: 160px;
+    }
+
+    input[type="file"]#thumbnail-fileUpload {
+        display: none;
+    }
 /*End Previous Events*/
 
 
@@ -543,6 +599,12 @@ html {
       background-position-y: top !important;
       background-repeat: no-repeat !important;
       background-size: cover !important;
+    }
+
+    .profile-photo.header-personal{
+        position: relative !important;
+        bottom: unset;
+        left: unset;
     }
     .content-container.document-resources-index .card-container .profile-photo{
         width: 120px;
