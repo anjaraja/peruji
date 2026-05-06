@@ -209,10 +209,6 @@
                 rangeSeparator: " → " // change "to" → "-"
             }
         });
-        // document.querySelector("input[name='update_event_date']").addEventListener("change",function(){
-        //     // console.log(this.value.split("→"));
-        //     // console.log(diffDays(this.value.split("→")[0],this.value.split("→")[1]));
-        // })
 
         // this.querySelectorAll(".close-modal").forEach(function(thisEl){
         //     thisEl.addEventListener("click",function(){
@@ -399,11 +395,16 @@
         event_date = range_date_event[0];
         formdata.append("eventdate",event_date)
 
+        range_date_event = fp_event_date.selectedDates;
         if(range_date_event.length == 1){
             event_duration = 1;
         }
         else{
-            event_duration = diffDays(range_date_event[0],range_date_event[1]) + 1;
+            const start = range_date_event[0];
+            const end = range_date_event[1];
+
+            const diff = (end - start) / (1000 * 60 * 60 * 24);
+            event_duration = diff + 1;
         }
         formdata.append("duration",event_duration)
 
@@ -509,15 +510,8 @@
         return false;
     })
 
-    function diffDays(start, end) {
-        const startDate = new Date(start);
-        const endDate = new Date(end);
-
-        const diffTime = endDate - startDate;
-        return diffTime / (1000 * 60 * 60 * 24);
-    }
     function addDays(dateStr, days) {
-    const date = new Date(dateStr + "T00:00:00");
+        const date = new Date(dateStr + "T00:00:00");
         date.setDate(date.getDate() + days);
         
         return date.toISOString().split("T")[0];
