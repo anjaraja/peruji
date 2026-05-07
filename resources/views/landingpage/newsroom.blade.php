@@ -28,10 +28,14 @@
             <div class="container-fluid menu-newsroom-page p-0" id="previous-newsroom">
                 <div class="in-newsroom-page text-center text-md-start px-4 px-md-0">
                     @foreach ($data as $key => $value)
+                        @php
+                            $news_img = $value['photo']??asset('lp-img/default-img-thumbnail-event.png');
+                        @endphp
                         @if($key % 2 === 0)
                             <div class="row" label="odd">
                                 <div class="col-12 col-md-6 p-0 order-first order-md-first">
-                                    <img src="{{$value['photo']?asset($value['photo']):asset('lp-img/default-img-thumbnail-event.png')}}" alt="" class="thumbnail-event-img">
+                                    <!-- <img src="{{$value['photo']?asset($value['photo']):asset('lp-img/default-img-thumbnail-event.png')}}" alt="" class="thumbnail-event-img"> -->
+                                    <div style="background-image:url('{{$news_img}}');background-repeat: no-repeat;background-size: cover;background-position: center;" alt="" class="thumbnail-event-img"></div>
                                 </div>
                                 <div class="col-12 col-md-6 gpe-r gpc-l gpc-t gpc-b d-flex flex-column">
                                   <div class="tanggal" lang="idn">{{$value['display_newsdate']}}</div>
@@ -67,7 +71,8 @@
                                   @endif
                                 </div>
                                 <div class="col-12 col-md-6 p-0">
-                                    <img src="{{$value['photo']?asset($value['photo']):asset('lp-img/default-img-thumbnail-event.png')}}" alt="" class="thumbnail-event-img">
+                                    <!-- <img src="{{$value['photo']?asset($value['photo']):asset('lp-img/default-img-thumbnail-event.png')}}" alt="" class="thumbnail-event-img"> -->
+                                    <div style="background-image:url('{{$news_img}}');background-repeat: no-repeat;background-size: cover;background-position: center;" alt="" class="thumbnail-event-img"></div>
                                 </div>
                             </div>
                         @endif
