@@ -113,8 +113,8 @@
                                             <div class="date-event" lang="idn">{{$value['display_detail_date']}}</div>
                                             <div class="date-event" lang="eng">{{$value['eng_display_detail_date']}}</div>
                                             <div class="d-flex w-100 justify-content-center">
-                                                <div class="desc-event" lang="idn">{{$value['description']}}</div>
-                                                <div class="desc-event" lang="eng">{{$value['eng_description']}}</div>
+                                                <div class="desc-event" lang="idn">{!! nl2br(e($value['description'])) !!}</div>
+                                                <div class="desc-event" lang="eng">{!! nl2br(e($value['eng_description'])) !!}</div>
                                             </div>
                                             <div class="d-flex w-100 justify-content-center">
                                                 <div class="d-flex bottom-container" style="width:650px;">
@@ -199,18 +199,21 @@
                 @foreach ($previous_events as $key => $value)
                     @php
                         $exists_item_gallery = json_decode($value['photo'])?'':'text-muted pe-none';
+                        $event_img = $value['thumbnail'];
+                        $event_default_img = asset('lp-img/default-img-thumbnail-event.png');
                     @endphp
                     @if($key % 2 === 0)
                         <div class="row" label="odd">
                             <div class="col-12 col-md-6 p-0 order-first order-md-first">
-                                <img src="{{$value['thumbnail']?asset($value['thumbnail']):asset('lp-img/default-img-thumbnail-event.png')}}" alt="" class="thumbnail-event-img">
+                                <!-- <img src="{{$value['thumbnail']?asset($value['thumbnail']):asset('lp-img/default-img-thumbnail-event.png')}}" alt="" class="thumbnail-event-img"> -->
+                                <div style="background-image:url('{{$event_img??$event_default_img}}');background-repeat: no-repeat;background-size: cover;background-position: center;" alt="" class="thumbnail-event-img"></div>
                             </div>
                             <div class="col-12 col-md-6 gpe-r gpc-l gpc-t gpc-b d-flex flex-column">
                               <div class="tanggal" lang="idn">{{$value['display_detail_date']}}</div>
                               <div class="tanggal" lang="eng">{{$value['eng_display_detail_date']}}</div>
                               <div class="label-event">{{$value['eventname']}}</div>
-                              <div class="pb-2 desc" lang="idn">{{$value['description']}}</div>
-                              <div class="pb-2 desc" lang="eng">{{$value['eng_description']}}</div>
+                              <div class="pb-2 desc" lang="idn">{!! nl2br(e($value['description'])) !!}</div>
+                              <div class="pb-2 desc" lang="eng">{!! nl2br(e($value['eng_description'])) !!}</div>
 
                               <!-- This container stretches to fill remaining space -->
                               <div class="d-flex flex-grow-1 align-items-end justify-content-center justify-content-md-start">
@@ -228,8 +231,8 @@
                               <div class="tanggal" lang="idn">{{$value['display_detail_date']}}</div>
                               <div class="tanggal" lang="eng">{{$value['eng_display_detail_date']}}</div>
                               <div class="label-event">{{$value['eventname']}}</div>
-                              <div class="pb-2 desc" lang="idn">{{$value['description']}}</div>
-                              <div class="pb-2 desc" lang="eng">{{$value['eng_description']}}</div>
+                              <div class="pb-2 desc" lang="idn">{!! nl2br(e($value['description'])) !!}</div>
+                              <div class="pb-2 desc" lang="eng">{!! nl2br(e($value['eng_description'])) !!}</div>
 
                               <!-- This container stretches to fill remaining space -->
                               <div class="d-flex flex-grow-1 align-items-end justify-content-center justify-content-md-start">
@@ -241,7 +244,8 @@
                               </div>
                             </div>
                             <div class="col-12 col-md-6 p-0">
-                                <img src="{{$value['thumbnail']?asset($value['thumbnail']):asset('lp-img/default-img-thumbnail-event.png')}}" alt="" class="thumbnail-event-img">
+                                <!-- <img src="{{$value['thumbnail']?asset($value['thumbnail']):asset('lp-img/default-img-thumbnail-event.png')}}" alt="" class="thumbnail-event-img"> -->
+                                <div style="background-image:url('{{$event_img??$event_default_img}}');background-repeat: no-repeat;background-size: cover;background-position: center;" alt="" class="thumbnail-event-img"></div>
                             </div>
                         </div>
                     @endif
