@@ -199,11 +199,14 @@
                 @foreach ($previous_events as $key => $value)
                     @php
                         $exists_item_gallery = json_decode($value['photo'])?'':'text-muted pe-none';
+                        $event_img = $value['thumbnail'];
+                        $event_default_img = asset('lp-img/default-img-thumbnail-event.png');
                     @endphp
                     @if($key % 2 === 0)
                         <div class="row" label="odd">
                             <div class="col-12 col-md-6 p-0 order-first order-md-first">
-                                <img src="{{$value['thumbnail']?asset($value['thumbnail']):asset('lp-img/default-img-thumbnail-event.png')}}" alt="" class="thumbnail-event-img">
+                                <!-- <img src="{{$value['thumbnail']?asset($value['thumbnail']):asset('lp-img/default-img-thumbnail-event.png')}}" alt="" class="thumbnail-event-img"> -->
+                                <div style="background-image:url('{{$event_img??$event_default_img}}');background-repeat: no-repeat;background-size: cover;background-position: center;" alt="" class="thumbnail-event-img"></div>
                             </div>
                             <div class="col-12 col-md-6 gpe-r gpc-l gpc-t gpc-b d-flex flex-column">
                               <div class="tanggal" lang="idn">{{$value['display_detail_date']}}</div>
@@ -241,7 +244,8 @@
                               </div>
                             </div>
                             <div class="col-12 col-md-6 p-0">
-                                <img src="{{$value['thumbnail']?asset($value['thumbnail']):asset('lp-img/default-img-thumbnail-event.png')}}" alt="" class="thumbnail-event-img">
+                                <!-- <img src="{{$value['thumbnail']?asset($value['thumbnail']):asset('lp-img/default-img-thumbnail-event.png')}}" alt="" class="thumbnail-event-img"> -->
+                                <div style="background-image:url('{{$event_img??$event_default_img}}');background-repeat: no-repeat;background-size: cover;background-position: center;" alt="" class="thumbnail-event-img"></div>
                             </div>
                         </div>
                     @endif
