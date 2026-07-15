@@ -50,6 +50,9 @@ span.detail-event, span.register-event{
     left: -100vw;
     transition: all 0.8s;
     bottom: 0;
+    padding-top: 70px;
+    padding-bottom: 35px;
+    overflow-y: auto;
 }
 .event-detail-container.show{
     opacity: 1;
