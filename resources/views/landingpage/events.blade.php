@@ -67,6 +67,12 @@
                 <div class="head-events" id="upcoming" lang="eng">Upcoming Events</div>
                 <div class="d-flex justify-content-center align-items-center flex-column event-list">
                     @foreach ( $upcoming_events as $value )
+                        @php
+                            $register_link = route('eventsRegis', ['events' => $value['id']]);
+                            if(isset($value['ext_link_registration'])){
+                                $register_link = $value['ext_link_registration'];
+                            }
+                        @endphp
                         <div class="event flex-row">
                             <div class="d-flex h-100 justify-content-start for-desktop" style="width:4.5rem;">
                                 <span class="detail-event align-self-end pl-1" style="font-size: 14px;">
@@ -87,15 +93,15 @@
                                     </svg>
                                     DETAIL
                                 </span>
-                                <a href="{{route('eventsRegis', ['events' => $value['id']])}}" class="register-event text-decoration-none text-white pl-1" style="font-size: 14px;width: max-content;">
-                                    REGISTER
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
-                                    </svg>
-                                </a>
+                                    <a href="{{$register_link}}" class="register-event text-decoration-none text-white pl-1" style="font-size: 14px;width: max-content;" target="_blank">
+                                        REGISTER
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                                        </svg>
+                                    </a>
                             </div>
                             <div class="d-flex h-100 justify-content-end for-desktop" style="width:6rem;">
-                                <a href="{{route('eventsRegis', ['events' => $value['id']])}}" class="register-event text-decoration-none text-white align-self-end pl-1" style="font-size: 14px;width: max-content;">
+                                <a href="{{$register_link}}" class="register-event text-decoration-none text-white align-self-end pl-1" style="font-size: 14px;width: max-content;" target="_blank">
                                     REGISTER
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
@@ -120,11 +126,12 @@
                                                 <div class="d-flex bottom-container" style="width:650px;">
                                                     <div class="d-flex justify-content-center align-items-center w-100 pt-2">
                                                         <div class="d-flex justify-content-start w-25">
-                                                            <a href="{{route('eventsRegis', ['events' => $value['id']])}}"
+                                                            <a href="{{$register_link}}"
                                                                 class="btn text-white"
                                                                 data-url="{{route('eventsRegis', ['events' => $value['id']])}}"
                                                                 data-target="register-area"
                                                                 style="background-color: #f58529; border-radius:20px;"
+                                                                target="_blank"
                                                                 >
                                                                 REGISTER
                                                             </a>

@@ -132,6 +132,10 @@
                         <label class="form-label">Media Coverage Links</label>
                         <textarea class="form-control" name="update_event_links" rows="3" placeholder="list all of links"></textarea>
                     </div>
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label">External Form Registration</label>
+                        <input class="form-control" name="ext_link_registration" placeholder="https://example.com" readonly>
+                    </div>
                 </div>
                 <div class="d-flex flex-row px-0 action-button justify-content-between">
                     <button type="submit" class="submit-btn">UPLOAD</button>
@@ -255,6 +259,7 @@
                 source_form.querySelector("textarea[name='update_event_message']").value = form_data["description"];
                 source_form.querySelector("textarea[name='update_eng_event_message']").value = form_data["eng_description"];
                 source_form.querySelector("textarea[name='update_event_links']").value = form_data["additionalcontent"];
+                source_form.querySelector("input[name='ext_link_registration']").value = form_data["ext_link_registration"];
                 // if(form_data["banner"]){
                 //     input_banner = source_form.querySelector("input[name='update_event_banner']");
                 //     input_banner.closest("div.mb-3").querySelector("div[preview-file]")?.remove();
