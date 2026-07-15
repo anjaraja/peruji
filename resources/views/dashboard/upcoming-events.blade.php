@@ -54,6 +54,11 @@
                                     <label class="form-label">Event Agenda</label>
                                     <input type="file" name="event_agenda" class="form-control" accept="application/pdf">
                                 </div>
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">External Form Registration</label>
+                                    <input type="url" name="ext_link_registration" class="form-control" placeholder="https://example.com">
+                                    <small class="form-text text-muted">Enter an external URL to redirect the registration link, or leave blank to use the default form.</small>
+                                </div>
                             </div>
                             <button type="submit" class="submit-btn">UPLOAD</button>
                         </form>
@@ -93,6 +98,7 @@
                 source_form.querySelector("input[name='event_display_date']").value = form_data["publishdate"];
                 source_form.querySelector("textarea[name='event_message']").value = form_data["description"];
                 source_form.querySelector("textarea[name='eng_event_message']").value = form_data["eng_description"];
+                source_form.querySelector("input[name='ext_link_registration']").value = form_data["ext_link_registration"];
                 if(form_data["banner"]){
                     input_banner = source_form.querySelector("input[name='event_banner']");
                     input_banner.style.display = 'none';
@@ -169,6 +175,8 @@
             formdata.append("description",event_message)
             eng_event_message = thisform.querySelector("textarea[name='eng_event_message']").value
             formdata.append("eng_description",eng_event_message)
+            ext_link_registration = thisform.querySelector("input[name='ext_link_registration']").value
+            formdata.append("ext_link_registration",ext_link_registration)
             event_banner = thisform.querySelector("input[name='event_banner']").files[0];
             if(!event_banner){
                 input_banner = thisform.querySelector("input[name='event_banner']");

@@ -20,6 +20,7 @@ class Events extends Model
         'photo',
         'agenda',
         'additionalcontent',
+        'ext_link_registration',
         'activestatus',
         'created_by',
         'modified_by',

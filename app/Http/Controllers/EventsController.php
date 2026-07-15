@@ -186,6 +186,7 @@ class EventsController extends Controller
                 'photo.*' => 'nullable|file|mimes:jpeg,jpg,png',
                 'agenda' => 'nullable|file|mimes:pdf',
                 'additionalcontent' => 'nullable|string',
+                'ext_link_registration' => 'nullable|string',
                 'isprevious' => 'nullable|boolean'
             ]);
             if ($validated->fails()) {
